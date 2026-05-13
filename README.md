@@ -2,7 +2,7 @@
 
 ![-](https://img.shields.io/badge/java-%3E%3D1.8-blue) ![Maven Central](https://img.shields.io/maven-central/v/org.ofdrw/ofdrw) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](./LICENSE)
 
-Before using OFDRW, please make sure you have read the [***OFD Reader & Writer Disclaimer***](免责声明.md).
+Before using OFDRW, please make sure you have read the [***OFD Reader & Writer Disclaimer***](免责声明.md) *(currently available in Chinese only)*.
 
 > If cloning the repository or previewing the documentation is difficult, please visit [https://gitee.com/ofdrw/ofdrw](https://gitee.com/ofdrw/ofdrw).
 
@@ -27,7 +27,7 @@ The project uses Maven module management. The modules are listed below:
 - [**ofdrw-reader**](./ofdrw-reader) OFD document parser for deserialization and signature/seal processing.
 - [**ofdrw-sign**](./ofdrw-sign) Digital signature support for OFD documents.
 - [**ofdrw-gm**](./ofdrw-gm) National cryptography seal data structures required by the signature module.
-- [**ofrw-crypto**](./ofdrw-crypto) OFD cryptography features based on *GM/T 0099-2020 Technical Specification for Cryptographic Application of Open Fixed-layout Documents*.
+- [**ofdrw-crypto**](./ofdrw-crypto) OFD cryptography features based on *GM/T 0099-2020 Technical Specification for Cryptographic Application of Open Fixed-layout Documents*.
 - [**ofdrw-gv**](./ofdrw-gv) Global variables shared by all OFDRW modules.
 - [**ofdrw-converter**](./ofdrw-converter) OFD document conversion.
 - [**ofdrw-tool**](./ofdrw-tool) OFD document tools for merging, clipping, regrouping, and mixing documents. ***New***
@@ -74,6 +74,7 @@ public class HelloWorld {
 Result:
 
 ![Example](./ofdrw-layout/doc/layout/示例.png)
+*The sample image filename is currently kept in Chinese in the repository.*
 
 - [Document generation API example](./ofdrw-layout/src/test/java/org/ofdrw/layout/OFDDocTest.java)
 - [Document layout example](./ofdrw-layout/src/test/java/org/ofdrw/layout/LayoutTest.java)
