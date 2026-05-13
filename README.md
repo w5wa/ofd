@@ -74,7 +74,7 @@ public class HelloWorld {
 Result:
 
 ![Example](./ofdrw-layout/doc/layout/示例.png)
-*The sample image filename is currently kept in Chinese in the repository.*
+Note: the sample image filename is currently kept in Chinese in the repository.
 
 - [Document generation API example](./ofdrw-layout/src/test/java/org/ofdrw/layout/OFDDocTest.java)
 - [Document layout example](./ofdrw-layout/src/test/java/org/ofdrw/layout/LayoutTest.java)
