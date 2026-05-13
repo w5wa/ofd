@@ -8,7 +8,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * 图 77 URI动作属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 09:41:15
  */
 public class URI extends OFDElement implements OFDAction {
@@ -32,7 +32,7 @@ public class URI extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 目标URI的位置
      *
      * @param uri 目标URI的位置
@@ -44,7 +44,7 @@ public class URI extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 目标URI的位置
      *
      * @return 目标URI的位置
@@ -54,7 +54,7 @@ public class URI extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 Base URI，用于相对地址
      *
      * @param base Base URI，用于相对地址
@@ -70,7 +70,7 @@ public class URI extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 Base URI，用于相对地址
      *
      * @return Base URI，用于相对地址

@@ -10,54 +10,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 普通印章位置
+ * 普通seal/stamp位置
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 09:38:50
  */
 public class NormalStampPos implements StampAppearance {
 
     /**
-     * 图章所在页面页码
+     * 图章所在页面page number
      * <p>
      * 从 1起
      */
     private int page;
 
     /**
-     * 图章左上角X坐标
+     * 图章X coordinate of top-left corner
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double tlx;
     /**
-     * 图章左上角X坐标
+     * 图章X coordinate of top-left corner
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double tly;
 
     /**
-     * 图章宽度
+     * 图章width
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double width;
     /**
-     * 图章高度
+     * 图章height
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double height;
 
     /**
-     * 构造一个普通印章位置
+     * 构造一个普通seal/stamp位置
      *
-     * @param page   页码
+     * @param page   page number
      * @param tlx    左上角x坐标
      * @param tly    左上角y坐标
-     * @param width  宽度
-     * @param height 高度
+     * @param width  width
+     * @param height height
      */
     public NormalStampPos(int page, double tlx, double tly, double width, double height) {
         this.page = page;
@@ -114,7 +114,7 @@ public class NormalStampPos implements StampAppearance {
 
     @Override
     public List<StampAnnot> getAppearance(OFDReader ctx, SignIDProvider idProvider) {
-        // 解析OFD页码获取页面对应的ID
+        // 解析OFDpage number获取页面对应的ID
         ST_RefID ref = ctx.getPageObjectId(page).ref();
         StampAnnot annot = new StampAnnot()
                 .setID(idProvider.incrementAndGet())

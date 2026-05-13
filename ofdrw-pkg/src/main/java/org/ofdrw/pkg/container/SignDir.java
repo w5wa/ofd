@@ -11,7 +11,7 @@ import java.nio.file.Path;
 /**
  * 签名资源容器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-4-3 19:41:29
  */
 public class SignDir extends VirtualContainer {
@@ -22,16 +22,16 @@ public class SignDir extends VirtualContainer {
     public static final String SignContainerPrefix = "Sign_";
 
     /**
-     * 电子印章文件名
+     * 电子seal/stampfilename
      */
     public static final String SealFileName = "Seal.esl";
     /**
-     * 签名/签章 描述文件名
+     * 签名/seal/signature 描述filename
      */
     public static final String SignatureFileName = "Signature.xml";
 
     /**
-     * 签名值文件名
+     * signature valuefilename
      */
     public static final String SignedValueFileName = "SignedValue.dat";
 
@@ -74,11 +74,11 @@ public class SignDir extends VirtualContainer {
 
 
     /**
-     * 获取 签名/签章 描述文件
+     * 获取 签名/seal/signature 描述文件
      *
-     * @return 签名/签章 描述文件
+     * @return 签名/seal/signature 描述文件
      * @throws FileNotFoundException 容器中不存在该文件
-     * @throws DocumentException     XML文件解析异常，可能是格式不正确
+     * @throws DocumentException     XMLfile parsing exception，可能是格式不正确
      */
     public Signature getSignature() throws FileNotFoundException, DocumentException {
         Element ele = this.getObj(SignatureFileName);
@@ -86,9 +86,9 @@ public class SignDir extends VirtualContainer {
     }
 
     /**
-     * 设置 签名/签章 描述文件
+     * 设置 签名/seal/signature 描述文件
      *
-     * @param signature 签名/签章 描述文件
+     * @param signature 签名/seal/signature 描述文件
      * @return this
      */
     public SignDir setSignature(Signature signature) {
@@ -97,19 +97,19 @@ public class SignDir extends VirtualContainer {
     }
 
     /**
-     * 获取 电子印章文件
+     * 获取 电子seal/stamp文件
      *
-     * @return 电子印章文件
-     * @throws FileNotFoundException 文件不存在
+     * @return 电子seal/stamp文件
+     * @throws FileNotFoundException file not found
      */
     public Path getSeal() throws FileNotFoundException {
         return this.getFile(SealFileName);
     }
 
     /**
-     * 设置电子印章文件
+     * 设置电子seal/stamp文件
      *
-     * @param seal 电子印章文件
+     * @param seal 电子seal/stamp文件
      * @return this
      * @throws IOException 文件复制过程中异常
      */
@@ -119,19 +119,19 @@ public class SignDir extends VirtualContainer {
     }
 
     /**
-     * 获取 签名值文件
+     * 获取 signature value文件
      *
-     * @return 签名值文件
-     * @throws FileNotFoundException 文件不存在
+     * @return signature value文件
+     * @throws FileNotFoundException file not found
      */
     public Path getSignedValue() throws FileNotFoundException {
         return this.getFile(SignedValueFileName);
     }
 
     /**
-     * 设置签名值文件
+     * 设置signature value文件
      *
-     * @param signedValue 签名值文件
+     * @param signedValue signature value文件
      * @return this
      * @throws IOException 文件复制过程中异常
      */

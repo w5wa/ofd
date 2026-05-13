@@ -9,7 +9,7 @@ import java.nio.file.Path;
  * <p>
  * 绘制行为详见渲染器：{@link org.ofdrw.layout.element.canvas.CellContentDrawer}
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-11-21 19:22:28
  */
 public class Cell extends Canvas {
@@ -22,8 +22,8 @@ public class Cell extends Canvas {
     /**
      * 创建单元对象
      *
-     * @param width  宽度（单位：毫米mm）
-     * @param height 高度（单位：毫米mm）
+     * @param width  width (unit: mm)
+     * @param height height (unit: mm)
      */
     public Cell(Double width, Double height) {
         super(width, height);
@@ -36,8 +36,8 @@ public class Cell extends Canvas {
      *
      * @param x x坐标（单位：毫米mm）
      * @param y y坐标（单位：毫米mm）
-     * @param w 宽度（单位：毫米mm）
-     * @param h 高度（单位：毫米mm）
+     * @param w width（单位：毫米mm）
+     * @param h height（单位：毫米mm）
      */
     public Cell(double x, double y, double w, double h) {
         super(x, y, w, h);
@@ -92,11 +92,11 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 设置图片
+     * set image
      *
-     * @param imgPath 图片路径，仅支持png、jpg、jpeg、gif、bmp格式
-     * @param w       图片宽度，单位：毫米
-     * @param h       图片高度，单位：毫米
+     * @param imgPath image path, supports png, jpg, jpeg, gif, bmp formats
+     * @param w       imagewidth，单位：毫米
+     * @param h       imageheight，单位：毫米
      * @return this
      */
     public Cell setValue(Path imgPath, double w, double h) {
@@ -105,13 +105,13 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 设置图片
+     * set image
      * <p>
-     * 图片宽度与高度通过 {@link DrawContext#mm(int)} } 方法转换为毫米
+     * imagewidth与height通过 {@link DrawContext#mm(int)} } 方法转换为毫米
      *
-     * @param imgPath 图片路径，仅支持png、jpg、jpeg、gif、bmp格式
+     * @param imgPath image path, supports png, jpg, jpeg, gif, bmp formats
      * @return this
-     * @throws IOException 图片加载异常
+     * @throws IOException image加载异常
      */
     public Cell setValue(Path imgPath) throws IOException {
         this.cellDrawer.setValue(imgPath);
@@ -142,18 +142,18 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 获取字体名称
+     * get font name
      *
-     * @return 字体名称
+     * @return font name
      */
     public String getFontName() {
         return this.cellDrawer.getFontName();
     }
 
     /**
-     * 设置字体名称
+     * set font name
      *
-     * @param fontName 字体名称，仅支持系统安装字体，且不会嵌入到OFD中。
+     * @param fontName font name，仅支持系统安装font，且不会嵌入到OFD中。
      * @return this
      */
     public Cell setFontName(String fontName) {
@@ -162,12 +162,12 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 设置单元格使用的外部字体
+     * 设置单元格使用的外部font
      * <p>
-     * 注意OFDRW不会提供任何字体裁剪功能，您的字体文件将直接加入OFD文件中，这可能造成文件体积剧增。
+     * Note: OFDRW does not provide any font subsetting; your font file will be added directly to the OFD file, which may increase the file size significantly.
      *
-     * @param fontName 字体名称，如“思源宋体”
-     * @param fontPath 字体文件所在路径
+     * @param fontName font name, e.g. "Source Han Serif"
+     * @param fontPath path to the font file
      * @return this
      */
     public Cell setFont(String fontName, Path fontPath) {
@@ -176,7 +176,7 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 获取字号
+     * get font size
      *
      * @return 字号，默认：0.353 （单位：毫米）
      */
@@ -185,7 +185,7 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 设置字号
+     * set font size
      *
      * @param fontSize 字号，默认：3（单位：毫米）
      * @return this
@@ -218,7 +218,7 @@ public class Cell extends Canvas {
     /**
      * 获取 文字垂直方向浮动方式
      *
-     * @return 文字垂直方向浮动方式，默认：居中 {@link VerticalAlign#center}
+     * @return 文字垂直方向浮动方式，默认：center {@link VerticalAlign#center}
      */
     public VerticalAlign getVerticalAlign() {
         return this.cellDrawer.getVerticalAlign();
@@ -256,9 +256,9 @@ public class Cell extends Canvas {
     }
 
     /**
-     * @return 是否加粗，默认：不加粗
-     * @deprecated 单词错误 {@link #getBold()}
-     * 是否加粗
+     * @return whether bold, default: not bold
+     * @deprecated typo — use {@link #getBold()} instead
+     * whether bold
      */
     @Deprecated
     public Boolean getBlob() {
@@ -268,8 +268,8 @@ public class Cell extends Canvas {
     /**
      * @param blob 是否加粗
      * @return this
-     * @deprecated 单词错误 {@link #getBold()}
-     * 设置 是否加粗
+     * @deprecated typo — use {@link #getBold()} instead
+     * set whether bold
      */
     @Deprecated
     public Cell setBlob(Boolean blob) {
@@ -278,16 +278,16 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 是否加粗
+     * whether bold
      *
-     * @return 是否加粗，默认：不加粗
+     * @return whether bold, default: not bold
      */
     public Boolean getBold() {
         return this.cellDrawer.getBold();
     }
 
     /**
-     * 设置 是否加粗
+     * set whether bold
      *
      * @param blob 是否加粗
      * @return this
@@ -299,7 +299,7 @@ public class Cell extends Canvas {
 
 
     /**
-     * 是否斜体
+     * whether italic
      *
      * @return true - 斜体、false - 正常
      */
@@ -308,7 +308,7 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 设置 是否斜体
+     * set whether italic
      *
      * @param italic 是否斜体，true - 斜体、false - 正常
      * @return this
@@ -379,45 +379,45 @@ public class Cell extends Canvas {
     }
 
     /**
-     * 获取图片路径
+     * 获取image path
      *
-     * @return 图片路径，可能为空。
+     * @return image path，可能为空。
      */
     public Path getImgPath() {
         return this.cellDrawer.getImgPath();
     }
 
     /**
-     * 获取图片高度
+     * 获取imageheight
      *
-     * @return 图片高度，可能为0。
+     * @return imageheight，可能为0。
      */
     public double getImgWidth() {
         return this.cellDrawer.getImgWidth();
     }
 
     /**
-     * 获取图片宽度
+     * 获取imagewidth
      *
-     * @return 图片宽度，可能为0。
+     * @return imagewidth，可能为0。
      */
     public double getImgHeight() {
         return this.cellDrawer.getImgHeight();
     }
 
     /**
-     * 获取字体宽度
+     * get font width
      *
-     * @return 字体宽度，遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * @return fontwidth，遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      */
     public String getFontWeight() {
         return this.cellDrawer.getFontWeight();
     }
 
     /**
-     * 设置字体宽度
+     * set font width
      *
-     * @param fontWeight 宽度，应遵循 CSS3标准: normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * @param fontWeight width，应遵循 CSS3标准: normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      * @return this
      */
     public Cell setFontWeight(String fontWeight) {

@@ -3,7 +3,7 @@ package org.ofdrw.converter;
 /**
  * 转换通用错误
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-11-20 19:18:28
  */
 public class GeneralConvertException extends RuntimeException {

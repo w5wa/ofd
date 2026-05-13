@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * OFD完整性保护协议
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-17 20:09:59
  */
 class OFDIntegrityTest {
@@ -38,7 +38,7 @@ class OFDIntegrityTest {
         Path certPemFile = Paths.get("src/test/resources", "sign_cert.pem");
         Path keyPemFile = Paths.get("src/test/resources", "sign_key.pem");
 
-        // 1. 准备 签名私钥 和 签名证书
+        // 1. 准备 signing private key 和 签名certificate
         final PrivateKey privateKey = PEMLoader.loadPrivateKey(keyPemFile);
         final Certificate certificate = PEMLoader.loadCert(certPemFile);
 

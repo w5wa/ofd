@@ -8,16 +8,16 @@ import org.ofdrw.core.basicStructure.pageObj.layer.block.*;
  * <p>
  * 逻辑层面表示
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-10 10:12:35
  */
 public interface PageBlockType extends Element {
 
     /**
-     * 解析元素并获取对应的PageBlock子类实例
+     * 解析元素并获取对应的PageBlock子类instance
      *
-     * @param element 实例
-     * @return 子类实例，若无法转换则返回null
+     * @param element instance
+     * @return 子类instance，若无法转换则返回null
      */
     static PageBlockType getInstance(Element element) {
         String qName = element.getQualifiedName();
@@ -49,7 +49,7 @@ public interface PageBlockType extends Element {
                 break;
             default:
                 res = null;
-//                throw new IllegalArgumentException("不是 PageBlock 子类，未知元素类型：" + qName);
+//                throw new IllegalArgumentException("不是 PageBlock 子类，未知element type：" + qName);
         }
         return res;
     }

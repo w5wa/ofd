@@ -3,20 +3,20 @@ package org.ofdrw.layout.element;
 /**
  * 定位方式
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-28 01:40:26
  */
 public enum Position {
     /**
      * 静态定位（由渲染器决定）
      * <p>
-     * 默认值
+     * default value
      */
     Static,
     /**
      * 相对定位
      * <p>
-     * 使用： left、right在段内定位
+     * 使用： left、right在segment内定位
      */
     Relative,
     /**

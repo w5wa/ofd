@@ -8,12 +8,12 @@ import org.ofdrw.core.basicType.ST_RefID;
 /**
  * 签名的外观
  * <p>
- * 一个数字签名可以跟一个或多个外观描述关联，也可以不关联任何外观，
+ * 一个number签名可以跟一个或多个外观描述关联，也可以不关联任何外观，
  * 其关联方式如图 88所示。
  * <p>
  * 18.2.3 图 88 表 69
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-21 18:39:47
  */
 public class StampAnnot extends OFDElement {
@@ -26,40 +26,40 @@ public class StampAnnot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 签章注释的标识
+     * [required attribute]
+     * 设置 seal/signature注释的标识
      * <p>
-     * 推荐使用“sNNN”的编码方式，NNN从1开始
+     * recommended encoding: "sNNN" where NNN starts from 1
      *
-     * @param id 签章注释的标识
+     * @param id seal/signature注释的标识
      * @return this
      */
     public StampAnnot setID(String id) {
         if (id == null || id.trim().length() == 0) {
-            throw new IllegalArgumentException("签章注释的标识（ID）为空");
+            throw new IllegalArgumentException("seal/signature注释的标识（ID）为空");
         }
         this.addAttribute("ID", id);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 签章注释的标识
+     * [required attribute]
+     * 获取 seal/signature注释的标识
      * <p>
-     * 推荐使用“sNNN”的编码方式，NNN从1开始
+     * recommended encoding: "sNNN" where NNN starts from 1
      *
-     * @return 签章注释的标识
+     * @return seal/signature注释的标识
      */
     public String getID() {
         String str = this.attributeValue("ID");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("签章注释的标识（ID）为空");
+            throw new IllegalArgumentException("seal/signature注释的标识（ID）为空");
         }
         return str;
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 引用外观注释所在的页面的标识符
      *
      * @param pageRef 引用外观注释所在的页面的标识符
@@ -74,7 +74,7 @@ public class StampAnnot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 引用外观注释所在的页面的标识符
      *
      * @return 引用外观注释所在的页面的标识符
@@ -88,39 +88,39 @@ public class StampAnnot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 签章注释的外观边框位置
+     * [required attribute]
+     * 设置 seal/signature注释的外观边框位置
      * <p>
-     * 可用于签章注释所在页面内的定位
+     * 可用于seal/signature注释所在页面内的定位
      *
-     * @param boundary 签章注释的外观边框位置
+     * @param boundary seal/signature注释的外观边框位置
      * @return this
      */
     public StampAnnot setBoundary(ST_Box boundary) {
         if (boundary == null) {
-            throw new IllegalArgumentException("签章注释的外观边框位置（Boundary）为空");
+            throw new IllegalArgumentException("seal/signature注释的外观边框位置（Boundary）为空");
         }
         this.addAttribute("Boundary", boundary.toString());
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 签章注释的外观边框位置
+     * [required attribute]
+     * 获取 seal/signature注释的外观边框位置
      * <p>
-     * 可用于签章注释所在页面内的定位
+     * 可用于seal/signature注释所在页面内的定位
      *
-     * @return 签章注释的外观边框位置
+     * @return seal/signature注释的外观边框位置
      */
     public ST_Box getBoundary() {
         return ST_Box.getInstance(this.attributeValue("Boundary"));
     }
 
     /**
-     * 【可选 属性】
-     * 设置 签章注释的外观裁剪设置
+     * [optional attribute]
+     * 设置 seal/signature注释的外观裁剪设置
      *
-     * @param clip 签章注释的外观裁剪设置
+     * @param clip seal/signature注释的外观裁剪设置
      * @return this
      */
     public StampAnnot setClip(ST_Box clip) {
@@ -133,10 +133,10 @@ public class StampAnnot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 签章注释的外观裁剪设置
+     * [optional attribute]
+     * 获取 seal/signature注释的外观裁剪设置
      *
-     * @return 签章注释的外观裁剪设置
+     * @return seal/signature注释的外观裁剪设置
      */
     public ST_Box getClip() {
         return ST_Box.getInstance(this.attributeValue("Clip"));

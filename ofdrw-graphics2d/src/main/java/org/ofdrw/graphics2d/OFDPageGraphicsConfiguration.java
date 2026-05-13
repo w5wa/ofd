@@ -11,17 +11,17 @@ import java.awt.image.VolatileImage;
 /**
  * OFD页面图形配置
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-2-23 20:10:03
  */
 public final class OFDPageGraphicsConfiguration extends GraphicsConfiguration {
 
     /**
-     * 页面宽度，单位：毫米
+     * 页面width，单位：毫米
      */
     double width;
     /**
-     * 页面高度，单位：毫米
+     * 页面height，单位：毫米
      */
     double height;
 
@@ -33,8 +33,8 @@ public final class OFDPageGraphicsConfiguration extends GraphicsConfiguration {
     /**
      * OFD页面图形配置对象
      *
-     * @param width  页面宽度，单位：毫米
-     * @param height 页面高度，单位：毫米
+     * @param width  页面width，单位：毫米
+     * @param height 页面height，单位：毫米
      */
     public OFDPageGraphicsConfiguration(double width, double height) {
         super();
@@ -84,9 +84,9 @@ public final class OFDPageGraphicsConfiguration extends GraphicsConfiguration {
     }
 
     /**
-     * 获取默认的变换矩阵
+     * 获取默认的transformation matrix
      *
-     * @return 默认的变换矩阵
+     * @return 默认的transformation matrix
      */
     @Override
     public AffineTransform getDefaultTransform() {
@@ -94,9 +94,9 @@ public final class OFDPageGraphicsConfiguration extends GraphicsConfiguration {
     }
 
     /**
-     * 获取归一化变换矩阵
+     * 获取归一化transformation matrix
      *
-     * @return 归一化变换矩阵
+     * @return 归一化transformation matrix
      */
     @Override
     public AffineTransform getNormalizingTransform() {
@@ -117,14 +117,14 @@ public final class OFDPageGraphicsConfiguration extends GraphicsConfiguration {
     private GraphicsConfiguration gc;
 
     /**
-     * 创建图片合成方式
+     * 创建image合成方式
      *
-     * @param width        图片宽度
-     * @param height       图片高度
-     * @param caps         图片功能？
+     * @param width        imagewidth
+     * @param height       imageheight
+     * @param caps         image功能？
      * @param transparency 透明方式.
      * @return VolatileImage
-     * @throws AWTException 图片创建异常
+     * @throws AWTException image创建异常
      */
     @Override
     public VolatileImage createCompatibleVolatileImage(int width, int height,

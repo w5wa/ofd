@@ -14,7 +14,7 @@ import java.util.*;
  * <p>
  * 请设置绘制对象
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-14 19:09:37
  */
 public class Annotation {
@@ -97,8 +97,8 @@ public class Annotation {
      *
      * @param x      所处页面 y坐标
      * @param y      所处页面 y坐标
-     * @param width  画布宽度
-     * @param height 画布高度
+     * @param width  画布width
+     * @param height 画布height
      * @param type   注释类型
      * @param drawer 注释绘制器
      */
@@ -204,7 +204,7 @@ public class Annotation {
     /**
      * 设置 注释类型
      * <p>
-     * 具体取值见{@link AnnotType}
+     * for specific values, see {@link AnnotType}
      *
      * @param type 注释类型
      * @return this
@@ -218,7 +218,7 @@ public class Annotation {
     /**
      * 获取 注释类型
      * <p>
-     * 具体取值见{@link AnnotType}
+     * for specific values, see {@link AnnotType}
      *
      * @return 注释类型
      */
@@ -292,7 +292,7 @@ public class Annotation {
     /**
      * 设置 表示该注释对象是否显示
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param visible 表示该注释对象是否显示，默认值为 true
      * @return this
@@ -305,7 +305,7 @@ public class Annotation {
     /**
      * 获取 表示该注释对象是否显示
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 表示该注释对象是否显示，默认值为 true
      */
@@ -318,9 +318,9 @@ public class Annotation {
 
 
     /**
-     * 设置 对象的Remark 信息是否随页面一起打印
+     * set whether the object's Remark information is printed with the page
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param print 对象的Remark 信息是否随页面一起打印
      * @return this
@@ -331,9 +331,9 @@ public class Annotation {
     }
 
     /**
-     * 设置 对象的Remark 信息是否随页面一起打印
+     * set whether the object's Remark information is printed with the page
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 对象的Remark 信息是否随页面一起打印
      */
@@ -347,7 +347,7 @@ public class Annotation {
     /**
      * 设置 对象的 Remark 信息是否不随页面缩放而同步缩放
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @param noZoom 对象的 Remark 信息是否不随页面缩放而同步缩放
      * @return this
@@ -360,7 +360,7 @@ public class Annotation {
     /**
      * 获取 对象的 Remark 信息是否不随页面缩放而同步缩放
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @return 对象的 Remark 信息是否不随页面缩放而同步缩放
      */
@@ -375,7 +375,7 @@ public class Annotation {
     /**
      * 设置 对象的 Remark 信息是否不随页面旋转而旋转
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @param noRotate 对象的 Remark 信息是否不随页面旋转而旋转
      * @return this
@@ -388,7 +388,7 @@ public class Annotation {
     /**
      * 获取 对象的 Remark 信息是否不随页面旋转而旋转
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @return 对象的 Remark 信息是否不随页面旋转而旋转
      */
@@ -403,7 +403,7 @@ public class Annotation {
     /**
      * 设置 对象的 Remark 信息是否不能被用户更改
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param readOnly 对象的 Remark 信息是否不能被用户更改
      * @return this
@@ -416,7 +416,7 @@ public class Annotation {
     /**
      * 获取 对象的 Remark 信息是否不能被用户更改
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 对象的 Remark 信息是否不能被用户更改
      */

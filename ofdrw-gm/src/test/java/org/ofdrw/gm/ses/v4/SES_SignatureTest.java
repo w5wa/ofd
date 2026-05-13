@@ -56,7 +56,7 @@ class SES_SignatureTest {
 
         Path out = Paths.get("target/SignedValueV4.dat");
         Files.write(out, signature.getEncoded("DER"));
-        System.out.println(">> V4版本电子签章存储于: " + out.toAbsolutePath().toAbsolutePath());
+        System.out.println(">> V4版本电子seal/signature存储于: " + out.toAbsolutePath().toAbsolutePath());
     }
 
 

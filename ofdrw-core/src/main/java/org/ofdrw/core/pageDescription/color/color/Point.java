@@ -8,7 +8,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * 8.6.4.4 表 31 附录 A.13 P125
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-09 12:28:07
  */
 public class Point extends OFDElement {
@@ -21,7 +21,7 @@ public class Point extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置  控制点水平位置
      *
      * @param x 控制点水平位置
@@ -36,7 +36,7 @@ public class Point extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取  控制点水平位置
      *
      * @return 控制点水平位置
@@ -50,7 +50,7 @@ public class Point extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置  控制点垂直位置
      *
      * @param y 控制点垂直位置
@@ -65,7 +65,7 @@ public class Point extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取  控制点垂直位置
      *
      * @return 控制点垂直位置
@@ -79,7 +79,7 @@ public class Point extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 三角单元切换的方向标志
      *
      * @param edgeFlag 三角单元切换的方向标志
@@ -95,7 +95,7 @@ public class Point extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 三角单元切换的方向标志
      *
      * @return 三角单元切换的方向标志
@@ -106,10 +106,10 @@ public class Point extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 控制点对应的颜色
      * <p>
-     * 应使用基本颜色
+     * should use basic colors
      *
      * @param color 控制点对应的颜色，应使用基本颜色
      * @return this
@@ -123,10 +123,10 @@ public class Point extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 控制点对应的颜色
      * <p>
-     * 应使用基本颜色
+     * should use basic colors
      *
      * @return 控制点对应的颜色，应使用基本颜色
      */

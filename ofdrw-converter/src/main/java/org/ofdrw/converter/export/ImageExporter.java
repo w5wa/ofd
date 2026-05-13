@@ -15,78 +15,78 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * OFD图片转换器
+ * OFDimage转换器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-8 19:50:52
  */
 public class ImageExporter implements OFDExporter {
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     final OFDReader ofdReader;
     /**
-     * 图片转换器
+     * image转换器
      */
     final ImageMaker imageMaker;
 
     /**
-     * 图片类型
+     * image类型
      */
     final String imageType;
 
     /**
-     * 图片文件输出路径
+     * image文件输出路径
      */
     final Path outDirPath;
 
     /**
-     * 转换生成的图片文件序列
+     * 转换生成的image文件序列
      */
     List<Path> imgFileArr;
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdFilePath 待转换OFD文件
-     * @param imgDirPath  生成图片存放目录
-     * @throws IOException 文件解析异常
+     * @param ofdFilePath OFD file to be converted
+     * @param imgDirPath  生成image存放目录
+     * @throws IOException file parsing exception
      */
     public ImageExporter(Path ofdFilePath, Path imgDirPath) throws IOException {
         this(ofdFilePath, imgDirPath, "PNG", 15);
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdInput   待转换OFD文件流，该流由调用者负责关闭
-     * @param imgDirPath 生成图片存放目录
-     * @throws IOException 文件解析异常
+     * @param ofdInput   OFD file to be converted stream; caller is responsible for closing
+     * @param imgDirPath 生成image存放目录
+     * @throws IOException file parsing exception
      */
     public ImageExporter(InputStream ofdInput, Path imgDirPath) throws IOException {
         this(ofdInput, imgDirPath, "PNG", 15);
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdFilePath 待转换OFD文件
-     * @param imgDirPath  生成图片存放目录
-     * @param imageType   生成图片的格式，如 JPG、PNG、GIF、BMP
-     * @param ppm         转换图片质量，每毫米像素数量(Pixels per millimeter)
-     * @throws IOException 文件解析异常
+     * @param ofdFilePath OFD file to be converted
+     * @param imgDirPath  生成image存放目录
+     * @param imageType   生成image的格式，如 JPG、PNG、GIF、BMP
+     * @param ppm         转换image质量，pixels per millimeter
+     * @throws IOException file parsing exception
      */
     public ImageExporter(Path ofdFilePath, Path imgDirPath, String imageType, double ppm) throws IOException {
         ofdReader = new OFDReader(ofdFilePath);
 
         if (imgDirPath == null) {
-            throw new IllegalArgumentException("导出图片文件路径为空");
+            throw new IllegalArgumentException("导出imagefile path为空");
         }
         imgDirPath = imgDirPath.toAbsolutePath();
         if (Files.exists(imgDirPath) && !Files.isDirectory(imgDirPath)) {
@@ -103,18 +103,18 @@ public class ImageExporter implements OFDExporter {
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdInput   待转换OFD文件流，该文件流由调用者负责关闭
-     * @param imgDirPath 生成图片存放目录
-     * @param imageType  生成图片的格式，如 JPG、PNG、GIF、BMP
-     * @param ppm        转换图片质量，每毫米像素数量(Pixels per millimeter)
-     * @throws IOException 文件解析异常
+     * @param ofdInput   OFD file to be converted流，该文件流由调用者负责关闭
+     * @param imgDirPath 生成image存放目录
+     * @param imageType  生成image的格式，如 JPG、PNG、GIF、BMP
+     * @param ppm        转换image质量，pixels per millimeter
+     * @throws IOException file parsing exception
      */
     public ImageExporter(InputStream ofdInput, Path imgDirPath, String imageType, double ppm) throws IOException {
         ofdReader = new OFDReader(ofdInput);
         if (imgDirPath == null) {
-            throw new IllegalArgumentException("导出图片文件路径为空");
+            throw new IllegalArgumentException("导出imagefile path为空");
         }
         imgDirPath = imgDirPath.toAbsolutePath();
         if (Files.exists(imgDirPath) && !Files.isDirectory(imgDirPath)) {
@@ -131,10 +131,10 @@ public class ImageExporter implements OFDExporter {
     }
 
     /**
-     * 导出指定OFD页为图片
+     * export specified OFD page as image
      *
-     * @param indexes 页码序列，如果为空表示全部页码（注意：页码从0起）
-     * @throws GeneralConvertException 转换异常
+     * @param indexes page index sequence; if null, means all pages (note: page index starts from 0)
+     * @throws GeneralConvertException conversion exception
      */
     @Override
     public void export(int... indexes) throws GeneralConvertException {
@@ -145,7 +145,7 @@ public class ImageExporter implements OFDExporter {
             }
         } else {
             int maxPageIndex = ofdReader.getNumberOfPages();
-            // 获取指定页面信息
+            // get information for specified page
             for (int index : indexes) {
                 if (index < 0 || index >= maxPageIndex) {
                     continue;
@@ -161,7 +161,7 @@ public class ImageExporter implements OFDExporter {
                 this.imgFileArr.add(dst);
             }
         } catch (IOException e) {
-            throw new GeneralConvertException("图片转换异常", e);
+            throw new GeneralConvertException("imageconversion exception", e);
         }
     }
 
@@ -177,29 +177,29 @@ public class ImageExporter implements OFDExporter {
     }
 
     /**
-     * 获取已经转换完成的页面的图片路径
+     * 获取已经转换完成的页面的image path
      *
-     * @return 页面图片路径
+     * @return 页面image path
      */
     public List<Path> getImgFilePaths() {
         return imgFileArr;
     }
 
     /**
-     * 获取转换图片类型
+     * 获取转换image类型
      *
-     * @return 图片类型
+     * @return image类型
      */
     public String getImageType() {
         return imageType;
     }
 
     /**
-     * 设置转换图片质量
+     * 设置转换image质量
      * <p>
      * 请在调用 {@link #export(int...)} 方法之前设置PPM！
      *
-     * @param ppm 每毫米像素数量(Pixels per millimeter)
+     * @param ppm pixels per millimeter
      */
     public void setPPM(double ppm) {
         if (imageMaker == null) {

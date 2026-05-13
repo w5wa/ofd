@@ -7,7 +7,7 @@ import org.ofdrw.core.graph.pathObj.AbbreviatedData;
  * <p>
  * 用于快速构建以路径为基础的图形图像数据
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-21 13:50:20
  */
 public class GraphHelper {
@@ -15,10 +15,10 @@ public class GraphHelper {
     /**
      * 创建一个矩形轮廓
      *
-     * @param x 矩形左上角X坐标
-     * @param y 矩形左上角Y坐标
-     * @param w 矩形宽度
-     * @param h 矩形高度
+     * @param x rectangle X coordinate of top-left corner
+     * @param y rectangle Y coordinate of top-left corner
+     * @param w rectangle width
+     * @param h rectangle height
      * @return 矩形路径轮廓
      */
     public static AbbreviatedData rect(double x, double y, double w, double h) {

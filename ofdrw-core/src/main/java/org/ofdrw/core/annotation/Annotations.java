@@ -11,13 +11,13 @@ import java.util.List;
  * 注释入口文件
  * <p>
  * 注释是板式文档形成后附加的图文信息，用户可通过鼠标和键盘
- * 与进行交互。本标准中，页面内容与注释内容是份文件描述的。
+ * 与进行交互。本标准中，page content与注释内容是份文件描述的。
  * 文件的注释在注释列表文件中按照页面进行组织索引，注释的内容
  * 在分页注释文件中描述。
  * <p>
  * 15.1 注释入口文件 图 80 表 60
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-16 01:58:22
  */
 public class Annotations extends OFDElement {
@@ -30,7 +30,7 @@ public class Annotations extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 增加 注释所在页
      *
      * @param page 注释所在页
@@ -61,7 +61,7 @@ public class Annotations extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 增加 注释所在页序列
      *
      * @return 注释所在页序列

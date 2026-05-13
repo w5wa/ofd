@@ -20,7 +20,7 @@ import java.security.cert.Certificate;
 /**
  * PEM文件加载工具
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-29 19:39:31
  */
 final public class PEMLoader {
@@ -29,12 +29,12 @@ final public class PEMLoader {
     }
 
     /**
-     * 从PEM文件中加载明文的SM2私钥
+     * 从PEM文件中加载明文的SM2private key
      *
      * @param in PEM文件位置
-     * @return SM2私钥
-     * @throws IOException              文件读写异常
-     * @throws GeneralSecurityException 密钥解析异常
+     * @return SM2private key
+     * @throws IOException              file read/write exception
+     * @throws GeneralSecurityException key解析异常
      */
     public static PrivateKey loadPrivateKey(Path in) throws IOException, GeneralSecurityException {
         try (final InputStream keyOut = Files.newInputStream(in);
@@ -46,12 +46,12 @@ final public class PEMLoader {
     }
 
     /**
-     * 从PEM文件中加载的国密 SM2证书
+     * 从PEM文件中加载的国密 SM2certificate
      *
      * @param in PEM文件位置
-     * @return 国密 SM2证书
-     * @throws IOException              文件读写异常
-     * @throws GeneralSecurityException 密钥解析异常
+     * @return 国密 SM2certificate
+     * @throws IOException              file read/write exception
+     * @throws GeneralSecurityException key解析异常
      */
     public static Certificate loadCert(Path in) throws IOException, GeneralSecurityException {
         try (final InputStream certOut = Files.newInputStream(in);

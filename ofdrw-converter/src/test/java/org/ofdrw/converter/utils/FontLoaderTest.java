@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-04-12 19:42:58
  */
 class FontLoaderTest {

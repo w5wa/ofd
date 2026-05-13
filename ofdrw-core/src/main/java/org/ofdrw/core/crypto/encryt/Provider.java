@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * GMT0099 C.3 表 C.2
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-24 19:48:55
  */
 public class Provider extends org.ofdrw.core.signatures.sig.Provider {
@@ -21,7 +21,7 @@ public class Provider extends org.ofdrw.core.signatures.sig.Provider {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 加密组件名称
      *
      * @param name 加密组件名称
@@ -38,7 +38,7 @@ public class Provider extends org.ofdrw.core.signatures.sig.Provider {
 
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 加密组件名称
      *
      * @return 加密组件名称

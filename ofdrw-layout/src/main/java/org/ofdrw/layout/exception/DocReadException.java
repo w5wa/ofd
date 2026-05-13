@@ -3,9 +3,9 @@ package org.ofdrw.layout.exception;
 import java.io.IOException;
 
 /**
- * OFD文件解析异常
+ * OFDfile parsing exception
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-11 17:03:52
  */
 public class DocReadException extends IOException {

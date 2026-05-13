@@ -24,36 +24,36 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 《GM/T 0031-2014 安全电子签章密码技术规范》 电子签章数据生成扩展容器
+ * 《GM/T 0031-2014 安全电子seal/signature密码技术规范》 电子seal/signature数据生成扩展容器
  * <p>
- * 注意：该容器仅用于测试，电子签章请使用符合国家规范具有国家型号证书的设备进行！
+ * Note: this container is for testing only. For electronic signatures, use devices compliant with national standards and having national type certificates.
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-21 01:22:47
  */
 public class SESV1Container implements ExtendSignatureContainer {
     /**
-     * 签名使用的私钥
+     * 签名使用的private key
      */
     private final PrivateKey privateKey;
 
     /**
-     * 电子印章
+     * electronic seal
      */
     private final SESeal seal;
 
     /**
-     * 签章使用的证书
+     * seal/signature使用的certificate
      */
     private final Certificate certificate;
 
 
     /**
-     * V1版本的电子签章容器构造
+     * V1 electronic seal/signature container constructor
      *
-     * @param privateKey 签名使用的私钥
-     * @param seal       电子印章
-     * @param signCert   签章用户证书
+     * @param privateKey 签名使用的private key
+     * @param seal       电子seal/stamp
+     * @param signCert   seal/signatureuser certificate
      */
     public SESV1Container(PrivateKey privateKey, SESeal seal, Certificate signCert) {
         this.privateKey = privateKey;
@@ -62,9 +62,9 @@ public class SESV1Container implements ExtendSignatureContainer {
     }
 
     /**
-     * 提供文件的摘要算法功能
+     * provide file digest algorithm function
      *
-     * @return 摘要算法功能
+     * @return digest algorithm function
      */
     @Override
     public MessageDigest getDigestFnc() {
@@ -72,9 +72,9 @@ public class SESV1Container implements ExtendSignatureContainer {
     }
 
     /**
-     * 签名方法OID
+     * signature methodOID
      *
-     * @return 签名方法OID
+     * @return signature algorithm OID
      */
     @Override
     public ASN1ObjectIdentifier getSignAlgOID() {
@@ -82,24 +82,24 @@ public class SESV1Container implements ExtendSignatureContainer {
     }
 
     /**
-     * 对待签名数据进行电子签章
+     * 对待签名数据进行电子seal/signature
      * <p>
-     * 注意：该方法不符合《GM/T 0031-2014 安全电子签章密码技术规范》 流程规范，生成的电子签章
-     * 不具有效力，请使用符合国家标准具有型号证书的设备产生电子签章数据。
+     * 注意：该方法不符合《GM/T 0031-2014 安全电子seal/signature密码技术规范》 流程规范，生成的电子seal/signature
+     * 不具有效力，请使用符合国家标准具有型号certificate的设备产生电子seal/signature数据。
      * <p>
      * 该方法只用于测试调试。
      *
-     * @param inData       待签名数据流
-     * @param propertyInfo 签章属性信息
-     * @return 签名或签章结果值
-     * @throws IOException              流操作异常
-     * @throws GeneralSecurityException 签名计算异常
+     * @param inData       data stream to be signed
+     * @param propertyInfo seal/signature attribute information
+     * @return signature or seal result value
+     * @throws IOException              stream operation exception
+     * @throws GeneralSecurityException signature computation exception
      */
     @Override
     public byte[] sign(InputStream inData, String propertyInfo) throws IOException, GeneralSecurityException {
 
         MessageDigest md = getDigestFnc();
-        // 签名原文杂凑值，也就是Signature.xml 文件的杂凑值
+        // 签名原文hash value，也就是Signature.xml 文件的hash value
         byte[] digest = md.digest(IOUtils.toByteArray(inData));
 
         // 签名时间
@@ -124,12 +124,12 @@ public class SESV1Container implements ExtendSignatureContainer {
     }
 
     /**
-     * 获取电子印章二进制编码
+     * get electronic seal binary encoding
      * <p>
-     * 如果{@link #getSignType()} 返还类型为{@link SigType#Sign}那么请返回null
+     * if {@link #getSignType()} returns type {@link SigType#Sign}, return null
      *
-     * @return 电子印章二进制编码
-     * @throws IOException 获取印章IO异常
+     * @return electronic seal binary encoding
+     * @throws IOException IO exception while retrieving seal
      */
     @Override
     public byte[] getSeal() throws IOException {
@@ -137,9 +137,9 @@ public class SESV1Container implements ExtendSignatureContainer {
     }
 
     /**
-     * 获取签名节点类型
+     * get signature node type
      *
-     * @return 签名节点类型
+     * @return signature node type
      */
     @Override
     public SigType getSignType() {

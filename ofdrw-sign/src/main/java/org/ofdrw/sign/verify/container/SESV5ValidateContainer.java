@@ -18,11 +18,11 @@ import java.security.cert.Certificate;
 import java.util.Arrays;
 
 /**
- * V5电子签章数据验证容器
+ * V5电子seal/signature数据验证容器
  * <p>
- * 签名计算范围：签章签名=Sign(TBS_Sign)
+ * 签名计算范围：seal/signature签名=Sign(TBS_Sign)
  * <p>
- * 注意：仅用于测试，电子签章验证请使用符合国家规范的流程进行！
+ * Note: for testing only. Electronic seal verification should follow nationally compliant procedures.
  *
  * @since 2026-04-24
  * @author minghu.zhang
@@ -36,10 +36,10 @@ public class SESV5ValidateContainer implements SignedDataValidateContainer {
                          byte[] signedValue)
             throws InvalidSignedValueException, IOException, GeneralSecurityException {
         if (type == SigType.Sign) {
-            throw new IllegalArgumentException("签名类型(type)必须是 Seal，不支持电子印章验证");
+            throw new IllegalArgumentException("签名类型(type)必须是 Seal，不支持电子seal/stamp验证");
         }
 
-        // 计算原文摘要
+        // calculate original document digest
         MessageDigest md = new SM3.Digest();
         byte[] actualDataHash = md.digest(tbsContent);
 
@@ -47,13 +47,13 @@ public class SESV5ValidateContainer implements SignedDataValidateContainer {
         TBS_Sign toSign = sesSignature.getToSign();
         byte[] expectDataHash = toSign.getDataHash().getOctets();
 
-        // 比较原文摘要
+        // compare original document digest
         if (!Arrays.equals(actualDataHash, expectDataHash)) {
-            throw new InvalidSignedValueException("Signature.xml 文件被篡改，电子签章失效。("
+            throw new InvalidSignedValueException("Signature.xml 文件被篡改，电子seal/signature失效。("
                     + toSign.getPropertyInfo().getString() + ")");
         }
 
-        // 验证签章签名 Sign(TBS_Sign)
+        // 验证seal/signature签名 Sign(TBS_Sign)
         byte[] expSigVal = sesSignature.getSignatureValue().getOctets();
         Signature sg = Signature.getInstance(sesSignature.getSignatureAlgID().getId(),
                 new BouncyCastleProvider());
@@ -63,7 +63,7 @@ public class SESV5ValidateContainer implements SignedDataValidateContainer {
         sg.initVerify(signCert);
         sg.update(toSign.getEncoded("DER"));
         if (!sg.verify(expSigVal)) {
-            throw new InvalidSignedValueException("电子签章数据签名值不匹配，电子签章数据失效。");
+            throw new InvalidSignedValueException("电子seal/signature数据signature value不匹配，电子seal/signature数据失效。");
         }
     }
 }

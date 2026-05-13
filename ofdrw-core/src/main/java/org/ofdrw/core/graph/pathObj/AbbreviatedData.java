@@ -15,7 +15,7 @@ import java.util.List;
  * <p>
  * 9.1 表 35 36
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-16 09:09:15
  */
 public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<OptVal> {
@@ -42,13 +42,13 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
     }
 
     /**
-     * 解析字符串构造数据队列
+     * 解析string构造数据队列
      * <p>
      * 数组中的两个元素间多个空格将会被理解成一个空格。
      * <p>
-     * 无法解析转换的数字将会被当做0
+     * 无法解析转换的number将会被当做0
      *
-     * @param dataStr 紧缩字符串
+     * @param dataStr 紧缩string
      * @return 数据队列
      */
     public static LinkedList<OptVal> parse(String dataStr) {
@@ -61,7 +61,7 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
         List<String> values = new LinkedList<>();
         for (String s : arr) {
             if (s.isEmpty()) {
-                // 跳过split产生的空字符串（如前导空格导致的""）
+                // 跳过split产生的空string（如前导空格导致的""）
                 continue;
             }
             switch (s) {
@@ -127,8 +127,8 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
     /**
      * 定义自绘制图形边线的起始点坐标 （x，y）
      *
-     * @param x 目标点 x
-     * @param y 目标点 y
+     * @param x target point x
+     * @param y target point y
      * @return this
      */
     public AbbreviatedData defineStart(double x, double y) {
@@ -150,8 +150,8 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
     /**
      * 当前点移动到制定点（x，y）
      *
-     * @param x 目标点 x
-     * @param y 目标点 y
+     * @param x target point x
+     * @param y target point y
      * @return this
      */
     public AbbreviatedData moveTo(double x, double y) {
@@ -171,10 +171,10 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
     }
 
     /**
-     * 从当前点连接一条指定点（x，y）的线段，并将当前点移动到制定点
+     * 从当前点连接一条指定点（x，y）的线segment，并将当前点移动到制定点
      *
-     * @param x 目标点 x
-     * @param y 目标点 y
+     * @param x target point x
+     * @param y target point y
      * @return this
      */
     public AbbreviatedData lineTo(double x, double y) {
@@ -200,8 +200,8 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
      *
      * @param x1 控制点 x
      * @param y1 控制点 y
-     * @param x2 目标点 x
-     * @param y2 目标点 y
+     * @param x2 target point x
+     * @param y2 target point y
      * @return this
      */
     public AbbreviatedData quadraticBezier(double x1, double y1,
@@ -235,8 +235,8 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
      * @param y1 控制点 y1
      * @param x2 控制点 x2
      * @param y2 控制点 y2
-     * @param x3 目标点 x3
-     * @param y3 目标点 y3
+     * @param x3 target point x3
+     * @param y3 target point y3
      * @return this
      */
     public AbbreviatedData cubicBezier(double x1, double y1,
@@ -279,11 +279,11 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
      *
      * @param rx    椭圆长轴长度
      * @param ry    椭圆短轴长度
-     * @param angle 旋转角度，正值顺时针，负值逆时针
+     * @param angle rotation angle，正值顺时针，负值逆时针
      * @param large 1 时表示对应度数大于 180°的弧，0 时表示对应度数小于 180°的弧
      * @param sweep sweep 为 1 时表示由圆弧起始点到结束点是顺时针旋转，为 0 时表示由圆弧起始点到结束点是逆时针旋转。
-     * @param x     目标点 x
-     * @param y     目标点 y
+     * @param x     target point x
+     * @param y     target point y
      * @return this
      */
     public AbbreviatedData arc(double rx, double ry,
@@ -324,7 +324,7 @@ public class AbbreviatedData extends OFDElement implements Cloneable, Iterator<O
     }
 
     /**
-     * SubPath 自动闭合，表示将当前点和 SubPath 的起始点用线段直连连接
+     * SubPath 自动闭合，表示将当前点和 SubPath 的起始点用线segment直连连接
      *
      * @return this
      */

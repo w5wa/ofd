@@ -5,19 +5,19 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 /**
- * 字体测量工具
+ * font测量工具
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-08 21:30:59
  */
 public final class TextMeasureTool {
 
 
     /**
-     * 分析字间距偏移量并计算文字宽度
+     * 分析字间距偏移量并计算文字width
      *
      * @param text        文本
-     * @param fontSetting 文字设置
+     * @param fontSetting text settings
      * @return 测量结果
      */
     public static MeasureBody measureWithWith(String text, FontSetting fontSetting) {
@@ -124,7 +124,7 @@ public final class TextMeasureTool {
      * 计算文本所占空间大小
      *
      * @param text        文本
-     * @param fontSetting 文字设置
+     * @param fontSetting text settings
      * @return 文档所占区域大小
      */
     public static TextMetricsArea measureArea(String text, FontSetting fontSetting) {
@@ -187,9 +187,9 @@ public final class TextMeasureTool {
      * 获取字符偏移量
      *
      * @param text        文字
-     * @param fontSetting 文字设置
+     * @param fontSetting text settings
      * @param indexOffset 相对偏移
-     * @param wOrH        宽度或高度作为偏移量，W 或 H
+     * @param wOrH        width或height作为偏移量，W 或 H
      * @param direction   文字排列方向：1 正序递增，-1 逆序递减。
      * @return 偏移数组
      */

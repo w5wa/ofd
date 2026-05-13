@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 /**
  * 文档编辑示例
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-01 22:57:16
  */
 public class DocEditDemos {
@@ -87,7 +87,7 @@ public class DocEditDemos {
     }
 
     /**
-     * 向文档的指定页码插入页面
+     * 向文档的指定page number插入页面
      * 原来位置上以及之后的页面，页面将会往后移动
      */
     @Test

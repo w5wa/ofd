@@ -5,15 +5,15 @@ import org.dom4j.Element;
 /**
  * 用于描述Goto的目的地
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 09:05:15
  */
 public interface OFDGotoTarget extends Element {
 
     /**
-     * 获取Goto目的地描述实例
+     * 获取Goto目的地描述instance
      * @param element 元素
-     * @return 实例
+     * @return instance
      * @throws IllegalArgumentException 未知Goto的目标类型
      */
     static OFDGotoTarget getInstance(Element element) {

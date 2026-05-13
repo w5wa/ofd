@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 /**
  * 文字定位
  * <p>
- * 文字对象使用严格的文字定位信息进行定位
+ * text object使用严格的文字定位信息进行定位
  * <p>
  * 11.3 文字定位 图 61 表 46
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-21 09:28:35
  */
 public class TextCode extends OFDElement implements ClipAble {
@@ -64,13 +64,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 第一个文字的字形在对象坐标系下的 X 坐标
+     * [optional attribute]
+     * set X coordinate of first character glyph in object coordinate system
      * <p>
-     * 当 X 不出现，则采用上一个 TextCode 的 X 值，文字对象中的一个
-     * TextCode 的属性必选
+     * when X is absent, use the X value of the previous TextCode; one per text object
+     * TextCode attribute is required
      *
-     * @param x 第一个文字的字形在对象坐标系下的 X 坐标
+     * @param x 第一个文字的glyph在对象坐标系下的 X 坐标
      * @return this
      */
     public TextCode setX(Double x) {
@@ -83,13 +83,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 第一个文字的字形在对象坐标系下的 X 坐标
+     * [optional attribute]
+     * set X coordinate of first character glyph in object coordinate system
      * <p>
-     * 当 X 不出现，则采用上一个 TextCode 的 X 值，文字对象中的一个
-     * TextCode 的属性必选
+     * when X is absent, use the X value of the previous TextCode; one per text object
+     * TextCode attribute is required
      *
-     * @return 第一个文字的字形在对象坐标系下的 X 坐标；null表示采用上一个 TextCode 的 X 值
+     * @return 第一个文字的glyph在对象坐标系下的 X 坐标；null表示采用上一个 TextCode 的 X 值
      */
     public Double getX() {
         String str = this.attributeValue("X");
@@ -100,13 +100,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 第一个文字的字形原点在对象坐标系下的 Y 坐标
+     * [optional attribute]
+     * 设置 第一个文字的glyph原点在对象坐标系下的 Y 坐标
      * <p>
-     * 当 Y 不出现，则采用上一个 TextCode 的 Y 值，文字对象中的一个
-     * TextCode 的属性必选
+     * 当 Y 不出现，则采用上一个 TextCode 的 Y 值，text object中的一个
+     * TextCode attribute is required
      *
-     * @param y 第一个文字的字形原点在对象坐标系下的 Y 坐标
+     * @param y 第一个文字的glyph原点在对象坐标系下的 Y 坐标
      * @return this
      */
     public TextCode setY(Double y) {
@@ -119,13 +119,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 第一个文字的字形在对象坐标系下的 Y 坐标
+     * [optional attribute]
+     * 设置 第一个文字的glyph在对象坐标系下的 Y 坐标
      * <p>
-     * 当 X 不出现，则采用上一个 TextCode 的 Y 值，文字对象中的一个
-     * TextCode 的属性必选
+     * 当 X 不出现，则采用上一个 TextCode 的 Y 值，text object中的一个
+     * TextCode attribute is required
      *
-     * @return 第一个文字的字形在对象坐标系下的 Y 坐标；null表示采用上一个 TextCode 的 Y 值
+     * @return 第一个文字的glyph在对象坐标系下的 Y 坐标；null表示采用上一个 TextCode 的 Y 值
      */
     public Double getY() {
         String str = this.attributeValue("Y");
@@ -136,13 +136,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 文字之间在 X 方向上的偏移值
+     * [optional attribute]
+     * set offset between characters in the X direction
      * <p>
-     * double 型数值队列，列表中的每个值代表一个文字与前一个
-     * 文字之间在 X 方向的偏移值
+     * queue of double values; each value represents the spacing between a character and the previous one
+     * offset value between characters in the X direction
      * <p>
-     * DeltaX 不出现时，表示文字的绘制点在 X 方向不做偏移。
+     * when DeltaX is absent, the text drawing point has no X-direction offset.
      *
      * @param deltaX 文字之间在 X 方向上的偏移值
      * @return this
@@ -157,13 +157,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 文字之间在 X 方向上的偏移值
+     * [optional attribute]
+     * set offset between characters in the X direction
      * <p>
-     * double 型数值队列，列表中的每个值代表一个文字与前一个
-     * 文字之间在 X 方向的偏移值
+     * queue of double values; each value represents the spacing between a character and the previous one
+     * offset value between characters in the X direction
      * <p>
-     * DeltaX 不出现时，表示文字的绘制点在 X 方向不做偏移。
+     * when DeltaX is absent, the text drawing point has no X-direction offset.
      *
      * @param arr 文字之间在 X 方向上的偏移值数值
      * @return this
@@ -173,13 +173,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 文字之间在 X 方向上的偏移值
      * <p>
-     * double 型数值队列，列表中的每个值代表一个文字与前一个
-     * 文字之间在 X 方向的偏移值
+     * queue of double values; each value represents the spacing between a character and the previous one
+     * offset value between characters in the X direction
      * <p>
-     * DeltaX 不出现时，表示文字的绘制点在 X 方向不做偏移。
+     * when DeltaX is absent, the text drawing point has no X-direction offset.
      *
      * @return 文字之间在 X 方向上的偏移值；null表示不偏移
      */
@@ -193,13 +193,13 @@ public class TextCode extends OFDElement implements ClipAble {
 
 
     /**
-     * 【可选 属性】
-     * 设置 文字之间在 Y 方向上的偏移值
+     * [optional attribute]
+     * set offset between characters in the Y direction
      * <p>
-     * double 型数值队列，列表中的每个值代表一个文字与前一个
-     * 文字之间在 Y 方向的偏移值
+     * queue of double values; each value represents the spacing between a character and the previous one
+     * offset value between characters in the Y direction
      * <p>
-     * DeltaY 不出现时，表示文字的绘制点在 Y 方向不做偏移。
+     * when DeltaY is absent, the text drawing point has no Y-direction offset.
      *
      * @param deltaY 文字之间在 Y 方向上的偏移值；null表示不偏移
      * @return this
@@ -214,13 +214,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 文字之间在 Y 方向上的偏移值
+     * [optional attribute]
+     * set offset between characters in the Y direction
      * <p>
-     * double 型数值队列，列表中的每个值代表一个文字与前一个
-     * 文字之间在 Y 方向的偏移值
+     * queue of double values; each value represents the spacing between a character and the previous one
+     * offset value between characters in the Y direction
      * <p>
-     * DeltaY 不出现时，表示文字的绘制点在 Y 方向不做偏移。
+     * when DeltaY is absent, the text drawing point has no Y-direction offset.
      *
      * @param arr 文字之间在 Y 方向上的偏移数值
      * @return this
@@ -230,13 +230,13 @@ public class TextCode extends OFDElement implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 文字之间在 Y 方向上的偏移值
      * <p>
-     * double 型数值队列，列表中的每个值代表一个文字与前一个
-     * 文字之间在 Y 方向的偏移值
+     * queue of double values; each value represents the spacing between a character and the previous one
+     * offset value between characters in the Y direction
      * <p>
-     * DeltaY 不出现时，表示文字的绘制点在 Y 方向不做偏移。
+     * when DeltaY is absent, the text drawing point has no Y-direction offset.
      *
      * @return 文字之间在 Y 方向上的偏移值；null表示不偏移
      */

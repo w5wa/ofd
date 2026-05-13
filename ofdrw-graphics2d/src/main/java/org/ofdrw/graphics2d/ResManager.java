@@ -19,11 +19,11 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 公共资源管理器
+ * public resource manager
  * <p>
  * 管理待加入文档中所有资源
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-22 16:20:07
  */
 public class ResManager {
@@ -33,54 +33,54 @@ public class ResManager {
      */
     private AtomicInteger maxUnitID;
     /**
-     * 文档容器
+     * document container
      */
     private DocDir docDir;
 
     /**
-     * 媒体资源列表
+     * 媒体resource list
      * <p>
-     * 位于文档资源列表
+     * located in the document resource list
      */
     private MultiMedias medias;
 
     /**
-     * 绘制参数列表
+     * drawing parameters列表
      * <p>
-     * 位于文档资源列表
+     * located in the document resource list
      */
     private DrawParams drawParams;
 
 
     /**
-     * 字体资源列表
+     * fontresource list
      * <p>
-     * 位于公共资源列表
+     * located in the public resource list
      */
     private Fonts fonts;
 
     /**
-     * 颜色空间的描述列表
+     * color space的描述列表
      * <p>
-     * 位于公共资源列表
+     * located in the public resource list
      */
     private ColorSpaces colorSpaces;
 
     /**
      * 矢量图像列表
      * <p>
-     * 位于文档资源列表
+     * located in the document resource list
      */
     private CompositeGraphicUnits compositeGraphicUnits;
 
 
     /**
-     * 绘制参数Hash
+     * drawing parametersHash
      * <p>
-     * KEY: 资源对象的去除ID后的XML字符串的hashCode
-     * VALUE: 文档中的对象ID。
+     * KEY: resource object的去除ID后的XMLstring的hashCode
+     * VALUE: 文档中的object ID。
      * <p>
-     * 该缓存表用于解决绘制参数冗余造成的资源浪费。
+     * 该缓存表用于解决drawing parameters冗余造成的资源浪费。
      */
     private final HashMap<Integer, ST_ID> resObjHash = new HashMap<>();
 
@@ -92,7 +92,7 @@ public class ResManager {
      * 创建资源管理
      *
      * @param docDir    文档虚拟容器
-     * @param maxUnitID 自增最大ID提供者
+     * @param maxUnitID auto-increment maximum ID provider
      */
     public ResManager(DocDir docDir, AtomicInteger maxUnitID) {
         this();
@@ -101,17 +101,17 @@ public class ResManager {
     }
 
     /**
-     * 获取公共资源清单
+     * 获取public resource清单
      * <p>
-     * 如： 图形、字体等需要共用的资源
+     * 如： 图形、font等需要共用的资源
      *
-     * @return 公共资源清单
+     * @return public resource清单
      */
     public Res pubRes() {
         try {
             return docDir.getPublicRes();
         } catch (FileNotFoundException | DocumentException e) {
-            // 如果不存在那么创建一个公共资源清单，容器目录为文档根目录下的Res目录
+            // if not found, create a public resource manifest; container directory is Res under document root
             Res publicRes = new Res().setBaseLoc(ST_Loc.getInstance("Res"));
             docDir.setPublicRes(publicRes);
             document().getCommonData().addPublicRes(ST_Loc.getInstance("PublicRes.xml"));
@@ -122,7 +122,7 @@ public class ResManager {
     /**
      * 文档资源清单
      * <p>
-     * 与文档相关的资源：图片、视频等
+     * 与文档相关的资源：image、视频等
      *
      * @return 文档资源清单
      */
@@ -130,7 +130,7 @@ public class ResManager {
         try {
             return docDir.getDocumentRes();
         } catch (FileNotFoundException | DocumentException e) {
-            // 如果不存在那么创建一个公共资源清单，容器目录为文档根目录下的Res目录
+            // if not found, create a public resource manifest; container directory is Res under document root
             Res docRes = new Res().setBaseLoc(ST_Loc.getInstance("Res"));
             docDir.setDocumentRes(docRes);
             document().getCommonData().addDocumentRes(ST_Loc.getInstance("DocumentRes.xml"));
@@ -139,7 +139,7 @@ public class ResManager {
     }
 
     /**
-     * 忽略无法获取到得到错误信息
+     * ignored无法获取到得到错误信息
      *
      * @return document对象
      */
@@ -152,14 +152,14 @@ public class ResManager {
     }
 
     /**
-     * 直接向资源列表中加入资源对象
+     * add resource object directly to resource list
      * <p>
      * 加入资源时将优先检查缓存是否存在完全一致的资源，如果存在则复用对象。
      * <p>
-     * 注意：加入对象的ID将被忽略，对象ID有资源管理器生成并设置。
+     * 注意：加入对象的ID将被ignored，object ID有resource manager生成并设置。
      *
-     * @param resObj 资源对象
-     * @return 对象在文档中的资源ID
+     * @param resObj resource object
+     * @return 对象在文档中的resource ID
      */
     public ST_ID addRawWithCache(OFDElement resObj) {
         if (resObj == null) {
@@ -176,13 +176,13 @@ public class ResManager {
             resObj.setObjID(objId);
             return objId;
         } else {
-            // 文档中不存在该资源则资源ID，并缓存
+            // 文档中不存在该资源则resource ID，并缓存
             objId = new ST_ID(maxUnitID.incrementAndGet());
             resObj.setObjID(objId);
             this.resObjHash.put(key, objId);
         }
 
-        // 判断资源类型加入到合适的资源列表中
+        // 判断资源类型加入到合适的resource list中
         if (resObj instanceof CT_ColorSpace) {
             Res resMenu = pubRes();
             if (colorSpaces == null) {

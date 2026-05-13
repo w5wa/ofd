@@ -5,20 +5,20 @@ import org.bouncycastle.asn1.*;
 import java.io.IOException;
 
 /**
- * 签章者证书信息列表
+ * signer certificate information list
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 17:19:36
  */
 public class SES_CertList extends ASN1Object
         implements ASN1Choice {
     /**
-     * 签章者证书列表
+     * signer certificate list
      */
     private final CertInfoList certs;
 
     /**
-     * 签章者证书杂凑值列表
+     * signer certificate hash value list
      */
     private final CertDigestList certDigestList;
 

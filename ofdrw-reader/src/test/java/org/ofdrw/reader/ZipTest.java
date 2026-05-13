@@ -28,7 +28,7 @@ public class ZipTest {
                 ZipOutputStream zipOut = new ZipOutputStream(out)
         ) {
             /*
-             * 这里使用“..”使文件直接解压到temp目录而不是刚创建的临时目录
+             * 这里使用“..”使文件直接解压到temp目录而不是刚创建的temporary directory
              * */
             ZipEntry e = new ZipEntry("/../test.txt");
             zipOut.putNextEntry(e);

@@ -29,7 +29,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-07 19:32:19
  */
 class OFDReaderTest {
@@ -144,8 +144,8 @@ class OFDReaderTest {
     /**
      * 低层次的文档操作
      *
-     * @throws IOException       IO异常
-     * @throws DocumentException 文档解析异常
+     * @throws IOException       IO exception
+     * @throws DocumentException document parsing exception
      */
     @Test
     void lowLevelOp() throws IOException, DocumentException {
@@ -160,7 +160,7 @@ class OFDReaderTest {
             docInfo.setTile("Hello World");
             docInfo.setAuthor("权观宇");
             docInfo.setModDate(LocalDate.now());
-            // 重新打包为OFD文档
+            // 重新打包为OFD document
             ofdDir.jar(out);
         }
         System.out.println(">> 文档生成位置：" + out.toAbsolutePath().toString());

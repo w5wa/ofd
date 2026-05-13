@@ -6,20 +6,20 @@ import org.ofdrw.core.OFDElement;
 import java.util.List;
 
 /**
- * 【OFDRW 扩展】 区域占位区块列表 AreaHolderBlocks.xml
+ * 【OFDRW 扩展】 area placeholder block list AreaHolderBlocks.xml
  * <p>
- * 区域占位区块列表 是 OFDRW 扩展的对象，区域占位区块列表可以包含文档中的多个 区域占位区块对象 ，注意每个 区域占位区块对象 的
- * 区域名称在 区域占位区块列表 中应该唯一。
+ * area placeholder block list 是 OFDRW 扩展的对象，area placeholder block list可以contains文档中的多个 区域占位区块对象 ，注意每个 区域占位区块对象 的
+ * area name在 area placeholder block list 中应该唯一。
  * <p>
- * 通常来说 AreaHolderBlocks.xml 位于文档目录中，例如：`/Doc_0/AreaHolderBlocks.xml`。
+ * 通常来说 AreaHolderBlocks.xml 位于document directory中，例如：`/Doc_0/AreaHolderBlocks.xml`。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-10-28 15:30:36
  */
 public class AreaHolderBlocks extends OFDElement {
 
     /**
-     * 【OFDRW 扩展】 区域占位区块列表 文件名称
+     * 【OFDRW 扩展】 area placeholder block list file name
      */
     public static final String AreaHolderBlocksFile = "AreaHolderBlocks.xml";
 
@@ -33,7 +33,7 @@ public class AreaHolderBlocks extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 增加 区域占位区块
      *
      * @param area 区域占位区块
@@ -50,7 +50,7 @@ public class AreaHolderBlocks extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 区域占位区块 序列
      *
      * @return 区域占位区块 序列

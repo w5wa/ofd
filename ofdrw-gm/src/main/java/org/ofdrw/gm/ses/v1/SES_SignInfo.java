@@ -5,15 +5,15 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 印章签名信息
+ * seal/stamp签名信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 14:43:39
  */
 public class SES_SignInfo extends ASN1Object {
 
     /**
-     * 代表对电子印章数据进行签名的制章人证书
+     * 代表对电子seal/stamp数据进行签名的制章人certificate
      */
     private ASN1OctetString cert;
 
@@ -25,9 +25,9 @@ public class SES_SignInfo extends ASN1Object {
     private ASN1ObjectIdentifier signatureAlgorithm;
 
     /**
-     * 制章人的签名值
+     * 制章人的signature value
      * <p>
-     * 制章人对电子印章格式中印章信息SES_SealInfo、制章人证书、签名算法标识符按 SEQUENCE方式组成的信息内容的数字签名
+     * 制章人对电子seal/stamp格式中seal/stamp信息SES_SealInfo、制章人certificate、signature algorithm identifier按 SEQUENCE方式组成的信息内容的number签名
      */
     private ASN1BitString signData;
 

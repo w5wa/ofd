@@ -6,20 +6,20 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 /**
- * 电子签章数据
+ * 电子seal/signature数据
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 15:49:19
  */
 public class SES_Signature extends ASN1Object {
 
     /**
-     * 待电子签章数据
+     * 待电子seal/signature数据
      */
     private TBS_Sign toSign;
 
     /**
-     * 电子签章中签名值
+     * 电子seal/signature中signature value
      */
     private ASN1BitString signature;
 
@@ -49,7 +49,7 @@ public class SES_Signature extends ASN1Object {
                 ASN1Primitive obj = aIn.readObject();
                 return new SES_Signature(ASN1Sequence.getInstance(obj));
             } catch (IOException e) {
-                throw new IllegalArgumentException("电子签章数据 格式错误", e);
+                throw new IllegalArgumentException("电子seal/signature数据 格式错误", e);
             }
         } else if (o != null) {
             return new SES_Signature(ASN1Sequence.getInstance(o));

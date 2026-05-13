@@ -10,11 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 分段引擎
+ * 分segment引擎
  * <p>
- * 用于将流式文档中的元素划分为段。
+ * 用于将流式文档中的元素划分为segment。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-29 11:39:29
  */
 public class SegmentationEngine {
@@ -29,13 +29,13 @@ public class SegmentationEngine {
     }
 
     /**
-     * 将输入的流式布局元素队列分段
+     * 将输入的flow layout element queue分segment
      *
-     * @param streamLayoutQueue 流式布局元素队列
-     * @return 分完段的布局队列
+     * @param streamLayoutQueue flow layout element queue
+     * @return 分完segment的布局队列
      */
     public List<Segment> process(List<Div> streamLayoutQueue) {
-        // 可用于布局的宽度
+        // 可用于布局的width
         double width = pageLayout.contentWidth();
         if (streamLayoutQueue == null || streamLayoutQueue.isEmpty()) {
             return Collections.emptyList();
@@ -50,7 +50,7 @@ public class SegmentationEngine {
             }
             if (div instanceof BR) {
                 if (segment.isEmpty()) {
-                    // 如果段为空，那么不需要换行
+                    // 如果segment为空，那么不需要换行
                     continue;
                 }
                 // 换行符
@@ -58,17 +58,17 @@ public class SegmentationEngine {
                 segment = new Segment(width);
                 continue;
             }
-            // 尝试将元素加入段中
+            // 尝试将元素加入segment中
             boolean addSuccess = segment.tryAdd(div);
-            // 如果段已经满了，那么加入了段队列中
+            // 如果segment已经满了，那么加入了segment队列中
             if (!addSuccess && !segment.isEmpty()) {
-                // 段已经无法再容纳元素： 无法加入元素且不为空
+                // segment已经无法再容纳元素： 无法加入元素且不为空
                 res.add(segment);
                 segment =  new Segment(width);
                 seq.push(div);
             }
         }
-        // 处理最后一个段的情况
+        // 处理最后一个segment的情况
         if (!segment.isEmpty()) {
             res.add(segment);
         }

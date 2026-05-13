@@ -1,44 +1,44 @@
 package org.ofdrw.core.basicStructure.pageObj.layer;
 
 /**
- * 图层类型
+ * layer类型
  * <p>
- * 统称类型分为前景层、正文层、背景层，这些层按照出现的
+ * 统称类型分为foreground layer、body layer、background layer，这些层按照出现的
  * 先后顺序依次进行渲染，每一层的默认颜色采用透明。
  * <p>
- * 层的渲染顺序如下图 （图 16 图层渲染顺序）
+ * 层的渲染顺序如下图 （图 16 layer渲染顺序）
  * <code>
  * ---------- 最上层
- * 前景层 (5)
+ * foreground layer (5)
  * ----------
  * [前景模板] (4)
  * ----------
- * 正文层 (3)
+ * body layer (3)
  * ----------
- * [正文层] (2)
+ * [body layer] (2)
  * ----------
- * 背景层 (1)
+ * background layer (1)
  * ----------
- * [背景层] (0)
+ * [background layer] (0)
  * ---------- 最下层
  * </code>
  * <p>
  * 7.7 页对象
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-09 10:01:01
  */
 public enum Type {
     /**
-     * 前景层
+     * foreground layer
      */
     Foreground(5),
     /**
-     * 正文层
+     * body layer
      */
     Body(3),
     /**
-     * 背景层
+     * background layer
      */
     Background(1);
 
@@ -50,10 +50,10 @@ public enum Type {
     }
 
     /**
-     * 获取图层类型实例
+     * 获取layer类型instance
      *
-     * @param type 图层类型字符串
-     * @return 图层类型
+     * @param type layertype string
+     * @return layer类型
      */
     public static Type getInstance(String type) {
         type = (type == null) ? "" : type.trim();
@@ -66,7 +66,7 @@ public enum Type {
         //     case "Background":
         //         return Background;
         //     default:
-        //         throw new IllegalArgumentException("未知的图层类型：" + type);
+        //         throw new IllegalArgumentException("未知的layer类型：" + type);
         // }
         if (type.equalsIgnoreCase("Body") || "".equals(type)) {
             return Body;
@@ -75,14 +75,14 @@ public enum Type {
         } else if (type.equalsIgnoreCase("Background")) {
             return Background;
         } else {
-            throw new IllegalArgumentException("未知的图层类型：" + type);
+            throw new IllegalArgumentException("未知的layer类型：" + type);
         }
     }
 
     /**
-     * 获取图层次序
+     * 获取layer次序
      *
-     * @return 图层次序
+     * @return layer次序
      */
     public int order() {
         return order;

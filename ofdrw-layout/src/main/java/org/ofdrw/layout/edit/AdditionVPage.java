@@ -13,29 +13,29 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 专用于向页面已有页面中添加内容的虚拟页面
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-07 20:15:51
  */
 public class AdditionVPage extends VirtualPage {
 
     /**
-     * 反序列化后的页面对象
+     * 反序列化后的page object
      */
     private Page pageObj;
 
     /**
-     * 页面对象在容器中的绝对路径（以 "/" 开头）
+     * page object在容器中的absolute path（以 "/" 开头）
      * <p>
-     * 考虑到兼容性 该字段可能为空。
+     * 考虑到兼容性 该字segment可能为空。
      * <p>
-     * 该字段将于 区域占位块 AreaHolderBlock 定位。
+     * 该字segment将于 区域占位块 AreaHolderBlock 定位。
      */
     private ST_Loc pageLoc;
 
     /**
      * 已经过时，仅为兼容行保留，使用 {@link #AdditionVPage(Page, ST_Loc)}
      *
-     * @param pageObj 页面对象
+     * @param pageObj page object
      * @deprecated {@link #AdditionVPage(Page, ST_Loc)}
      */
     @Deprecated
@@ -46,12 +46,12 @@ public class AdditionVPage extends VirtualPage {
     /**
      * 创建一个向页面中添加内容的虚拟页面
      *
-     * @param pageObj 页面对象
-     * @param pageLoc 页面对象在容器中的绝对路径（以 "/" 开头）
+     * @param pageObj page object
+     * @param pageLoc page object在容器中的absolute path（以 "/" 开头）
      */
     public AdditionVPage(Page pageObj, ST_Loc pageLoc) {
         if (pageObj == null) {
-            throw new IllegalArgumentException("页面对象（pageObj）不能为空");
+            throw new IllegalArgumentException("page object（pageObj）不能为空");
         }
         this.pageObj = pageObj;
         this.pageLoc = pageLoc;
@@ -63,16 +63,16 @@ public class AdditionVPage extends VirtualPage {
 
 
     /**
-     * 获取处于上层的图层
+     * 获取处于上层的layer
      * <p>
-     * 使用最上方的图层防止，增加的内容被覆盖
+     * 使用最上方的layer防止，增加的内容被覆盖
      * <p>
-     * 如果含有多个相同图层那么选取位置靠后的图层
+     * 如果含有多个相同layer那么选取位置靠后的layer
      * <p>
-     * 如果页面中没有任何图层，那么创建一个图层
+     * 如果页面中没有任何layer，那么创建一个layer
      *
-     * @param maxUnitID 如果需要创建图层，那么给与图层对象ID
-     * @return 处于页面最上层的图层对象
+     * @param maxUnitID 如果需要创建layer，那么给与layerobject ID
+     * @return 处于页面最上层的layer对象
      */
     public CT_Layer obtainTopLayer(AtomicInteger maxUnitID) {
         CT_Layer topLayer = null;
@@ -80,7 +80,7 @@ public class AdditionVPage extends VirtualPage {
         int currentOrder = Type.Background.order();
         Content content = pageObj.getContent();
         if (content == null) {
-            // 页面那种没有任何图层的情况下，创建一个新的图层加入到页面
+            // 页面那种没有任何layer的情况下，创建一个新的layer加入到页面
             topLayer = new CT_Layer();
             topLayer.setObjID(maxUnitID.incrementAndGet());
             content = new Content().addLayer(topLayer);
@@ -89,7 +89,7 @@ public class AdditionVPage extends VirtualPage {
         }
         List<CT_Layer> layers = content.getLayers();
         if (layers == null) {
-            throw new RuntimeException("页面对象无法（Content）解析，图层对象不能为空");
+            throw new RuntimeException("page object无法（Content）解析，layer对象不能为空");
         }
 
         for (CT_Layer layer : layers) {
@@ -107,8 +107,8 @@ public class AdditionVPage extends VirtualPage {
     /**
      * 创建新的层
      *
-     * @param maxUnitID 如果需要创建图层，那么给与图层对象ID
-     * @return 新的图层
+     * @param maxUnitID 如果需要创建layer，那么给与layerobject ID
+     * @return 新的layer
      */
     public CT_Layer newLayer(AtomicInteger maxUnitID) {
         CT_Layer res = null;
@@ -125,26 +125,26 @@ public class AdditionVPage extends VirtualPage {
     }
 
     /**
-     * 获取页面对象
-     * @return 页面对象
+     * 获取page object
+     * @return page object
      */
     public Page getPageObj() {
         return pageObj;
     }
 
     /**
-     * 获取 页面的绝对路径（注意可能为空）
+     * 获取 页面的absolute path（注意可能为空）
      *
-     * @return 页面绝对路径，可能为空。
+     * @return 页面absolute path，可能为空。
      */
     public ST_Loc getPageLoc() {
         return pageLoc;
     }
 
     /**
-     * 设置 页面的绝对路径
+     * 设置 页面的absolute path
      *
-     * @param pageLoc 页面绝对路径
+     * @param pageLoc 页面absolute path
      */
     public void setPageLoc(ST_Loc pageLoc) {
         this.pageLoc = pageLoc;

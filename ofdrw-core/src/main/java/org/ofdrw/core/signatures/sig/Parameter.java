@@ -12,7 +12,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * GMT0099 B.2
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-19 13:02:59
  */
 public class Parameter extends OFDElement {
@@ -27,9 +27,9 @@ public class Parameter extends OFDElement {
     /**
      * 创建  签名扩展属性
      *
-     * @param name  属性的名称
+     * @param name  attribute name
      * @param type  属性的类型
-     * @param value 属性的值
+     * @param value attribute value
      */
     public Parameter(@NotNull String name, @Nullable String type, @Nullable String value) {
         this();
@@ -41,8 +41,8 @@ public class Parameter extends OFDElement {
     /**
      * 创建  签名扩展属性
      *
-     * @param name  属性的名称
-     * @param value 属性的值
+     * @param name  attribute name
+     * @param value attribute value
      */
     public Parameter(@NotNull String name, @Nullable String value) {
         this();
@@ -51,25 +51,25 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
-     * 设置 扩展属性的名称
+     * [required attribute, OFD 2.0]
+     * 设置 扩展attribute name
      *
-     * @param name 扩展属性的名称
+     * @param name 扩展attribute name
      * @return this
      */
     public Parameter setNameAttr(@NotNull String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new IllegalArgumentException("扩展属性的名称（Name）不能为空");
+            throw new IllegalArgumentException("扩展attribute name（Name）不能为空");
         }
         this.addAttribute("Name", name);
         return this;
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
-     * 获取 扩展属性的名称
+     * [required attribute, OFD 2.0]
+     * 获取 扩展attribute name
      *
-     * @return 扩展属性的名称
+     * @return 扩展attribute name
      */
     @NotNull
     public String getNameAttr() {
@@ -77,10 +77,10 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
-     * 设置 扩展属性的值类型
+     * [optional attribute, OFD 2.0]
+     * 设置 扩展attribute value类型
      *
-     * @param type 扩展属性的值类型,null表示删除属性
+     * @param type 扩展attribute value类型,null表示删除属性
      * @return this
      */
     public Parameter setType(@Nullable String type) {
@@ -93,10 +93,10 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
-     * 获取 扩展属性的值类型
+     * [optional attribute, OFD 2.0]
+     * 获取 扩展attribute value类型
      *
-     * @return 扩展属性的值类型，可能为空
+     * @return 扩展attribute value类型，可能为空
      */
     @Nullable
     public String getType() {
@@ -104,7 +104,7 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 设置 签名扩展属性值
      *
      * @param value 签名扩展属性值
@@ -119,7 +119,7 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 设置 签名扩展属性值
      *
      * @return 签名扩展属性值，或空串

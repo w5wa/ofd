@@ -8,11 +8,11 @@ import org.ofdrw.core.basicType.ST_Box;
 /**
  * 注释的静态呈现效果
  * <p>
- * 使用页面块定义来描述
+ * described using page block definitions
  * <p>
- * 15.2 图 81 表 61
+ * 15.2 Figure 81 Table 61
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-19 05:48:28
  */
 public class Appearance extends CT_PageBlock {
@@ -27,7 +27,7 @@ public class Appearance extends CT_PageBlock {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 边界
      * <p>
      * 附录 A.4
@@ -44,7 +44,7 @@ public class Appearance extends CT_PageBlock {
     }
 
     /**
-     * 【必选】
+     * [required]
      *
      * @return 边界
      */
@@ -53,12 +53,12 @@ public class Appearance extends CT_PageBlock {
     }
 
     /**
-     * 【可选】
-     * 增加 页块
+     * [optional]
+     * add page block
      * <p>
-     * 一个页块中可以嵌套其他页块，可含有0到多个页块
+     * a page block can nest other page blocks and contain 0 or more page blocks
      *
-     * @param pageBlock 页块实例
+     * @param pageBlock page block instance
      * @return this
      */
     @Override

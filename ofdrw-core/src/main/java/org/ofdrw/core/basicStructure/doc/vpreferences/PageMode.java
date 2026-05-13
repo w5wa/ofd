@@ -5,9 +5,9 @@ package org.ofdrw.core.basicStructure.doc.vpreferences;
  * <p>
  * 7.5 表 9 视图首选项属性
  * <p>
- * 默认值为 None
+ * default value: None
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-07 06:33:01
  */
 public enum PageMode {
@@ -32,7 +32,7 @@ public enum PageMode {
      */
     UseCustomTags,
     /**
-     * 同时呈现图层
+     * 同时呈现layer
      */
     UseLayers,
     /**
@@ -46,10 +46,10 @@ public enum PageMode {
     UseBookmarks;
 
     /**
-     * 获取窗口模式实例
+     * 获取窗口模式instance
      *
      * @param mode 模式名称
-     * @return 实例
+     * @return instance
      */
     public static PageMode getInstance(String mode) {
         mode = mode == null ? "" : mode.trim();

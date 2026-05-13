@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * iText7 实现的OFD转换PDF
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-7 21:30:40
  */
 public class PDFExporterIText implements OFDExporter {
@@ -29,13 +29,13 @@ public class PDFExporterIText implements OFDExporter {
     final PdfWriter pdfWriter;
 
     /**
-     * PDF文档对象
+     * PDFdocument object
      */
     final PdfDocument pdfDoc;
 
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     final OFDReader ofdReader;
 
@@ -45,17 +45,17 @@ public class PDFExporterIText implements OFDExporter {
     final ItextMaker pdfMaker;
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
 
     /**
-     * 通过文件路径 创建PDF转换器
+     * 通过file path 创建PDF转换器
      *
-     * @param ofdFilePath 待转换的OFD文件路径
-     * @param pdfFilePath 生成PDF文件路径
-     * @throws IOException 文件创建失败
+     * @param ofdFilePath 待转换的OFDfile path
+     * @param pdfFilePath 生成PDFfile path
+     * @throws IOException file creation failed
      */
     public PDFExporterIText(Path ofdFilePath, Path pdfFilePath) throws IOException {
         ofdReader = new OFDReader(ofdFilePath);
@@ -85,7 +85,7 @@ public class PDFExporterIText implements OFDExporter {
      * <p>
      * 注意：流由调用者负责关闭！
      *
-     * @param ofdInStream  待转换的OFD文件流，流由调用者负责关闭。
+     * @param ofdInStream  待转换的OFD file流，流由调用者负责关闭。
      * @param pdfOutStream 生成PDF文件流，流由调用者负责关闭。
      * @throws IOException 流操作失败
      */
@@ -101,9 +101,9 @@ public class PDFExporterIText implements OFDExporter {
     }
 
     /**
-     * 导出指定OFD页
+     * export specified OFD page
      *
-     * @param indexes 页码序列，如果为空表示全部页码（注意：页码从0起）
+     * @param indexes page index sequence; if null, means all pages (note: page index starts from 0)
      * @throws GeneralConvertException 导出异常
      */
     @Override
@@ -114,7 +114,7 @@ public class PDFExporterIText implements OFDExporter {
                 targetPages.addAll(ofdReader.getPageList());
             } else {
                 int maxPageIndex = ofdReader.getNumberOfPages();
-                // 获取指定页面信息
+                // get information for specified page
                 for (int index : indexes) {
                     if (index < 0 || index >= maxPageIndex) {
                         continue;
@@ -123,7 +123,7 @@ public class PDFExporterIText implements OFDExporter {
                 }
             }
 
-            // 循环添加Page
+            // iteratively add pages
             targetPages = ofdReader.getPageList();
             for (PageInfo pageInfo : targetPages) {
                 pdfMaker.makePage(pdfDoc, pageInfo);
@@ -148,7 +148,7 @@ public class PDFExporterIText implements OFDExporter {
         }
         closed = true;
         if (pdfMaker != null && pdfDoc != null && ofdReader != null) {
-            // 添加附件
+            // add attachment
             pdfMaker.addAttachments(pdfDoc, ofdReader);
         }
 

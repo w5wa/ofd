@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 元素代理对象
+ * 元素proxy object
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-01 01:48:13
  */
 public abstract class DefaultElementProxy implements Element {
     /**
-     * 代理对象
+     * proxy object
      * <p>
      * 当从容器中获取到Element会失去类型，对于失去类型的对象统一采用代理的方式
      * 获取属性或者对象内容
@@ -46,13 +46,13 @@ public abstract class DefaultElementProxy implements Element {
 
     public DefaultElementProxy(Element proxy) {
         if (proxy == null) {
-            throw new IllegalArgumentException("被代理对象(proxy)不能为空");
+            throw new IllegalArgumentException("被proxy object(proxy)不能为空");
         }
         this.proxy = proxy;
     }
 
     /**
-     * 获取被代理对象本身
+     * 获取被proxy object本身
      *
      * @return 被代理的对象
      */
@@ -61,9 +61,9 @@ public abstract class DefaultElementProxy implements Element {
     }
 
     /**
-     * 设置代理对象
+     * 设置proxy object
      *
-     * @param proxy 代理对象
+     * @param proxy proxy object
      */
     public void setProxy(Element proxy) {
         this.proxy = proxy;
@@ -117,9 +117,9 @@ public abstract class DefaultElementProxy implements Element {
     }
 
     /**
-     * 需要继承的子类实现该方法，用于在代理对象是做类型检查
+     * 需要继承的子类实现该方法，用于在proxy object是做类型检查
      *
-     * @return 元素全名（含有前缀）
+     * @return fully qualified element name (with prefix)
      */
     @Override
     public abstract String getQualifiedName();

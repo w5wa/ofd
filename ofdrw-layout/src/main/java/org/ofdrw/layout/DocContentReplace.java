@@ -23,7 +23,7 @@ import java.util.Map;
 public class DocContentReplace {
 
     /**
-     * 已有的OFD文档
+     * 已有的OFD document
      */
     private OFDDoc ofdDoc;
 
@@ -62,11 +62,11 @@ public class DocContentReplace {
     }
 
     /**
-     * 文档中的内容替换，对于OFD文档来说，替换的内容应为一行，如果是换行的内容，请以行为单位逐行替换
+     * content replacement in the document; for OFD, replacement content should be one line. For multi-line content, replace line by line.
      * <p>
-     * 替换范围：指定页码
+     * 替换范围：指定page number
      *
-     * @param pageNum 页码，从1开始
+     * @param pageNum page number, starting from 1
      * @param textMap 文本内容替换的映射关系 key为替换钱的文本，value是替换后的文本
      */
     public void replaceText(int pageNum, Map<String, String> textMap) {
@@ -74,7 +74,7 @@ public class DocContentReplace {
     }
 
     /**
-     * 文档中的内容替换，对于OFD文档来说，替换的内容应为一行，如果是换行的内容，请以行为单位逐行替换
+     * content replacement in the document; for OFD, replacement content should be one line. For multi-line content, replace line by line.
      * <p>
      * 换范围：整个文档
      *
@@ -85,11 +85,11 @@ public class DocContentReplace {
     }
 
     /**
-     * 文档中的内容替换，对于OFD文档来说，替换的内容应为一行，如果是换行的内容，请以行为单位逐行替换
+     * content replacement in the document; for OFD, replacement content should be one line. For multi-line content, replace line by line.
      * <p>
-     * 替换范围：指定页码
+     * 替换范围：指定page number
      *
-     * @param pageNum                页码，从1开始
+     * @param pageNum                page number，从1开始
      * @param textMap                文本内容替换的映射关系 key为替换钱的文本，value是替换后的文本
      * @param contentExtractorFilter 内容抽取过滤器
      */
@@ -99,7 +99,7 @@ public class DocContentReplace {
     }
 
     /**
-     * 扫描提取关键字相关的字体对象，并替换映射中文字
+     * 扫描提取keyword相关的font object，并替换映射中文字
      *
      * @param contentExtractorFilter 文本内容过滤器
      * @param textMap                文本内容替换的映射关系 key为替换钱的文本，value是替换后的文本
@@ -110,7 +110,7 @@ public class DocContentReplace {
     }
 
     /**
-     * 文档中的内容替换，对于OFD文档来说，替换的内容应为一行，如果是换行的内容，请以行为单位逐行替换
+     * content replacement in the document; for OFD, replacement content should be one line. For multi-line content, replace line by line.
      *
      * @param txtObjectList 要替换内容的 TextObject 集合
      * @param textMap       文本内容替换的映射关系 key为替换钱的文本，value是替换后的文本
@@ -125,8 +125,8 @@ public class DocContentReplace {
                 String newText = textMap.get(oldText);
                 if (newText != null) {
                     // 删除 ofd:TextObject 节点中的 ofd:CGTransform，
-                    // CGTransform 中的检索码会对应到字体文件中去获取（res中的字体文件中一般只包含文档中需要的字的内容，这样字体文件会比较小），
-                    // 如果获取不到才会显示 TextCode 中的内容，这样在使用特殊字体时，能保证在不同操作系统和环境中看到和打印的字体的统一，
+                    // CGTransform 中的检索码会对应到font file中去获取（res中的font file中一般只contains文档中需要的字的内容，这样font file会比较小），
+                    // 如果获取不到才会显示 TextCode 中的内容，这样在使用特殊font时，能保证在不同操作系统和环境中看到和打印的font的统一，
                     // 因为我们这里要替换的内容未知，为了保证替换的可靠性，这里删除掉 ofd:CGTransform，让文档显示 textCode 中的内容。
                     List<CT_CGTransform> ctCgTransformList = txtObj.getCGTransforms();
                     if (ctCgTransformList != null && ctCgTransformList.size() > 0) {
@@ -156,7 +156,7 @@ public class DocContentReplace {
                     if (font == null) {
                         String fontName = ctFont.getFontName();
                         font = new Font(fontName, ctFont.getFamilyName());
-                        // 字体 Times New Roman 处理
+                        // font Times New Roman 处理
                         if ("Times New Roman".equals(fontName))
                             font.setPrintableAsciiWidthMap(FontName.TIMES_NEW_ROMAN_PRINTABLE_ASCII_MAP);
                     }
@@ -194,9 +194,9 @@ public class DocContentReplace {
     }
 
     /**
-     * 获取 OFD解析器
+     * 获取 OFD parser
      *
-     * @return OFD解析器
+     * @return OFD parser
      */
     public OFDReader getReader() {
         return this.ofdDoc.getReader();
@@ -214,24 +214,24 @@ public class DocContentReplace {
          *
          * @param textObject         TextObject对象
          * @param newText            替换后的文字
-         * @param beforeTextFontFile 元文字内容的字体文件
+         * @param beforeTextFontFile 元文字内容的font file
          */
         CT_CGTransform createCgTransformHandler(TextObject textObject, String newText, ST_Loc beforeTextFontFile);
     }
 
     /**
-     * 获取 字体变换类型的替换处理器
+     * 获取 font变换类型的替换处理器
      *
-     * @return 字体变换类型的替换处理器
+     * @return font变换类型的替换处理器
      */
     public ReplaceTextCgTransformHandler getReplaceTextCgTransformHandler() {
         return replaceTextCgTransformHandler;
     }
 
     /**
-     * 设置 字体变换类型的替换处理器
+     * 设置 font变换类型的替换处理器
      *
-     * @param replaceTextCgTransformHandler 字体变换类型的替换处理器
+     * @param replaceTextCgTransformHandler font变换类型的替换处理器
      */
     public void setReplaceTextCgTransformHandler(ReplaceTextCgTransformHandler replaceTextCgTransformHandler) {
         this.replaceTextCgTransformHandler = replaceTextCgTransformHandler;
@@ -247,20 +247,20 @@ public class DocContentReplace {
          *
          * @param textObject   TextObject对象
          * @param newText      替换后的文字
-         * @param beforeCtFont 原文字内容的字体文件
-         * @return 替换后的字体形变对象
+         * @param beforeCtFont 原文字内容的font file
+         * @return 替换后的font形变对象
          */
         default CT_CGTransform handleCgTransform(TextObject textObject, String newText, CT_Font beforeCtFont) {
             return null;
         }
 
         /**
-         * 创建新的字体
+         * 创建新的font
          *
          * @param textObject   TextObject对象
          * @param newText      替换后的文字
-         * @param beforeCtFont 原文字内容的字体文件
-         * @return 替换文字使用的字体对象
+         * @param beforeCtFont 原文字内容的font file
+         * @return 替换文字使用的font object
          */
         default Font handleNewFont(TextObject textObject, String newText, CT_Font beforeCtFont) {
             return null;

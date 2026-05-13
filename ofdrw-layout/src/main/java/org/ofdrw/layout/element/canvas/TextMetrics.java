@@ -3,7 +3,7 @@ package org.ofdrw.layout.element.canvas;
 /**
  * 测量的文字信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-07 19:03:17
  */
 public class TextMetrics {
@@ -14,16 +14,16 @@ public class TextMetrics {
     public int readDirection;
 
     /**
-     * 文字宽度（单位毫米mm）
+     * 文字width（单位毫米mm）
      * <p>
-     * 如果 readDirection == 0 || 180 为宽度
+     * 如果 readDirection == 0 || 180 为width
      * <p>
-     * 如果 readDirection == 90 || 270 为高度
+     * 如果 readDirection == 90 || 270 为height
      */
     public Double width;
 
     /**
-     * 文本字体大小（单位毫米mm）
+     * 文本font大小（单位毫米mm）
      */
     public Double fontSize;
 

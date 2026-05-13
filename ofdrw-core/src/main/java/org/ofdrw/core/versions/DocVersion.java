@@ -15,7 +15,7 @@ import java.time.LocalDate;
  * <p>
  * 19.2 版本 图 90 表 71
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-28 07:14:16
  */
 public class DocVersion extends OFDElement {
@@ -65,7 +65,7 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【属性 可选】
+     * [attribute, optional]
      * 设置 该文件适用的格式版本
      *
      * @param version 该文件适用的格式版本
@@ -81,7 +81,7 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【属性 可选】
+     * [attribute, optional]
      * 获取 该文件适用的格式版本
      *
      * @return 该文件适用的格式版本，null表示不存在
@@ -91,7 +91,7 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【属性 可选】
+     * [attribute, optional]
      * 设置 版本名称
      *
      * @param name 版本名称
@@ -107,7 +107,7 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【属性 可选】
+     * [attribute, optional]
      * 获取 版本名称
      *
      * @return 版本名称，null表示不存在
@@ -117,10 +117,10 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【属性 可选】
-     * 设置 创建时间
+     * [attribute, optional]
+     * set creation time
      *
-     * @param creationDate 创建时间
+     * @param creationDate creation date
      * @return this
      */
     public DocVersion setCreationDate(LocalDate creationDate) {
@@ -133,10 +133,10 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【属性 可选】
-     * 获取 创建时间
+     * [attribute, optional]
+     * get creation time
      *
-     * @return 创建时间
+     * @return creation date
      */
     public LocalDate getCreationDate() {
         String dateStr = this.getOFDElementText("CreationDate");
@@ -144,15 +144,15 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 版本包含的文件列表
+     * [required]
+     * 设置 版本contains的文件列表
      *
-     * @param fileList 版本包含的文件列表
+     * @param fileList 版本contains的文件列表
      * @return this
      */
     public DocVersion setFileList(FileList fileList) {
         if (fileList == null) {
-            throw new IllegalArgumentException("版本包含的文件列表（FileList）不能为空");
+            throw new IllegalArgumentException("版本contains的文件列表（FileList）不能为空");
         }
         this.add(fileList);
         return this;
@@ -160,10 +160,10 @@ public class DocVersion extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 获取 版本包含的文件列表
+     * [required]
+     * 获取 版本contains的文件列表
      *
-     * @return 版本包含的文件列表
+     * @return 版本contains的文件列表
      */
     public FileList getFileList() {
         Element e = this.getOFDElement("FileList");
@@ -172,7 +172,7 @@ public class DocVersion extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 该版本的入口文件
      *
      * @param docRoot 该版本的入口文件
@@ -187,7 +187,7 @@ public class DocVersion extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 该版本的入口文件
      *
      * @return 该版本的入口文件

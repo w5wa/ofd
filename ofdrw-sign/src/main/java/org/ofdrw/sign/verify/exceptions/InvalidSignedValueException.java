@@ -3,7 +3,7 @@ package org.ofdrw.sign.verify.exceptions;
 /**
  * 电子签名数据失效异常
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-22 02:17:28
  */
 public class InvalidSignedValueException extends OFDVerifyException {

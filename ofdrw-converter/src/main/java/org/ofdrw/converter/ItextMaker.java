@@ -89,7 +89,7 @@ public class ItextMaker {
 
     private final OFDReader ofdReader;
     /**
-     * 资源加载器
+     * resource loader
      * <p>
      * 用于获取OFD内资源
      */
@@ -103,8 +103,8 @@ public class ItextMaker {
     /**
      * ofd每页的object画到pdf
      *
-     * @param pdf      PDF文档对象
-     * @param pageInfo 页面信息
+     * @param pdf      PDFdocument object
+     * @param pageInfo page information
      * @return PDF页面
      * @throws IOException 文档操作过程中发生异常
      */
@@ -125,23 +125,23 @@ public class ItextMaker {
         final List<AnnotionEntity> annotationEntities = ofdReader.getAnnotationEntities();
         final List<StampAnnotEntity> stampAnnots = ofdReader.getStampAnnots();
         PdfCanvas pdfCanvas = new PdfCanvas(pdfPage);
-        // 获取页面内容出现的所有图层，包含模板页（所有页面均按照定义ZOrder排列）
+        // get all layers in page content, including template pages (all pages arranged by defined ZOrder)
         List<CT_Layer> layerList = pageInfo.getAllLayer();
-        // 绘制 模板层 和 页面内容层
+        // draw template layer and page content layer
         writeLayer(resMgt, pdfCanvas, layerList, pageBox, null);
-        // 绘制电子印章
+        // 绘制电子seal/stamp
         writeStamp(pdf, pdfCanvas, pageInfo, stampAnnots);
-        // 绘制注释
+        // draw annotations
         writeAnnoAppearance(resMgt, pdfCanvas, pageInfo, annotationEntities, pageBox);
         return pdfPage;
     }
 
     /**
-     * 添加附件
+     * add attachment
      *
-     * @param pdf       PDF文档对象
-     * @param ofdReader OFD解析器
-     * @throws IOException IO异常
+     * @param pdf       PDFdocument object
+     * @param ofdReader OFD parser
+     * @throws IOException IO exception
      */
     public void addAttachments(PdfDocument pdf, OFDReader ofdReader) throws IOException {
         // 获取OFD中所有附件
@@ -161,13 +161,13 @@ public class ItextMaker {
     }
 
     /**
-     * 绘制印章
+     * 绘制seal/stamp
      *
      * @param pdf                  PDF内容流
-     * @param pdfCanvas            绘制上下文
-     * @param parent               OFD页面信息
-     * @param stampAnnotEntityList 印章列表
-     * @throws IOException 文件读写异常
+     * @param pdfCanvas            drawing context
+     * @param parent               OFDpage information
+     * @param stampAnnotEntityList seal/stamp列表
+     * @throws IOException file read/write exception
      */
     private void writeStamp(PdfDocument pdf, PdfCanvas pdfCanvas,
                             PageInfo parent,
@@ -177,7 +177,7 @@ public class ItextMaker {
             List<StampAnnot> stampAnnots = stampAnnotVo.getStampAnnots();
             for (StampAnnot stampAnnot : stampAnnots) {
                 if (!stampAnnot.getPageRef().toString().equals(pageID)) {
-                    // 不是同一个页面忽略
+                    // 不是同一个页面ignored
                     continue;
                 }
                 ST_Box pageBox = parent.getSize();
@@ -185,15 +185,15 @@ public class ItextMaker {
                 ST_Box clipBox = stampAnnot.getClip();
 
                 if (stampAnnotVo.getImgType().equalsIgnoreCase("ofd")) {
-                    // 尝试读取并解析OFD印章图像
+                    // 尝试读取并解析OFDseal/stamp图像
                     try (OFDReader sealOfdReader = new OFDReader(new ByteArrayInputStream(stampAnnotVo.getImageByte()));) {
                         ResourceManage sealResMgt = sealOfdReader.getResMgt();
                         for (PageInfo ofdPageVo : sealOfdReader.getPageList()) {
-                            // 获取页面内容出现的所有图层，包含模板页（所有页面均按照定义ZOrder排列）
+                            // get all layers in page content, including template pages (all pages arranged by defined ZOrder)
                             List<CT_Layer> layerList = ofdPageVo.getAllLayer();
-                            // 绘制页面内容
+                            // 绘制page content
                             writeLayer(sealResMgt, pdfCanvas, layerList, pageBox, sealBox);
-                            // 绘制注释
+                            // draw annotations
                             writeAnnoAppearance(sealResMgt, pdfCanvas,
                                     ofdPageVo,
                                     sealOfdReader.getAnnotationEntities(),
@@ -201,7 +201,7 @@ public class ItextMaker {
                         }
                     }
                 } else {
-                    // 绘制图片印章内容
+                    // 绘制imageseal/stamp内容
                     writeSealImage(pdf, pdfCanvas, pageBox, stampAnnotVo.getImageByte(), sealBox, clipBox);
                 }
             }
@@ -209,14 +209,14 @@ public class ItextMaker {
     }
 
     /**
-     * 绘制 图层
+     * 绘制 layer
      *
-     * @param resMgt    资源管理器
+     * @param resMgt    resource manager
      * @param pdfCanvas Canvas上下文
-     * @param layerList 图层
-     * @param box       页面区域
-     * @param sealBox   印章区域
-     * @throws IOException 绘制异常
+     * @param layerList layer
+     * @param box       page area
+     * @param sealBox   seal/stamp区域
+     * @throws IOException drawing exception
      */
     private void writeLayer(ResourceManage resMgt,
                             PdfCanvas pdfCanvas,
@@ -263,7 +263,7 @@ public class ItextMaker {
                     continue;
                 }
                 List<PageBlockType> pageBlockTypeList = appearance.getPageBlocks();
-                //注释的boundary
+                //annotation boundary
                 ST_Box annotBox = appearance.getBoundary();
                 writePageBlock(resMgt, pdfCanvas, box, null, pageBlockTypeList, null, annotBox, null, null, null);
             }
@@ -273,17 +273,17 @@ public class ItextMaker {
     /**
      * 绘制 页块
      *
-     * @param resMgt                  资源管理器
+     * @param resMgt                  resource manager
      * @param pdfCanvas               Canvas上下文
-     * @param box                     页面区域
-     * @param sealBox                 印章区域
+     * @param box                     page area
+     * @param sealBox                 seal/stamp区域
      * @param pageBlockTypeList       需要绘制的页块
-     * @param drawparam               绘制参数ID
+     * @param drawparam               drawing parametersID
      * @param annotBox                注释区域
      * @param compositeObjectAlpha    透明度
      * @param compositeObjectBoundary 符合对象区域
-     * @param compositeObjectCTM      符合对象变换矩阵
-     * @throws IOException 绘制异常
+     * @param compositeObjectCTM      符合对象transformation matrix
+     * @throws IOException drawing exception
      * @throws IOException 文档操作异常
      */
     private void writePageBlock(ResourceManage resMgt,
@@ -298,7 +298,7 @@ public class ItextMaker {
         Color defaultStrokeColor = ColorConstants.BLACK;
         Color defaultFillColor = ColorConstants.BLACK;
         float defaultLineWidth = 0.353f;
-        // 递归的获取绘制参数
+        // 递归的获取drawing parameters
         CT_DrawParam ctDrawParam = null;
         if (drawparam != null) {
             ctDrawParam = resMgt.getDrawParamFinal(drawparam.toString());
@@ -419,7 +419,7 @@ public class ItextMaker {
 //     * 解析图案类型颜色
 //     *
 //     * @param elePattern ofd元素
-//     * @param resMgt     资源管理器
+//     * @param resMgt     resource manager
 //     * @param box        图元外界矩形
 //     * @param pathObject 路径对象
 //     * @return 颜色，若无法解析则返回空
@@ -471,7 +471,7 @@ public class ItextMaker {
         double scale = scaling(sealBox, pathObject);
         CT_DrawParam ctDrawParam = resMgt.superDrawParam(pathObject);
         if (ctDrawParam != null) {
-            // 使用绘制参数补充缺省的颜色
+            // use drawing parameters to fill in default colors
             if (pathObject.getStrokeColor() == null
                     && ctDrawParam.getStrokeColor() != null) {
                 pathObject.setStrokeColor(new CT_Color().setValue(ctDrawParam.getStrokeColor().getValue()));
@@ -659,11 +659,11 @@ public class ItextMaker {
     }
 
     /**
-     * 计算当前盒子到目标盒子的缩放比例
+     * 计算当前盒子到目标盒子的scale ratio
      *
      * @param targetBox  目标区域大小
      * @param currentBox 图元大小
-     * @return 缩放比例
+     * @return scale ratio
      */
     private double scaling(ST_Box targetBox, ST_Box currentBox) {
         double scale = 1.0;
@@ -674,11 +674,11 @@ public class ItextMaker {
     }
 
     /**
-     * 计算图元到目标盒子的缩放比例
+     * 计算图元到目标盒子的scale ratio
      *
      * @param targetBox   目标区域大小
      * @param graphicUnit 图元
-     * @return 缩放比例
+     * @return scale ratio
      */
     private double scaling(ST_Box targetBox, @SuppressWarnings("rawtypes") CT_GraphicUnit graphicUnit) {
         double scale = 1D;
@@ -720,12 +720,12 @@ public class ItextMaker {
         }
         pdfCanvas.saveState();
 
-        // 设置图片混合模式为 Multiply（正片叠底），防止图片遮挡文字
+        // 设置image混合模式为 Multiply（正片叠底），防止image遮挡文字
         // 参考 AWTMaker 使用 AlphaComposite.SRC_ATOP 的效果
         PdfExtGState extGState = new PdfExtGState();
         extGState.setBlendMode(PdfExtGState.BM_MULTIPLY);
 
-        // 处理图片透明度
+        // 处理image透明度
         Integer alpha = imageObject.getAlpha();
         if (alpha != null && alpha < 255) {
             extGState.setFillOpacity(alpha * 1.0f / 255);
@@ -781,10 +781,10 @@ public class ItextMaker {
     }
 
     /**
-     * 获取字号 ，若无法获取则设置为默认值 0.353。
+     * get font size; if unavailable, default to 0.353.
      *
-     * @param textObject 文字对象
-     * @return 字号。
+     * @param textObject text object
+     * @return font size.
      */
     private double getTextObjectSize(TextObject textObject) {
         double fontSize = 0.353;
@@ -803,7 +803,7 @@ public class ItextMaker {
         double scale = scaling(sealBox, textObject);
         float fontSize = Double.valueOf(textObject.getSize() * scale).floatValue();
         CT_DrawParam ctDrawParam = resMgt.superDrawParam(textObject);
-        // 使用绘制参数补充缺省的颜色
+        // use drawing parameters to fill in default colors
         if (ctDrawParam != null && textObject.getFillColor() == null
                 && ctDrawParam.getFillColor() != null) {
             fillColor = ColorConvert.pdfRGB(resMgt, ctDrawParam.getFillColor());
@@ -859,7 +859,7 @@ public class ItextMaker {
                     textObject.getBoundary().getWidth(),
                     textObject.getBoundary().getHeight());
         }
-        // 修正线宽不受ctm影响的问题
+        // fix issue where line width is not affected by CTM
         double lineWidth = 0.0;
         if (textObject.getLineWidth() != null) {
             lineWidth = textObject.getLineWidth();
@@ -876,7 +876,7 @@ public class ItextMaker {
             double angel = Math.atan2(-b, d);
             if (!(angel == 0 && a != 0 && d == 1)) {
                 fontSize = (float) (fontSize * sx);
-                // 修正线宽不受ctm影响的问题
+                // fix issue where line width is not affected by CTM
                 lineWidth = lineWidth * sx;
             }
         }
@@ -892,12 +892,12 @@ public class ItextMaker {
             double angel = Math.atan2(-b, d);
             if (!(angel == 0 && a != 0 && d == 1)) {
                 fontSize = (float) (fontSize * sx);
-                // 修正线宽不受ctm影响的问题
+                // fix issue where line width is not affected by CTM
                 lineWidth = lineWidth * sx;
             }
         }
 
-        // 加载字体
+        // load font
         CT_Font ctFont = resMgt.getFont(textObject.getFont().toString());
         FontWrapper<PdfFont> pdfFontWrapper = getFont(resMgt.getOfdReader().getResourceLocator(), ctFont, textObject.getCGTransforms().isEmpty());
         PdfFont font = pdfFontWrapper.getFont();
@@ -964,18 +964,18 @@ public class ItextMaker {
                 StrokeColor stroke = textObject.getStrokeColor();
                 if (stroke != null && textObject.getStroke()) {
                     Color strokeColor = ColorConstants.BLACK;
-                    // 获取描边颜色
+                    // 获取stroke color
                     if (stroke.getValue() != null) {
                         strokeColor = ColorConvert.pdfRGB(resMgt, stroke);
                     } else if (stroke.getColorByType() != null) {
                         CT_AxialShd ctAxialShd = stroke.getColorByType();
                         strokeColor = ColorConvert.pdfRGB(resMgt, ctAxialShd.getSegments().get(0).getColor());
                     }
-                    // 设置透明度
+                    // set transparency
                     PdfExtGState gs2 = new PdfExtGState();
                     gs2.setFillOpacity(stroke.getAlpha() / 255f);
                     pdfCanvas.setExtGState(gs2);
-                    // 设置描边颜色
+                    // set stroke color
                     pdfCanvas.setStrokeColor(strokeColor);
                     pdfCanvas.setLineWidth((float) converterDpi(lineWidth));
                     pdfCanvas.setTextRenderingMode(PdfCanvasConstants.TextRenderingMode.FILL_STROKE);
@@ -987,17 +987,17 @@ public class ItextMaker {
                 // 计算剪切因子（角度=10°）
                 double shearFactor = Math.tan(Math.toRadians(10));
 
-                // 定义补偿量：补偿量 = 剪切因子 * 字体高度
+                // 定义补偿量：补偿量 = 剪切因子 * fontheight
                 double compensation = shearFactor * textCodePoint.getY();
 
-                // 构建组合变换矩阵（反向平移且剪切）
+                // 构建组合transformation matrix（反向平移且剪切）
                 AffineTransform transform = new AffineTransform();
                 transform.translate(-compensation, 0); // 反向平移补偿偏移
                 transform.shear(shearFactor, 0);     // 应用剪切
                 pdfCanvas.concatMatrix(transform);
             }
 
-            //设置字符方向
+            //set character direction
             if (textObject.getCharDirection() == Angle_90) {
                 pdfCanvas.setTextMatrix(0, -1, 1, 0, (float) textCodePoint.getX(), (float) textCodePoint.getY());
             } else if (textObject.getCharDirection() == Angle_180) {
@@ -1031,12 +1031,12 @@ public class ItextMaker {
     }
 
     /**
-     * 加载字体
+     * load font
      *
-     * @param rl         资源加载器
-     * @param ctFont     字体对象
+     * @param rl         resource loader
+     * @param ctFont     font object
      * @param isNoGlyphs 是否不存在字符索引
-     * @return 字体
+     * @return font
      */
     private FontWrapper<PdfFont> getFont(ResourceLocator rl, CT_Font ctFont, boolean isNoGlyphs) {
         String key = String.format("%s_%s_%s", ctFont.getFamilyName(), ctFont.attributeValue("FontName"), ctFont.getFontFile());

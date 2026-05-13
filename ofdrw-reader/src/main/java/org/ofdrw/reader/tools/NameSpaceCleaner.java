@@ -7,9 +7,9 @@ import org.dom4j.VisitorSupport;
 import org.dom4j.tree.DefaultElement;
 
 /**
- * 命名空间清理类
+ * namespace清理类
  * <p>
- * 用于清理已经存在的命名空间
+ * 用于清理已经存在的namespace
  *
  * @author libra19911018
  * @since 2020-10-15 19:38:15

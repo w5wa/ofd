@@ -25,13 +25,13 @@ import java.security.cert.X509Certificate;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-05 19:46:17
  */
 class SignedDataBuilderTest {
 
     /**
-     * 测试打包签名值为 GBT 35275 signedData
+     * 测试打包signature value为 GBT 35275 signedData
      */
     @Test
     void signedData() throws Exception {
@@ -44,10 +44,10 @@ class SignedDataBuilderTest {
              final PEMParser certParser = new PEMParser(new InputStreamReader(certOut));
              final PEMParser keyParser = new PEMParser(new InputStreamReader(keyOut))) {
 
-            // 解析证书
+            // 解析certificate
             final X509CertificateHolder certificateHolder = (X509CertificateHolder) certParser.readObject();
             final X509Certificate certificate = new JcaX509CertificateConverter().setProvider("BC").getCertificate(certificateHolder);
-            // 解析私钥
+            // 解析private key
             JcaPEMKeyConverter converter = new JcaPEMKeyConverter().setProvider("BC");
             final PEMKeyPair pemKeyPair = (PEMKeyPair) keyParser.readObject();
             final PrivateKey privateKey = converter.getPrivateKey(pemKeyPair.getPrivateKeyInfo());

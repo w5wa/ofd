@@ -19,7 +19,7 @@ public class OFD2IMGTest {
     @Test
     public void test() throws IOException {
 
-        //为不规范的字体名创建映射
+        //为不规范的font name创建映射
         FontLoader.getInstance()
                 .addAliasMapping("小标宋体", "方正小标宋简体")
                 .addAliasMapping("KaiTi_GB2312", "楷体")
@@ -43,7 +43,7 @@ public class OFD2IMGTest {
 //        toPng("src/test/resources/ano.ofd", "target/ano.ofd");
 //        toPng("src/test/resources/文字横向-数科.ofd", "target/文字横向-数科.ofd");
 //        toPng("src/test/resources/z.ofd", "target/z.ofd");
-//        toPng("src/test/resources/不规范资源路径.ofd", "target/不规范资源路径.ofd");
+//        toPng("src/test/resources/不规范resource path.ofd", "target/不规范resource path.ofd");
 //        toPng("src/test/resources/发票示例.ofd", "target/发票示例.ofd");
         System.out.printf(">> 总计花费: %dms\n", System.currentTimeMillis() - start);
     }

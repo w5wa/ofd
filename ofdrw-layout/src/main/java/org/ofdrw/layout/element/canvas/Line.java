@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * OFDRW 线条元素，用于快速构建一条线条。
  * <p>
- * 若需要绘制复杂图形，请使用 {@link Canvas} 对象，并提供 {@link  Drawer}实现，在Drawer中使用绘制上下文绘制。
+ * 若需要绘制复杂图形，请使用 {@link Canvas} 对象，并提供 {@link  Drawer}实现，在Drawer中使用drawing context绘制。
  * <p>
  * 若绘制简单矩形，可以使用 {@link org.ofdrw.layout.element.Div} 对象设置边框 实现。
  *
@@ -31,7 +31,7 @@ public class Line extends CanvasBase {
     private String lineColor = "#000000";
 
     /**
-     * 线条宽度，默认 0.353mm
+     * 线条width，默认 0.353mm
      */
     private double lineWidth = 0.353d;
 
@@ -44,8 +44,8 @@ public class Line extends CanvasBase {
     /**
      * 线对象
      *
-     * @param width  画线区域的宽度，单位：毫米mm
-     * @param height 画线区域高度，单位：毫米mm
+     * @param width  画线区域的width，单位：毫米mm
+     * @param height 画线区域height，单位：毫米mm
      */
     public Line(Double width, Double height) {
         super(width, height);
@@ -56,8 +56,8 @@ public class Line extends CanvasBase {
      *
      * @param x 画线区域左上角的x坐标，单位：毫米mm
      * @param y 画线区域左上角的y坐标，单位：毫米mm
-     * @param w 画线区域的宽度，单位：毫米mm
-     * @param h 画线区域高度，单位：毫米mm
+     * @param w 画线区域的width，单位：毫米mm
+     * @param h 画线区域height，单位：毫米mm
      */
     public Line(double x, double y, double w, double h) {
         super(x, y, w, h);
@@ -148,18 +148,18 @@ public class Line extends CanvasBase {
     }
 
     /**
-     * 获取线的宽度
+     * 获取线的width
      *
-     * @return 线的宽度
+     * @return 线的width
      */
     public double getLineWidth() {
         return lineWidth;
     }
 
     /**
-     * 设置线的宽度
+     * 设置线的width
      *
-     * @param lineWidth 线的宽度，单位 毫米mm
+     * @param lineWidth 线的width，单位 毫米mm
      * @return this
      */
     public Line setLineWidth(double lineWidth) {
@@ -190,8 +190,8 @@ public class Line extends CanvasBase {
     /**
      * 线条绘制器
      *
-     * @param ctx 绘制上下文
-     * @throws IOException 绘制异常
+     * @param ctx drawing context
+     * @throws IOException drawing exception
      */
     public void draw(DrawContext ctx) throws IOException {
         if (lineColor == null) {

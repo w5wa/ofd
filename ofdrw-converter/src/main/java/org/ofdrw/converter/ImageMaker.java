@@ -10,7 +10,7 @@ import org.ofdrw.reader.PageInfo;
 import org.ofdrw.reader.tools.ImageUtils;
 
 /**
- * 图片转换类
+ * image转换类
  *
  * @author qaqtutu
  * @since 2021-03-13 10:00:01
@@ -19,26 +19,26 @@ public class ImageMaker extends AWTMaker {
 
 
     /**
-     * 创建图片转换对象实例
+     * create image converter instance
      * <p>
-     * OFD内部使用毫米作为基本单位
+     * OFD uses millimeters as the basic unit internally
      * <p>
      * 如果需要更加精确的表示请使用{@link #ImageMaker(OFDReader, double)}
      *
-     * @param reader OFD解析器
-     * @param ppm    每毫米像素数量(Pixels per millimeter)
+     * @param reader OFD parser
+     * @param ppm    pixels per millimeter
      */
     public ImageMaker(OFDReader reader, int ppm) {
         super(reader, ppm);
     }
 
     /**
-     * 创建图片转换对象实例
+     * create image converter instance
      * <p>
-     * OFD内部使用毫米作为基本单位
+     * OFD uses millimeters as the basic unit internally
      *
-     * @param reader OFD解析器
-     * @param ppm    每毫米像素数量(Pixels per millimeter)，DPI与PPM转换可以使用{@link CommonUtil#dpiToPpm(int)}。
+     * @param reader OFD parser
+     * @param ppm    pixels per millimeter，DPI与PPM转换可以使用{@link CommonUtil#dpiToPpm(int)}。
      * @author iandjava
      */
     public ImageMaker(OFDReader reader, double ppm) {
@@ -46,10 +46,10 @@ public class ImageMaker extends AWTMaker {
     }
 
     /**
-     * 渲染OFD页面为图片
+     * 渲染OFD页面为image
      *
-     * @param pageIndex 页码，从0起
-     * @return 渲染完成的图片
+     * @param pageIndex page number，从0起
+     * @return 渲染完成的image
      */
     public BufferedImage makePage(int pageIndex) {
         if (pageIndex < 0 || pageIndex >= pages.size()) {
@@ -71,10 +71,10 @@ public class ImageMaker extends AWTMaker {
     }
 
     /**
-     * 创建图片
+     * 创建image
      *
-     * @param pageWidthPixel  图形宽度
-     * @param pageHeightPixel 图像高度
+     * @param pageWidthPixel  图形width
+     * @param pageHeightPixel 图像height
      */
     private BufferedImage createImage(int pageWidthPixel, int pageHeightPixel) {
         return ImageUtils.createImage(pageWidthPixel, pageHeightPixel, isStamp);

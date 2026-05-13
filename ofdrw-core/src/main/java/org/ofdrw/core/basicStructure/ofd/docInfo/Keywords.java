@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * 表 4 文档元数据属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-01 05:44:42
  */
 public class Keywords extends OFDElement {
@@ -31,10 +31,10 @@ public class Keywords extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 增加关键字
+     * [required]
+     * 增加keyword
      *
-     * @param keyword 关键字
+     * @param keyword keyword
      * @return this
      */
     public Keywords addKeyword(String keyword) {
@@ -43,9 +43,9 @@ public class Keywords extends OFDElement {
     }
 
     /**
-     * 获取关键字列表
+     * 获取keyword列表
      *
-     * @return 关键字列表
+     * @return keyword列表
      */
     public List<String> getKeywords() {
         return this.getOFDElements("Keywords", Element::getTextTrim);

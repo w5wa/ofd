@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
  * 虚拟页面
  * <p>
  * 虚拟页面介于盒式模型和板式模型两种中间
- * 虚拟页面内包含多个Div对象，这些对象都为绝对定位。
+ * 虚拟页面内contains多个Div对象，这些对象都为绝对定位。
  * 由于是绝对定位，因此不存在分页的情况。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-28 02:32:27
  */
 public class VirtualPage {
@@ -36,9 +36,9 @@ public class VirtualPage {
     private List<Div> content = new LinkedList<>();
 
     /**
-     * 插入的虚拟页面页码（插入位置）
+     * 插入的虚拟页面page number（插入位置）
      * <p>
-     * 仅在不为空时候表示需要将插入到指定页码位置。
+     * 仅在不为空时候表示需要将插入到指定page number位置。
      */
     private Integer pageNum = null;
 
@@ -67,7 +67,7 @@ public class VirtualPage {
     }
 
     /**
-     * 不对元素进行分析直接加入到虚拟页面容器内
+     * 不对元素进行分析直接加入到虚拟page container内
      * <p>
      * 请在调用该接口时，对待加入的元素进行分析，否则很有可能抛出异常。
      * <p>
@@ -101,7 +101,7 @@ public class VirtualPage {
             throw new IllegalArgumentException("处于绝对定位的模式下的元素应该设置 X 和 Y 坐标");
         }
         if (d.getWidth() == null) {
-            throw new IllegalArgumentException("绝对定位元素至少需要指定元素宽度（Width）");
+            throw new IllegalArgumentException("绝对定位元素至少需要指定元素width（Width）");
         }
         // 追加内容时进行预处理
         d.doPrepare(d.getWidth() + d.widthPlus());
@@ -121,10 +121,10 @@ public class VirtualPage {
     }
 
     /**
-     * 获取指定图层类型的Div
+     * 获取指定layer类型的Div
      *
-     * @param layer 图层
-     * @return 该图层相关的所有Div
+     * @param layer layer
+     * @return 该layer相关的所有Div
      */
     public List<Div> getContent(Type layer) {
         List<Div> res = new LinkedList<>();
@@ -137,9 +137,9 @@ public class VirtualPage {
     }
 
     /**
-     * 返回图层相关的内容
+     * 返回layer相关的内容
      *
-     * @return 图层列表依次是：前景层、中文层、背景层
+     * @return layer列表依次是：foreground layer、中文层、background layer
      */
     public List<List<Div>> getLayerContent() {
         List<List<Div>> res = new ArrayList<>(3);
@@ -179,23 +179,23 @@ public class VirtualPage {
     }
 
     /**
-     * 获取虚拟页面页码
+     * 获取虚拟页面page number
      *
-     * @return 页码（从1起）
+     * @return page number（从1起）
      */
     public Integer getPageNum() {
         return pageNum;
     }
 
     /**
-     * 设置虚拟页面页码
+     * 设置虚拟页面page number
      *
-     * @param pageNum 页码（从1起）
+     * @param pageNum page number（从1起）
      * @return this
      */
     public VirtualPage setPageNum(int pageNum) {
         if (pageNum <= 0) {
-            throw new IllegalArgumentException("虚拟页面页码(pageNum)错误");
+            throw new IllegalArgumentException("虚拟页面page number(pageNum)错误");
         }
         this.pageNum = pageNum;
         return this;
@@ -213,10 +213,10 @@ public class VirtualPage {
     /**
      * 添加页面模板
      * <p>
-     * 图层默认为 背景层 {@link Type#Background}
+     * layer默认为 background layer {@link Type#Background}
      *
-     * @param id    模板页面对象ID
-     * @param order 图层，null时为 背景层 {@link Type#Background}
+     * @param id    模板页面object ID
+     * @param order layer，null时为 background layer {@link Type#Background}
      */
     public void addTemplate(String id, Type order) {
         final Template tpl = new Template();

@@ -24,7 +24,7 @@ final public class ColorConvert {
      * 转换为HTML RGB颜色
      *
      * @param colorArray 颜色数组
-     * @return HTML RGB颜色字符串 rgb(r,g,b)
+     * @return HTML RGB颜色string rgb(r,g,b)
      */
     public static String convertOfdColorToHtml(ST_Array colorArray) {
         String color = null;
@@ -81,7 +81,7 @@ final public class ColorConvert {
     /**
      * PDF的RGB颜色
      *
-     * @param resMgt  资源管理器
+     * @param resMgt  resource manager
      * @param ctColor 颜色
      * @return PDF RGB颜色
      */
@@ -93,7 +93,7 @@ final public class ColorConvert {
     /**
      * 转换为RGB颜色
      *
-     * @param resMgt  资源管理器
+     * @param resMgt  resource manager
      * @param ctColor 颜色
      * @return RGB数组
      */
@@ -111,11 +111,11 @@ final public class ColorConvert {
         CT_ColorSpace cs = null;
         ST_RefID colorSpaceId = ctColor.getColorSpace();
         if (colorSpaceId != null && resMgt != null) {
-            // 尝试从资源管理器中获取颜色空间
+            // 尝试从resource manager中获取color space
             cs = resMgt.getColorSpace(colorSpaceId.toString());
         }
         if (cs == null) {
-            // 颜色空间不存在时，采用RGB作为默认颜色空间
+            // color space不存在时，采用RGB作为默认color space
             if (colorValues == null) {
                 return new int[]{0, 0, 0};
             }
@@ -143,7 +143,7 @@ final public class ColorConvert {
                 color[i] = Integer.parseInt(s);
             }
         }
-        // 根据颜色空间类型，转换颜色为RGB
+        // 根据color space类型，转换颜色为RGB
         switch (cs.getType()) {
             case RGB:
                 return color;
@@ -162,7 +162,7 @@ final public class ColorConvert {
      * @param m 洋红色
      * @param y 黄色
      * @param k 黑色
-     * @return RGB颜色值
+     * @return RGBcolor value
      */
     public static int[] cmykToRgb(int c, int m, int y, int k) {
         c = Math.min(c, 100);

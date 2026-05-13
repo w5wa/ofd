@@ -5,20 +5,20 @@ package org.ofdrw.core.signatures;
  * <p>
  * 目前规定了两个可选值
  *
- * 18.1 签名列表 图 85 表 66
+ * 18.1 Signature List - Figure 85 Table 66
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-20 06:59:41
  */
 public enum SigType {
     /**
-     * 安全签章
+     * 安全seal/signature
      * <p>
-     * 默认值
+     * default value
      */
     Seal,
     /**
-     * 纯数字签名
+     * 纯number签名
      */
     Sign;
 

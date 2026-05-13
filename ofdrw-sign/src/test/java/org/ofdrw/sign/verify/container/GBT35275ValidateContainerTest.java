@@ -14,7 +14,7 @@ import java.security.cert.Certificate;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-09 16:50:27
  */
 class GBT35275ValidateContainerTest {

@@ -3,14 +3,14 @@ package org.ofdrw.reader.keyword;
 import org.ofdrw.core.basicType.ST_Box;
 
 /**
- * 关键字位置
+ * keyword位置
  *
  * @author minghu-zhang
  * @since 16:25 2020/9/26
  */
 public class KeywordPosition {
     /**
-     * 关键字所在页码
+     * keyword所在page number
      */
     private int page;
     /**
@@ -18,7 +18,7 @@ public class KeywordPosition {
      */
     private ST_Box box;
     /**
-     * 所属关键字
+     * 所属keyword
      */
     private String keyword;
 

@@ -5,15 +5,15 @@ import org.ofdrw.core.basicType.ST_Loc;
 import java.nio.file.Path;
 
 /**
- * 待计算杂凑值的文件信息
+ * 待计算hash value的文件信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 11:04:54
  */
 public class ToDigestFileInfo {
 
     /**
-     * 文件在OFD虚拟容器中的绝对路径
+     * 文件在OFD虚拟容器中的absolute path
      * <p>
      * 如：“/Doc_0/Pages/Page_0/Content.xml”
      */
@@ -27,7 +27,7 @@ public class ToDigestFileInfo {
     /**
      * 创建文件信息对象
      *
-     * @param absPath 容器内绝对路径
+     * @param absPath 容器内absolute path
      * @param sysPath 文件系统中的路径
      */
     public ToDigestFileInfo(String absPath, Path sysPath) {

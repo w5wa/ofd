@@ -9,9 +9,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * 测试通用命名空间
+ * 测试通用namespace
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-09-15 21:21:08
  */
 class OFDCommonQNameTest {

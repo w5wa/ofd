@@ -3,7 +3,7 @@ package org.ofdrw.core.basicStructure.ofd.docInfo;
 /**
  * 文档分类
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-01 05:22:41
  */
 public enum DocUsage {
@@ -29,7 +29,7 @@ public enum DocUsage {
      *
      * 默认值： Normal
      * @param usage 文档分类值
-     * @return 实例
+     * @return instance
      */
     public static DocUsage getInstance(String usage) {
         usage = usage == null ? "" : usage.trim();

@@ -29,13 +29,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 注释对象渲染器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-15 18:42:49
  */
 public class AnnotationRender {
 
     /**
-     * 文档目录
+     * document directory
      */
     private DocDir docDir;
 
@@ -87,11 +87,11 @@ public class AnnotationRender {
         // 注释列表的文件
         ST_Loc annListFileLoc = document.getAnnotations();
         if (annListFileLoc != null && !rl.exist(annListFileLoc.toString())) {
-            // 文件不存在则置空
+            // file not found则置空
             annListFileLoc = null;
         }
 
-        // 文件不存在时创建注释列表文件。
+        // file not found时创建注释列表文件。
         if (annListFileLoc != null) {
             try {
                 annotations = rl.get(annListFileLoc, Annotations::new);
@@ -124,10 +124,10 @@ public class AnnotationRender {
     /**
      * 注释 渲染器
      *
-     * @param pageInfo 需要渲染注释的页面信息
+     * @param pageInfo 需要渲染注释的page information
      * @param build    注释对象构造器
-     * @throws RenderException 渲染发生错误
-     * @throws IOException     文件操作异常
+     * @throws RenderException rendering error occurred
+     * @throws IOException     file operation exception
      */
     public void render(PageInfo pageInfo, Annotation build) throws RenderException, IOException {
         Drawer drawer = build.getDrawer();
@@ -157,7 +157,7 @@ public class AnnotationRender {
             }
         }
 
-        // 页面关联的分页注释文件不存在则创建
+        // 页面关联的分页注释file not found则创建
         if (pageAnnot == null) {
             if (annotsDir == null) {
                 // 若不存在注释目录则创建
@@ -171,7 +171,7 @@ public class AnnotationRender {
             // 创建 分页注释文件 PageAnnot
             pageAnnot = new PageAnnot();
             ST_Loc pageAnnotLoc = pageDir.addAnnot(pageAnnot);
-            // 重新设置分页注释条目位置为页面所处位置加上文件名
+            // 重新设置分页注释条目位置为页面所处位置加上filename
             record.setFileLoc(pageAnnotLoc);
         }
 
@@ -185,7 +185,7 @@ public class AnnotationRender {
                 .clone()
                 .setTopLeftX(0d)
                 .setTopLeftY(0d);
-        // 创建绘制上下文
+        // 创建drawing context
         DrawContext ctx = new DrawContext(container, box, maxUnitID, prm);
         // 绘制注解内容
         drawer.draw(ctx);

@@ -8,7 +8,7 @@ import org.bouncycastle.asn1.*;
  * <p>
  * ContentInfo 类型表明内容交换通用语法结构，内容交换的通用语法结构定义。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-02 19:13:03
  */
 public final class ContentInfo extends ASN1Object {

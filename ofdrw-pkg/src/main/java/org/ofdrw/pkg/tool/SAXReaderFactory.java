@@ -32,7 +32,7 @@ public class SAXReaderFactory {
 
 
     /**
-     * 创建 SAXReader 实例
+     * 创建 SAXReader instance
      * <p>
      * 若用户未配置，则调用 SAXReader.createDefault()创建，否则调用用户定义的生成器逻辑
      *

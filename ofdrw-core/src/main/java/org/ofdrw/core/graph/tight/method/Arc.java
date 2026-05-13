@@ -10,7 +10,7 @@ import org.ofdrw.core.basicType.ST_Pos;
  * <p>
  * 图 56圆弧的结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 05:38:53
  */
 public class Arc extends Command {
@@ -36,12 +36,12 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 弧线方向是否顺时针
      * <p>
      * true 表示由圆弧起始点到结束点是顺时针，false 表示由圆弧起始点到结束点是逆时针
      * <p>
-     * 对于经过坐标系上指定两点，给定旋转角度和长短轴长度的椭圆，满足条件的可能有 2 个，
+     * 对于经过坐标系上指定两点，给定rotation angle和长短轴长度的椭圆，满足条件的可能有 2 个，
      * 对应的圆弧有 4 条，通过 LargeArc 属性可以排除 2 条，次属性从剩余的 2 条圆弧中确定
      * 一条
      *
@@ -54,12 +54,12 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 弧线方向是否顺时针
      * <p>
      * true 表示由圆弧起始点到结束点是顺时针，false 表示由圆弧起始点到结束点是逆时针
      * <p>
-     * 对于经过坐标系上指定两点，给定旋转角度和长短轴长度的椭圆，满足条件的可能有 2 个，
+     * 对于经过坐标系上指定两点，给定rotation angle和长短轴长度的椭圆，满足条件的可能有 2 个，
      * 对应的圆弧有 4 条，通过 LargeArc 属性可以排除 2 条，次属性从剩余的 2 条圆弧中确定
      * 一条
      *
@@ -70,13 +70,13 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 是否是大圆弧
      * <p>
      * true 表示此线型对应的位角度大于 180°的弧，false 表示对应度数小于 180°的弧
      * <p>
      * 对于一个给定长、短轴的椭圆以及起始点和结束点，有一大一小两条圆弧，
-     * 如果所描述线型恰好为 180°的弧，此属性的值不被参考，可由 SweepDirection 属性确定圆弧形状
+     * 如果所描述线型恰好为 180°的弧，此attribute value不被参考，可由 SweepDirection 属性确定圆弧形状
      *
      * @param largeArc true - 此线型对应的位角度大于 180°的弧；false - 对应度数小于 180°的弧
      * @return this
@@ -87,13 +87,13 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 是否是大圆弧
      * <p>
      * true 表示此线型对应的位角度大于 180°的弧，false 表示对应度数小于 180°的弧
      * <p>
      * 对于一个给定长、短轴的椭圆以及起始点和结束点，有一大一小两条圆弧，
-     * 如果所描述线型恰好为 180°的弧，此属性的值不被参考，可由 SweepDirection 属性确定圆弧形状
+     * 如果所描述线型恰好为 180°的弧，此attribute value不被参考，可由 SweepDirection 属性确定圆弧形状
      *
      * @return true - 此线型对应的位角度大于 180°的弧；false - 对应度数小于 180°的弧
      */
@@ -103,7 +103,7 @@ public class Arc extends Command {
 
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 按 EllipseSize 绘制的椭圆在当前坐标系下旋转的角度，
      * 正值为顺时针，负值为逆时针
      * <p>
@@ -119,7 +119,7 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 按 EllipseSize 绘制的椭圆在当前坐标系下旋转的角度，
      * 正值为顺时针，负值为逆时针
      * <p>
@@ -133,19 +133,19 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 长短轴
      * <p>
-     * 形如[200 100]的数组，2个浮点数值一次对应椭圆的长、短轴长度，较大的一个为长轴
+     * array like [200 100] with 2 float values for the major and minor axes of the ellipse; the larger is the major axis
      * <p>
-     * [异常处理]如果数组长度超过 2，则只取前两个数值
+     * [exception handling] if array length > 2, only the first two values are used
      * <p>
-     * [异常处理]如果数组长度为 1，则认为这是一个园，该数值为圆的半径
+     * [exception handling] if array length is 1, it is treated as a circle with this value as the radius
      * <p>
-     * [异常处理]如果数组前两个数值中有一个为 0，或者数组为空，则圆弧退化为一条从当前点
-     * 到 EndPoint的线段
+     * [exception handling] if either of the first two values is 0, or the array is empty, the arc degenerates into a line from the current point
+     * to EndPoint
      * <p>
-     * [异常处理]
+     * [exception handling]
      *
      * @param ellipseSize 形如[200 100]的数组，2个浮点数值一次对应椭圆的长、短轴长度，较大的一个为长轴
      * @return this
@@ -159,19 +159,19 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 长短轴
      * <p>
-     * 形如[200 100]的数组，2个浮点数值一次对应椭圆的长、短轴长度，较大的一个为长轴
+     * array like [200 100] with 2 float values for the major and minor axes of the ellipse; the larger is the major axis
      * <p>
-     * [异常处理]如果数组长度超过 2，则只取前两个数值
+     * [exception handling] if array length > 2, only the first two values are used
      * <p>
-     * [异常处理]如果数组长度为 1，则认为这是一个园，该数值为圆的半径
+     * [exception handling] if array length is 1, it is treated as a circle with this value as the radius
      * <p>
-     * [异常处理]如果数组前两个数值中有一个为 0，或者数组为空，则圆弧退化为一条从当前点
-     * 到 EndPoint的线段
+     * [exception handling] if either of the first two values is 0, or the array is empty, the arc degenerates into a line from the current point
+     * to EndPoint
      * <p>
-     * [异常处理]
+     * [exception handling]
      *
      * @param sizes 长短轴参数
      * @return this
@@ -182,19 +182,19 @@ public class Arc extends Command {
 
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 长短轴
      * <p>
-     * 形如[200 100]的数组，2个浮点数值一次对应椭圆的长、短轴长度，较大的一个为长轴
+     * array like [200 100] with 2 float values for the major and minor axes of the ellipse; the larger is the major axis
      * <p>
-     * [异常处理]如果数组长度超过 2，则只取前两个数值
+     * [exception handling] if array length > 2, only the first two values are used
      * <p>
-     * [异常处理]如果数组长度为 1，则认为这是一个园，该数值为圆的半径
+     * [exception handling] if array length is 1, it is treated as a circle with this value as the radius
      * <p>
-     * [异常处理]如果数组前两个数值中有一个为 0，或者数组为空，则圆弧退化为一条从当前点
-     * 到 EndPoint的线段
+     * [exception handling] if either of the first two values is 0, or the array is empty, the arc degenerates into a line from the current point
+     * to EndPoint
      * <p>
-     * [异常处理]
+     * [exception handling]
      *
      * @return 形如[200 100]的数组，2个浮点数值一次对应椭圆的长、短轴长度，较大的一个为长轴
      */
@@ -203,10 +203,10 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 圆弧结束点，下一个路径起点
+     * [required attribute]
+     * set arc end point, which is the next path starting point
      * <p>
-     * 不能与当前的绘制点为同一位置
+     * cannot be at the same position as the current drawing point
      *
      * @param endPoint 圆弧结束点，下一个路径起点
      * @return this
@@ -217,13 +217,13 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 圆弧结束点，下一个路径起点
+     * [required attribute]
+     * set arc end point, which is the next path starting point
      * <p>
-     * 不能与当前的绘制点为同一位置
+     * cannot be at the same position as the current drawing point
      *
-     * @param x X坐标
-     * @param y Y坐标
+     * @param x X coordinate
+     * @param y Y coordinate
      * @return this
      */
     public Arc setEndPoint(double x, double y) {
@@ -231,10 +231,10 @@ public class Arc extends Command {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 圆弧结束点，下一个路径起点
+     * [required attribute]
+     * set arc end point, which is the next path starting point
      * <p>
-     * 不能与当前的绘制点为同一位置
+     * cannot be at the same position as the current drawing point
      *
      * @return 圆弧结束点，下一个路径起点
      */

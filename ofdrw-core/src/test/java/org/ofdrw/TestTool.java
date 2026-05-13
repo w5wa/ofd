@@ -35,8 +35,8 @@ public class TestTool {
     }
 
     /**
-     * 传入XML文本段验证
-     * @param content  XML文本段
+     * 传入XML文本segment验证
+     * @param content  XML文本segment
      * @param fn 验证方法
      */
     public static void validateWithXML(String content, Consumer<Element> fn) {
@@ -72,7 +72,7 @@ public class TestTool {
     /**
      * 生成XML 并打印打控制台
      *
-     * @param name 文件名称
+     * @param name file name
      * @param call 元素添加方法
      */
     public static void genXml(String name, Consumer<Document> call) {
@@ -97,7 +97,7 @@ public class TestTool {
     /**
      * 加入待测试元素，生成XML 并打印打控制台
      *
-     * @param name    文件名称
+     * @param name    file name
      * @param element 元素
      */
     public static void genXml(String name, Element element) {

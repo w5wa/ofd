@@ -4,7 +4,7 @@ import org.dom4j.Element;
 import org.ofdrw.core.OFDElement;
 
 /**
- * 缩放比例选择对象基类
+ * scale ratio选择对象基类
  */
 public class ZoomScale extends OFDElement  {
     public ZoomScale(Element proxy) {

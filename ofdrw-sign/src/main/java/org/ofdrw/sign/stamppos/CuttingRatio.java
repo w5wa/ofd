@@ -1,7 +1,7 @@
 package org.ofdrw.sign.stamppos;
 
 /**
- * 两侧对开骑缝章时左右两边的比例
+ * 两side对开骑缝章时左右两边的比例
  *
  * @author DLTech21
  * @since 2020-10-26 11:38:50

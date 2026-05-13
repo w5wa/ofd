@@ -6,7 +6,7 @@ import org.ofdrw.core.OFDElement;
 /**
  * 用户自定义元数据，可以指定一个名称及其对应的值
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-01 07:38:27
  */
 public class CustomData extends OFDElement {
@@ -18,7 +18,7 @@ public class CustomData extends OFDElement {
      * 自定元数据
      *
      * @param name  元数据名称
-     * @param value 元数据值
+     * @param value metadata value
      */
     public CustomData(String name, String value) {
         super("CustomData");
@@ -27,7 +27,7 @@ public class CustomData extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取元数据名称
      * <p>
      * 默认获取第一个属性作为元数据名称
@@ -39,7 +39,7 @@ public class CustomData extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置元数据名称
      * @param name 元数据名称(Name)
      * @return this
@@ -50,9 +50,9 @@ public class CustomData extends OFDElement {
     }
 
     /**
-     * 获取元数据值
+     * 获取metadata value
      *
-     * @return 元数据值
+     * @return metadata value
      */
     public String getValue() {
         return this.getText();
@@ -61,7 +61,7 @@ public class CustomData extends OFDElement {
     /**
      * 设置元数据的值
      *
-     * @param value 元数据值
+     * @param value metadata value
      * @return this
      */
     public CustomData setValue(String value) {

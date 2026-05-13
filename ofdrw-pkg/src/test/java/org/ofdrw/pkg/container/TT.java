@@ -11,15 +11,15 @@ import java.nio.file.Paths;
 /**
  * Test Tools
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-01-20 15:11:44
  */
 public class TT {
 
     /**
-     * 在临时目录中生成XML
+     * 在temporary directory中生成XML
      * @param e xml 元素
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     public static void dumpToTmpReview(Element e) throws IOException {
         Path tmp = Files.createTempFile(Paths.get("target"), "ofdrwtest-", ".xml");

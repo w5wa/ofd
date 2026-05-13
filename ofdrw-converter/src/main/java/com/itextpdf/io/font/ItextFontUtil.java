@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * Itext字体工具类，支持裁剪字体
+ * Itextfont工具类，支持裁剪font
  * 
  * @author spenggch
  *
@@ -15,15 +15,15 @@ public class ItextFontUtil {
     private ItextFontUtil() {}
 
     /**
-     * 加载字体，加载完成后释放字体文件
+     * 加载font，加载完成后释放font file
      * 
-     * @param fontFile 字体文件路径
-     * @return 字体信息
+     * @param fontFile fontfile path
+     * @return font信息
      * @throws IOException 解析失败
      */
     public static FontProgram loadFontProgram(String fontFile) throws IOException {
         if (fontFile == null || fontFile.isEmpty()) {
-            throw new IllegalArgumentException("字体路径为空");
+            throw new IllegalArgumentException("font路径为空");
         }
         FontProgram fontProgram = null;
         final String fileName = fontFile.toLowerCase();
@@ -45,10 +45,10 @@ public class ItextFontUtil {
     }
 
     /**
-     * 加载字体
+     * load font
      * 
-     * @param fontRaw 字体文件内容
-     * @return 字体信息
+     * @param fontRaw font file内容
+     * @return font信息
      * @throws IOException 解析失败
      */
     public static TrueTypeFont loadFont(byte[] fontRaw) throws IOException {

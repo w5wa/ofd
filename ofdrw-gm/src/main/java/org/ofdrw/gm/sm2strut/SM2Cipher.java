@@ -12,7 +12,7 @@ import java.util.Enumeration;
 /**
  * GBT 35276-2017 7.2 加密数据格式
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-29 20:08:03
  */
 public class SM2Cipher extends ASN1Object {
@@ -96,7 +96,7 @@ public class SM2Cipher extends ASN1Object {
      * Convert ASN.1 Struct to C1C3C2 format
      *
      * @return C1C3C2
-     * @throws IOException IO操作异常
+     * @throws IOException IO operation exception
      */
     public byte[] convertC1C3C2() throws IOException {
         /*
@@ -131,7 +131,7 @@ public class SM2Cipher extends ASN1Object {
      *
      * @param c1c3c2 encrypted result
      * @return SM2Cipher
-     * @throws IOException IO操作异常
+     * @throws IOException IO operation exception
      */
     static public SM2Cipher fromC1C3C2(byte[] c1c3c2) throws IOException {
         /*

@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * 文档元数据信息描述
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-29 10:14:41
  */
 public class CT_DocInfo extends OFDElement {
@@ -25,7 +25,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置文件标识符，标识符应该是一个UUID
      *
      * @param docID UUID文件标识
@@ -46,7 +46,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 采用UUID算法生成的由32个字符组成的文件标识。每个DocID在
      * 文件创建或生成的时候进行分配。
      *
@@ -57,8 +57,8 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置文档标题。标题可以与文件名不同
+     * [optional]
+     * 设置文档标题。标题可以与filename不同
      *
      * @param title 标题
      * @return this
@@ -69,8 +69,8 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取文档标题。标题可以与文件名不同
+     * [optional]
+     * 获取文档标题。标题可以与filename不同
      *
      * @return 档标题
      */
@@ -79,7 +79,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置文档作者
      *
      * @param author 文档作者
@@ -91,7 +91,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取文档作者
      *
      * @return 文档作者
@@ -101,7 +101,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置文档主题
      *
      * @param subject 文档主题
@@ -113,7 +113,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取文档主题
      *
      * @return 文档主题
@@ -123,7 +123,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置文档摘要与注释
      *
      * @param abstractTxt 文档摘要与注释
@@ -135,7 +135,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取文档摘要与注释
      *
      * @return 文档摘要与注释
@@ -145,7 +145,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置文件创建日期
      *
      * @param creationDate 文件创建日期
@@ -157,7 +157,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取文件创建日期
      *
      * @return 创建日期
@@ -168,7 +168,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置文档最近修改日期
      *
      * @param modDate 文档最近修改日期
@@ -180,7 +180,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取文档最近修改日期
      *
      * @return 文档最近修改日期
@@ -191,7 +191,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 文档分类，可取值如下：
      * <p>
      * Normal——普通文档
@@ -202,7 +202,7 @@ public class CT_DocInfo extends OFDElement {
      * <p>
      * EMagzine——电子期刊
      * <p>
-     * 默认值为 Normal
+     * default value: Normal
      *
      * @param docUsage 文档分类
      * @return this
@@ -218,10 +218,10 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取文档分类
      * <p>
-     * 默认值为 Normal
+     * default value: Normal
      *
      * @return 文档分类
      */
@@ -231,8 +231,8 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置文档封面，此路径指向一个图片文件
+     * [optional]
+     * 设置文档封面，此路径points to一个image文件
      *
      * @param cover 文档封面路径
      * @return this
@@ -243,8 +243,8 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取文档封面，此路径指向一个图片文件
+     * [optional]
+     * 获取文档封面，此路径points to一个image文件
      *
      * @return 文档封面路径
      */
@@ -257,7 +257,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置关键词集合
      * 每一个关键词用一个“Keyword”子节点来表达
      *
@@ -286,7 +286,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取关键词集合
      *
      * @return 关键词集合或null
@@ -297,7 +297,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置创建文档的应用程序
      *
      * @param creator 创建文档的应用程序
@@ -309,7 +309,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取创建文档的应用程序
      *
      * @return 创建文档的应用程序或null
@@ -319,7 +319,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置创建文档的应用程序版本信息
      *
      * @param creatorVersion 创建文档的应用程序版本信息
@@ -331,7 +331,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取创建文档的应用程序版本信息
      *
      * @return 创建文档的应用程序版本信息或null
@@ -341,7 +341,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置用户自定义元数据集合。其子节点为 CustomData
      *
      * @param customDatas 用户自定义元数据集合
@@ -353,7 +353,7 @@ public class CT_DocInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取用户自定义元数据集合。其子节点为 CustomData
      *
      * @return 用户自定义元数据集合

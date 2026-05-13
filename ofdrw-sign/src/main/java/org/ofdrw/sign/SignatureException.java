@@ -5,7 +5,7 @@ import java.security.GeneralSecurityException;
 /**
  * 电子签名通用异常
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 20:45:47
  */
 public class SignatureException extends GeneralSecurityException {

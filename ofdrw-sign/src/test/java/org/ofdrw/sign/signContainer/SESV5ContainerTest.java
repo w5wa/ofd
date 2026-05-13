@@ -43,6 +43,6 @@ class SESV5ContainerTest {
         }
         assertTrue(Files.exists(out));
         assertTrue(Files.size(out) > 0);
-        System.out.println(">> V5签章文件: " + out.toAbsolutePath());
+        System.out.println(">> V5seal/signature文件: " + out.toAbsolutePath());
     }
 }

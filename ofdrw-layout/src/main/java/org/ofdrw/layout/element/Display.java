@@ -3,7 +3,7 @@ package org.ofdrw.layout.element;
 /**
  * Div在行内的表现形式
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-11-22 18:37:13
  */
 public enum Display {

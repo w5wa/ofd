@@ -33,11 +33,11 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 公共资源管理器
+ * public resource manager
  * <p>
  * 管理待加入文档中所有资源
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-22 16:20:07
  */
 public class ResManager {
@@ -49,54 +49,54 @@ public class ResManager {
     private AtomicInteger maxUnitID;
 
     /**
-     * OFD文档对象
+     * OFD document object
      */
     private OFDDir root;
 
 
     /**
-     * 文档容器
+     * document container
      */
     private DocDir docDir;
 
     /**
-     * 媒体资源列表
+     * 媒体resource list
      * <p>
-     * 位于文档资源列表
+     * located in the document resource list
      */
     private MultiMedias medias;
 
     /**
-     * 绘制参数列表
+     * drawing parameters列表
      * <p>
-     * 位于文档资源列表
+     * located in the document resource list
      */
     private DrawParams drawParams;
 
 
     /**
-     * 字体资源列表
+     * fontresource list
      * <p>
-     * 位于公共资源列表
+     * located in the public resource list
      */
     private Fonts fonts;
 
     /**
-     * 颜色空间的描述列表
+     * color space的描述列表
      * <p>
-     * 位于公共资源列表
+     * located in the public resource list
      */
     private ColorSpaces colorSpaces;
 
     /**
      * 矢量图像列表
      * <p>
-     * 位于文档资源列表
+     * located in the document resource list
      */
     private CompositeGraphicUnits compositeGraphicUnits;
 
     /**
-     * 文档对象
+     * document object
      */
     private Document document;
 
@@ -106,22 +106,22 @@ public class ResManager {
     private Res documentRes;
 
     /**
-     * 公共资源
+     * public resource
      */
     private Res publicRes;
 
     /**
-     * 新增资源对象ID
+     * 新增资源object ID
      */
     public ArrayList<ST_ID> newResIds = new ArrayList<>();
 
     /**
-     * 绘制参数Hash
+     * drawing parametersHash
      * <p>
-     * KEY: 资源对象的去除ID后的XML字符串的hashCode
-     * VALUE: 文档中的对象ID。
+     * KEY: resource object的去除ID后的XMLstring的hashCode
+     * VALUE: 文档中的object ID。
      * <p>
-     * 该缓存表用于解决绘制参数冗余造成的资源浪费。
+     * 该缓存表用于解决drawing parameters冗余造成的资源浪费。
      */
     private final HashMap<Integer, ST_ID> resObjHash = new HashMap<>();
 
@@ -129,14 +129,14 @@ public class ResManager {
     }
 
     /**
-     * 创建资源管理器
+     * 创建resource manager
      * <p>
-     * 要求文档 Doc_N 路径中存在 Document.xml
+     * requires Document.xml to exist in the Doc_N path
      *
-     * @param root      文档根目录
-     * @param docDir    文档虚拟容器，请确保文档容器中存在 Document.xml
-     * @param maxUnitID 自增最大ID提供者
-     * @throws RuntimeException 文档解析异常
+     * @param root      document root directory
+     * @param docDir    文档虚拟容器，请确保document container中存在 Document.xml
+     * @param maxUnitID auto-increment maximum ID provider
+     * @throws RuntimeException document parsing exception
      */
     public ResManager(OFDDir root, DocDir docDir, AtomicInteger maxUnitID) {
         this();
@@ -150,15 +150,15 @@ public class ResManager {
             throw new RuntimeException("文档解析失败未能找到 Document.xml", e);
         }
 
-        // 如果存在公共资源，尝试加载
+        // 如果存在public resource，尝试加载
         if (docDir.exist(DocDir.PublicResFileName)) {
             try {
                 this.publicRes = docDir.getPublicRes();
                 reloadRes(publicRes);
             } catch (FileNotFoundException e) {
-                // ignore 文件不存在，不解析
+                // ignore file not found，不解析
             } catch (DocumentException e) {
-                throw new RuntimeException("已有 PublicRes.xml 资源文件解析失败", e);
+                throw new RuntimeException("已有 PublicRes.xml resource file解析失败", e);
             }
         }
 
@@ -168,32 +168,32 @@ public class ResManager {
                 this.documentRes = docDir.getDocumentRes();
                 reloadRes(documentRes);
             } catch (FileNotFoundException e) {
-                // ignore 文件不存在，不解析
+                // ignore file not found，不解析
             } catch (DocumentException e) {
-                throw new RuntimeException("已有 DocumentRes.xml 资源文件解析失败", e);
+                throw new RuntimeException("已有 DocumentRes.xml resource file解析失败", e);
             }
         }
 
     }
 
     /**
-     * 创建资源管理器，
+     * 创建resource manager，
      *
      * <p>
-     * 要求文档 Doc_N 路径中存在 Document.xml
+     * requires Document.xml to exist in the Doc_N path
      *
-     * @param reader OFD解析器
-     * @throws DocumentException     文档解析异常
-     * @throws FileNotFoundException OFD文档结构非法
+     * @param reader OFD parser
+     * @throws DocumentException     document parsing exception
+     * @throws FileNotFoundException OFD document结构非法
      */
     public ResManager(OFDReader reader) throws FileNotFoundException, DocumentException {
         this();
 
         OFDDir ofdDir = reader.getOFDDir();
         OFD ofd = ofdDir.getOfd();
-        // 资源定位器
+        // resource locator
         ResourceLocator resourceLocator = reader.getResourceLocator();
-        // 找到 Document.xml文件并且序列化
+        // find Document.xml and serialize
         ST_Loc docRoot = ofd.getDocBody().getDocRoot();
         Document document = resourceLocator.get(docRoot, Document::new);
         CT_CommonData commonData = document.getCommonData();
@@ -215,7 +215,7 @@ public class ResManager {
                 reloadRes(documentRes);
             }
         } catch (Exception e) {
-            // 忽略异常
+            // ignored异常
         } finally {
             resourceLocator.restore();
         }
@@ -225,10 +225,10 @@ public class ResManager {
      * 创建资源管理
      *
      * <p>
-     * 要求文档 Doc_N 路径中存在 Document.xml
+     * requires Document.xml to exist in the Doc_N path
      *
-     * @param docDir    文档虚拟容器，请确保文档容器中存在 Document.xml
-     * @param maxUnitID 自增最大ID提供者
+     * @param docDir    文档虚拟容器，请确保document container中存在 Document.xml
+     * @param maxUnitID auto-increment maximum ID provider
      * @deprecated 缺少根容器可能导致部分资源无法获取，请使用 {@link #ResManager(OFDDir, DocDir, AtomicInteger)}
      */
     @Deprecated
@@ -237,7 +237,7 @@ public class ResManager {
     }
 
     /**
-     * 重载公共资源缓存
+     * 重载public resource缓存
      */
     private void reloadRes(Res res) {
         List<OFDResource> resources = res.getResources();
@@ -245,18 +245,18 @@ public class ResManager {
             return;
         }
         for (OFDResource resource : resources) {
-            // 获取各个集合下的资源对象
+            // 获取各个集合下的resource object
             List<Element> elements = resource.elements();
             if (elements == null || elements.isEmpty()) {
                 continue;
             }
             for (Element ctResObj : elements) {
-                // 获取原来资源对象的ID
+                // 获取原来resource object的ID
                 ST_ID id = ST_ID.getInstance(ctResObj.attributeValue("ID"));
                 if (id == null) {
                     return;
                 }
-                // 遍历每一个资源对象，复制对象，删除对象ID，序列化为XML字符串
+                // 遍历每一个resource object，复制对象，删除object ID，序列化为XMLstring
                 Element copy = (Element) ctResObj.clone();
                 copy.remove(copy.attribute("ID"));
                 String key = copy.asXML();
@@ -267,41 +267,41 @@ public class ResManager {
     }
 
     /**
-     * 增加字体资源
+     * 增加font资源
      * <p>
-     * 如果字体已经被加入，那么不会重复加入
+     * 如果font已经被加入，那么不会重复加入
      *
-     * @param font 字体描述对象
-     * @return 字体的对象ID
-     * @throws IOException 文件复制异常
+     * @param font font描述对象
+     * @return font的object ID
+     * @throws IOException file copy exception
      */
     public ST_ID addFont(Font font) throws IOException {
         return addFontRet(font).getID();
     }
 
     /**
-     * 增加字体资源 并获取 添加的字体对象
+     * 增加font资源 并获取 添加的font object
      * <p>
-     * 如果字体已经被加入，那么不会重复加入
+     * 如果font已经被加入，那么不会重复加入
      *
-     * @param font 字体描述对象
-     * @return 字体的对象
-     * @throws IOException 文件复制异常
+     * @param font font描述对象
+     * @return font的对象
+     * @throws IOException file copy exception
      */
     public CT_Font addFontRet(Font font) throws IOException {
-        // 获取字体全名
+        // 获取font全名
         String familyName = font.getFamilyName();
-        // 新建一个OFD字体对象
+        // 新建一个OFDfont object
         CT_Font ctFont = new CT_Font()
                 .setFontName(font.getName())
                 .setFamilyName(familyName);
         Path fontFile = font.getFontFile();
         if (fontFile != null && font.isEmbeddable()) {
-            // 将字体文件加入到文档容器中
+            // 将font file加入到document container中
             fontFile = docDir.addResourceWithPath(fontFile);
 
             String filename = fontFile.getFileName().toString();
-            // 若资源文件中的相对路径不是Res，那么采用绝对路径
+            // 若resource file中的相对路径不是Res，那么采用absolute path
             if (publicRes != null && !ST_Loc.equal("Res", publicRes.getBaseLoc())) {
                 filename = docDir.getAbsLoc().cat("Res").cat(filename).toString();
             }
@@ -330,58 +330,58 @@ public class ResManager {
     }
 
     /**
-     * 加入一个图片资源
+     * 加入一个image资源
      * <p>
-     * 如果图片已经存在那么不会重复加入
+     * 如果image已经存在那么不会重复加入
      *
-     * @param imgPath 图片路径，请避免资源和文档中已经存在的资源重复
-     * @return 资源ID
-     * @throws IOException 文件复制异常
+     * @param imgPath image path，请避免资源和文档中已经存在的资源重复
+     * @return resource ID
+     * @throws IOException file copy exception
      */
     public ST_ID addImage(Path imgPath) throws IOException {
-        // 将文件加入资源容器中，并获取资源在文件中的绝对路径
+        // 将文件加入资源容器中，并获取资源在文件中的absolute path
         Path imgCtnPath = docDir.addResourceWithPath(imgPath);
-        // 获取在容器中的文件名称
+        // 获取在容器中的file name
         String filename = imgCtnPath.getFileName().toString();
-        // 若资源文件中的相对路径不是Res，那么采用绝对路径
+        // 若resource file中的相对路径不是Res，那么采用absolute path
         if (documentRes != null && !ST_Loc.equal("Res", documentRes.getBaseLoc())) {
             filename = docDir.getAbsLoc().cat("Res").cat(filename).toString();
         }
 
-        // 获取图片文件后缀名称
+        // 获取image文件后缀名称
         String fileSuffix = pictureFormat(filename);
-        // 创建图片对象
+        // 创建image对象
         CT_MultiMedia multiMedia = new CT_MultiMedia()
                 .setType(MediaType.Image)
                 .setFormat(fileSuffix)
                 .setMediaFile(ST_Loc.getInstance(filename));
-        // 添加到资源列表中
+        // 添加到resource list中
         return addRawWithCache(multiMedia);
     }
 
     /**
-     * 加入一个绘制参数
+     * 加入一个drawing parameters
      * <p>
-     * 如果存在相同或类似的绘制参数则不会重复添加。
+     * 如果存在相同或类似的drawing parameters则不会重复添加。
      *
-     * @param param 绘制参数
-     * @return 资源ID
+     * @param param drawing parameters
+     * @return resource ID
      */
     public ST_ID addDrawParam(CT_DrawParam param) {
         if (param == null) {
             return null;
         }
-        // 复制绘制参数，防止出现节点重复添加问题。
+        // 复制drawing parameters，防止出现节点重复添加问题。
         param = param.clone();
 
         return addRawWithCache(param.clone());
     }
 
     /**
-     * 根据图片名称推断图片格式
+     * 根据image名称推断image格式
      *
-     * @param fileName 图片文件名称
-     * @return 图片格式字符串
+     * @param fileName imagefile name
+     * @return image格式string
      */
     private String pictureFormat(String fileName) {
         String fileSuffix = fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
@@ -396,17 +396,17 @@ public class ResManager {
     }
 
     /**
-     * 获取公共资源清单
+     * 获取public resource清单
      * <p>
-     * 如： 图形、字体等需要共用的资源
+     * 如： 图形、font等需要共用的资源
      *
-     * @return 公共资源清单
+     * @return public resource清单
      */
     public Res pubRes() {
         if (publicRes != null) {
             return publicRes;
         }
-        // 如果不存在那么创建一个公共资源清单，容器目录为文档根目录下的Res目录
+        // if not found, create a public resource manifest; container directory is Res under document root
         Res pubRes = new Res().setBaseLoc(ST_Loc.getInstance("Res"));
         docDir.setPublicRes(pubRes);
         CT_CommonData commonData = document.getCommonData();
@@ -422,7 +422,7 @@ public class ResManager {
     /**
      * 文档资源清单
      * <p>
-     * 与文档相关的资源：图片、视频等
+     * 与文档相关的资源：image、视频等
      *
      * @return 文档资源清单
      */
@@ -431,7 +431,7 @@ public class ResManager {
             return documentRes;
         }
 
-        // 如果不存在那么创建一个公共资源清单，容器目录为文档根目录下的Res目录
+        // if not found, create a public resource manifest; container directory is Res under document root
         Res docRes = new Res().setBaseLoc(ST_Loc.getInstance("Res"));
         docDir.setDocumentRes(docRes);
         CT_CommonData commonData = document.getCommonData();
@@ -446,11 +446,11 @@ public class ResManager {
 
 
     /**
-     * 直接向资源列表中加入资源对象
+     * add resource object directly to resource list
      * <p>
      * 注意：该方法是一个原生方法，具有一定的资源重复风险。
      *
-     * @param resObj 资源对象
+     * @param resObj resource object
      * @return this
      * @deprecated {@link #addRawWithCache(OFDElement)}
      */
@@ -501,14 +501,14 @@ public class ResManager {
 
 
     /**
-     * 直接向资源列表中加入资源对象
+     * add resource object directly to resource list
      * <p>
      * 加入资源时将优先检查缓存是否存在完全一致的资源，如果存在则复用对象。
      * <p>
-     * 注意：加入对象的ID将被忽略，对象ID有资源管理器生成并设置。
+     * 注意：加入对象的ID将被ignored，object ID有resource manager生成并设置。
      *
-     * @param resObj 资源对象
-     * @return 对象在文档中的资源ID
+     * @param resObj resource object
+     * @return 对象在文档中的resource ID
      */
     public ST_ID addRawWithCache(OFDElement resObj) {
         if (resObj == null) {
@@ -525,15 +525,15 @@ public class ResManager {
             resObj.setObjID(objId);
             return objId;
         } else {
-            // 文档中不存在该资源则资源ID，并缓存
+            // 文档中不存在该资源则resource ID，并缓存
             objId = new ST_ID(maxUnitID.incrementAndGet());
             resObj.setObjID(objId);
-            // 记录资源ID
+            // 记录resource ID
             newResIds.add(objId);
             this.resObjHash.put(key, objId);
         }
 
-        // 判断资源类型加入到合适的资源列表中
+        // 判断资源类型加入到合适的resource list中
         if (resObj instanceof CT_ColorSpace) {
             Res resMenu = pubRes();
             if (colorSpaces == null) {
@@ -574,10 +574,10 @@ public class ResManager {
     }
 
     /**
-     * 通过字族名获取字体对象，如果无法找到则返还null
+     * 通过字族名获取font object，如果无法找到则返还null
      *
-     * @param name 字体名称
-     * @return 字体对象 或 null
+     * @param name font name
+     * @return font object 或 null
      */
     public ExistCTFont getFont(String name) {
         if ("".equals(name) || name == null) {
@@ -585,13 +585,13 @@ public class ResManager {
         }
         name = name.toLowerCase();
         CT_Font res = null;
-        // 尝试从公共资源中获取 字体清单
+        // 尝试从public resource中获取 font清单
         Res resMenu = pubRes();
         List<Fonts> fontsList = resMenu.getFonts();
         for (Fonts fonts : fontsList) {
             List<CT_Font> arr = fonts.getFonts();
             for (CT_Font ctFont : arr) {
-                // 忽略大小写的比较
+                // ignored大小写的比较
                 String fontName = ctFont.getFontName();
                 if (fontName != null) {
                     fontName = fontName.toLowerCase();
@@ -603,19 +603,19 @@ public class ResManager {
                 }
 
                 if (name.equals(fontName) || name.equals(familyName)) {
-                    // 找到最后一个匹配的字体
+                    // 找到最后一个匹配的font
                     res = ctFont;
                 }
             }
         }
         if (res == null) {
-            // 尝试从文档资源中获取 字体清单
+            // 尝试从文档资源中获取 font清单
             resMenu = docRes();
             fontsList = resMenu.getFonts();
             for (Fonts fonts : fontsList) {
                 List<CT_Font> arr = fonts.getFonts();
                 for (CT_Font ctFont : arr) {
-                    // 忽略大小写的比较
+                    // ignored大小写的比较
                     String fontName = ctFont.getFontName();
                     if (fontName != null) {
                         fontName = fontName.toLowerCase();
@@ -633,11 +633,11 @@ public class ResManager {
         }
 
         if (res == null) {
-            // 无法找到字体
+            // 无法找到font
             return null;
         }
 
-        // 获取字体文件的绝对路径
+        // 获取font file的absolute path
         ST_Loc loc = res.getFontFile();
         Path p = null;
         if (loc != null && root != null) {
@@ -653,9 +653,9 @@ public class ResManager {
     }
 
     /**
-     * 设置文档的根节点
+     * 设置文档的root node
      *
-     * @param root 根节点
+     * @param root root node
      */
     public void setRoot(OFDDir root) {
         this.root = root;
@@ -675,38 +675,38 @@ public class ResManager {
      *
      * @param res    资源清单
      * @param target 目标路径
-     * @return 相对于文件的绝对路径
+     * @return 相对于文件的absolute path
      */
     private ST_Loc abs(Res res, ST_Loc target) {
         if (target.isRootPath()) {
-            // 绝对路径
+            // absolute path
             return target;
         }
         ST_Loc absLoc = null;
         ST_Loc base = res.getBaseLoc();
         if (base != null && base.isRootPath()) {
-            // 资源文件的通用存储路径 为根路径时直接在此基础上拼接
+            // resource file的通用存储路径 为根路径时直接在此基础上拼接
             absLoc = base;
         } else {
-            // 资源文件的通用存储路径 为相对路径时，拼接当前文档路径
+            // resource file的通用存储路径 为相对路径时，拼接当前文档路径
             absLoc = docDir.getAbsLoc().cat(base);
         }
         return absLoc.cat(target);
     }
 
     /**
-     * 获取新加入的资源ID
+     * 获取新加入的resource ID
      *
-     * @return 新加入的资源ID
+     * @return 新加入的resource ID
      */
     public ArrayList<ST_ID> getNewResIds() {
         return newResIds;
     }
 
     /**
-     * 获取当前操作的文档容器
+     * 获取当前操作的document container
      *
-     * @return 文档容器
+     * @return document container
      */
     public DocDir getDocDir() {
         return docDir;

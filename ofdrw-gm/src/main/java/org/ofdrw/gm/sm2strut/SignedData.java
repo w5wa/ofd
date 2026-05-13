@@ -8,10 +8,10 @@ import java.util.Enumeration;
 /**
  * GMT 35275-2017 8.1 signedData 类型
  * <p>
- * signedData 数据类型由任意类型的数据和至少一个签名者的签名值组成。
+ * signedData 数据类型由任意类型的数据和至少一个签名者的signature value组成。
  * 任意类型的数据能够同时被任意数量的签名者签名。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-02 19:02:57
  */
 public final class SignedData extends ASN1Object {
@@ -49,17 +49,17 @@ public final class SignedData extends ASN1Object {
     private ContentInfo contentInfo;
 
     /**
-     * PKCS#6 扩展证书和 X.509证书的集合
+     * PKCS#6 扩展certificate和 X.509certificate的集合
      */
     private ASN1Set certificates;
 
     /**
-     * 证书撤销列表的集合
+     * certificate撤销列表的集合
      */
     private ASN1Set crls;
 
     /**
-     * 每个签名者信息的集合
+     * 每个signer information的集合
      */
     private ASN1Set signerInfos;
 
@@ -159,10 +159,10 @@ public final class SignedData extends ASN1Object {
     }
 
     /**
-     * 获取签名证书
+     * 获取签名certificate
      *
-     * @param iaSn 证书颁发者DN和序列号
-     * @return 证书实体，不存在返回null
+     * @param iaSn certificate颁发者DN和序列号
+     * @return certificate实体，不存在返回null
      */
     public Certificate getSignCert(IssuerAndSerialNumber iaSn) {
         if (iaSn == null) {

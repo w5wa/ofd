@@ -14,7 +14,7 @@ import org.ofdrw.core.basicStructure.doc.vpreferences.zoom.ZoomScale;
  * <p>
  * 7.5 图 10 视图首选项结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-07 05:55:03
  */
 public class CT_VPreferences extends OFDElement {
@@ -27,12 +27,12 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 窗口模式
      * <p>
-     * 可选的模式列表，请参考 {@link PageMode}
+     * optional mode list; see {@link PageMode}
      * <p>
-     * 默认值为 None
+     * default value: None
      *
      * @param pageMode 窗口模式
      * @return this
@@ -46,12 +46,12 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 窗口模式
      * <p>
-     * 可选的模式列表，请参考 {@link PageMode}
+     * optional mode list; see {@link PageMode}
      * <p>
-     * 默认值为 None
+     * default value: None
      *
      * @return 窗口模式
      */
@@ -64,12 +64,12 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 页面布局模式
      * <p>
-     * 可选的模式请参考{@link PageLayout}
+     * optional modes; see {@link PageLayout}
      * <p>
-     * 默认值为 OneColumn
+     * default value: OneColumn
      *
      * @param pageLayout 页面布局模式
      * @return this
@@ -81,12 +81,12 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 页面布局模式
      * <p>
-     * 可选的模式请参考{@link PageLayout}
+     * optional modes; see {@link PageLayout}
      * <p>
-     * 默认值为 OneColumn
+     * default value: OneColumn
      *
      * @return 页面布局模式
      */
@@ -99,11 +99,11 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 标题栏显示模式
      * <p>
-     * 默认值为 FileName，当设置为 DocTitle但不存在 Title属性时，
-     * 按照 FileName 处理
+     * default value: FileName; when set to DocTitle but Title attribute is absent,
+     * treat it as FileName
      *
      * @param tabDisplay 标题栏显示模式
      * @return this
@@ -114,11 +114,11 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 标题栏显示模式
      * <p>
-     * 默认值为 FileName，当设置为 DocTitle但不存在 Title属性时，
-     * 按照 FileName 处理
+     * default value: FileName; when set to DocTitle but Title attribute is absent,
+     * treat it as FileName
      *
      * @return 标题栏显示模式
      */
@@ -131,10 +131,10 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否隐藏工具栏
      * <p>
-     * 默认值：false
+     * default value: false
      *
      * @param hideToolbar true - 隐藏； false - 不隐藏
      * @return this
@@ -145,12 +145,12 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否隐藏工具栏
      * <p>
-     * 默认值：false
+     * default value: false
      *
-     * @return true - 隐藏； false - 不隐藏
+     * @return true - hidden; false - not hidden
      */
     public Boolean getHideToolbar() {
         String str = this.getOFDElementText("HideToolbar");
@@ -162,10 +162,10 @@ public class CT_VPreferences extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否隐藏菜单栏
      * <p>
-     * 默认值：false
+     * default value: false
      *
      * @param hideMenubar true - 隐藏； false - 不隐藏
      * @return this
@@ -176,12 +176,12 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否隐藏菜单栏
      * <p>
-     * 默认值：false
+     * default value: false
      *
-     * @return true - 隐藏； false - 不隐藏
+     * @return true - hidden; false - not hidden
      */
     public Boolean getHideMenubar() {
         String str = this.getOFDElementText("HideMenubar");
@@ -193,10 +193,10 @@ public class CT_VPreferences extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否隐藏主窗口之外的其他窗口组件
      * <p>
-     * 默认值：false
+     * default value: false
      *
      * @param hideMenubar true - 隐藏； false - 不隐藏
      * @return this
@@ -207,12 +207,12 @@ public class CT_VPreferences extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否隐藏主窗口之外的其他窗口组件
      * <p>
-     * 默认值：false
+     * default value: false
      *
-     * @return true - 隐藏； false - 不隐藏
+     * @return true - hidden; false - not hidden
      */
     public Boolean getHideWindowUI() {
         String str = this.getOFDElementText("HideWindowUI");
@@ -224,7 +224,7 @@ public class CT_VPreferences extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 文档自动缩放模式
      * <p>
      * 参考值{@link ZoomMode.Type}
@@ -233,28 +233,28 @@ public class CT_VPreferences extends OFDElement {
      * @return this
      */
     public CT_VPreferences setZoomMode(ZoomMode zoomMode) {
-        // 从节点中删除所有可以选择的类型
+        // delete all selectable types from the node
         this.removeOFDElemByNames("Zoom", "ZoomMode");
         this.add(zoomMode);
         return this;
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 文档的缩放率
      *
      * @param zoom 文档的缩放率
      * @return this
      */
     public CT_VPreferences setZoom(double zoom) {
-        // 从节点中删除所有可以选择的类型
+        // delete all selectable types from the node
         this.removeOFDElemByNames("Zoom", "ZoomMode");
         this.add(new Zoom(zoom));
         return this;
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 具体的缩放处理方式和值
      *
      * @return 具体的缩放处理方式和值 {@link Zoom} 或 {@link ZoomMode}

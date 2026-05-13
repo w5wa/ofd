@@ -6,7 +6,7 @@ import org.bouncycastle.asn1.ASN1Sequence;
 /**
  * 版本持有器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-20 09:17:22
  */
 public class SESVersionHolder {
@@ -35,11 +35,11 @@ public class SESVersionHolder {
     }
 
     /**
-     * 获取版本对应的电子签章值对象
+     * 获取版本对应的电子seal/signature值对象
      * <p>
      * 可以通过版本号强制来判断强制类型转换
      *
-     * @param <T> 期待的电子签章值类型
+     * @param <T> 期待的电子seal/signature值类型
      * @return ASN1对象
      */
     public <T extends ASN1Object> T SESObject() {
@@ -65,12 +65,12 @@ public class SESVersionHolder {
     }
 
     /**
-     * 获取版本对应的电子印章对象
+     * 获取版本对应的电子seal/stamp对象
      * <p>
      * 可以通过版本号强制来判断强制类型转换
      *
-     * @param <T> 期待的电子印章对象类型
-     * @return 电子印章对象
+     * @param <T> 期待的电子seal/stamp对象类型
+     * @return 电子seal/stamp对象
      */
     public <T extends ASN1Object> T SealObject() {
         ASN1Object obj = null;
@@ -95,27 +95,27 @@ public class SESVersionHolder {
     }
 
     /**
-     * 强制获取v1版本的电子签章数据
+     * 强制获取v1版本的电子seal/signature数据
      *
-     * @return v1电子签章数据
+     * @return v1电子seal/signature数据
      */
     public org.ofdrw.gm.ses.v1.SES_Signature getInstanceV1() {
         return this.SESObject();
     }
 
     /**
-     * 强制获取v4版本的电子签章数据
+     * 强制获取v4版本的电子seal/signature数据
      *
-     * @return v4电子签章数据
+     * @return v4电子seal/signature数据
      */
     public org.ofdrw.gm.ses.v4.SES_Signature getInstanceV4() {
         return this.SESObject();
     }
 
     /**
-     * 强制获取v5版本的电子签章数据
+     * 强制获取v5版本的电子seal/signature数据
      *
-     * @return v5电子签章数据
+     * @return v5电子seal/signature数据
      */
     public org.ofdrw.gm.ses.v5.SES_Signature getInstanceV5() {
         return this.SESObject();
@@ -123,27 +123,27 @@ public class SESVersionHolder {
 
 
     /**
-     * 强制获取v1版本的电子印章数据
+     * 强制获取v1版本的电子seal/stamp数据
      *
-     * @return v1电子印章数据
+     * @return v1电子seal/stamp数据
      */
     public org.ofdrw.gm.ses.v1.SESeal getInstanceV1Seal() {
         return this.SealObject();
     }
 
     /**
-     * 强制获取v4版本的电子印章数据
+     * 强制获取v4版本的电子seal/stamp数据
      *
-     * @return v4电子印章数据
+     * @return v4电子seal/stamp数据
      */
     public org.ofdrw.gm.ses.v4.SESeal getInstanceV4Seal() {
         return this.SealObject();
     }
 
     /**
-     * 强制获取v5版本的电子印章数据
+     * 强制获取v5版本的电子seal/stamp数据
      *
-     * @return v5电子印章数据
+     * @return v5电子seal/stamp数据
      */
     public org.ofdrw.gm.ses.v5.SESeal getInstanceV5Seal() {
         return this.SealObject();

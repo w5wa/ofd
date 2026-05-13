@@ -16,9 +16,9 @@ import java.util.Map;
 /**
  * 注释
  * <p>
- * 15.2 图 81 表 61
+ * 15.2 Figure 81 Table 61
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-16 02:22:34
  */
 public class Annot extends OFDElement {
@@ -32,7 +32,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 注释的标识
      *
      * @param id 注释的标识
@@ -47,7 +47,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 注释的标识
      *
      * @return 注释的标识
@@ -57,10 +57,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 注释类型
      * <p>
-     * 具体取值见{@link AnnotType}
+     * for specific values, see {@link AnnotType}
      *
      * @param type 注释类型
      * @return this
@@ -74,10 +74,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 注释类型
      * <p>
-     * 具体取值见{@link AnnotType}
+     * for specific values, see {@link AnnotType}
      *
      * @return 注释类型
      */
@@ -86,7 +86,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 注释创建者
      *
      * @param creator 注释创建者
@@ -101,7 +101,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 注释创建者
      *
      * @return 注释创建者
@@ -115,7 +115,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 最近一次修改的时间
      *
      * @param lastModDate 最近一次修改的时间
@@ -130,7 +130,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 最近一次修改的时间
      *
      * @return 最近一次修改的时间
@@ -144,7 +144,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 注释子类型
      *
      * @param subtype 注释子类型
@@ -160,7 +160,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 注释子类型
      *
      * @return 注释子类型
@@ -170,10 +170,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 表示该注释对象是否显示
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param visible 表示该注释对象是否显示，默认值为 true
      * @return this
@@ -184,10 +184,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 表示该注释对象是否显示
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 表示该注释对象是否显示，默认值为 true
      */
@@ -200,10 +200,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 对象的Remark 信息是否随页面一起打印
+     * [optional attribute]
+     * set whether the object's Remark information is printed with the page
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param print 对象的Remark 信息是否随页面一起打印
      * @return this
@@ -218,10 +218,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 对象的Remark 信息是否随页面一起打印
+     * [optional attribute]
+     * set whether the object's Remark information is printed with the page
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 对象的Remark 信息是否随页面一起打印
      */
@@ -234,10 +234,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 对象的 Remark 信息是否不随页面缩放而同步缩放
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @param noZoom 对象的 Remark 信息是否不随页面缩放而同步缩放
      * @return this
@@ -252,10 +252,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 对象的 Remark 信息是否不随页面缩放而同步缩放
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @return 对象的 Remark 信息是否不随页面缩放而同步缩放
      */
@@ -268,10 +268,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 对象的 Remark 信息是否不随页面旋转而旋转
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @param noRotate 对象的 Remark 信息是否不随页面旋转而旋转
      * @return this
@@ -286,10 +286,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 对象的 Remark 信息是否不随页面旋转而旋转
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @return 对象的 Remark 信息是否不随页面旋转而旋转
      */
@@ -302,10 +302,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 对象的 Remark 信息是否不能被用户更改
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param readOnly 对象的 Remark 信息是否不能被用户更改
      * @return this
@@ -320,10 +320,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 对象的 Remark 信息是否不能被用户更改
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 对象的 Remark 信息是否不能被用户更改
      */
@@ -337,7 +337,7 @@ public class Annot extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 注释说明内容
      *
      * @param remark 注释说明内容
@@ -353,7 +353,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 注释说明内容
      *
      * @return 注释说明内容
@@ -364,7 +364,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 增加 注释参数
      *
      * @param name      键名
@@ -401,7 +401,7 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 一组注释参数
      *
      * @return 注解参数映射表
@@ -423,10 +423,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 注释的静态显示效果
      * <p>
-     * 使用页面块定义来描述
+     * described using page block definitions
      *
      * @param appearance 注释的静态显示效果
      * @return this
@@ -440,10 +440,10 @@ public class Annot extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 注释的静态显示效果
      * <p>
-     * 使用页面块定义来描述
+     * described using page block definitions
      *
      * @return  注释的静态显示效果
      */

@@ -8,12 +8,12 @@ import java.util.List;
  * 数组，以空格来分割元素。元素可以是除ST_Loc、
  * ST_Array外的数据类型，不可嵌套
  * <p>
- * 示例：
+ * Example:
  * <code>1 2.0 5.0</code>
  * <p>
- * ————《GB/T 33190-2016》 表 2 基本数据类型
+ * — GB/T 33190-2016, Table 2: Basic Data Types
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-28 10:40:37
  */
 public class ST_Array extends STBase implements Cloneable {
@@ -73,10 +73,10 @@ public class ST_Array extends STBase implements Cloneable {
 
 
     /**
-     * 获取 ST_Array 实例如果参数非法则返还null
+     * 获取 ST_Array instance如果参数非法则返还null
      *
-     * @param arrStr 数字字符串或者字符串null
-     * @return 实例 或 null
+     * @param arrStr numberstring或者stringnull
+     * @return instance or null
      */
     public static ST_Array getInstance(String arrStr) {
         if (arrStr == null || "null".equals(arrStr) || arrStr.trim().length() == 0) {
@@ -111,7 +111,7 @@ public class ST_Array extends STBase implements Cloneable {
     }
 
     /**
-     * 创建变换矩阵
+     * 创建transformation matrix
      *
      * @param a X轴缩放倍数
      * @param b Y轴斜切系数
@@ -141,12 +141,12 @@ public class ST_Array extends STBase implements Cloneable {
     }
 
     /**
-     * 获取期待长度的字符串数组
+     * 获取期待长度的string数组
      * <p>
      * 长度不足将会自动填充空白字符，长度不足则截取
      *
      * @param expectCount 期待长度
-     * @return 字符串数组
+     * @return string数组
      */
     public String[] expectStrArr(int expectCount) {
         String[] res = new String[expectCount];
@@ -234,12 +234,12 @@ public class ST_Array extends STBase implements Cloneable {
     }
 
     /**
-     * 获取Index上的数字
+     * 获取Index上的number
      * <p>
      * 注意数组越位
      *
      * @param index index
-     * @return 数字
+     * @return number
      */
     public Double get(int index) {
         final String s = array.get(index);
@@ -247,17 +247,17 @@ public class ST_Array extends STBase implements Cloneable {
     }
 
     /**
-     * 获取Index上的数字
+     * 获取Index上的number
      * <p>
      * 注意数组越位
      *
      * @param index index
-     * @return 数字
+     * @return number
      */
     public Integer getInt(int index) {
         final String s = array.get(index);
         if (s.startsWith("#")) {
-            // 16进制数字
+            // 16进制number
             return Integer.parseInt(s.substring(1), 16);
         } else {
             return Integer.parseInt(s);

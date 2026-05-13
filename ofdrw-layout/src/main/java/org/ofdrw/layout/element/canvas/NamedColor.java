@@ -5,17 +5,17 @@ import java.awt.*;
 /**
  * 命名的颜色
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-4-3 22:52:32
  */
 public final class NamedColor {
 
     /**
-     * 解析颜色名 或 16进制颜色 RGB颜色 字符串为RGB参数
+     * 解析颜色名 或 16进制颜色 RGB颜色 string为RGB参数
      * <p>
      * 若颜色无法解析则返回null
      * <p>
-     * 若颜色参数包含透明通道，那个返回参数最后一个元素为透明度值 [0,255] 0表示完全透明，255表示完全不透明。
+     * 若颜色参数contains透明通道，那个返回参数最后一个元素为透明度值 [0,255] 0表示完全透明，255表示完全不透明。
      *
      * @param hex 颜色16进制值、颜色名称
      * @return RGB颜色数组
@@ -314,7 +314,7 @@ public final class NamedColor {
                 return new int[]{154, 205, 50};
         }
 
-        // 如果是 #xxx 格式的颜色值，转换为 #xxxxxx 格式
+        // 如果是 #xxx 格式的color value，转换为 #xxxxxx 格式
         if (hex.charAt(0) == '#' && hex.length() == 4) {
             hex = String.format(
                     "#%c%c%c%c%c%c",
@@ -322,7 +322,7 @@ public final class NamedColor {
                     hex.charAt(2), hex.charAt(2),
                     hex.charAt(3), hex.charAt(3));
         }
-        // 若是 rgb(x,x,x) 格式的颜色值，返回对应的 int 数组
+        // 若是 rgb(x,x,x) 格式的color value，返回对应的 int 数组
         if (hex.startsWith("rgb(") && hex.endsWith(")")) {
             String[] rgb = hex.substring(4, hex.length() - 1).split(",");
             return new int[]{
@@ -331,7 +331,7 @@ public final class NamedColor {
                     Integer.parseInt(rgb[2].trim())
             };
         }
-        // 若是 rgba(x,x,x,x) 格式的颜色值，返回对应的 int 数组
+        // 若是 rgba(x,x,x,x) 格式的color value，返回对应的 int 数组
         if (hex.startsWith("rgba(") && hex.endsWith(")")) {
             String[] rgba = hex.substring(5, hex.length() - 1).split(",");
             return new int[]{
@@ -342,7 +342,7 @@ public final class NamedColor {
             };
         }
 
-        // 尝试解析 #xxxxxx 格式的颜色值
+        // 尝试解析 #xxxxxx 格式的color value
         try {
             Color c = Color.decode(hex);
             return new int[]{c.getRed(), c.getGreen(), c.getBlue()};

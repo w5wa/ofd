@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 /**
  * 附件对象构造器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-20 19:18:37
  */
 public class Attachment {
@@ -28,7 +28,7 @@ public class Attachment {
     /**
      * 是否禁用同名替换
      * <p>
-     * 默认值为 false（同名替换）
+     * default value: false (replace by same name)
      */
     private boolean disableReplace;
 
@@ -38,7 +38,7 @@ public class Attachment {
     /**
      * 附件对象构造对象，同名文件将被替换
      *
-     * @param name 附件名称
+     * @param name attachment name
      * @param file 附件文件
      */
     public Attachment(String name, Path file) {
@@ -48,7 +48,7 @@ public class Attachment {
     /**
      * 附件对象构造对象
      *
-     * @param name           附件名称
+     * @param name           attachment name
      * @param file           附件文件
      * @param disableReplace 是否禁用同名替换，默认为 false（同名替换）
      */
@@ -57,7 +57,7 @@ public class Attachment {
             throw new IllegalArgumentException("附件文件(file)为空或不存在");
         }
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("附件名称(name)不能为空");
+            throw new IllegalArgumentException("attachment name(name)不能为空");
         }
         this.file = file;
         this.disableReplace = disableReplace;
@@ -66,10 +66,10 @@ public class Attachment {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 附件名称
+     * [required attribute]
+     * 设置 attachment name
      *
-     * @param attachmentName 附件名称
+     * @param attachmentName attachment name
      * @return this
      */
     public Attachment setName(String attachmentName) {
@@ -78,17 +78,17 @@ public class Attachment {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 附件名称
+     * [required attribute]
+     * 获取 attachment name
      *
-     * @return 附件名称
+     * @return attachment name
      */
     public String getName() {
         return atmObj.getAttachmentName();
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 附件格式
      *
      * @param format 附件格式
@@ -100,7 +100,7 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 附件格式
      *
      * @return 附件格式
@@ -110,10 +110,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 创建时间
+     * [optional attribute]
+     * set creation time
      *
-     * @param creationDate 创建时间
+     * @param creationDate creation date
      * @return this
      * @deprecated {@link  #setCreationDate(LocalDateTime)}
      */
@@ -124,10 +124,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 创建时间
+     * [optional attribute]
+     * set creation time
      *
-     * @param creationDate 创建时间
+     * @param creationDate creation date
      * @return this
      */
     public Attachment setCreationDate(LocalDateTime creationDate) {
@@ -136,10 +136,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 创建时间
+     * [optional attribute]
+     * get creation time
      *
-     * @return 创建时间
+     * @return creation date
      * @deprecated {@link  #getCreationDateTime()}
      */
     @Deprecated
@@ -148,20 +148,20 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 创建时间
+     * [optional attribute]
+     * get creation time
      *
-     * @return 创建时间
+     * @return creation date
      */
     public LocalDateTime getCreationDateTime() {
         return atmObj.getCreationDateTime();
     }
 
     /**
-     * 【可选 属性】
-     * 设置 修改时间
+     * [optional attribute]
+     * set modification time
      *
-     * @param modDate 修改时间
+     * @param modDate modification date
      * @return this
      * @deprecated {@link #setModDateTime(LocalDateTime)}
      */
@@ -172,10 +172,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 修改时间
+     * [optional attribute]
+     * set modification time
      *
-     * @param modDate 修改时间
+     * @param modDate modification date
      * @return this
      */
     public Attachment setModDateTime(LocalDateTime modDate) {
@@ -184,10 +184,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 修改时间
+     * [optional attribute]
+     * get modification time
      *
-     * @return 修改时间
+     * @return modification date
      * @deprecated {@link #getCreationDateTime()}
      */
     @Deprecated
@@ -196,20 +196,20 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 修改时间
+     * [optional attribute]
+     * get modification time
      *
-     * @return 修改时间
+     * @return modification date
      */
     public LocalDateTime getModDateTime() {
         return atmObj.getCreationDateTime();
     }
 
     /**
-     * 【可选 属相】
+     * [optional attribute]
      * 设置 附件是否可见
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param visible 附件是否可见
      * @return this
@@ -220,10 +220,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属相】
+     * [optional attribute]
      * 获取 附件是否可见
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 附件是否可见
      */
@@ -232,10 +232,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 附件用途
      * <p>
-     * 默认值为 none
+     * default value: none
      *
      * @param usage 附件用途
      * @return this
@@ -246,10 +246,10 @@ public class Attachment {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 附件用途
      * <p>
-     * 默认值为 none
+     * default value: none
      *
      * @return 附件用途
      */
@@ -258,9 +258,9 @@ public class Attachment {
     }
 
     /**
-     * 获取附件文件
+     * get attachment file
      *
-     * @return 附件文件路径
+     * @return attachment file path
      */
     public Path getFile() {
         return file;
@@ -284,7 +284,7 @@ public class Attachment {
     /**
      * 设置是否禁用同名替换
      * <p>
-     * 默认值为 false（同名替换）
+     * default value: false (replace by same name)
      *
      * @param disableReplace 是否禁用同名替换
      * @return this
@@ -297,7 +297,7 @@ public class Attachment {
     /**
      * 获取是否禁用同名替换
      * <p>
-     * 默认值为 false（同名替换）
+     * default value: false (replace by same name)
      *
      * @return 是否禁用同名替换
      */

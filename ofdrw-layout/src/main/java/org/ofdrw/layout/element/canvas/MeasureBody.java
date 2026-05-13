@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 分析结果
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-10 18:27:27
  */
 public class MeasureBody {
@@ -14,7 +14,7 @@ public class MeasureBody {
      */
     public Double[] offset;
     /**
-     * 文本在阅读方向上的总宽度
+     * 文本在阅读方向上的总width
      */
     public double width;
 
@@ -36,9 +36,9 @@ public class MeasureBody {
     }
 
     /**
-     * 加上偏移量后的宽度
+     * 加上偏移量后的width
      *
-     * @param charLen 字符宽度
+     * @param charLen 字符width
      */
     public void with(double charLen) {
         width = Arrays.stream(offset).mapToDouble(Math::abs).sum() + charLen;

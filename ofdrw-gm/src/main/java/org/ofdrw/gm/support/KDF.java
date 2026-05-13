@@ -3,27 +3,27 @@ package org.ofdrw.gm.support;
 import java.security.MessageDigest;
 
 /**
- * 密钥派生函数
+ * key派生函数
  * <p>
- * GB/T 32918.3-2016 信息安全技术 SM2椭圆曲线公钥密码算法 第3部分：密钥交换协议
- * 5.4.3 密钥派生函数
+ * GB/T 32918.3-2016 信息安全技术 SM2椭圆曲线public key密码算法 第3部分：key交换协议
+ * 5.4.3 key派生函数
  * <p>
- * 密钥派生函数的作用是从一个共享的秘密比特串中派生出密钥数据。在密钥协商过程中，
- * 密钥派生函数作用在密钥交换所获共享的秘密比特串上，从中产生所需要的会话密钥或
- * 进一步加密所需的密钥数据。
+ * key派生函数的作用是从一个共享的秘密比特串中派生出key数据。在key协商过程中，
+ * key派生函数作用在key交换所获共享的秘密比特串上，从中产生所需要的会话key或
+ * 进一步加密所需的key数据。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-29 18:48:41
  */
 public final class KDF {
 
     /**
-     * 密钥派生函数
+     * key派生函数
      *
      * @param md   密码杂凑算法 Hv
      * @param z    输入比特串Z
-     * @param klen 预期密钥长度
-     * @return 派生密钥
+     * @param klen 预期key长度
+     * @return 派生key
      */
     public static byte[] extend(MessageDigest md, byte[] z, int klen) {
         int v = md.getDigestLength();

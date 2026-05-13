@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * 图 49 区域结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 11:49:19
  */
 public class CT_Region extends OFDElement {
@@ -25,7 +25,7 @@ public class CT_Region extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 为区域增加分路径
      *
      * @param area 路径
@@ -40,7 +40,7 @@ public class CT_Region extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 区域中所有分路径
      *
      * @return 区域中所有分路径

@@ -66,7 +66,7 @@ class CellTest {
             cell1.setBackgroundColor("#CDD0D6");
 
             // 元素实际大小为： margin-left + border-left + padding-left + width + padding-right + border-right + margin-right
-            // 偏移坐标为： 原始偏移量 + 元素实际宽度 - 右边宽度
+            // 偏移坐标为： 原始偏移量 + 元素实际width - 右边width
             Cell cell2 = new Cell(10 + 0.353 + 3d + 20d + 3d /* ,0.353 */, 10, 50d, 10d);
             cell2.setBorder(0.353);
             cell2.setTextAlign(TextAlign.center);
@@ -84,7 +84,7 @@ class CellTest {
 
 
     /**
-     * 图片内容
+     * image内容
      */
     @Test
     void cellImage() throws IOException {
@@ -123,7 +123,7 @@ class CellTest {
     }
 
     /**
-     * 流式布局内容居中
+     * 流式布局内容center
      */
     @Test
     void cellCenter() throws IOException {
@@ -160,7 +160,7 @@ class CellTest {
     }
 
     /**
-     * 设置字间距
+     * set character spacing
      */
     @Test
     void setLetterSpacing() throws IOException {
@@ -172,7 +172,7 @@ class CellTest {
             cell1.setTextAlign(TextAlign.center);
             cell1.setPadding(1d, 3d, 1d, 3d);
             cell1.setValue("名称");
-            // 设置字间距
+            // set character spacing
             cell1.setLetterSpacing(10d);
 
             cell1.setFontSize(5d);
@@ -296,7 +296,7 @@ class CellTest {
     }
 
     /**
-     * 设置单元格字体颜色
+     * 设置单元格font color
      */
     @Test
     void setFontColor()throws Exception{
@@ -317,7 +317,7 @@ class CellTest {
     }
 
     /**
-     * 设置单元格外部字体
+     * 设置单元格外部font
      */
     @Test
     void setFontExt() throws Exception{

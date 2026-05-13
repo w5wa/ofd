@@ -13,7 +13,7 @@ import java.nio.file.Path;
 /**
  * Canvas填充模式
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-4-12 19:01:01
  */
 public class CanvasPattern {
@@ -23,21 +23,21 @@ public class CanvasPattern {
      */
     public final CT_Pattern pattern;
     /**
-     * 图片路径
+     * image path
      */
     public final Path img;
 
     /**
-     * 图形对象
+     * graphics object
      */
     public final ImageObject imgObj;
 
     /**
      * 创建一个Canvas底纹
      *
-     * @param img        底纹图片路径
+     * @param img        底纹image path
      * @param repetition 重复样式，支持 repeat == normal、column、row、row-column
-     * @param imgObj     OFD图片对象
+     * @param imgObj     OFDimage对象
      */
     public CanvasPattern(Path img, String repetition, ImageObject imgObj) {
         this.pattern = new CT_Pattern();
@@ -77,28 +77,28 @@ public class CanvasPattern {
 
 
     /**
-     * 设置底纹单元变换矩阵
-     * 改变换矩阵将应用于底纹单元，以便将其映射到目标区域。
+     * 设置底纹单元transformation matrix
+     * 改transformation matrix将应用于底纹单元，以便将其映射到目标区域。
      *
-     * @param matrix 变换矩阵，按照 [a, b, c, d, e, f] 顺序6个参数。
+     * @param matrix transformation matrix，按照 [a, b, c, d, e, f] 顺序6个参数。
      */
     public void setTransform(double[] matrix) {
         if (matrix == null || matrix.length < 6) {
-            throw new IllegalArgumentException("矩阵参数错误");
+            throw new IllegalArgumentException("矩阵invalid parameter");
         }
         ST_Array ctm = new ST_Array(matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5]);
         pattern.setCTM(ctm);
     }
 
     /**
-     * 设置底纹单元变换矩阵
-     * 改变换矩阵将应用于底纹单元，以便将其映射到目标区域。
+     * 设置底纹单元transformation matrix
+     * 改transformation matrix将应用于底纹单元，以便将其映射到目标区域。
      *
-     * @param tx 变换矩阵
+     * @param tx transformation matrix
      */
     public void setTransform(AffineTransform tx) {
         if (tx == null) {
-            throw new IllegalArgumentException("矩阵参数错误");
+            throw new IllegalArgumentException("矩阵invalid parameter");
         }
         /*
              m00 m10 0    a b 0
@@ -110,10 +110,10 @@ public class CanvasPattern {
     }
 
     /**
-     * 设置图片的尺寸（每个重复单元尺寸）
+     * 设置image的尺寸（每个重复单元尺寸）
      *
-     * @param w 宽度
-     * @param h 高度
+     * @param w width
+     * @param h height
      */
     public void setImageSize(double w, double h) {
         pattern.setWidth(w);

@@ -9,7 +9,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * 7.5 小节 CT_Permission
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-06 08:09:21
  */
 public class CT_Permission extends OFDElement {
@@ -22,10 +22,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否允许编辑
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param edit true - 允许编辑； false - 不允许编辑
      * @return this
@@ -36,10 +36,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否允许编辑
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return true - 允许编辑； false - 不允许编辑
      */
@@ -52,10 +52,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否允许添加或修改标注
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param annot true - 允许添加或修改标注； false - 不允许添加或修改标注
      * @return this
@@ -66,10 +66,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否允许添加或修改标注
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return true - 允许添加或修改标注； false - 不允许添加或修改标注
      */
@@ -83,10 +83,10 @@ public class CT_Permission extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否允许导出
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param export true - 允许导出； false - 不允许导出
      * @return this
@@ -97,10 +97,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否允许导出
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return true - 允许导出； false - 不允许导出
      */
@@ -113,12 +113,12 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 是否允许进行数字签名
+     * [optional]
+     * 设置 是否允许进行number签名
      * <p>
-     * 默认值为 true
+     * default value: true
      *
-     * @param signature true - 允许进行数字签名； false - 不允许进行数字签名
+     * @param signature true - 允许进行number签名； false - 不允许进行number签名
      * @return this
      */
     public CT_Permission setSignature(boolean signature) {
@@ -127,12 +127,12 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 是否允许进行数字签名
+     * [optional]
+     * 获取 是否允许进行number签名
      * <p>
-     * 默认值为 true
+     * default value: true
      *
-     * @return true - 允许进行数字签名； false - 不允许进行数字签名
+     * @return true - 允许进行number签名； false - 不允许进行number签名
      */
     public Boolean getSignature() {
         String str = this.getOFDElementText("Signature");
@@ -143,10 +143,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否允许添加水印
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param watermark true - 允许添加水印； false - 不允许添加水印
      * @return this
@@ -157,10 +157,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否允许添加水印
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return true - 允许添加水印； false - 不允许添加水印
      */
@@ -173,10 +173,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否允许截屏
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param printScreen true - 允许截屏； false - 不允许截屏
      * @return this
@@ -187,10 +187,10 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否允许截屏
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return true - 允许截屏； false - 不允许截屏
      */
@@ -203,11 +203,11 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 打印权限
      * <p>
-     * 具体的权限和份数设置由其属性 Printable 及 Copics 控制。若不设置 Print节点，
-     * 则默认可以打印，并且打印份数不受限制
+     * specific permission and copy settings are controlled by attributes Printable and Copies. If the Print node is absent,
+     * printing is allowed by default with no copy limit
      *
      * @param print 打印权限
      * @return this
@@ -218,11 +218,11 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 打印权限
      * <p>
-     * 具体的权限和份数设置由其属性 Printable 及 Copics 控制。若不设置 Print节点，
-     * 则默认可以打印，并且打印份数不受限制
+     * specific permission and copy settings are controlled by attributes Printable and Copies. If the Print node is absent,
+     * printing is allowed by default with no copy limit
      *
      * @return 打印权限
      */
@@ -232,14 +232,14 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 有效期
      * <p>
-     * 该文档允许访问的期限，其具体期限取决于开始日期和
-     * 结束日期，其中开始日期不能晚于结束日期，并且开始日期和结束
-     * 日期至少出现一个。当不设置开始日期时，代表不限定开始日期，
-     * 当不设置结束日期时代表不限定结束日期；当此不设置此节点时，
-     * 表示开始和结束日期均不受限
+     * the access period for this document is determined by the start date and
+     * end date; the start date cannot be later than the end date, and both start and end
+     * dates must have at least one present. When start date is absent, there is no start date restriction;
+     * when end date is absent, there is no end date restriction; when this node is absent,
+     * neither start nor end date is restricted
      *
      * @param validPeriod 有效期
      * @return this
@@ -250,14 +250,14 @@ public class CT_Permission extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 有效期
      * <p>
-     * 该文档允许访问的期限，其具体期限取决于开始日期和
-     * 结束日期，其中开始日期不能晚于结束日期，并且开始日期和结束
-     * 日期至少出现一个。当不设置开始日期时，代表不限定开始日期，
-     * 当不设置结束日期时代表不限定结束日期；当此不设置此节点时，
-     * 表示开始和结束日期均不受限
+     * the access period for this document is determined by the start date and
+     * end date; the start date cannot be later than the end date, and both start and end
+     * dates must have at least one present. When start date is absent, there is no start date restriction;
+     * when end date is absent, there is no end date restriction; when this node is absent,
+     * neither start nor end date is restricted
      *
      * @return 有效期
      */

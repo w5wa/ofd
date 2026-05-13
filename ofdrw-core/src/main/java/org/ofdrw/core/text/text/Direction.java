@@ -5,12 +5,12 @@ package org.ofdrw.core.text.text;
  * <p>
  * 11.3 文字定位 表 47
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-18 09:45:46
  */
 public enum Direction {
     /**
-     * 可选旋转角度 0、90、180、270
+     * 可选rotation angle 0、90、180、270
      */
     Angle_0(0),
     Angle_90(90),
@@ -18,7 +18,7 @@ public enum Direction {
     Angle_270(270);
 
     /**
-     * 旋转角度
+     * rotation angle
      */
     private Integer angle;
     Direction(int angle) {
@@ -44,7 +44,7 @@ public enum Direction {
             case "270":
                 return Angle_270;
             default:
-                throw new NumberFormatException("未知旋转角度：" + angleStr);
+                throw new NumberFormatException("未知rotation angle：" + angleStr);
         }
     }
 

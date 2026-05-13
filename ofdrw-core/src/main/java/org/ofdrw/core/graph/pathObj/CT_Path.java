@@ -10,13 +10,13 @@ import org.ofdrw.core.pageDescription.clips.ClipAble;
 import org.ofdrw.core.pageDescription.color.color.CT_Color;
 
 /**
- * 图形对象
+ * graphics object
  * <p>
  * 图形对象具有一般图元的一切属性和行为特征。
  * <p>
  * 9.1 图形对象 图 46  表 35
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-16 08:21:58
  */
 public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
@@ -36,8 +36,8 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     /**
      * 构造路径对象
      *
-     * @param id 对象ID
-     * @return 对象
+     * @param id object ID
+     * @return object
      */
     public PathObject toObj(ST_ID id) {
         this.setOFDName("PathObject");
@@ -46,7 +46,7 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 图形是否被沟边
      *
      * @param stroke true - 沟边；false - 不勾边
@@ -62,7 +62,7 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 图形是否被沟边
      *
      * @return true - 沟边；false - 不勾边
@@ -76,7 +76,7 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 图形是否被填充
      *
      * @param fill true - 填充； false - 不填充
@@ -92,7 +92,7 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 图形是否被填充
      *
      * @return true - 填充； false - 不填充
@@ -107,7 +107,7 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置  图形的填充规则
      * <p>
      * 当 Fill 属性存在时出现，可选值参考 {@link Rule}
@@ -127,7 +127,7 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 图形的填充规则
      * <p>
      * 当 Fill 属性存在时出现，可选值参考 {@link Rule}
@@ -141,10 +141,10 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 沟边颜色
      * <p>
-     * 默认为黑色
+     * default: black
      *
      * @param strokeColor 沟边颜色，颜色定义请参考 8.3.2 基本颜色，只读 颜色对象将被复制。
      * @return this
@@ -163,10 +163,10 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 沟边颜色
      * <p>
-     * 默认为黑色
+     * default: black
      *
      * @return 沟边颜色，null表示为黑色，颜色定义请参考 8.3.2 基本颜色
      */
@@ -176,12 +176,12 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选】
-     * 设置 填充颜色
+     * [optional]
+     * set fill color
      * <p>
-     * 默认为透明色
+     * default: transparent
      *
-     * @param fillColor 填充颜色，颜色定义请参考 8.3.2 基本颜色，只读 颜色对象将被复制。
+     * @param fillColor fill color，颜色定义请参考 8.3.2 基本颜色，只读 颜色对象将被复制。
      * @return this
      */
     public CT_Path setFillColor(CT_Color fillColor) {
@@ -198,12 +198,12 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【可选】
-     * 获取 填充颜色
+     * [optional]
+     * get fill color
      * <p>
-     * 默认为透明色
+     * default: transparent
      *
-     * @return 填充颜色，颜色定义请参考 8.3.2 基本颜色
+     * @return fill color，颜色定义请参考 8.3.2 基本颜色
      */
     public CT_Color getFillColor() {
         Element e = this.getOFDElement("FillColor");
@@ -211,10 +211,10 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 图形轮廓数据
      * <p>
-     * 由一系列紧缩的操作符和操作数构成
+     * composed of a series of condensed operators and operands
      *
      * @param abbreviatedData 图形轮廓数据
      * @return this
@@ -229,12 +229,12 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 图形轮廓数据
      * <p>
-     * 由一系列紧缩的操作符和操作数构成
+     * composed of a series of condensed operators and operands
      *
-     * @return 图形轮廓数据字符串
+     * @return 图形轮廓数据string
      */
     public String getAbbreviatedData() {
         Element e = this.getOFDElement("AbbreviatedData");
@@ -242,10 +242,10 @@ public class CT_Path extends CT_GraphicUnit<CT_Path> implements ClipAble {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 图形轮廓数据对象
      * <p>
-     * 由一系列紧缩的操作符和操作数构成
+     * composed of a series of condensed operators and operands
      *
      * @return 图形轮廓数据对象
      */

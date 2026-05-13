@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * 分页注释文件
  * <p>
- * 15.2 图 81 表 61
+ * 15.2 Figure 81 Table 61
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-16 02:20:54
  */
 public class PageAnnot extends OFDElement {
@@ -24,7 +24,7 @@ public class PageAnnot extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 注释对象
      *
      * @param annot 注释对象
@@ -39,7 +39,7 @@ public class PageAnnot extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 注释对象列表
      *
      * @return 注释对象列表

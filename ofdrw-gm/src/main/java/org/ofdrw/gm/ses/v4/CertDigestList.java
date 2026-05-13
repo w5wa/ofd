@@ -8,15 +8,15 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 签章者证书杂凑值列表
+ * signer certificate hash value list
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 16:29:35
  */
 public class CertDigestList extends ASN1Object
         implements org.bouncycastle.util.Iterable<CertDigestObj> {
     /**
-     * 签章者证书杂凑值
+     * signer certificate hash value
      */
     private List<CertDigestObj> dataSequence;
 

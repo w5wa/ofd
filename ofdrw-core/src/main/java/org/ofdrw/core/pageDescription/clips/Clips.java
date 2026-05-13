@@ -8,13 +8,13 @@ import java.util.List;
 /**
  * 图元对象的裁剪区域序列
  * <p>
- * 采用对象空间坐标系
+ * uses the object space coordinate system
  * <p>
  * 当存在多个 Clip对象时，最终裁剪区为所有 Clip区域交集。
  * <p>
  * 8.5 图元对象 图 45 表 34
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-14 08:00:02
  */
 public class Clips extends OFDElement {
@@ -39,10 +39,10 @@ public class Clips extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 图元对象的裁剪区域
      * <p>
-     * 采用对象空间坐标系
+     * uses the object space coordinate system
      *
      * @param clip 图元对象的裁剪区域
      * @return this
@@ -56,10 +56,10 @@ public class Clips extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 图元对象的裁剪区域序列
      * <p>
-     * 采用对象空间坐标系
+     * uses the object space coordinate system
      * <p>
      * 当存在多个 Clip 对象时，最终裁剪区为所有 Clip 区域的并集
      *
@@ -70,7 +70,7 @@ public class Clips extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置变换标志
      * <p>
      * 在1.2 版本后通过TransFlag参数来控制，
@@ -89,7 +89,7 @@ public class Clips extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取裁剪区域变换标志，默认值为false 不受外部CTM影响
      *
      * @return 是否受外部CTM影响，false 不受

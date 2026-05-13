@@ -5,18 +5,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 数字格式的自增的签名ID
+ * number格式的自增的signature ID
  * <p>
  * 启用前缀格式为： "NNN"，例如：'001'
  * <p>
  * 关闭前缀格式为： "N"，例如：'1' （默认）
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-17 04:20:15
  */
 public class NumberFormatAtomicSignID implements SignIDProvider {
     /**
-     * 签名ID自增提供者
+     * signature ID自增提供者
      */
     private final AtomicInteger provider;
 
@@ -32,7 +32,7 @@ public class NumberFormatAtomicSignID implements SignIDProvider {
     }
 
     /**
-     * 创建数字构造器
+     * 创建number构造器
      *
      * @param enableZeroPrefix 是否启用前缀0，启用后ID格式为'00N'
      */
@@ -42,9 +42,9 @@ public class NumberFormatAtomicSignID implements SignIDProvider {
     }
 
     /**
-     * 创建指定最大签名ID 签名ID提供器
+     * 创建指定最大signature ID signature ID提供器
      *
-     * @param maxSignID 最大签名ID字符串
+     * @param maxSignID 最大signature ID string
      */
     public NumberFormatAtomicSignID(String maxSignID) {
         int maxSignIDNum = this.parse(maxSignID);
@@ -53,11 +53,11 @@ public class NumberFormatAtomicSignID implements SignIDProvider {
 
 
     /**
-     * 设置当前最大签名ID值
+     * set current maximum signature ID value
      * <p>
-     * 实现者需要自己解析该字符串，并设置内置计数器
+     * implementor must parse this string and set the built-in counter
      *
-     * @param maxSignId 当前最大签名ID格式字符串
+     * @param maxSignId current maximum signature ID format string
      */
     @Override
     public void setCurrentMaxSignId(String maxSignId) {
@@ -66,9 +66,9 @@ public class NumberFormatAtomicSignID implements SignIDProvider {
     }
 
     /**
-     * 增长并获取签名ID
+     * increment and get signature ID
      *
-     * @return 签名ID，形如：'001'
+     * @return signature ID，形如：'001'
      */
     @Override
     public String incrementAndGet() {
@@ -81,9 +81,9 @@ public class NumberFormatAtomicSignID implements SignIDProvider {
     }
 
     /**
-     * 获取当前签名ID
+     * 获取当前signature ID
      *
-     * @return 签名ID
+     * @return signature ID
      */
     @Override
     public String get() {
@@ -96,10 +96,10 @@ public class NumberFormatAtomicSignID implements SignIDProvider {
     }
 
     /**
-     * 解析出电子签名的ID数字
+     * parse the ID number of the electronic signature
      *
-     * @param id ID字符串
-     * @return ID数字
+     * @param id ID string
+     * @return ID number
      */
     @Override
     public int parse(String id) {

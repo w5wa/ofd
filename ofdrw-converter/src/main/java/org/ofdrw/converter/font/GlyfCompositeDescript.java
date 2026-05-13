@@ -56,7 +56,7 @@ public class GlyfCompositeDescript extends GlyfDescript {
      * Constructor.
      *
      * @param bais     the stream to be read
-     * @param provider 字形数据提供者用于提供符合字形的数据
+     * @param provider glyph数据提供者用于提供符合glyph的数据
      * @throws IOException is thrown if something went wrong
      */
     GlyfCompositeDescript(TTFDataStream bais, GlyphDataProvider provider) throws IOException {
@@ -253,7 +253,7 @@ public class GlyfCompositeDescript extends GlyfDescript {
                     descriptions.put(index, glyph.getDescription());
                 }
             } catch (IOException e) {
-                LOG.debug("复合字形解析异常", e);
+                LOG.debug("复合glyph解析异常", e);
             }
         }
     }

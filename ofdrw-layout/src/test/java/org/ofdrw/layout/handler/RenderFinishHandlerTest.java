@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RenderFinishHandlerTest {
     /**
-     * 在生成文档的过程中获取文档信息
+     * 在生成文档的过程中获取document information
      */
     @Test
     void handle() throws IOException{

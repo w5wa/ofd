@@ -5,7 +5,7 @@ import java.security.GeneralSecurityException;
 /**
  * OFD 验证异常
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-22 01:11:58
  */
 public class OFDVerifyException extends GeneralSecurityException {

@@ -5,7 +5,7 @@ package org.ofdrw.core.pageDescription.color.pattern;
  * <p>
  * 8.3.4 表 28 RelativeTo
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-12 08:49:39
  */
 public enum RelativeTo {
@@ -21,7 +21,7 @@ public enum RelativeTo {
     /**
      * 获取 底纹单元起始绘制位置
      *
-     * @param to 绘制位置字符串
+     * @param to 绘制位置string
      * @return 底纹单元起始绘制位置
      */
     public static RelativeTo getInstance(String to) {

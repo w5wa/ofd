@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SESealTest {
 
     /**
-     * 构建V5印章的辅助方法
+     * 构建V5seal/stamp的辅助方法
      */
     private SESeal buildV5Seal(boolean withTimeStamp) throws GeneralSecurityException, IOException {
         Path sealerPath = Paths.get("src/test/resources", "SealBuilder.p12");
@@ -80,7 +80,7 @@ class SESealTest {
     }
 
     /**
-     * V5印章构建-编码-解码往返测试（不带timeStamp）
+     * V5seal/stamp构建-编码-解码往返测试（不带timeStamp）
      */
     @Test
     void buildEncodeDecodeRoundTrip() throws GeneralSecurityException, IOException {
@@ -93,7 +93,7 @@ class SESealTest {
         SESeal decoded = SESeal.getInstance(encoded);
         assertNotNull(decoded);
 
-        // 字段断言
+        // 字segment断言
         assertEquals(
                 seal.geteSealInfo().getHeader().getVersion().getValue(),
                 decoded.geteSealInfo().getHeader().getVersion().getValue()
@@ -120,11 +120,11 @@ class SESealTest {
         // 写出文件供后续测试使用
         Path out = Paths.get("target/UserV5.esl");
         Files.write(out, encoded);
-        System.out.println(">> V5印章(无timeStamp)存储于: " + out.toAbsolutePath());
+        System.out.println(">> V5seal/stamp(无timeStamp)存储于: " + out.toAbsolutePath());
     }
 
     /**
-     * V5印章timeStamp可选字段测试 - 带timeStamp
+     * V5seal/stamptimeStamp可选字segment测试 - 带timeStamp
      */
     @Test
     void buildEncodeDecodeWithTimeStamp() throws GeneralSecurityException, IOException {
@@ -139,7 +139,7 @@ class SESealTest {
                 decoded.getTimeStamp().getOctets()
         );
 
-        // 其他字段也要正确
+        // 其他字segment也要正确
         assertEquals(
                 seal.geteSealInfo().getHeader().getVersion().getValue(),
                 decoded.geteSealInfo().getHeader().getVersion().getValue()
@@ -151,11 +151,11 @@ class SESealTest {
 
         Path out = Paths.get("target/UserV5_ts.esl");
         Files.write(out, encoded);
-        System.out.println(">> V5印章(带timeStamp)存储于: " + out.toAbsolutePath());
+        System.out.println(">> V5seal/stamp(带timeStamp)存储于: " + out.toAbsolutePath());
     }
 
     /**
-     * V5印章timeStamp可选字段测试 - 不带timeStamp
+     * V5seal/stamptimeStamp可选字segment测试 - 不带timeStamp
      */
     @Test
     void buildEncodeDecodeWithoutTimeStamp() throws GeneralSecurityException, IOException {
@@ -166,7 +166,7 @@ class SESealTest {
         assertNotNull(decoded);
         assertNull(decoded.getTimeStamp());
 
-        // 确认序列长度为4（无可选字段）
+        // 确认序列长度为4（无可选字segment）
         ASN1Sequence seq = ASN1Sequence.getInstance(encoded);
         assertEquals(4, seq.size());
     }

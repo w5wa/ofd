@@ -5,11 +5,11 @@ import org.ofdrw.core.OFDElement;
 import org.ofdrw.core.basicType.ST_Box;
 
 /**
- * 页面区域结构
+ * page area结构
  * <p>
  * ————《GB/T 33190-2016》 图 7
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-04 08:58:55
  */
 public class CT_PageArea extends OFDElement {
@@ -22,12 +22,12 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 页面物理区域 创建区域
+     * physical page area 创建区域
      *
-     * @param topLeftX 页面物理区域 左上角X坐标
-     * @param topLeftY 页面物理区域 左上角Y坐标
-     * @param width    页面物理区域 宽度
-     * @param height   页面物理区域 高度
+     * @param topLeftX physical page area X coordinate of top-left corner
+     * @param topLeftY physical page area Y coordinate of top-left corner
+     * @param width    physical page area width
+     * @param height   physical page area height
      */
     public CT_PageArea(double topLeftX,
                        double topLeftY,
@@ -38,12 +38,12 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 页面物理区域
+     * [required]
+     * set physical page area
      * <p>
-     * 左上角为页面坐标系的原点
+     * the top-left corner is the origin of the page coordinate system
      *
-     * @param physicalBox 页面物理区域
+     * @param physicalBox physical page area
      * @return this
      */
     public CT_PageArea setPhysicalBox(ST_Box physicalBox) {
@@ -52,15 +52,15 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 页面物理区域
+     * [required]
+     * set physical page area
      * <p>
-     * 左上角为页面坐标系的原点
+     * the top-left corner is the origin of the page coordinate system
      *
-     * @param topLeftX 左上角X坐标
-     * @param topLeftY 左上角Y坐标
-     * @param width    宽度
-     * @param height   高度
+     * @param topLeftX X coordinate of top-left corner
+     * @param topLeftY Y coordinate of top-left corner
+     * @param width    width
+     * @param height   height
      * @return this
      */
     public CT_PageArea setPhysicalBox(double topLeftX,
@@ -73,27 +73,27 @@ public class CT_PageArea extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 获取 页面物理区域 左上角为页面坐标系的原点
+     * [required]
+     * 获取 physical page area the top-left corner is the origin of the page coordinate system
      *
-     * @return 页面物理区域
+     * @return physical page area
      */
     public ST_Box getPhysicalBox() {
         return ST_Box.getInstance(this.getOFDElementText("PhysicalBox"));
     }
 
     /**
-     * 【可选】
-     * 设置 显示区域
+     * [optional]
+     * set display area
      * <p>
-     * 页面内容实际显示或打印输出的区域，位于页面物理区域内，
-     * 包含页眉、页脚、页心等内容
+     * the area actually displayed or printed on the page, located within the physical page area,
+     * contains header, footer, body content, etc.
      * <p>
-     * [例外处理] 如果显示区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果显示区域完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the display area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the display area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @param applicationBox 显示区域
+     * @param applicationBox display area
      * @return this
      */
     public CT_PageArea setApplicationBox(ST_Box applicationBox) {
@@ -102,20 +102,20 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 显示区域
+     * [optional]
+     * set display area
      * <p>
-     * 页面内容实际显示或打印输出的区域，位于页面物理区域内，
-     * 包含页眉、页脚、页心等内容
+     * the area actually displayed or printed on the page, located within the physical page area,
+     * contains header, footer, body content, etc.
      * <p>
-     * [例外处理] 如果显示区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果显示区域完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the display area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the display area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @param topLeftX 左上角X坐标
-     * @param topLeftY 左上角Y坐标
-     * @param width    宽度
-     * @param height   高度
+     * @param topLeftX X coordinate of top-left corner
+     * @param topLeftY Y coordinate of top-left corner
+     * @param width    width
+     * @param height   height
      * @return this
      */
     public CT_PageArea setApplicationBox(double topLeftX,
@@ -127,34 +127,34 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 显示区域
+     * [optional]
+     * 获取 display area
      * <p>
-     * 页面内容实际显示或打印输出的区域，位于页面物理区域内，
-     * 包含页眉、页脚、页心等内容
+     * the area actually displayed or printed on the page, located within the physical page area,
+     * contains header, footer, body content, etc.
      * <p>
-     * [例外处理] 如果显示区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果显示区域完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the display area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the display area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @return 显示区域
+     * @return display area
      */
     public ST_Box getApplicationBox() {
         return ST_Box.getInstance(this.getOFDElementText("ApplicationBox"));
     }
 
     /**
-     * 【可选】
-     * 设置 版心区域
+     * [optional]
+     * set body area
      * <p>
-     * 文件的正文区域，位于显示区域内。
-     * 左上角坐标决定了其在显示区域内的位置
+     * the body area of the file, located within the display area.
+     * the top-left corner coordinate determines its position in the display area
      * <p>
-     * [例外处理] 如果版心区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果版心区域完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the body area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the body area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @param contentBox 版心区域
+     * @param contentBox body area
      * @return this
      */
     public CT_PageArea setContentBox(ST_Box contentBox) {
@@ -163,20 +163,20 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 版心区域
+     * [optional]
+     * set body area
      * <p>
-     * 文件的正文区域，位于显示区域内。
-     * 左上角坐标决定了其在显示区域内的位置
+     * the body area of the file, located within the display area.
+     * the top-left corner coordinate determines its position in the display area
      * <p>
-     * [例外处理] 如果版心区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果版心区域完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the body area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the body area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @param topLeftX 左上角X坐标
-     * @param topLeftY 左上角Y坐标
-     * @param width    宽度
-     * @param height   高度
+     * @param topLeftX X coordinate of top-left corner
+     * @param topLeftY Y coordinate of top-left corner
+     * @param width    width
+     * @param height   height
      * @return this
      */
     public CT_PageArea setContentBox(double topLeftX,
@@ -188,34 +188,34 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 版心区域
+     * [optional]
+     * 获取 body area
      * <p>
-     * 文件的正文区域，位于显示区域内。
-     * 左上角坐标决定了其在显示区域内的位置
+     * the body area of the file, located within the display area.
+     * the top-left corner coordinate determines its position in the display area
      * <p>
-     * [例外处理] 如果版心区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果版心区域完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the body area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the body area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @return 版心区域
+     * @return body area
      */
     public ST_Box getContentBox() {
         return ST_Box.getInstance(this.getOFDElementText("ContentBox"));
     }
 
     /**
-     * 【可选】
-     * 设置 出血区域
+     * [optional]
+     * set bleed area
      * <p>
-     * 超出设备性能限制的额外出血区域，位于页面物理区域外。
-     * 不出现时，默认值为页面物理区域
+     * extra bleed area beyond device capability limits, located outside the physical page area.
+     * when absent, the default value is the physical page area
      * <p>
-     * [例外处理] 如果出血区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果显示出血完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the bleed area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the bleed area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @param bleedBox 出血区域
+     * @param bleedBox bleed area
      * @return this
      */
     public CT_PageArea setBleedBox(ST_Box bleedBox) {
@@ -224,20 +224,20 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 出血区域
+     * [optional]
+     * set bleed area
      * <p>
-     * 超出设备性能限制的额外出血区域，位于页面物理区域外。
-     * 不出现时，默认值为页面物理区域
+     * extra bleed area beyond device capability limits, located outside the physical page area.
+     * when absent, the default value is the physical page area
      * <p>
-     * [例外处理] 如果出血区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果显示出血完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the bleed area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the bleed area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @param topLeftX 左上角X坐标
-     * @param topLeftY 左上角Y坐标
-     * @param width    宽度
-     * @param height   高度
+     * @param topLeftX X coordinate of top-left corner
+     * @param topLeftY Y coordinate of top-left corner
+     * @param width    width
+     * @param height   height
      * @return this
      */
     public CT_PageArea setBleedBox(double topLeftX,
@@ -249,17 +249,17 @@ public class CT_PageArea extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 出血区域
+     * [optional]
+     * 获取 bleed area
      * <p>
-     * 超出设备性能限制的额外出血区域，位于页面物理区域外。
-     * 不出现时，默认值为页面物理区域
+     * extra bleed area beyond device capability limits, located outside the physical page area.
+     * when absent, the default value is the physical page area
      * <p>
-     * [例外处理] 如果出血区域不完全位于页面物理区域内，
-     * 页面物理区域外的部分则被忽略。如果显示出血完全位于页面物理区域外，
-     * 则设置该页为空白页。
+     * [exception handling] if the bleed area is not entirely within the physical page area,
+     * the part outside the physical page area is ignored. If the bleed area is entirely outside the physical page area,
+     * set the page as a blank page.
      *
-     * @return 出血区域
+     * @return bleed area
      */
     public ST_Box getBleedBox() {
         return ST_Box.getInstance(this.getOFDElementText("BleedBox"));

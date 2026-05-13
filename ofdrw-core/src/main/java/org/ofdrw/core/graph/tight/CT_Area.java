@@ -13,7 +13,7 @@ import java.util.List;
  * <p>
  * 图 49 区域结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 11:51:23
  */
 public class CT_Area extends OFDElement {
@@ -26,7 +26,7 @@ public class CT_Area extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 定义字图形的起始点坐标
      *
      * @param start 定义字图形的起始点坐标
@@ -38,7 +38,7 @@ public class CT_Area extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 定义字图形的起始点坐标
      *
      * @return 定义字图形的起始点坐标
@@ -48,7 +48,7 @@ public class CT_Area extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 绘制指令
      * <p>
      * 移动点、画线、画圆弧等
@@ -72,7 +72,7 @@ public class CT_Area extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 绘制指令序列（顺序决定了绘制图形）
      * <p>
      * 移动点、画线、画圆弧等

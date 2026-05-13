@@ -3,7 +3,7 @@ package org.ofdrw.reader;
 /**
  * 错误路径异常
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-09 20:05:29
  */
 public class ErrorPathException extends RuntimeException {

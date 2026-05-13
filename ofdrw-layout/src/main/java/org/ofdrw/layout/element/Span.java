@@ -9,35 +9,35 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 字体基础单元
+ * font基础单元
  * <p>
- * 用来设置字体样式等
+ * 用来设置font样式等
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-03 02:01:53
  */
 public class Span implements TextFontInfo {
 
     /**
-     * 字体
+     * font
      */
     private Font font;
 
     /**
-     * 字体大小
+     * font size
      * 默认值3毫米
      */
     private Double fontSize = 3d;
 
     /**
-     * 字间距
+     * character spacing
      * <p>
      * 默认为 0
      */
     private Double letterSpacing = 0d;
 
     /**
-     * 是否加粗
+     * whether bold
      * <p>
      * 默认不加粗 false
      * <p>
@@ -53,7 +53,7 @@ public class Span implements TextFontInfo {
     private Weight weight = null;
 
     /**
-     * 是否斜体
+     * whether italic
      * <p>
      * 默认非斜体 false
      */
@@ -70,7 +70,7 @@ public class Span implements TextFontInfo {
      */
     private double underlineOffset = 1.2d;
     /**
-     * 下划线宽度，0表示保持默认，默认为字体大小的0.05倍
+     * 下划线width，0表示保持默认，默认为font大小的0.05倍
      */
     private double underlineWidth = 0d;
 
@@ -83,12 +83,12 @@ public class Span implements TextFontInfo {
     private boolean fill = true;
 
     /**
-     * 文本内容
+     * text content
      */
     private String text;
 
     /**
-     * 字体颜色
+     * font color
      */
     private int[] fillColor;
 
@@ -130,9 +130,9 @@ public class Span implements TextFontInfo {
     }
 
     /**
-     * 设置字体颜色
+     * set font color
      *
-     * @param rgb 颜色值
+     * @param rgb color value
      * @return this
      */
     public Span setColor(int[] rgb) {
@@ -143,22 +143,22 @@ public class Span implements TextFontInfo {
     /**
      * 设置 文字颜色
      *
-     * @param color 颜色值，可以是 16进制值 "#FFFFFF"、 16进制值缩写 "#FF"F、RGB "rgb(255,255,255)"、颜色名称 "white"
+     * @param color color value: hex "#FFFFFF", hex shorthand "#FFF", RGB "rgb(255,255,255)", or color name "white"
      * @return this
      */
     public Span setColor(String color) {
         int[] c = NamedColor.rgb(color);
         if (c == null || c.length < 3) {
-            throw new IllegalArgumentException("边框颜色 颜色值错误：" + color);
+            throw new IllegalArgumentException("border color color value错误：" + color);
         }
        return setColor(c);
     }
 
     /**
-     * 设置字体颜色
+     * set font color
      *
-     * @param r 红
-     * @param g 绿
+     * @param r red
+     * @param g green
      * @param b 懒
      * @return this
      */
@@ -213,11 +213,11 @@ public class Span implements TextFontInfo {
     }
 
     /**
-     * 设置是否加粗
+     * set whether bold
      * <p>
      * 若需要更加细致的控制，可以使用 {@link #setWeight(Weight)}
      *
-     * @param bold 是否加粗
+     * @param bold whether bold
      * @return this
      */
     public Span setBold(boolean bold) {
@@ -226,18 +226,18 @@ public class Span implements TextFontInfo {
     }
 
     /**
-     * 获取字体粗细
+     * 获取font粗细
      *
-     * @return 字体粗细，可能为null。
+     * @return font粗细，可能为null。
      */
     public Weight getWeight() {
         return weight;
     }
 
     /**
-     * 设置字体粗细
+     * set font weight
      *
-     * @param weight 字体粗细
+     * @param weight font粗细
      * @return this
      */
     public Span setWeight(Weight weight) {
@@ -261,7 +261,7 @@ public class Span implements TextFontInfo {
     /**
      * 设置 下划线
      *
-     * @param underline 是否启用下划线
+     * @param underline whether to enable underline
      * @return this
      */
     public Span setUnderline(boolean underline) {
@@ -272,9 +272,9 @@ public class Span implements TextFontInfo {
     /**
      * 设置下划线
      *
-     * @param underline 是否启用下划线
+     * @param underline whether to enable underline
      * @param offset    下划线与文字的偏移量，可以为负值，默认值为1.2，单位毫米。
-     * @param width     下划线线宽，默认为0，为0时默认为字体大小的0.05倍。
+     * @param width     下划线线宽，默认为0，为0时默认为font大小的0.05倍。
      * @return this
      */
     public Span setUnderline(boolean underline, double offset, double width) {
@@ -329,9 +329,9 @@ public class Span implements TextFontInfo {
 
 
     /**
-     * 获取字体图形列表
+     * 获取font图形列表
      *
-     * @return 字体图形列表
+     * @return font图形列表
      */
     public List<TxtGlyph> glyphList() {
         if (txtGlyphsCache == null) {
@@ -344,11 +344,11 @@ public class Span implements TextFontInfo {
     }
 
     /**
-     * 获取字符X坐标偏移值队列
+     * 获取字符X coordinate偏移值队列
      * <p>
      * 队列中的每个值代表后一个文字与前一个文字之间在X方向上的偏移值
      *
-     * @return 字符在X坐标偏移值队列
+     * @return 字符在X coordinate偏移值队列
      */
     public Double[] getDeltaX() {
         List<TxtGlyph> list = glyphList();
@@ -358,7 +358,7 @@ public class Span implements TextFontInfo {
             return new Double[]{};
         }
         // 队列中的每个值代表后一个文字与前一个文字之间在X方向上的偏移值
-        // 因此不要计算最后一个元素的偏移值，偏移量忽略最后一个字符的大小 len - 1
+        // 因此不要计算最后一个元素的偏移值，偏移量ignored最后一个字符的大小 len - 1
         Double[] res = new Double[len - 1];
         for (int i = 0; i < len - 1; i++) {
             res[i] = list.get(i).getW();
@@ -403,7 +403,7 @@ public class Span implements TextFontInfo {
     /**
      * 设置Span为占满剩下行空间的元素
      * <p>
-     * 等价于在字符串末尾增加\n，当字符串末尾存在\n 时该参数无效。
+     * 等价于在string末尾增加\n，当string末尾存在\n 时该参数无效。
      *
      * @param linebreak 是否占满剩下行空间 true 标识占满；false标识不占满
      * @return this
@@ -456,9 +456,9 @@ public class Span implements TextFontInfo {
     }
 
     /**
-     * 获取下划线宽度
+     * 获取下划线width
      *
-     * @return 下划线宽度, 0表示保持默认，默认为字体大小的0.05倍，单位毫米
+     * @return 下划线width, 0表示保持默认，默认为font大小的0.05倍，单位毫米
      */
     public double getUnderlineWidth() {
         return underlineWidth;

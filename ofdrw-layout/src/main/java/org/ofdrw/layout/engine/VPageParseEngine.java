@@ -28,15 +28,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 虚拟页面解析引擎
  * <p>
- * 解析虚拟页面解析OFD页面，放入文档容器中
+ * 解析虚拟页面解析OFD页面，放入document container中
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-20 11:32:29
  */
 public class VPageParseEngine {
 
     /**
-     * 文档容器引用
+     * document container引用
      */
     private DocDir docDir;
     /**
@@ -58,7 +58,7 @@ public class VPageParseEngine {
     private PageLayout pageLayout;
 
     /**
-     * 公共资源管理器
+     * public resource manager
      */
     private ResManager resManager;
 
@@ -79,7 +79,7 @@ public class VPageParseEngine {
     /**
      * 注册处理器
      *
-     * @param elementType 处理的元素类型，详见 {@link Div#elementType()}
+     * @param elementType 处理的element type，详见 {@link Div#elementType()}
      * @param processor   处理器
      */
     public static void register(String elementType, Processor processor) {
@@ -97,8 +97,8 @@ public class VPageParseEngine {
      * 创建虚拟页面解析器
      *
      * @param pageLayout 页面布局样式
-     * @param docDir     文档容器
-     * @param prm        公共资源管理器(Public Resource Manage)
+     * @param docDir     document container
+     * @param prm        public resource manager(Public Resource Manage)
      * @param maxUnitID  自增的ID获取器
      */
     public VPageParseEngine(PageLayout pageLayout,
@@ -117,7 +117,7 @@ public class VPageParseEngine {
                 pages = new Pages();
                 document.setPages(pages);
             }
-            // 如果存在Pages那么获取，不存在那么创建
+            // get Pages if exists, or create if not
             pagesDir = docDir.obtainPages();
         } catch (FileNotFoundException | DocumentException e) {
             throw new RuntimeException("无法获取到Document.xml 对象", e);
@@ -149,10 +149,10 @@ public class VPageParseEngine {
                 pageEdit((AdditionVPage) virtualPage);
             } else {
                 PageDir pageDir = null;
-                // 创建一个全新的页面容器对象
+                // 创建一个全新的page container对象
                 if (virtualPage.getPageNum() == null) {
                     pageDir = newPage();
-                    // 设置虚拟页面页码
+                    // 设置虚拟页面page number
                     int size = pages.getSize();
                     virtualPage.setPageNum(size);
                 } else {
@@ -170,18 +170,18 @@ public class VPageParseEngine {
     }
 
     /**
-     * 转化虚拟页面的内容为实际OFD元素
+     * 转化虚拟页面的内容为实际OFD element
      *
-     * @param pageLoc 页面xml绝对路径
+     * @param pageLoc 页面xmlabsolute path
      * @param vPage   虚拟页面
      * @param pageDir 虚拟页面目录
      */
     private void convertPageContent(ST_Loc pageLoc, VirtualPage vPage, PageDir pageDir) {
-        // 底层的OFD页面对象
+        // 底层的OFDpage object
         org.ofdrw.core.basicStructure.pageObj.Page page = new org.ofdrw.core.basicStructure.pageObj.Page();
         PageLayout vPageStyle = vPage.getStyle();
         if (!pageLayout.equals(vPageStyle)) {
-            // 如果与默认页面样式不一致，那么需要单独设置页面样式
+            // 如果与默认page style不一致，那么需要单独设置page style
             page.setArea(vPageStyle.getPageArea());
         }
         // 如果存在，则设置页面模板
@@ -204,9 +204,9 @@ public class VPageParseEngine {
             if (layerContent.isEmpty()) {
                 continue;
             }
-            // 若层内内容不为空，那么创建图层，并转换为图元
+            // 若层内内容不为空，那么创建layer，并转换为图元
             final Type type = layerContent.get(0).getLayer();
-            // 新建一个正文层的图层用于容纳元素
+            // 新建一个body layer的layer用于容纳元素
             CT_Layer ctlayer = new CT_Layer();
             ctlayer.setType(type);
             ctlayer.setObjID(maxUnitID.incrementAndGet());
@@ -231,33 +231,33 @@ public class VPageParseEngine {
             if (layerContent.isEmpty()) {
                 continue;
             }
-            // 若层内内容不为空，那么创建图层，并转换为图元
+            // 若层内内容不为空，那么创建layer，并转换为图元
             final Type type = layerContent.get(0).getLayer();
-            // 新建一个图层用于容纳元素
+            // 新建一个layer用于容纳元素
             CT_Layer ctlayer = virtualPage.newLayer(maxUnitID);
             ctlayer.setType(type);
             ctlayer.setObjID(maxUnitID.incrementAndGet());
-            // 像图层中些转化的元素对象
+            // 像layer中些转化的element object
             convert2Layer(pageLoc, ctlayer, layerContent);
         }
     }
 
 
     /**
-     * 将虚拟页面中的元素转为OFD元素加入图层中
+     * 将虚拟页面中的元素转为OFD element加入layer中
      *
-     * @param pageLoc 页面xml绝对路径
-     * @param to      图形元素将要写入到的页面图层
-     * @param content 需要加入图层得到元素
+     * @param pageLoc 页面xmlabsolute path
+     * @param to      图形元素将要写入到的页面layer
+     * @param content 需要加入layer得到元素
      */
     private void convert2Layer(ST_Loc pageLoc, CT_Layer to, List<Div> content) {
         // 处理页面中的元素为OFD的图元
         for (Div elem : content) {
-            // 忽略占位符和对象
+            // ignored占位符和对象
             if ((elem instanceof PageAreaFiller) || elem.isPlaceholder()) {
                 continue;
             }
-            // 处理每一个元素的基础盒式模型属性，背景边框等，并加入到图层中
+            // 处理每一个元素的基础盒式模型属性，背景边框等，并加入到layer中
             int objStart = this.maxUnitID.get();
             DivRender.render(to, elem, maxUnitID);
             // 获取处理器，进行元素的渲染，扩展元素渲染器时，需要注册处理器
@@ -273,7 +273,7 @@ public class VPageParseEngine {
                 ArrayList<ST_ID> resIds = new ArrayList<>();
                 ArrayList<ST_ID> newResIds = resManager.getNewResIds();
 
-                // 获取所有新的元素ID，判断是否是资源对象，若是资源对象则加入资源列表
+                // 获取所有新的元素ID，判断是否是resource object，若是resource object则加入resource list
                 for (int id = objEnd; id > objStart; id--) {
                     ST_ID objId = new ST_ID(id);
                     if (newResIds.contains(objId)) {
@@ -289,9 +289,9 @@ public class VPageParseEngine {
 
 
     /**
-     * 创建页面容器，并且新的页面加入文档中
+     * 创建page container，并且新的页面加入文档中
      *
-     * @return 页面容器
+     * @return page container
      */
     private PageDir newPage() {
         // 设置页面index与页面定位路径一致
@@ -303,10 +303,10 @@ public class VPageParseEngine {
     }
 
     /**
-     * 添加页面到指定页码
+     * 添加页面到指定page number
      *
-     * @param index 页码Index （页码 - 1）
-     * @return 页面容器
+     * @param index page numberIndex （page number - 1）
+     * @return page container
      */
     private PageDir addNewPage(int index) {
         // 设置页面index与页面定位路径一致
@@ -314,7 +314,7 @@ public class VPageParseEngine {
         String pageLoc = String.format("Pages/Page_%d/Content.xml", pageDir.getIndex());
         final Page page = new Page(maxUnitID.incrementAndGet(), pageLoc);
         final int size = pages.getSize();
-        // 防止页码越界
+        // 防止page number越界
         if (index <= 0) {
             index = 0;
         } else if (index >= size) {

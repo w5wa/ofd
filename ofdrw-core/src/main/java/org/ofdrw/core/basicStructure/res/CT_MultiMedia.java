@@ -8,9 +8,9 @@ import org.ofdrw.core.basicType.ST_Loc;
 /**
  * 多媒体
  * <p>
- * 7.9 资源 图 21 表 19
+ * 7.9 Resources - Figure 21 Table 19
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-13 08:03:34
  */
 public class CT_MultiMedia extends OFDElement {
@@ -33,10 +33,10 @@ public class CT_MultiMedia extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 多媒体类型
      * <p>
-     * 支持位图图像、视频、音频
+     * supports bitmap images, video, and audio
      *
      * @param type 多媒体类型
      * @return this
@@ -50,10 +50,10 @@ public class CT_MultiMedia extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 多媒体类型
      * <p>
-     * 支持位图图像、视频、音频
+     * supports bitmap images, video, and audio
      *
      * @return 多媒体类型
      */
@@ -62,10 +62,10 @@ public class CT_MultiMedia extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 资源的格式
      * <p>
-     * 支持 BMP、JPEG、PNG、TIFF及AVS等格式，其中TIFF格式不支持多页
+     * supports BMP, JPEG, PNG, TIFF, and AVS formats; TIFF does not support multi-page
      *
      * @param format 资源的格式
      * @return this
@@ -80,10 +80,10 @@ public class CT_MultiMedia extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 资源的格式
      * <p>
-     * 支持 BMP、JPEG、PNG、TIFF及AVS等格式，其中TIFF格式不支持多页
+     * supports BMP, JPEG, PNG, TIFF, and AVS formats; TIFF does not support multi-page
      *
      * @return 资源的格式
      */
@@ -93,10 +93,10 @@ public class CT_MultiMedia extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 设置 指向 OFD包内的多媒体文件位置
+     * [required]
+     * 设置 points to within the OFD package的多媒体文件位置
      *
-     * @param mediaFile 指向 OFD包内的多媒体文件位置
+     * @param mediaFile points to within the OFD package的多媒体文件位置
      * @return this
      */
     public CT_MultiMedia setMediaFile(ST_Loc mediaFile) {
@@ -109,10 +109,10 @@ public class CT_MultiMedia extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 获取 指向 OFD包内的多媒体文件位置
+     * [required]
+     * 获取 points to within the OFD package的多媒体文件位置
      *
-     * @return 指向 OFD包内的多媒体文件位置
+     * @return points to within the OFD package的多媒体文件位置
      */
     public ST_Loc getMediaFile() {
         Element e = this.getOFDElement("MediaFile");

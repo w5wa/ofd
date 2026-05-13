@@ -16,12 +16,12 @@ import org.ofdrw.gm.support.KDF;
 import java.nio.charset.StandardCharsets;
 
 /**
- * OFD用户口令加密器
+ * OFD user password encryptor
  * <p>
- * 密钥派生规则依据：GB/T 32918.3-2016 信息安全技术 SM2椭圆曲线公钥密码算法 第3部分：密钥交换协议
- * 5.4.3 密钥派生函数
+ * key派生规则依据：GB/T 32918.3-2016 信息安全技术 SM2椭圆曲线public key密码算法 第3部分：key交换协议
+ * 5.4.3 key派生函数
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-28 18:56:12
  */
 public class UserPasswordEncryptor implements UserFEKEncryptor {
@@ -38,16 +38,16 @@ public class UserPasswordEncryptor implements UserFEKEncryptor {
     private String userType;
 
     /**
-     * 有密钥派生函数 KDF派生的加密密钥
+     * 有key派生函数 KDF派生的加密key
      * <p>
-     * 该密钥用于对 文件加密对称密钥进行加密
+     * 该key用于对 文件加密对称key进行加密
      * <p>
      * KDF函数遵循 《GB/T 32918.3-2016》
      */
     private byte[] fKek;
 
     /**
-     * OFD用户口令加密器
+     * OFD user password encryptor
      *
      * @param username 用户名称
      * @param userType 用户角色类型 {@link UserInfo#UserTypeOwner}  {@link UserInfo#UserTypeUser}
@@ -62,12 +62,12 @@ public class UserPasswordEncryptor implements UserFEKEncryptor {
         }
         this.username = username;
         this.userType = userType;
-        // 扩展口令为加密密钥
+        // 扩展口令为加密key
         this.fKek = this.extendKey(password);
     }
 
     /**
-     * OFD用户口令加密器
+     * OFD user password encryptor
      * <p>
      * 用户类型：User(用户)  {@link UserInfo#UserTypeUser}
      *
@@ -79,10 +79,10 @@ public class UserPasswordEncryptor implements UserFEKEncryptor {
     }
 
     /**
-     * 将口令通过密钥派生函数生成加密文件加密对称密钥的密钥，密钥派生函数遵循 GB/T 32918
+     * 将口令通过key派生函数生成加密文件加密对称key的key，key派生函数遵循 GB/T 32918
      *
      * @param password 用户输入的口令
-     * @return 加密文件加密对称密钥的密钥
+     * @return 加密文件加密对称key的key
      */
     private byte[] extendKey(String password) {
         if (password == null || password.isEmpty()) {
@@ -93,16 +93,16 @@ public class UserPasswordEncryptor implements UserFEKEncryptor {
     }
 
     /**
-     * 加密 文件加密密钥 并封装为
+     * encrypt file encryption key and encapsulate as
      *
-     * @param fek 文件加密密钥（File Encrypt Key ）
-     * @param iv  加密向量IV
-     * @return 用户信息（包含加密的文件加密密钥）
+     * @param fek file encryption key (File Encrypt Key)
+     * @param iv  encryption initialization vector IV
+     * @return user information (including encrypted file encryption key)
      * @throws CryptoException 加密过程运行异常
      */
     @Override
     public UserInfo encrypt(byte[] fek, byte[] iv) throws CryptoException {
-        // 加密 文件加密密钥
+        // 加密 文件加密key
         final PaddedBufferedBlockCipher blockCipher =
                 new PaddedBufferedBlockCipher(new CBCBlockCipher(new SM4Engine()), new PKCS7Padding());
         blockCipher.init(true, new ParametersWithIV(new KeyParameter(fKek), iv));
@@ -123,9 +123,9 @@ public class UserPasswordEncryptor implements UserFEKEncryptor {
     }
 
     /**
-     * 用户加密时使用的证书，仅在使用证书加密的加密器中需要实现
+     * certificate used for user encryption; only required in certificate-based encryptors
      *
-     * @return 证书文件字节内容（DER编码），在使用口令加密时可返还null
+     * @return certificate file byte content (DER encoded); may return null for password-based encryption
      */
     @Override
     public byte[] userCert() {
@@ -133,9 +133,9 @@ public class UserPasswordEncryptor implements UserFEKEncryptor {
     }
 
     /**
-     * 加密保护方案标识，见附录 A.1 {@link ProtectionCaseID}
+     * encryption protection scheme identifier, see Appendix A.1 {@link ProtectionCaseID}
      *
-     * @return 加密保护方案标识
+     * @return encryption protection scheme identifier
      */
     @Override
     public @NotNull String encryptCaseId() {

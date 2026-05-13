@@ -28,13 +28,13 @@ import java.util.Map;
 /**
  * OFD 功能测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-22 11:38:48
  */
 class OFDDocTest {
 
     /**
-     * 测试Div图层属性
+     * 测试Divlayer属性
      */
     @Test
     void vPageLayerTest() throws IOException {
@@ -63,7 +63,7 @@ class OFDDocTest {
 
             // 先添加的文字
             vPage.add(p);
-            // 后添加图片，由于图片处于背景层，不会覆盖文字
+            // 后添加image，由于image处于background layer，不会覆盖文字
             vPage.add(img);
 
 
@@ -74,7 +74,7 @@ class OFDDocTest {
 
 
     /**
-     * 在生成文档的过程中获取文档信息
+     * 在生成文档的过程中获取document information
      */
     @Test
     void genDocAndGetDocInfo() throws IOException {
@@ -90,7 +90,7 @@ class OFDDocTest {
     }
 
     /**
-     * 字体宽度溢出可用最大宽度测试
+     * fontwidth溢出可用最大width测试
      */
     @Test
     void fontSizeOverflow() throws IOException {
@@ -106,7 +106,7 @@ class OFDDocTest {
     }
 
     /**
-     * 加入印章类型注释对象
+     * 加入seal/stamp类型注释对象
      */
     @Test
     void addAnnotationStamp() throws IOException {
@@ -176,7 +176,7 @@ class OFDDocTest {
     }
 
     /**
-     * 测试加入操作系统中的字体
+     * 测试加入操作系统中的font
      */
     @Test
     void testAddSysFont() throws IOException {
@@ -197,7 +197,7 @@ class OFDDocTest {
                     .add("字体名称：微软雅黑");
             doc.add(p);
 
-            // 注意：在使用操作系统字体时，默认采用ACSII 0.5 其余1的比例计算宽度，因此可能需要手动设置宽度比例才可以达到相应的效果
+            // 注意：在使用操作系统font时，默认采用ACSII 0.5 其余1的比例计算width，因此可能需要手动设置width比例才可以达到相应的效果
             font = new Font("Times New Roman", "Times New Roman")
                     .setPrintableAsciiWidthMap(FontName.TIMES_NEW_ROMAN_PRINTABLE_ASCII_MAP);
             p = new Paragraph()
@@ -250,7 +250,7 @@ class OFDDocTest {
     }
 
     /**
-     * 测试添加图片
+     * 测试添加image
      */
     @Test
     void imgTest() throws IOException {
@@ -438,7 +438,7 @@ class OFDDocTest {
     }
 
     /**
-     * 测试设置Span字体粗细
+     * 测试设置Spanfont粗细
      */
     @Test
     void testSetSpanWeight() throws IOException {
@@ -653,7 +653,7 @@ class OFDDocTest {
     }
 
     /**
-     * 添加图片+特定位置文本
+     * 添加image+特定位置文本
      *
      * @author zwd
      */
@@ -670,7 +670,7 @@ class OFDDocTest {
             VirtualPage vPage = new VirtualPage(pageLayout);
             PageLayout style = new PageLayout(widthZb, heightZb);
             vPage.setStyle(style);
-            // 设置图片相关信息
+            // 设置image相关信息
             Path imgPath = Paths.get("src/test/resources", "img-CMYK.jpg");
             // img部分代码有修改，具体使用要注意
             Img img = new Img(imgPath);
@@ -679,7 +679,7 @@ class OFDDocTest {
             img.setPadding(0d);
             img.setWidth(210d);
             img.setHeight(156d);
-            // 添加图片
+            // 添加image
             vPage.add(img);
             // 设置文本相关信息
             Paragraph p = new Paragraph(100d, 30d).setFontSize(4d);
@@ -744,7 +744,7 @@ class OFDDocTest {
     }
 
     /**
-     * 添加字体
+     * 添加font
      */
     @Test
     public void testFont() throws IOException {
@@ -764,7 +764,7 @@ class OFDDocTest {
     }
 
     /**
-     * 测试添加外部字体，不嵌入OFD
+     * 测试add external font，不嵌入OFD
      */
     @Test
     public void testAddNoEmbedFont() throws IOException{

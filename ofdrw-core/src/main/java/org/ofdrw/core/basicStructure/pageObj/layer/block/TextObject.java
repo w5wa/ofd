@@ -6,13 +6,13 @@ import org.ofdrw.core.basicType.ST_ID;
 import org.ofdrw.core.text.text.CT_Text;
 
 /**
- * 文字对象
+ * text object
  * <p>
  * 见 11.2
  * <p>
- * 7.7 表 16
+ * 7.7 Table 16
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-29 05:13:54
  */
 public class TextObject extends CT_Text implements PageBlockType {
@@ -25,7 +25,7 @@ public class TextObject extends CT_Text implements PageBlockType {
     }
 
     /**
-     * @param id 对象ID
+     * @param id object ID
      */
     public TextObject(ST_ID id) {
         this();
@@ -33,7 +33,7 @@ public class TextObject extends CT_Text implements PageBlockType {
     }
 
     /**
-     * @param id 对象ID
+     * @param id object ID
      */
     public TextObject(long id) {
         this();
@@ -42,10 +42,10 @@ public class TextObject extends CT_Text implements PageBlockType {
 
 
     /**
-     * 【必选 属性】
-     * 设置 对象ID
+     * [required attribute]
+     * set object ID
      *
-     * @param id 对象ID
+     * @param id object ID
      * @return this
      */
     public TextObject setID(ST_ID id) {
@@ -57,10 +57,10 @@ public class TextObject extends CT_Text implements PageBlockType {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 对象ID
+     * [required attribute]
+     * get object ID
      *
-     * @return 对象ID
+     * @return object ID
      */
     public ST_ID getID() {
         return this.getObjID();

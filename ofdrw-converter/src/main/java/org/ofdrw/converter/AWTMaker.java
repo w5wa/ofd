@@ -67,7 +67,7 @@ public abstract class AWTMaker {
     private OFDReader reader;
 
     /**
-     * 每毫米像素数量(Pixels per millimeter)
+     * pixels per millimeter
      * <p>
      * 默认为： 7.874015748031496 ppm (约200 dpi）
      */
@@ -76,7 +76,7 @@ public abstract class AWTMaker {
     public final Config config = new Config();
 
     /**
-     * 是否是印章，用于渲染印章
+     * 是否是seal/stamp，用于渲染seal/stamp
      */
     protected boolean isStamp = false;
 
@@ -85,23 +85,23 @@ public abstract class AWTMaker {
 
     private final ResourceManage resourceManage;
     /**
-     * 加载后的字体缓存
+     * 加载后的font缓存
      * <p>
      * 防止重复加载文件读写和解析带来耗时
      * <p>
-     * KEY: 字族名_字体名_字体路径
+     * KEY: 字族名_font name_font路径
      */
     private final Map<String, FontWrapper<TrueTypeFont>> fontCache = new HashMap<>();
 
     /**
-     * 创建图片转换对象实例
+     * create image converter instance
      * <p>
-     * OFD内部使用毫米作为基本单位
+     * OFD uses millimeters as the basic unit internally
      * <p>
      * 如果需要更加精确的表示单位请使用 {@link #AWTMaker(org.ofdrw.reader.OFDReader, double)}
      *
-     * @param reader OFD解析器
-     * @param ppm    每毫米像素数量(Pixels per millimeter)
+     * @param reader OFD parser
+     * @param ppm    pixels per millimeter
      */
     public AWTMaker(OFDReader reader, int ppm) {
         this.reader = reader;
@@ -113,12 +113,12 @@ public abstract class AWTMaker {
     }
 
     /**
-     * 创建图片转换对象实例
+     * create image converter instance
      * <p>
-     * OFD内部使用毫米作为基本单位
+     * OFD uses millimeters as the basic unit internally
      *
-     * @param reader OFD解析器
-     * @param ppm    每毫米像素数量(Pixels per millimeter)，DPI与PPM转换可以使用{@link CommonUtil#dpiToPpm(int)}。
+     * @param reader OFD parser
+     * @param ppm    pixels per millimeter，DPI与PPM转换可以使用{@link CommonUtil#dpiToPpm(int)}。
      * @author iandjava
      */
     public AWTMaker(OFDReader reader, double ppm) {
@@ -143,7 +143,7 @@ public abstract class AWTMaker {
                 imageMaker.isStamp = true;
                 imageMaker.config.setDrawBoundary(config.drawBoundary);
                 if (imageMaker.pageSize() > 0) {
-                    logger.debug("渲染ofd格式印章");
+                    logger.debug("渲染ofd格式seal/stamp");
                     stampImage = imageMaker.makePage(0);
                 }
             } else {
@@ -181,14 +181,14 @@ public abstract class AWTMaker {
                 graphics.drawImage(stampImage, MatrixUtils.createAffineTransform(m), null);
             }
         } catch (Exception e) {
-            logger.error("印章绘制异常", e);
+            logger.error("seal/stampdrawing exception", e);
         } finally {
             graphics.dispose();
         }
     }
 
 //    /**
-//     * 印章混合模式
+//     * seal/stamp混合模式
 //     *
 //     * @return 正片叠底复合对象
 //     */
@@ -201,22 +201,22 @@ public abstract class AWTMaker {
      * 绘制页面
      *
      * @param graphics 图形操作上下文
-     * @param pageInfo 页面信息
-     * @param matrix   变换矩阵
+     * @param pageInfo page information
+     * @param matrix   transformation matrix
      */
     protected void writePage(Graphics2D graphics, PageInfo pageInfo, Matrix matrix) {
         graphics.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // 获取页面内容出现的所有图层，包含模板页（所有页面均按照定义ZOrder排列）
+        // get all layers in page content, including template pages (all pages arranged by defined ZOrder)
         final List<CT_Layer> layerList = pageInfo.getAllLayer();
         for (CT_Layer layer : layerList) {
             writeContent(graphics, layer, null, matrix);
         }
 
         final String pageId = pageInfo.getId().toString();
-        // 绘制电子印章图片
+        // 绘制电子seal/stampimage
         for (StampAnnotEntity stampAnnotEntity : reader.getStampAnnots()) {
             List<StampAnnot> stampAnnots = stampAnnotEntity.getStampAnnots();
             for (StampAnnot stampAnnot : stampAnnots) {
@@ -321,7 +321,7 @@ public abstract class AWTMaker {
     }
 
     /*
-     * 将一个绘制参数添加到列表
+     * 将一个drawing parameters添加到列表
      *
      * DrawParam只在当前层级一下时有效，所以返回一个新列表
      * */
@@ -381,7 +381,7 @@ public abstract class AWTMaker {
 
         BufferedImage image;
         try {
-            // 解析图片对象获取图片
+            // 解析image对象获取image
             image = resourceManage.getImage(imageObject);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -390,7 +390,7 @@ public abstract class AWTMaker {
             return;
         }
         Matrix m = MatrixUtils.base();
-        // 把图片还原成1*1
+        // 把image还原成1*1
         m = MatrixUtils.scale(m, Double.valueOf(1.0 / image.getWidth()).floatValue(), Double.valueOf(1.0 / image.getHeight()).floatValue());
 
         if (imageObject.getCTM() != null) {
@@ -416,10 +416,10 @@ public abstract class AWTMaker {
     }
 
     /**
-     * 获取字号 ，若无法获取则设置为默认值 0.353。
+     * get font size; if unavailable, default to 0.353.
      *
-     * @param textObject 文字对象
-     * @return 字号。
+     * @param textObject text object
+     * @return font size.
      */
     private double getTextObjectSize(TextObject textObject) {
         double fontSize = 0.353;
@@ -437,7 +437,7 @@ public abstract class AWTMaker {
     /**
      * 获取文字透明度 默认透明度为1.0
      *
-     * @param textObject 文字对象
+     * @param textObject text object
      * @return 文字透明度。
      */
     private float getTextObjectAlpha(TextObject textObject) {
@@ -467,17 +467,17 @@ public abstract class AWTMaker {
         BasicStroke basicStroke = new BasicStroke(getLineWidth(textObject, drawParams).floatValue() * 15, 0, 0);
         graphics.setStroke(basicStroke);
 
-        // 读取字体
+        // 读取font
         FontWrapper<TrueTypeFont> fontWrapper = getFont(textObject);
         TrueTypeFont typeFont = fontWrapper.getFont();
         List<Number> fontMatrix = null;
 
         if (typeFont == null) {
-            logger.info("无法加载字体ID：" + textObject.getFont());
+            logger.info("无法加载fontID：" + textObject.getFont());
             typeFont = FontLoader.getInstance().loadDefaultFont();
         }
         if (typeFont == null) {
-            logger.warn("无法加载字体ID：" + textObject.getFont() + "无法渲染 textObject:" + textObject);
+            logger.warn("无法加载fontID：" + textObject.getFont() + "无法渲染 textObject:" + textObject);
             return;
         } else {
             try {
@@ -487,7 +487,7 @@ public abstract class AWTMaker {
             }
         }
 
-        // 创建字形变换映射
+        // 创建glyph变换映射
         CGTransformMap tsfMap = new CGTransformMap(textObject);
         /*
         字符偏移量：一个TextObject 可以含有多个TextCode，
@@ -498,57 +498,57 @@ public abstract class AWTMaker {
         Double previousX = null;
         Double previousY = null;
         for (TextCode textCode : textObject.getTextCodes()) {
-            // 移除内容中包含的换行符
+            // 移除内容中contains的换行符
             String content = StringUtils.removeNewline(textCode.getContent());
             // 该TextCode 字符编码数量
             int len = content.length();
             // 当前正在处理的字符编码 在 该字符编码中的偏移量
             int offset = 0;
-            // 待绘制的字形数据序列
+            // 待绘制的glyph数据序列
             List<GeneralPath> tbDrawChars = new ArrayList<>(5);
             while (offset < len) {
                 CT_CGTransform tsfInfo = tsfMap.get(globalOffset);
-                // 不存在字形变换，使用字体cmap查找字形
+                // 不存在glyph变换，使用fontcmap查找glyph
                 if (tsfInfo == null) {
                     char c = content.charAt(offset);
                     try {
-                        // 通过字符编码获取字形
+                        // 通过字符编码获取glyph
                         GlyphData glyphData = typeFont.getUnicodeGlyph(c);
                         if (glyphData != null) {
                             tbDrawChars.add(glyphData.getPath());
                         }else{
-                            // 找不到字形
+                            // 找不到glyph
                             tbDrawChars.add(null);
                         }
                     } catch (Exception e) {
                         tbDrawChars.add(null);
-                        logger.debug(String.format("找不到字形 unicode: %c", c));
+                        logger.debug(String.format("找不到glyph unicode: %c", c));
                     }
                     globalOffset++;
                     offset++;
                 } else {
                     // 变换关系中字符的数量
                     int codeCount = tsfInfo.getCodeCount();
-                    // 变换关系汇总字形索引的个数
+                    // 变换关系汇总glyph索引的个数
                     int glyphCount = tsfInfo.getGlyphCount();
-                    // 获取字形索引序列，解决长度不足或过长的问题
+                    // 获取glyph索引序列，解决长度不足或过长的问题
                     int[] glyphIndexArr = tsfInfo.getGlyphs().expectIntArr(glyphCount);
                     /*
-                     * 本质上绘制字形时，只关心字形序列，字形序列与DeltaX或DeltaY对应，
+                     * 本质上绘制glyph时，只关心glyph序列，glyph序列与DeltaX或DeltaY对应，
                      * 与字符序列无关。
                      *
-                     * "一对一"、“多对一”、“多对多” 指的是字符和字形的映射关系，不用于绘制。
+                     * "一对一"、“多对一”、“多对多” 指的是字符和glyph的映射关系，不用于绘制。
                      * 用于处理字符偏移量。
                      */
                     for (int gid : glyphIndexArr) {
 
                         try {
-                            // 通过字形索引到字体中找到字形数据
+                            // 通过glyph索引到font中找到glyph数据
                             GeneralPath drawPath = typeFont.getPath(gid);
                             tbDrawChars.add(drawPath);
                         } catch (IOException e) {
                             tbDrawChars.add(null);
-                            logger.debug(String.format("找不到字形 gid: %s", gid));
+                            logger.debug(String.format("找不到glyph gid: %s", gid));
                         }
                     }
                     // 根据变换信息处理全局偏移量和局部偏移量
@@ -557,9 +557,9 @@ public abstract class AWTMaker {
                 }
             }
             /*
-             * 计算偏移量和字形相关属性绘制字形
+             * 计算偏移量和glyph相关属性绘制glyph
              *
-             * 特别的：待绘制字形序列 与 字形偏移量 一一对应
+             * 特别的：待绘制glyph序列 与 glyph偏移量 一一对应
              */
             List<Double> deltaX = parseDelta(textCode.getDeltaX());
             List<Double> deltaY = parseDelta(textCode.getDeltaY());
@@ -580,7 +580,7 @@ public abstract class AWTMaker {
             for (int drawOffset = 0; drawOffset < tbDrawChars.size(); drawOffset++) {
                 // 第一个字符的X和Y就是原始的X和Y
 
-                // 字形在字符偏移量中的位置
+                // glyph在字符偏移量中的位置
                 int deltaOffset = drawOffset - 1;
                 if (deltaOffset >= 0) {
                     // 非第一个字符需要添加字符偏移量
@@ -604,10 +604,10 @@ public abstract class AWTMaker {
                 }
                 GeneralPath shape = tbDrawChars.get(drawOffset);
                 if (shape == null) {
-                    // 没有字形，那么忽略绘制
+                    // 没有glyph，那么ignored绘制
                     continue;
                 }
-                // 结合变换矩阵绘制字形
+                // 结合transformation matrix绘制glyph
                 Matrix matrix = chatMatrix(textObject, x, y, fontSize, fontMatrix, baseMatrix);
                 renderChar(graphics, shape, matrix, strokeColor, fillColor, alpha);
             }
@@ -663,10 +663,10 @@ public abstract class AWTMaker {
 
 
     /**
-     * 解析字体对象获取字体
+     * 解析font object获取font
      *
-     * @param textObject 字体对象
-     * @return 字体
+     * @param textObject font object
+     * @return font
      */
     private FontWrapper<TrueTypeFont> getFont(TextObject textObject) {
         ST_RefID stRefID = textObject.getFont();
@@ -679,12 +679,12 @@ public abstract class AWTMaker {
 
         String key = String.format("%s_%s_%s", ctFont.getFamilyName(), ctFont.getFontName(), ctFont.getFontFile());
         if (fontCache.containsKey(key)) {
-            // 命中缓存，直接返还已经缓存的字体对象
+            // 命中缓存，直接返还已经缓存的font object
             return fontCache.get(key);
         }
-        // 加载字体
+        // load font
         FontWrapper<TrueTypeFont> trueTypeFont = FontLoader.getInstance().loadFontSimilar(this.reader.getResourceLocator(), ctFont);
-        // 更新缓存 即便 trueTypeFont 也设置，不存在字体时(null)重复加载问题。
+        // 更新缓存 即便 trueTypeFont 也设置，不存在font时(null)重复加载问题。
         fontCache.put(key, trueTypeFont);
         return trueTypeFont;
     }
@@ -832,7 +832,7 @@ public abstract class AWTMaker {
                     type = otype;
                 }
             }catch (Exception e){
-                logger.warn("获取颜色空间类型失败", e);
+                logger.warn("获取color space类型失败", e);
             }
 
             if (array == null && ctColor.getIndex() != null) {
@@ -869,7 +869,7 @@ public abstract class AWTMaker {
     /**
      * 设置转换质量
      *
-     * @param ppm 每毫米像素数量(Pixels per millimeter)
+     * @param ppm pixels per millimeter
      */
     public void setPPM(double ppm) {
         if (ppm <= 0) {
@@ -903,15 +903,15 @@ public abstract class AWTMaker {
 
     public static class Config {
         /*
-         * 印章透明度
+         * seal/stamp透明度
          * */
         private float stampOpacity = 0.75f;
         /*
-         * 是否清除印章背景色
+         * 是否清除seal/stamp背景色
          * */
         private boolean clearStampBackground = true;
         /*
-         * 印章背景灰度阈值，高于此值被设置为透明
+         * seal/stamp背景灰度阈值，高于此值被设置为透明
          * */
         private int stampBackgroundGray = 255;
 
@@ -956,7 +956,7 @@ public abstract class AWTMaker {
         }
 
         /**
-         * 印章背景灰度阈值，高于此值被设置为透明
+         * seal/stamp背景灰度阈值，高于此值被设置为透明
          *
          * @param stampBackgroundGray 灰度阈值
          */

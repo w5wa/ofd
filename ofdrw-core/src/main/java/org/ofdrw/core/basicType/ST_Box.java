@@ -7,12 +7,12 @@ import java.io.Serializable;
  * 左上角的坐标，后两个值依次表示该矩形的宽和高，
  * 可以是整数或者浮点数，后两个值应大于0
  * <p>
- * 示例：
+ * Example:
  * <code>10 10 50 50</code>
  * <p>
- * ————《GB/T 33190-2016》 表 2 基本数据类型
+ * — GB/T 33190-2016, Table 2: Basic Data Types
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-28 11:05:06
  */
 public class ST_Box extends STBase implements Cloneable {
@@ -32,12 +32,12 @@ public class ST_Box extends STBase implements Cloneable {
     private Double topLeftY = 0d;
 
     /**
-     * 宽度
+     * width
      */
     private Double width = 0d;
 
     /**
-     * 高度
+     * height
      */
     private Double height = 0d;
 
@@ -76,10 +76,10 @@ public class ST_Box extends STBase implements Cloneable {
 
 
     /**
-     * 获取 ST_Box 实例如果参数非法则返还null
+     * 获取 ST_Box instance如果参数非法则返还null
      *
-     * @param arrStr 数字字符串
-     * @return 实例 或 null
+     * @param arrStr numberstring
+     * @return instance or null
      */
     public static ST_Box getInstance(String arrStr) {
         if (arrStr == null || arrStr.trim().length() == 0) {

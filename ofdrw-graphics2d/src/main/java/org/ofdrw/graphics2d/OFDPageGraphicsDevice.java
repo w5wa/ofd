@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * OFD页面图形虚拟设备
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-2-23 20:09:40
  */
 public final class OFDPageGraphicsDevice extends GraphicsDevice {

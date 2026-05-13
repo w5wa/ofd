@@ -14,7 +14,7 @@ import java.util.List;
  * <p>
  * 17 扩展信息 图 83 表 6
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-20 06:09:49
  */
 public class CT_Extension extends OFDElement {
@@ -27,7 +27,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 用于生成或解释该自定义对象数据的扩展应用程序名称
      *
      * @param appName 用于生成或解释该自定义对象数据的扩展应用程序名称
@@ -42,7 +42,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 用于生成或解释该自定义对象数据的扩展应用程序名称
      *
      * @return 用于生成或解释该自定义对象数据的扩展应用程序名称
@@ -56,7 +56,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 形成此扩展信息的软件厂商标识
      *
      * @param company 形成此扩展信息的软件厂商标识
@@ -72,7 +72,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 形成此扩展信息的软件厂商标识
      *
      * @return 形成此扩展信息的软件厂商标识
@@ -82,7 +82,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 形成此扩展信息的软件版本
      *
      * @param appVersion 形成此扩展信息的软件版本
@@ -98,7 +98,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 形成此扩展信息的软件版本
      *
      * @return 形成此扩展信息的软件版本
@@ -108,7 +108,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 形成此扩展信息的日期时间
      *
      * @param date 形成此扩展信息的日期时间
@@ -124,7 +124,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 形成此扩展信息的日期时间
      *
      * @return 形成此扩展信息的日期时间
@@ -138,7 +138,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 引用扩展项针对的文档项目的标识
      *
      * @param refId 引用扩展项针对的文档项目的标识
@@ -154,7 +154,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 引用扩展项针对的文档项目的标识
      *
      * @return 引用扩展项针对的文档项目的标识
@@ -164,7 +164,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 增加 属性
      *
      * @param property 属性
@@ -179,7 +179,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 属性列表
      *
      * @return 属性列表
@@ -189,7 +189,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 扩展数据文件所在位置
      * <p>
      * 用于扩展大量信息
@@ -206,7 +206,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 扩展数据文件所在位置序列
      * <p>
      * 用于扩展大量信息
@@ -218,7 +218,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 扩展复杂属性
      * <p>
      * 使用xs:anyType，用于较复杂的扩展
@@ -235,7 +235,7 @@ public class CT_Extension extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 扩展复杂属性序列
      * <p>
      * 使用xs:anyType，用于较复杂的扩展

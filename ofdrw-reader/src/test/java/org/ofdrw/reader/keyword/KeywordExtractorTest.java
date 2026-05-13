@@ -13,9 +13,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * 关键字抽取 调用示例
+ * keyword抽取 调用示例
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-10-13 19:27:52
  */
 class KeywordExtractorTest {
@@ -32,7 +32,7 @@ class KeywordExtractorTest {
     }
 
     /**
-     * 获取关键字在文档中坐标
+     * 获取keyword在文档中坐标
      */
     @Test
     void getKeyWordPositionList() throws IOException, DocumentException {
@@ -58,7 +58,7 @@ class KeywordExtractorTest {
     }
 
     /**
-     * 获取关键字在文档中坐标
+     * 获取keyword在文档中坐标
      */
     @Test
     void getMultiKeyWordPositionList() throws IOException, DocumentException {

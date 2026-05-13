@@ -3,17 +3,17 @@ package org.ofdrw.core.basicStructure.doc.vpreferences;
 /**
  * 标题栏显示模式
  * <p>
- * 默认值为 FileName，当设置为 DocTitle但不存在 Title属性时，
- * 按照 FileName 处理
+ * default value: FileName; when set to DocTitle but Title attribute is absent,
+ * treat it as FileName
  * <p>
- * 7.5 表 9 视图首选项
+ * 7.5 Table 9 View Preferences
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-07 09:07:50
  */
 public enum TabDisplay {
     /**
-     * 文件名称
+     * file name
      */
     FileName,
     /**

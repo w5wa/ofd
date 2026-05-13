@@ -9,7 +9,7 @@ import org.ofdrw.core.basicType.ST_Loc;
 /**
  * 明密文对应关系
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-15 19:20:24
  */
 public class EncryptEntry extends OFDElement {
@@ -22,11 +22,11 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 创建 明密文对应关系
+     * create plaintext-ciphertext mapping
      *
-     * @param path           加密前包内文件的绝对路径
-     * @param ePath          加密后形成的包内密文的绝对路径
-     * @param decryptSeedLoc 此项密文独有的密钥数据文件路径
+     * @param path           absolute path of the file in the package before encryption
+     * @param ePath          absolute path of the ciphertext in the package after encryption
+     * @param decryptSeedLoc path to the key data file unique to this ciphertext
      */
     public EncryptEntry(ST_Loc path, ST_Loc ePath, ST_Loc decryptSeedLoc) {
         this();
@@ -36,10 +36,10 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 创建 明密文对应关系
+     * create plaintext-ciphertext mapping
      *
-     * @param path  加密前包内文件的绝对路径
-     * @param ePath 加密后形成的包内密文的绝对路径
+     * @param path  absolute path of the file in the package before encryption
+     * @param ePath absolute path of the ciphertext in the package after encryption
      */
     public EncryptEntry(ST_Loc path, ST_Loc ePath) {
         this();
@@ -48,11 +48,11 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 创建 明密文对应关系
+     * create plaintext-ciphertext mapping
      *
-     * @param path           加密前包内文件的绝对路径
-     * @param ePath          加密后形成的包内密文的绝对路径
-     * @param decryptSeedLoc 此项密文独有的密钥数据文件路径
+     * @param path           absolute path of the file in the package before encryption
+     * @param ePath          absolute path of the ciphertext in the package after encryption
+     * @param decryptSeedLoc path to the key data file unique to this ciphertext
      */
     public EncryptEntry(String path, String ePath, String decryptSeedLoc) {
         this();
@@ -62,10 +62,10 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 创建 明密文对应关系
+     * create plaintext-ciphertext mapping
      *
-     * @param path  加密前包内文件的绝对路径
-     * @param ePath 加密后形成的包内密文的绝对路径
+     * @param path  absolute path of the file in the package before encryption
+     * @param ePath absolute path of the ciphertext in the package after encryption
      */
     public EncryptEntry(String path, String ePath) {
         this();
@@ -75,27 +75,27 @@ public class EncryptEntry extends OFDElement {
 
 
     /**
-     * 【必选 属性】
-     * 设置 加密前包内文件的绝对路径
+     * [required attribute]
+     * 设置 absolute path of file before encryption
      *
-     * @param path 加密前包内文件的绝对路径
+     * @param path absolute path of file before encryption
      * @return this
      */
     public EncryptEntry setPathA(@NotNull String path) {
         if (path == null || path.isEmpty()) {
-            throw new IllegalArgumentException("加密前包内文件的绝对路径(path)为空");
+            throw new IllegalArgumentException("absolute path of file before encryption(path)为空");
         }
         this.addAttribute("Path", path);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 设置 加密前包内文件的绝对路径
+     * [required attribute]
+     * 设置 absolute path of file before encryption
      * <p>
      * 区别于{@link #getPath()} 重名名为 PathA
      *
-     * @param path 加密前包内文件的绝对路径
+     * @param path absolute path of file before encryption
      * @return this
      */
     public EncryptEntry setPathA(@NotNull ST_Loc path) {
@@ -103,35 +103,35 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 加密前包内文件的绝对路径
+     * [required attribute]
+     * 获取 absolute path of file before encryption
      *
-     * @return 加密前包内文件的绝对路径
+     * @return absolute path of file before encryption
      */
     public ST_Loc getPathA() {
         return ST_Loc.getInstance(this.attributeValue("Path"));
     }
 
     /**
-     * 【必选 属性】
-     * 设置 加密后形成的包内密文的绝对路径
+     * [required attribute]
+     * 设置 absolute path of ciphertext after encryption
      *
-     * @param ePath 加密后形成的包内密文的绝对路径
+     * @param ePath absolute path of the ciphertext in the package after encryption
      * @return this
      */
     public EncryptEntry setEPath(@NotNull String ePath) {
         if (ePath == null || ePath.isEmpty()) {
-            throw new IllegalArgumentException("加密后形成的包内密文的绝对路径(ePath)为空");
+            throw new IllegalArgumentException("absolute path of ciphertext after encryption(ePath)为空");
         }
         this.addAttribute("EPath", ePath);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 设置 加密后形成的包内密文的绝对路径
+     * [required attribute]
+     * 设置 absolute path of ciphertext after encryption
      *
-     * @param ePath 加密后形成的包内密文的绝对路径
+     * @param ePath absolute path of the ciphertext in the package after encryption
      * @return this
      */
     public EncryptEntry setEPath(@NotNull ST_Loc ePath) {
@@ -139,10 +139,10 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 加密后形成的包内密文的绝对路径
+     * [required attribute]
+     * 获取 absolute path of ciphertext after encryption
      *
-     * @return 加密后形成的包内密文的绝对路径
+     * @return absolute path of ciphertext after encryption
      */
     public ST_Loc getEPath() {
         return ST_Loc.getInstance(this.attributeValue("EPath"));
@@ -150,12 +150,12 @@ public class EncryptEntry extends OFDElement {
 
 
     /**
-     * 【可选 属性】
-     * 设置 此项密文独有的密钥数据文件路径
+     * [optional attribute]
+     * 设置 path to the key data file unique to this ciphertext
      * <p>
-     * 该属性不出现时，使用所属加密操作信息中定义的通用密钥数据
+     * when this attribute is absent, the common key data defined in the encryption operation is used
      *
-     * @param decryptSeedLoc 此项密文独有的密钥数据文件路径，null时表示删除
+     * @param decryptSeedLoc path to the key data file unique to this ciphertext，null时表示删除
      * @return this
      */
     public EncryptEntry setDecryptSeedLoc(String decryptSeedLoc) {
@@ -168,12 +168,12 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 此项密文独有的密钥数据文件路径
+     * [optional attribute]
+     * 设置 path to the key data file unique to this ciphertext
      * <p>
-     * 该属性不出现时，使用所属加密操作信息中定义的通用密钥数据
+     * when this attribute is absent, the common key data defined in the encryption operation is used
      *
-     * @param decryptSeedLoc 此项密文独有的密钥数据文件路径，null时表示删除
+     * @param decryptSeedLoc path to the key data file unique to this ciphertext，null时表示删除
      * @return this
      */
     public EncryptEntry setDecryptSeedLoc(ST_Loc decryptSeedLoc) {
@@ -181,12 +181,12 @@ public class EncryptEntry extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 此项密文独有的密钥数据文件路径
+     * [optional attribute]
+     * 获取 path to the key data file unique to this ciphertext
      * <p>
-     * 该属性不出现时，使用所属加密操作信息中定义的通用密钥数据
+     * when this attribute is absent, the common key data defined in the encryption operation is used
      *
-     * @return 此项密文独有的密钥数据文件路径，null请使用 加密操作信息中定义的通用密钥数据
+     * @return path to the key data file unique to this ciphertext，null请使用 加密操作信息中定义的通用key数据
      */
     @Nullable
     public ST_Loc getDecryptSeedLoc() {

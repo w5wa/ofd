@@ -128,7 +128,7 @@ class PDFConverterTest {
 
 
     /**
-     * 向PDF添加附件
+     * 向PDFadd attachment
      */
     @Test
     void makeAttachPDF() throws Exception {
@@ -148,7 +148,7 @@ class PDFConverterTest {
             for (Path attFile : arr) {
                 PDComplexFileSpecification fs = new PDComplexFileSpecification();
                 String fileName = attFile.getFileName().toString();
-                // 文件名传
+                // filename传
                 fs.setFile(fileName);
                 // 文件流，该流将由PDEmbeddedFile内部关闭
                 PDEmbeddedFile ef = new PDEmbeddedFile(pdfDoc, Files.newInputStream(attFile));

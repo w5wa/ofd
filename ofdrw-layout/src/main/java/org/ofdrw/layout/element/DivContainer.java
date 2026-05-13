@@ -7,7 +7,7 @@ package org.ofdrw.layout.element;
  * <p>
  * Div只标识为逻辑元素
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-14 19:15:24
  */
 public interface DivContainer {

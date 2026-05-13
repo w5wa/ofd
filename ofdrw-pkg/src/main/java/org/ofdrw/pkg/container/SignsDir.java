@@ -11,7 +11,7 @@ import java.nio.file.Path;
 /**
  * 签名容器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-01-18 03:34:34
  */
 public class SignsDir extends VirtualContainer {
@@ -24,7 +24,7 @@ public class SignsDir extends VirtualContainer {
     private int maxSignIndex = 0;
 
     /**
-     * 签名列表文件名称
+     * 签名列表file name
      */
     public static final String SignaturesFileName = "Signatures.xml";
 
@@ -61,7 +61,7 @@ public class SignsDir extends VirtualContainer {
      *
      * @return 签名列表文件
      * @throws FileNotFoundException 容器中不存在该文件
-     * @throws DocumentException     XML文件解析异常，可能是格式不正确
+     * @throws DocumentException     XMLfile parsing exception，可能是格式不正确
      */
     public Signatures getSignatures() throws FileNotFoundException, DocumentException {
         Element element = this.getObj(SignaturesFileName);
@@ -88,7 +88,7 @@ public class SignsDir extends VirtualContainer {
         // 新的签名容器一定是最大Index，并且此时目录中并不存在该目录
         String name = SignDir.SignContainerPrefix + maxSignIndex;
         maxSignIndex++;
-        // 创建容器
+        // create container
         return this.obtainContainer(name, SignDir::new);
     }
 

@@ -17,7 +17,7 @@ public class DeltaTool {
      * 获取Delta数据
      *
      * @param delta         OFD数组对象
-     * @param contentLength 文本长度
+     * @param contentLength text length
      * @return 一组坐标偏移值
      */
     public static List<Float> getDelta(ST_Array delta, int contentLength) {

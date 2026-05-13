@@ -9,17 +9,17 @@ import org.ofdrw.core.action.actionType.actionMovie.Movie;
  * <p>
  * 表 51 动作类型属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 08:31:15
  */
 public interface OFDAction extends Element {
 
 
     /**
-     * 获取动作类型实例
+     * 获取动作类型instance
      *
      * @param element 元素
-     * @return 实例
+     * @return instance
      * @throws IllegalArgumentException 未知的动作类型
      */
     static OFDAction getInstance(Element element) {

@@ -14,21 +14,21 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>
  * 绘制器的选择由 {@link org.ofdrw.layout.engine.VPageParseEngine} 实现，您需要向 VPageParseEngine 通过名称注册绘制器。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2024-5-27 19:22:48
  */
 @FunctionalInterface
 public interface Processor {
 
     /**
-     * 处理OFDRW元素转换为OFD元素
+     * 处理OFDRW元素转换为OFD element
      *
      * @param pageLoc    页面路径
-     * @param layer      图片将要放置的图层
-     * @param resManager 资源管理器
+     * @param layer      the layer where the image will be placed
+     * @param resManager resource manager
      * @param e          OFDRW元素
-     * @param maxUnitID  最大元素ID提供器
-     * @throws RenderException 渲染发生错误
+     * @param maxUnitID  maximum element ID provider
+     * @throws RenderException rendering error occurred
      */
     public void render(ST_Loc pageLoc, CT_PageBlock layer, ResManager resManager, Div e, AtomicInteger maxUnitID) throws RenderException;
 }

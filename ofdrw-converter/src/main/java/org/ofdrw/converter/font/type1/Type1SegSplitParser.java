@@ -9,16 +9,16 @@ import java.io.InputStream;
 import java.util.Arrays;
 
 /**
- * 将Type1 字体分段
+ * 将Type1 font分segment
  * <p>
  * https://adobe-type-tools.github.io/font-tech-notes/pdfs/T1_SPEC.pdf
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-10-24 16:44:53
  */
 public class Type1SegSplitParser {
     /**
-     * ASCII 段 结束标志
+     * ASCII segment 结束标志
      * <p>
      * eexec\n
      */
@@ -27,10 +27,10 @@ public class Type1SegSplitParser {
     };
 
     /**
-     * 尝试解析Type1 字体
+     * 尝试解析Type1 font
      *
-     * @param raw 字体
-     * @return Type1 字体或 null
+     * @param raw font
+     * @return Type1 font或 null
      * @throws IOException IOE
      */
     public static Type1Font parse(byte[] raw) throws IOException {
@@ -42,10 +42,10 @@ public class Type1SegSplitParser {
     }
 
     /**
-     * 尝试解析Type1 字体
+     * 尝试解析Type1 font
      *
-     * @param in 字体流
-     * @return Type1 字体或 null
+     * @param in font流
+     * @return Type1 font或 null
      * @throws IOException IOE
      */
     public static Type1Font parse(InputStream in) throws IOException {
@@ -54,10 +54,10 @@ public class Type1SegSplitParser {
     }
 
     /**
-     * 判断是否是Type1 字体
+     * 判断是否是Type1 font
      *
-     * @param raw 字体内容
-     * @return true - type1 字体；false - 非 type1
+     * @param raw font内容
+     * @return true - type1 font；false - 非 type1
      */
     public static boolean isType1(byte[] raw) {
         if (raw == null || raw.length <= 2) {
@@ -73,11 +73,11 @@ public class Type1SegSplitParser {
     }
 
     /**
-     * Tyep1 字体 格式分段
+     * Tyep1 font 格式分segment
      *
-     * @param raw 字体字节
-     * @return 分段或null
-     * @throws IOException IO异常
+     * @param raw font字节
+     * @return 分segment或null
+     * @throws IOException IO exception
      */
     public static byte[][] split(byte[] raw) throws IOException {
         if (raw == null || raw.length <= 2) {

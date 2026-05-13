@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 自定义属性字段序列
+ * 自定义属性字segment序列
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 16:34:20
  */
 public class ExtensionDatas extends ASN1Object
@@ -41,7 +41,7 @@ public class ExtensionDatas extends ASN1Object
         dataSequence = new ArrayList<>(seq.size());
         for (int i = 0; i != seq.size(); i++) {
             /*
-             * 兼容非标签章，忽略自定义结构部分
+             * 兼容非标seal/signature，ignored自定义结构部分
              * */
             try {
                 add(ExtData.getInstance(seq.getObjectAt(i)));

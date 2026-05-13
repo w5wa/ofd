@@ -11,11 +11,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 包含了一组矢量图像
+ * contains了一组矢量图像
  * <p>
- * 7.9 图 20 表 18
+ * 7.9 Figure 20 Table 18
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-13 07:36:05
  */
 public class CompositeGraphicUnits extends OFDElement implements OFDResource {
@@ -29,10 +29,10 @@ public class CompositeGraphicUnits extends OFDElement implements OFDResource {
 
 
     /**
-     * 【必选】
+     * [required]
      * 增加 矢量图像资源描述
      * <p>
-     * 必须要有ID属性
+     * must have ID attribute
      *
      * @param compositeGraphicUnit 矢量图像资源描述
      * @return this
@@ -50,10 +50,10 @@ public class CompositeGraphicUnits extends OFDElement implements OFDResource {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 矢量图像资源描述序列
      * <p>
-     * 必须要有ID属性
+     * must have ID attribute
      *
      * @return 矢量图像资源描述
      */

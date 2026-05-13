@@ -6,7 +6,7 @@ import org.ofdrw.TestTool;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-19 13:48:56
  */
 class ParametersTest {

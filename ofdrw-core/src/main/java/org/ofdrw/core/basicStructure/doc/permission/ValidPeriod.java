@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 /**
  * 有效期
  * <p>
- * 该文档允许访问的期限，其具体期限取决于开始日期和
- * 结束日期，其中开始日期不能晚于结束日期，并且开始日期和结束
- * 日期至少出现一个。当不设置开始日期时，代表不限定开始日期，
- * 当不设置结束日期时代表不限定结束日期；当此不设置此节点时，
- * 表示开始和结束日期均不受限
+ * the access period for this document is determined by the start date and
+ * end date; the start date cannot be later than the end date, and both start and end
+ * dates must have at least one present. When start date is absent, there is no start date restriction;
+ * when end date is absent, there is no end date restriction; when this node is absent,
+ * neither start nor end date is restricted
  * <p>
- * 7.5 图 9 文档权限声明结构
+ * 7.5 Figure 9: Document Permission Declaration Structure
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-07 05:21:06
  */
 public class ValidPeriod extends OFDElement {
@@ -36,7 +36,7 @@ public class ValidPeriod extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 有效期开始日期
      *
      * @param startDate 有效期开始日期
@@ -52,7 +52,7 @@ public class ValidPeriod extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 有效期开始日期
      *
      * @return 有效期开始日期
@@ -67,7 +67,7 @@ public class ValidPeriod extends OFDElement {
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 有效期结束日期
      *
      * @param endDate 有效期结束日期
@@ -83,7 +83,7 @@ public class ValidPeriod extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 有效期结束日期
      *
      * @return 有效期结束日期

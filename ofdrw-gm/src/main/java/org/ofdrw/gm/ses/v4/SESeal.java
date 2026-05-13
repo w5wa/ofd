@@ -8,30 +8,30 @@ import java.security.cert.CertificateEncodingException;
 import java.util.Enumeration;
 
 /**
- * 电子印章数据
+ * 电子seal/stamp数据
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 17:47:55
  */
 public class SESeal extends ASN1Object {
 
     /**
-     * 印章信息
+     * seal information
      */
     private SES_SealInfo eSealInfo;
 
     /**
-     * 制章人证书
+     * 制章人certificate
      */
     private ASN1OctetString cert;
 
     /**
-     * 签名算法标识符
+     * signature algorithm identifier
      */
     private ASN1ObjectIdentifier signAlgID;
 
     /**
-     * 签名值
+     * signature value
      */
     private ASN1BitString signedValue;
 
@@ -67,7 +67,7 @@ public class SESeal extends ASN1Object {
                 final ASN1Primitive obj = aIn.readObject();
                 return new SESeal(ASN1Sequence.getInstance(obj));
             } catch (IOException e) {
-                throw new IllegalArgumentException("电子印章数据v4 无法解析", e);
+                throw new IllegalArgumentException("电子seal/stamp数据v4 无法解析", e);
             }
         } else if (o != null) {
             return new SESeal(ASN1Sequence.getInstance(o));

@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 大纲节点
+ * outline node
  * <p>
- * 图 19 大纲节点结构
+ * Figure 19: Outline Node Structure
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 11:13:47
  */
 public class CT_OutlineElem extends OFDElement {
@@ -32,10 +32,10 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 大纲节点标题
+     * [required attribute]
+     * 设置 outline node标题
      *
-     * @param title 大纲节点标题
+     * @param title outline node标题
      * @return this
      */
     public CT_OutlineElem setTitle(String title) {
@@ -44,22 +44,22 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 大纲节点标题
+     * [required attribute]
+     * 获取 outline node标题
      *
-     * @return 大纲节点标题
+     * @return outline node标题
      */
     public String getTitle() {
         return this.attributeValue("Title");
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 该节点下所有叶节点的数目参考值
      * <p>
-     * 应该根据该节点下实际出现的子节点数为准
+     * should be based on the actual number of child nodes under this node
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param count 该节点下所有叶节点的数目参考值
      * @return this
@@ -70,12 +70,12 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 该节点下所有叶节点的数目参考值
      * <p>
-     * 应该根据该节点下实际出现的子节点数为准
+     * should be based on the actual number of child nodes under this node
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 该节点下所有叶节点的数目参考值
      */
@@ -88,12 +88,12 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 在有子节点存在时有效，如果为 true，
-     * 表示该大纲在初始状态下展开子节点；
-     * 如果为 false，则表示不展开
+     * [optional attribute]
+     * valid when child nodes exist; if true,
+     * the outline expands child nodes in its initial state;
+     * if false, child nodes are not expanded
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param expanded true - 展开； false - 不展开
      * @return this
@@ -104,12 +104,12 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 在有子节点存在时有效，如果为 true，
-     * 表示该大纲在初始状态下展开子节点；
-     * 如果为 false，则表示不展开
+     * [optional attribute]
+     * valid when child nodes exist; if true,
+     * the outline expands child nodes in its initial state;
+     * if false, child nodes are not expanded
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return true - 展开； false - 不展开
      */
@@ -122,10 +122,10 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 当此大纲节点被激活时执行的动作序列
+     * [optional]
+     * 设置 当此outline node被激活时执行的action sequence
      *
-     * @param actions 动作序列
+     * @param actions action sequence
      * @return this
      */
     public CT_OutlineElem setActions(Actions actions) {
@@ -134,10 +134,10 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 当此大纲节点被激活时执行的动作序列
+     * [optional]
+     * 获取 当此outline node被激活时执行的action sequence
      *
-     * @return 动作序列，可能为null
+     * @return action sequence，可能为null
      */
     public Actions getActions() {
         Element e = this.getOFDElement("Actions");
@@ -145,10 +145,10 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 增加 大纲子节点
      * <p>
-     * 该节点的子大纲节点。层层嵌套，形成树状结构
+     * child outline nodes of this node; nested to form a tree structure
      *
      * @param outlineElem 大纲子节点
      * @return this
@@ -159,10 +159,10 @@ public class CT_OutlineElem extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 该大纲下所有子节点
      * <p>
-     * 该节点的子大纲节点。层层嵌套，形成树状结构
+     * child outline nodes of this node; nested to form a tree structure
      *
      * @return 该大纲下所有子节点
      */

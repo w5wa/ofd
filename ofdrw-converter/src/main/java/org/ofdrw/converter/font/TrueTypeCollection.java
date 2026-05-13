@@ -70,10 +70,10 @@ public class TrueTypeCollection {
     }
 
     /**
-     * 通过字体索引获取字体
+     * 通过font索引获取font
      *
      * @param idx 索引号
-     * @return 字体
+     * @return font
      * @throws IOException IOE
      */
     public TrueTypeFont getFontAtIndex(int idx) throws IOException {
@@ -85,9 +85,9 @@ public class TrueTypeCollection {
     }
 
     /**
-     * 遍历字体集合中的所有字体
+     * 遍历font集合中的所有font
      *
-     * @param cn 字体集合
+     * @param cn font集合
      * @throws IOException IOE
      */
     public void foreach(Consumer<TrueTypeFont> cn) throws IOException {
@@ -98,7 +98,7 @@ public class TrueTypeCollection {
     }
 
     /**
-     * 字体总数
+     * font总数
      *
      * @return 总数
      */

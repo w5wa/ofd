@@ -18,7 +18,7 @@ import java.util.Map;
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
 /**
- * 图片处理工具
+ * image处理工具
  *
  * @author qaqtutu
  * @since 2021-04-10 18:31:03
@@ -33,11 +33,11 @@ public class ImageUtils {
     }
 
     /**
-     * 读取JB2格式图片
+     * 读取JB2格式image
      *
-     * @param in 图片数据流
-     * @return 图片数据
-     * @throws IOException 图片操作异常
+     * @param in image数据流
+     * @return image数据
+     * @throws IOException image操作异常
      */
     public static BufferedImage readJB2(InputStream in) throws IOException {
         int imageIndex = 0;
@@ -57,9 +57,9 @@ public class ImageUtils {
      * <p>
      * 根据mask中像素的颜色将原图中的像素抠掉
      *
-     * @param image 原始图片
-     * @param mask  蒙板图片
-     * @return 扣去背景的图片对象
+     * @param image 原始image
+     * @param mask  蒙板image
+     * @return 扣去背景的image对象
      */
     public static BufferedImage renderMask(BufferedImage image, BufferedImage mask) {
         if ((image.getWidth() != mask.getWidth() || image.getHeight() != mask.getHeight())) {
@@ -104,12 +104,12 @@ public class ImageUtils {
     }
 
     /**
-     * 创建图片
+     * 创建image
      *
-     * @param width         图形宽度
-     * @param height        图像高度
+     * @param width         图形width
+     * @param height        图像height
      * @param isTransparent 是否透明
-     * @return 图片对象
+     * @return image对象
      */
     public static BufferedImage createImage(int width, int height, boolean isTransparent) {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -126,11 +126,11 @@ public class ImageUtils {
     }
 
     /**
-     * 清除图片背景
+     * 清除image背景
      *
-     * @param in   输入图片
+     * @param in   输入image
      * @param gray 灰度阈值(0-255)，图像中大于该值的像素将会被删除。
-     * @return 清空背景的图片
+     * @return 清空背景的image
      */
     public static BufferedImage clearWhiteBackground(BufferedImage in, int gray) {
         return renderMask(in, in, (r, g, b) -> gray(r, g, b) < gray);

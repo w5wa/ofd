@@ -7,12 +7,12 @@ import org.ofdrw.core.basicStructure.ofd.docInfo.CT_DocInfo;
 import org.ofdrw.core.versions.Versions;
 
 /**
- * 文件对象入口，可以存在多个，以便在一个文档中包含多个版式文档
+ * file object entry; multiple can exist to include multiple layout documents in one file
  */
 public class DocBody extends OFDElement {
 
     /**
-     * 文档根节点文档名称
+     * 文档root node文档名称
      */
     public static final String DOC_ROOT = "DocRoot";
 
@@ -26,7 +26,7 @@ public class DocBody extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置文档元数据信息描述
      *
      * @param CTDocInfo 文档元数据信息描述
@@ -38,7 +38,7 @@ public class DocBody extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取文档元数据信息描述
      *
      * @return 文档元数据信息描述 或null
@@ -49,10 +49,10 @@ public class DocBody extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置指向文档根节点文档
+     * [optional]
+     * 设置points to文档root node文档
      *
-     * @param docRoot 指向根节点文档路径
+     * @param docRoot points toroot node文档路径
      * @return this
      */
     public DocBody setDocRoot(ST_Loc docRoot) {
@@ -61,10 +61,10 @@ public class DocBody extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取指向文档根节点文档路径
+     * [optional]
+     * 获取points to文档root node文档路径
      *
-     * @return 指向文档根节点文档路径
+     * @return points to文档root node文档路径
      */
     public ST_Loc getDocRoot() {
         String locStr = this.getOFDElementText("DocRoot");
@@ -75,8 +75,8 @@ public class DocBody extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 包含多个版本描述节点，用于定义文件因注释和其他改动产生的版本信息，见第19章
+     * [optional]
+     * 获取 contains多个版本描述节点，用于定义文件因注释和其他改动产生的版本信息，见第19章
      *
      * @param versions 版本序列
      * @return this
@@ -87,10 +87,10 @@ public class DocBody extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 包含多个版本描述序列
+     * [optional]
+     * 获取 contains多个版本描述序列
      *
-     * @return 包含多个版本描述序列
+     * @return contains多个版本描述序列
      */
     public Versions getVersions() {
         Element element = this.getOFDElement("Versions");
@@ -98,10 +98,10 @@ public class DocBody extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 指向该文档中签名和签章结构的路径 （见18章）
+     * [optional]
+     * 设置 points to该文档中签名和seal/signature结构的路径 （见18章）
      *
-     * @param signatures 指向该文档中签名和签章结构的路径
+     * @param signatures points to该文档中签名和seal/signature结构的路径
      * @return this
      */
     public DocBody setSignatures(ST_Loc signatures) {
@@ -110,10 +110,10 @@ public class DocBody extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 指向该文档中签名和签章结构的路径
+     * [optional]
+     * 获取 points to该文档中签名和seal/signature结构的路径
      *
-     * @return 指向该文档中签名和签章结构的路径
+     * @return points to该文档中签名和seal/signature结构的路径
      */
     public ST_Loc getSignatures() {
         String locStr = this.getOFDElementText("Signatures");

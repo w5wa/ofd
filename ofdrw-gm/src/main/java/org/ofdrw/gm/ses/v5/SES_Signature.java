@@ -7,9 +7,9 @@ import java.security.cert.CertificateEncodingException;
 import java.util.Enumeration;
 
 /**
- * 电子签章数据（V5）
+ * 电子seal/signature数据（V5）
  * <p>
- * 五字段：toSign + cert + signatureAlgID + signatureValue + timeStamp[0] OPTIONAL
+ * 五字segment：toSign + cert + signatureAlgID + signatureValue + timeStamp[0] OPTIONAL
  *
  * @since 2026-04-24
  * @author minghu.zhang

@@ -17,7 +17,7 @@ import java.util.List;
  * <p>
  * 20.2 附件 图 92 表 73
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-21 19:23:15
  */
 public class CT_Attachment extends OFDElement {
@@ -30,7 +30,7 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 附件标识
      *
      * @param id 附件标识
@@ -45,7 +45,7 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 附件标识
      *
      * @return 附件标识
@@ -59,37 +59,37 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 附件名称
+     * [required attribute]
+     * 设置 attachment name
      *
-     * @param attachmentName 附件名称
+     * @param attachmentName attachment name
      * @return this
      */
     public CT_Attachment setAttachmentName(String attachmentName) {
         if (attachmentName == null || attachmentName.trim().length() == 0) {
-            throw new IllegalArgumentException("附件名称（Name）为空");
+            throw new IllegalArgumentException("attachment name（Name）为空");
         }
         this.addAttribute("Name", attachmentName);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 附件名称
+     * [required attribute]
+     * 获取 attachment name
      *
-     * @return 附件名称
+     * @return attachment name
      */
     public String getAttachmentName() {
         String str = this.attributeValue("Name");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("附件名称（Name）为空");
+            throw new IllegalArgumentException("attachment name（Name）为空");
 
         }
         return str;
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 附件格式
      *
      * @param format 附件格式
@@ -105,7 +105,7 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 附件格式
      *
      * @return 附件格式
@@ -115,10 +115,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 创建时间
+     * [optional attribute]
+     * set creation time
      *
-     * @param creationDate 创建时间
+     * @param creationDate creation date
      * @return this
      * @deprecated {@link #setCreationDate(LocalDateTime)}
      */
@@ -133,10 +133,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 创建时间
+     * [optional attribute]
+     * set creation time
      *
-     * @param creationDate 创建时间
+     * @param creationDate creation date
      * @return this
      */
     public CT_Attachment setCreationDate(LocalDateTime creationDate) {
@@ -149,10 +149,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 创建时间
+     * [optional attribute]
+     * get creation time
      *
-     * @return 创建时间
+     * @return creation date
      * @deprecated {@link #getCreationDateTime()}
      */
     @Deprecated
@@ -163,7 +163,7 @@ public class CT_Attachment extends OFDElement {
         }
         str = str.trim();
         try {
-            // 增加时间转换的兼容性
+            // improve time conversion compatibility
             return parseLocalDateTime(str).toLocalDate();
         } catch (Exception ignore) {
             return LocalDate.parse(str, Const.DATE_FORMATTER);
@@ -171,10 +171,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 创建时间
+     * [optional attribute]
+     * get creation time
      *
-     * @return 创建时间
+     * @return creation date
      */
     public LocalDateTime getCreationDateTime() {
         String str = this.attributeValue("CreationDate");
@@ -183,7 +183,7 @@ public class CT_Attachment extends OFDElement {
         }
         str = str.trim();
         try {
-            // 增加时间转换的兼容性
+            // improve time conversion compatibility
             return parseLocalDateTime(str);
         } catch (Exception ignore) {
             return LocalDate.parse(str, Const.DATE_FORMATTER).atStartOfDay();
@@ -191,10 +191,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 修改时间
+     * [optional attribute]
+     * set modification time
      *
-     * @param modDate 修改时间
+     * @param modDate modification date
      * @return this
      * @deprecated {@link #setModDate(LocalDateTime)}
      */
@@ -209,10 +209,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 修改时间
+     * [optional attribute]
+     * set modification time
      *
-     * @param modDate 修改时间
+     * @param modDate modification date
      * @return this
      */
     public CT_Attachment setModDate(LocalDateTime modDate) {
@@ -225,10 +225,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 修改时间
+     * [optional attribute]
+     * get modification time
      *
-     * @return 修改时间
+     * @return modification date
      * @deprecated {@link #getModDateTime()}
      */
     @Deprecated
@@ -239,7 +239,7 @@ public class CT_Attachment extends OFDElement {
         }
         str = str.trim();
         try {
-            // 增加时间转换的兼容性
+            // improve time conversion compatibility
             return parseLocalDateTime(str).toLocalDate();
         } catch (Exception ignore) {
             return LocalDate.parse(str, Const.DATE_FORMATTER);
@@ -247,10 +247,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 修改时间
+     * [optional attribute]
+     * get modification time
      *
-     * @return 修改时间
+     * @return modification date
      */
     public LocalDateTime getModDateTime() {
         String str = this.attributeValue("ModDate");
@@ -259,7 +259,7 @@ public class CT_Attachment extends OFDElement {
         }
         str = str.trim();
         try {
-            // 增加时间转换的兼容性
+            // improve time conversion compatibility
             return parseLocalDateTime(str);
         } catch (Exception ignore) {
             return LocalDate.parse(str, Const.DATE_FORMATTER).atStartOfDay();
@@ -269,7 +269,7 @@ public class CT_Attachment extends OFDElement {
     /**
      * 统一处理日期时间转换，便于对日期时间格式进行兼容处理
      *
-     * @param dateTimeStr 日期时间字符串
+     * @param dateTimeStr 日期时间string
      * @return 日期时间
      */
     private LocalDateTime parseLocalDateTime(String dateTimeStr) {
@@ -284,14 +284,14 @@ public class CT_Attachment extends OFDElement {
             try {
                 return LocalDateTime.parse(dateTimeStr, formatter);
             } catch (Exception ignore) {
-                // 忽略解析失败，继续下一轮循环
+                // ignored解析失败，继续下一轮循环
             }
         }
         throw new IllegalArgumentException("日期时间格式不正确：" + dateTimeStr);
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 附件大小
      * <p>
      * 以KB为单位
@@ -309,7 +309,7 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 附件大小
      * <p>
      * 以KB为单位
@@ -325,10 +325,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属相】
+     * [optional attribute]
      * 设置 附件是否可见
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param visible 附件是否可见
      * @return this
@@ -343,10 +343,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属相】
+     * [optional attribute]
      * 获取 附件是否可见
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return 附件是否可见
      */
@@ -359,10 +359,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 附件用途
      * <p>
-     * 默认值为 none
+     * default value: none
      *
      * @param usage 附件用途
      * @return this
@@ -377,10 +377,10 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 附件用途
      * <p>
-     * 默认值为 none
+     * default value: none
      *
      * @return 附件用途
      */
@@ -394,7 +394,7 @@ public class CT_Attachment extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 附件内容在包内的路径
      *
      * @param fileLoc 附件内容在包内的路径
@@ -410,7 +410,7 @@ public class CT_Attachment extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 附件内容在包内的路径
      *
      * @return 附件内容在包内的路径

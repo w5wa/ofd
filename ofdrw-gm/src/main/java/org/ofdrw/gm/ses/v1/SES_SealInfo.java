@@ -5,32 +5,32 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 印章信息
+ * seal information
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 15:26:39
  */
 public class SES_SealInfo extends ASN1Object {
 
     /**
-     * 头信息
+     * header information
      */
     private SES_Header header;
 
     /**
-     * 电子印章标识符
+     * 电子seal/stamp标识符
      * <p>
-     * 电子印章数据唯一标识编码
+     * 电子seal/stamp数据唯一标识编码
      */
     private DERIA5String esID;
 
     /**
-     * 印章属性信息
+     * seal attribute information
      */
     private SES_ESPropertyInfo property;
 
     /**
-     * 电子印章图片数据
+     * 电子seal/stampimage数据
      */
     private SES_ESPictrueInfo picture;
 

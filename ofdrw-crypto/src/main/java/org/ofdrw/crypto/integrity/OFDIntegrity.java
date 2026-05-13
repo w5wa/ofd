@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * OFD完整性保护协议实现
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-17 19:41:53
  */
 public class OFDIntegrity implements Closeable {
@@ -41,9 +41,9 @@ public class OFDIntegrity implements Closeable {
     private Path dest;
 
     /**
-     * 工作过程中的工作目录
+     * 工作过程中的working directory
      * <p>
-     * 用于存放解压后的OFD文档容器内容
+     * used to store decompressed OFD document container content
      */
     private Path workDir;
 
@@ -61,7 +61,7 @@ public class OFDIntegrity implements Closeable {
         idProvider = new AtomicInteger(0);
         this.dest = dest;
         this.workDir = Files.createTempDirectory("ofd-tmp-");
-        // 解压文档，到临时的工作目录
+        // decompress document to temporary working directory
         ZipUtil.unZipFiles(ofdFile.toFile(), this.workDir.toAbsolutePath() + File.separator);
         this.ofdDir = new OFDDir(workDir.toAbsolutePath());
     }
@@ -72,7 +72,7 @@ public class OFDIntegrity implements Closeable {
      * 请在完成保护后务必调用{@link #close()} 以清除工作过程中的临时文件！
      *
      * @param signer 签名实现
-     * @throws IOException IO操作异常
+     * @throws IOException IO operation exception
      * @throws GeneralSecurityException 密码运算相关问题
      */
     public void protect(@NotNull ProtectSigner signer) throws IOException, GeneralSecurityException {
@@ -92,14 +92,14 @@ public class OFDIntegrity implements Closeable {
         Path ofdEntriesPath = this.workDir.resolve("OFDEntries.xml");
         Path signedValuePath = this.workDir.resolve("signedvalue.dat");
         // a) 确认文件包内的所有文件
-        // 文件系统中的容器Unix类型绝对路径，如："/home/root/tmp"
+        // 文件系统中的容器Unix类型absolute path，如："/home/root/tmp"
         String sysRoot = FilenameUtils.separatorsToUnix(this.workDir.toAbsolutePath().toString());
         Files.walkFileTree(this.workDir, new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                // 路径转换为Unix类型的绝对路径
+                // convert path to Unix-style absolute path
                 String abxFilePath = FilenameUtils.separatorsToUnix(file.toAbsolutePath().toString());
-                // 替换文件系统的根路径，这样就为容器系统中的绝对路径
+                // replace file system root path, making it an absolute path in the container system
                 abxFilePath = abxFilePath.replace(sysRoot, "");
                 String id = String.valueOf(idProvider.incrementAndGet());
                 // b) 组装 签名完整性保护文件
@@ -109,12 +109,12 @@ public class OFDIntegrity implements Closeable {
         });
         // 把清单写入文件
         ElemCup.dump(ofdEntries, ofdEntriesPath);
-        // c) 根据签名方案，计算完整性保护文件的杂凑值；
-        // d) 根据签名方案，使用版式文件合成者的签名私钥对杂凑值进行数字签名；
+        // c) based on the signature scheme, calculate the hash value of the integrity protection file;
+        // d) based on the signature scheme, use the layout file composer's signing private key to digitally sign the hash value;
         // 执行签名
         final byte[] signature = signer.digestThenSign(ofdEntriesPath);
-        // e) 将数字签名结果写入签名值文件
-        // 把签名值写入文件
+        // e) 将number签名结果写入signature value文件
+        // 把signature value写入文件
         Files.write(signedValuePath, signature);
         // 执行打包程序
         this.ofdDir.jar(dest);
@@ -126,7 +126,7 @@ public class OFDIntegrity implements Closeable {
      * <p>
      * 工作过程中产生的临时文件
      *
-     * @throws IOException 文件删除IO异常
+     * @throws IOException 文件删除IO exception
      */
     @Override
     public void close() throws IOException {

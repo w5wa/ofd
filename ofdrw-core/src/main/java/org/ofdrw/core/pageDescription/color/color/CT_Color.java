@@ -12,10 +12,10 @@ import java.util.List;
  * <p>
  * 本标准中定义的颜色是一个广义的概念，包括基本颜色、底纹和渐变
  * <p>
- * 基本颜色支持两种指定方式：一种是通过设定颜色个通道值指定颜色空间的某个颜色，
- * 另一种是通过索引值取得颜色空间中的一个预定义颜色。
+ * 基本颜色支持两种指定方式：一种是通过设定颜色个通道值指定color space的某个颜色，
+ * 另一种是通过索引值取得color space中的一个预定义颜色。
  * <p>
- * 由于不同颜色空间下，颜色通道的含义、数目各不相同，因此对颜色空间的类型、颜色值的
+ * 由于不同color space下，颜色通道的含义、数目各不相同，因此对color space的类型、color value的
  * 描述格式等作出了详细的说明，见表 27。BitsPerComponent（简称 BPC）由效时，
  * 颜色通道值的取值下限是 0，上限由 BitsPerComponent 决定，取值区间 [0, 2^BPC - 1]
  * 内的整数，采用 10 进制或 16 进制的形式表示，采用 16 进制表示时，应以“#”加以标识。
@@ -23,7 +23,7 @@ import java.util.List;
  * <p>
  * 8.3.2 基本颜色 图 25 表 26
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-11 09:01:56
  */
 public class CT_Color extends OFDElement {
@@ -50,9 +50,9 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * RGB颜色值
+     * RGBcolor value
      * <p>
-     * 其中颜色空间（CT_ColorSpace）的通道使用位数（BitsPerComponent）为 8
+     * 其中color space（CT_ColorSpace）的通道使用位数（BitsPerComponent）为 8
      * <p>
      * 采用10进制表示方式
      *
@@ -71,23 +71,23 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 颜色值
+     * [optional attribute]
+     * 设置 color value
      * <p>
-     * 指定了当前颜色空间下各通道的取值。Value 的取值应
+     * 指定了当前color space下各通道的取值。Value 的取值应
      * 符合"通道 1 通道 2 通道 3 ..."格式。此属性不出现时，
-     * 应采用 Index 属性从颜色空间的调色板中的取值。二者都不
+     * 应采用 Index 属性从color space的调色板中的取值。二者都不
      * 出现时，改颜色各通道的值全部为 0
      * <p>
-     * 颜色表示：
+     * color representation:
      * <p>
-     * Gray - 通过一个通道来表明灰度值；例如 "#FF 255"
+     * Gray - one channel for grayscale value; e.g. "#FF 255"
      * <p>
-     * RGB - 包含3个通道，一次是红、绿、蓝；例如 "#11 #22 #33"、"17 34 51"
+     * RGB - 3 channels: red, green, blue; e.g. "#11 #22 #33", "17 34 51"
      * <p>
-     * CMYK - 包含4个通道，依次是青、黄、品红、黑；例如 "#11 #22 #33 # 44"、"17 34 51 68"
+     * CMYK - 4 channels: cyan, yellow, magenta, black; e.g. "#11 #22 #33 #44", "17 34 51 68"
      *
-     * @param value 颜色值
+     * @param value color value
      * @return this
      */
     public CT_Color setValue(ST_Array value) {
@@ -100,34 +100,34 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 颜色值
+     * [optional attribute]
+     * 获取 color value
      * <p>
-     * 指定了当前颜色空间下各通道的取值。Value 的取值应
+     * 指定了当前color space下各通道的取值。Value 的取值应
      * 符合"通道 1 通道 2 通道 3 ..."格式。此属性不出现时，
-     * 应采用 Index 属性从颜色空间的调色板中的取值。二者都不
+     * 应采用 Index 属性从color space的调色板中的取值。二者都不
      * 出现时，改颜色各通道的值全部为 0
      * <p>
-     * 颜色表示：
+     * color representation:
      * <p>
-     * Gray - 通过一个通道来表明灰度值；例如 "#FF 255"
+     * Gray - one channel for grayscale value; e.g. "#FF 255"
      * <p>
-     * RGB - 包含3个通道，一次是红、绿、蓝；例如 "#11 #22 #33"、"17 34 51"
+     * RGB - 3 channels: red, green, blue; e.g. "#11 #22 #33", "17 34 51"
      * <p>
-     * CMYK - 包含4个通道，依次是青、黄、品红、黑；例如 "#11 #22 #33 # 44"、"17 34 51 68"
+     * CMYK - 4 channels: cyan, yellow, magenta, black; e.g. "#11 #22 #33 #44", "17 34 51 68"
      *
-     * @return 颜色值
+     * @return color value
      */
     public ST_Array getValue() {
         return ST_Array.getInstance(this.attributeValue("Value"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 调色板中颜色的编号，非负整数
      * <p>
-     * 将从当前颜色空间的调色板中取出相应索引的预定义颜色用来描绘。
-     * 索引从 0 开始
+     * 将从当前color space的调色板中取出相应索引的预定义颜色用来描绘。
+     * 索引starting from 0
      *
      * @param index 调色板中颜色的编号
      * @return this
@@ -146,11 +146,11 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 调色板中颜色的编号，非负整数
      * <p>
-     * 将从当前颜色空间的调色板中取出相应索引的预定义颜色用来描绘。
-     * 索引从 0 开始
+     * 将从当前color space的调色板中取出相应索引的预定义颜色用来描绘。
+     * 索引starting from 0
      *
      * @return 调色板中颜色的编号，null表示不存在
      */
@@ -167,12 +167,12 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 引用资源文件中颜色空间的标识
+     * [optional attribute]
+     * 设置 引用resource file中color space的标识
      * <p>
-     * 默认值为文档设定的颜色空间
+     * 默认值为文档设定的color space
      *
-     * @param colorSpace 颜色空间的标识
+     * @param colorSpace color space的标识
      * @return this
      */
     public CT_Color setColorSpace(ST_RefID colorSpace) {
@@ -185,19 +185,19 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 引用资源文件中颜色空间的标识
+     * [optional attribute]
+     * 获取 引用resource file中color space的标识
      * <p>
-     * 默认值为文档设定的颜色空间
+     * 默认值为文档设定的color space
      *
-     * @return 颜色空间的标识，为null是请从文档中获取设定的颜色空间，参照表 6 DefaultCS
+     * @return color space的标识，为null是请从文档中获取设定的color space，参照表 6 DefaultCS
      */
     public ST_RefID getColorSpace() {
         return ST_RefID.getInstance(this.attributeValue("ColorSpace"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 颜色透明度
      * <p>
      * 范围在 0~255 之间取值。
@@ -222,7 +222,7 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 颜色透明度
      * <p>
      * 范围在 0~255 之间取值。
@@ -244,7 +244,7 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 颜色
      *
      * @param color 颜色族
@@ -260,7 +260,7 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 颜色
      *
      * @return 颜色族, null表示不存在
@@ -274,7 +274,7 @@ public class CT_Color extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 指定类型的颜色
      *
      * @param <T> 颜色类型

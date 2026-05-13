@@ -6,51 +6,51 @@ import java.util.Enumeration;
 
 
 /**
- * 印章属性信息
+ * seal attribute information
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 15:03:38
  */
 public class SES_ESPropertyInfo extends ASN1Object {
     /**
-     * 单位印章类型
+     * 单位seal/stamp类型
      */
     public static final ASN1Integer OrgType = new ASN1Integer(1);
     /**
-     * 个人印章类型
+     * 个人seal/stamp类型
      */
     public static final ASN1Integer PersonType = new ASN1Integer(1);
 
     /**
-     * 印章类型
+     * seal/stamp类型
      * <p>
-     * 1 - 单位印章
-     * 2 - 个人印章
+     * 1 - 单位seal/stamp
+     * 2 - 个人seal/stamp
      */
     private ASN1Integer type;
 
     /**
-     * 印章名称
+     * seal/stamp名称
      */
     private DERUTF8String name;
 
     /**
-     * 签章人证书列表
+     * seal/signature人certificate列表
      */
     private ASN1Sequence certList;
 
     /**
-     * 印章制做日期
+     * seal/stamp制做日期
      */
     private ASN1UTCTime createDate;
 
     /**
-     * 印章有效起始日期
+     * seal/stamp有效起始日期
      */
     private ASN1UTCTime validStart;
 
     /**
-     * 印章有效终止日期
+     * seal/stamp有效终止日期
      */
     private ASN1UTCTime validEnd;
 
@@ -65,7 +65,7 @@ public class SES_ESPropertyInfo extends ASN1Object {
         certList = ASN1Sequence.getInstance(e.nextElement());
 
         /*
-        * 兼容非标签章
+        * 兼容非标seal/signature
         * */
         createDate = getTimeInstance(e.nextElement());
         validStart = getTimeInstance(e.nextElement());

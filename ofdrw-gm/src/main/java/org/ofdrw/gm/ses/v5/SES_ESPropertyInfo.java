@@ -5,7 +5,7 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 印章属性
+ * seal/stamp属性
  *
  * @since 2026-04-24
  * @author minghu.zhang

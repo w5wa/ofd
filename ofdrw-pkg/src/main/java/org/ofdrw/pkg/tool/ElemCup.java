@@ -24,13 +24,13 @@ import java.nio.file.Path;
  * <p>
  * 序列化把杯子中的水倒出
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-4-2 20:20:57
  */
 public class ElemCup {
 
     /**
-     * 命名空间修改器
+     * namespace修改器
      */
     private static final OFDNameSpaceModifier SpaceModifier = new OFDNameSpaceModifier();
 
@@ -48,11 +48,11 @@ public class ElemCup {
     public static boolean ENABLE_DEBUG_PRINT = false;
 
     /**
-     * 从文件加载反序列化元素对象
+     * 从文件加载反序列化element object
      *
-     * @param file 文件路径对象
-     * @return 反序列化的元素对象
-     * @throws DocumentException 文件解析异常
+     * @param file file path object
+     * @return 反序列化的element object
+     * @throws DocumentException file parsing exception
      */
     public static Element inject(Path file) throws DocumentException {
         SAXReader reader = SAXReaderFactory.create();
@@ -65,11 +65,11 @@ public class ElemCup {
     }
 
     /**
-     * 序列化文档对象
+     * 序列化document object
      *
-     * @param e  文档对象
+     * @param e  document object
      * @param to 目标目录
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     public static void dump(Element e, Path to) throws IOException {
         if (e == null) {
@@ -87,7 +87,7 @@ public class ElemCup {
 
         Document doc = DocumentHelper.createDocument();
         if (e.getDocument() != null) {
-            // 如果元素所属文档不为空，说明是从文件中加载得到，此时需要Clone这个对象以放入新的Document中
+            // if the element's parent document is not null, it was loaded from a file; clone it to insert into a new Document
             e = (Element) e.clone();
         }
         doc.add(e);
@@ -104,13 +104,13 @@ public class ElemCup {
     }
 
     /**
-     * 序列化元素并升级命名空间
+     * 序列化元素并升级namespace
      * <p>
-     * 命名空间为 {@link org.ofdrw.core.Const#OFD_NAMESPACE}
+     * namespace为 {@link org.ofdrw.core.Const#OFD_NAMESPACE}
      *
      * @param e  元素
      * @param to 存储位置
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     public static void dumpUpNS(Element e, Path to) throws IOException {
         if (e == null) {
@@ -128,7 +128,7 @@ public class ElemCup {
 
         Document doc = DocumentHelper.createDocument();
         if (e.getDocument() != null) {
-            // 如果元素所属文档不为空，说明是从文件中加载得到，此时需要Clone这个对象以放入新的Document中
+            // if the element's parent document is not null, it was loaded from a file; clone it to insert into a new Document
             e = (Element) e.clone();
         }
         doc.add(e);
@@ -149,13 +149,13 @@ public class ElemCup {
      * 序列化DOM元素为字节序列
      *
      * @param e 元素
-     * @return XML UTF-8编码后的字节数字
-     * @throws IOException IO异常
+     * @return XML UTF-8编码后的字节number
+     * @throws IOException IO exception
      */
     public static byte[] dump(Element e) throws IOException {
         Document doc = DocumentHelper.createDocument();
         if (e.getDocument() != null) {
-            // 如果元素所属文档不为空，说明是从文件中加载得到，此时需要Clone这个对象以放入新的Document中
+            // if the element's parent document is not null, it was loaded from a file; clone it to insert into a new Document
             e = (Element) e.clone();
         }
         doc.add(e);

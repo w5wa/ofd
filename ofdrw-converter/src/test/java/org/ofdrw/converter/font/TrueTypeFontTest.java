@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-09-29 20:44:24
  */
 class TrueTypeFontTest {

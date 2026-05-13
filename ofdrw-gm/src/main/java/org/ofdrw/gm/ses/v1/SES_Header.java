@@ -5,38 +5,38 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 头信息
+ * header information
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 15:13:29
  */
 public class SES_Header extends ASN1Object {
 
     /**
-     * 电子印章数据结构版本号，V4
+     * 电子seal/stamp数据结构版本号，V4
      */
     public static final ASN1Integer V4 = new ASN1Integer(4);
 
 
     /**
-     * 电子印章数据标识符
+     * 电子seal/stamp数据标识符
      * 固定值“ES”
      */
     public static final DERIA5String ID = new DERIA5String("ES");
     /**
-     * 电子印章数据标识符
+     * 电子seal/stamp数据标识符
      * <p>
      * 固定值“ES”
      */
     private DERIA5String id;
 
     /**
-     * 电子印章数据版本号标识
+     * 电子seal/stamp数据版本号标识
      */
     private ASN1Integer version;
 
     /**
-     * 电子印章厂商ID
+     * 电子seal/stamp厂商ID
      * <p>
      * 在互联互通时，用于识别不同的软件厂商实现
      */

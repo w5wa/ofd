@@ -9,7 +9,7 @@ import org.bouncycastle.asn1.ASN1ObjectIdentifier;
  * <p>
  * 表 1 对象标识符
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-02 19:26:18
  */
 public final class OIDs {
@@ -27,17 +27,17 @@ public final class OIDs {
      */
     public static final ASN1ObjectIdentifier data = gmt35275_sm2.branch("1");
     /**
-     * 签名数据类型
+     * signature data type
      */
     public static final ASN1ObjectIdentifier signedData = gmt35275_sm2.branch("2");
 
     /**
-     * 数字信封类型
+     * number信封类型
      */
     public static final ASN1ObjectIdentifier envelopedData = gmt35275_sm2.branch("3");
 
     /**
-     * 签名及数字信封类型
+     * 签名及number信封类型
      */
     public static final ASN1ObjectIdentifier signedAndEnvelopedData = gmt35275_sm2.branch("4");
 
@@ -47,7 +47,7 @@ public final class OIDs {
     public static final ASN1ObjectIdentifier encryptedData = gmt35275_sm2.branch("5");
 
     /**
-     * 密钥协商类型
+     * key协商类型
      */
     public static final ASN1ObjectIdentifier keyAgreementInfo = gmt35275_sm2.branch("6");
 
@@ -61,19 +61,19 @@ public final class OIDs {
     public static final ASN1ObjectIdentifier sm4 = new ASN1ObjectIdentifier("1.2.156.10197.1.100");
 
     /**
-     * SM2椭圆曲线公钥密码算法
+     * SM2椭圆曲线public key密码算法
      */
     public static final ASN1ObjectIdentifier sm2 = new ASN1ObjectIdentifier("1.2.156.10197.1.301");
     /**
-     * SM2-1 数字签名算法
+     * SM2-1 number签名算法
      */
     public static final ASN1ObjectIdentifier sm2Sign = sm2.branch("1");
     /**
-     * SM2-2 密钥交换协议
+     * SM2-2 key交换协议
      */
     public static final ASN1ObjectIdentifier sm2KeyExchange = sm2.branch("2");
     /**
-     * SM2-3 公钥加密算法
+     * SM2-3 public key加密算法
      */
     public static final ASN1ObjectIdentifier sm2Encrypt = sm2.branch("3");
 
@@ -84,12 +84,12 @@ public final class OIDs {
     public static final ASN1ObjectIdentifier sm3 = new ASN1ObjectIdentifier("1.2.156.10197.1.401");
 
     /**
-     * SM3 密码杂凑算法，无密钥使用
+     * SM3 密码杂凑算法，无key使用
      */
     public static final ASN1ObjectIdentifier sm3_1 = sm3.branch("1");
 
     /**
-     * SM3 密码杂凑算法，有密钥使用
+     * SM3 密码杂凑算法，有key使用
      */
     public static final ASN1ObjectIdentifier sm3_2 = sm3.branch("1");
 

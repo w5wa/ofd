@@ -23,7 +23,7 @@ class PDFExporterPDFBoxTest {
     }
 
     /**
-     * 忽略无法解析图片
+     * ignored无法解析image
      */
     @Test
     void testErrImgResource() throws IOException {
@@ -36,7 +36,7 @@ class PDFExporterPDFBoxTest {
     }
 
     /**
-     * 图片覆盖整个页面
+     * image覆盖整个页面
      */
     @Test
     void testImageOverridePage() throws IOException {
@@ -88,7 +88,7 @@ class PDFExporterPDFBoxTest {
     }
 
     /**
-     * 优化线宽和文字的比例(印章处)
+     * 优化线宽和文字的比例(seal/stamp处)
      */
     @Test
     void testScaleOfLineWidthAndTextPoint() throws IOException {
@@ -101,7 +101,7 @@ class PDFExporterPDFBoxTest {
     }
 
     /**
-     * 优化字体加载机制，嵌入式字体无法显示，字体加载失败等
+     * 优化font加载机制，嵌入式font无法显示，font加载失败等
      */
     @Test
     void testFontLoad() throws IOException {

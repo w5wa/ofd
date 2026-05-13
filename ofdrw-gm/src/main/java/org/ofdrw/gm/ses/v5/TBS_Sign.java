@@ -5,7 +5,7 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 签章信息（V5）
+ * seal/signature信息（V5）
  * <p>
  * extDatas 为 [0] 显式标签 OPTIONAL
  *

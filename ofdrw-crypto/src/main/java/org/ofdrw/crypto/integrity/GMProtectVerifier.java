@@ -10,16 +10,16 @@ import java.nio.file.Path;
 import java.security.GeneralSecurityException;
 
 /**
- * 基于国密算法SM2 和 SM3算法的完整性保护签名值验证
+ * 基于国密算法SM2 和 SM3算法的完整性保护signature value验证
  * <p>
- * 待签名值应符合 《GB/T 35275》标准
+ * 待signature value应符合 《GB/T 35275》标准
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-24 20:12:27
  */
 public class GMProtectVerifier implements ProtectVerifier {
     /**
-     * 创建 国密算法SM2 和 SM3算法的完整性保护签名值验证者
+     * 创建 国密算法SM2 和 SM3算法的完整性保护signature value验证者
      */
     public GMProtectVerifier() {
     }
@@ -27,14 +27,14 @@ public class GMProtectVerifier implements ProtectVerifier {
     /**
      * 根据 GM/T 0099  OFD完整性保护协议 执行完整性保护 7.4.6
      * <p>
-     * b) 根据签名方案，调用杂凑算法计算完整性保护文件得到杂凑值
-     * c) 读取签名值文件，进行签名验证
+     * b) based on the signature scheme, call the hash algorithm to compute the hash of the integrity protection file
+     * c) read signature value file and perform signature verification
      *
-     * @param ofdEntriesXmlPath 防夹带文件路径
-     * @param signedValue       待验证的签名值，数据结构参照 《GM/T 0099 2020》 7.4.3 密码算法要求
-     * @return 签名值验证结果
-     * @throws GeneralSecurityException 安全计算异常
-     * @throws IOException              IO读写异常
+     * @param ofdEntriesXmlPath 防夹带file path
+     * @param signedValue       待验证的signature value，数据结构参照 《GM/T 0099 2020》 7.4.3 密码算法要求
+     * @return signature value验证结果
+     * @throws GeneralSecurityException security computation exception
+     * @throws IOException              IO read/write exception
      */
     @Override
     public boolean digestThenVerify(Path ofdEntriesXmlPath, byte[] signedValue) throws GeneralSecurityException, IOException {

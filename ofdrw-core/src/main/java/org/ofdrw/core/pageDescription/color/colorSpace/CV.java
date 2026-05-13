@@ -7,7 +7,7 @@ import org.ofdrw.core.basicType.ST_Array;
 /**
  * 调色板中预定义的颜色
  * <p>
- * 调色板中颜色的索引编号从 0 开始
+ * color index numbers in the palette start from 0
  * <p>
  * 8.3 颜色 表 25
  */
@@ -21,13 +21,13 @@ public class CV extends OFDElement {
     }
 
     /**
-     * 颜色表示：
+     * color representation:
      * <p>
-     * Gray - 通过一个通道来表明灰度值；例如 "#FF 255"
+     * Gray - one channel for grayscale value; e.g. "#FF 255"
      * <p>
-     * RGB - 包含3个通道，一次是红、绿、蓝；例如 "#11 #22 #33"、"17 34 51"
+     * RGB - 3 channels: red, green, blue; e.g. "#11 #22 #33", "17 34 51"
      * <p>
-     * CMYK - 包含4个通道，依次是青、黄、品红、黑；例如 "#11 #22 #33 # 44"、"17 34 51 68"
+     * CMYK - 4 channels: cyan, yellow, magenta, black; e.g. "#11 #22 #33 #44", "17 34 51 68"
      *
      * @param color 设置预定义的颜色
      */
@@ -39,13 +39,13 @@ public class CV extends OFDElement {
     /**
      * 设置 预定义的颜色
      * <p>
-     * 颜色表示：
+     * color representation:
      * <p>
-     * Gray - 通过一个通道来表明灰度值；例如 "#FF 255"
+     * Gray - one channel for grayscale value; e.g. "#FF 255"
      * <p>
-     * RGB - 包含3个通道，一次是红、绿、蓝；例如 "#11 #22 #33"、"17 34 51"
+     * RGB - 3 channels: red, green, blue; e.g. "#11 #22 #33", "17 34 51"
      * <p>
-     * CMYK - 包含4个通道，依次是青、黄、品红、黑；例如 "#11 #22 #33 # 44"、"17 34 51 68"
+     * CMYK - 4 channels: cyan, yellow, magenta, black; e.g. "#11 #22 #33 #44", "17 34 51 68"
      *
      * @param value 设置预定义的颜色
      * @return this
@@ -58,13 +58,13 @@ public class CV extends OFDElement {
     /**
      * 获取 预定义的颜色
      * <p>
-     * 颜色表示：
+     * color representation:
      * <p>
-     * Gray - 通过一个通道来表明灰度值；例如 "#FF 255"
+     * Gray - one channel for grayscale value; e.g. "#FF 255"
      * <p>
-     * RGB - 包含3个通道，一次是红、绿、蓝；例如 "#11 #22 #33"、"17 34 51"
+     * RGB - 3 channels: red, green, blue; e.g. "#11 #22 #33", "17 34 51"
      * <p>
-     * CMYK - 包含4个通道，依次是青、黄、品红、黑；例如 "#11 #22 #33 # 44"、"17 34 51 68"
+     * CMYK - 4 channels: cyan, yellow, magenta, black; e.g. "#11 #22 #33 #44", "17 34 51 68"
      *
      * @return 设置预定义的颜色
      */

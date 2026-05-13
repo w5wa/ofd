@@ -9,20 +9,20 @@ import java.util.ArrayList;
  * 包结构内文件的路径，“.”表示当前路径，“..”表示符路径
  * <p>
  * 约定：
- * 1. “、”代表根节点；
+ * 1. “、”代表root node；
  * 2. 未显示指定代表当前路径；
  * 3. 路径区分大小写
  * <p>
- * 示例：
+ * Example:
  * <code>
  * /Pages/P1/Content.xml
  * ./Res/Book1.jpg
  * ../Pages/P1/Res.xml
  * Pages/P1/Rcs.xml
  * </code>
- * ————《GB/T 33190-2016》 表 2 基本数据类型
+ * — GB/T 33190-2016, Table 2: Basic Data Types
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-28 10:40:33
  */
 public class ST_Loc extends STBase {
@@ -36,10 +36,10 @@ public class ST_Loc extends STBase {
     }
 
     /**
-     * 获取路径实例
+     * 获取路径instance
      *
-     * @param loc 路径字符串
-     * @return 实例或null
+     * @param loc 路径string
+     * @return instance或null
      */
     public static ST_Loc getInstance(String loc) {
         if (loc == null || loc.trim().length() == 0) {
@@ -49,7 +49,7 @@ public class ST_Loc extends STBase {
     }
 
     /**
-     * 从实例中获取 路径
+     * 从instance中获取 路径
      *
      * @param e 元素
      * @return 路径对象
@@ -73,7 +73,7 @@ public class ST_Loc extends STBase {
     /**
      * 路径分割
      * <p>
-     * 通过该方法获取的路径中可能含有 "" 空字符串，
+     * 通过该方法获取的路径中可能含有 "" 空string，
      * 如果需要获取路径的各个部分，请使用 {@link #parts()}
      *
      * @return 各个子路径
@@ -108,7 +108,7 @@ public class ST_Loc extends STBase {
     /**
      * 获取父母路径
      *
-     * @return 父母路径字符串
+     * @return 父母路径string
      */
     public String parent() {
         int indexOf = loc.lastIndexOf('/');
@@ -128,9 +128,9 @@ public class ST_Loc extends STBase {
     }
 
     /**
-     * 获取路径的文件名称
+     * 获取路径的file name
      *
-     * @return 文件名称
+     * @return file name
      */
     public String getFileName() {
         int indexOf = loc.lastIndexOf('/');

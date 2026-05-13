@@ -22,85 +22,85 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 裸OFD文档对象，用于提供较为底层的OFD文档操作行为
+ * 裸OFDdocument object，用于提供较为底层的OFD document操作行为
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-3-17 20:13:51
  */
 public class BareOFDDoc implements Closeable {
 
     /**
-     * 打包后OFD文档存放路径
+     * storage path for the packaged OFD document
      */
     private Path outPath;
 
     /**
-     * 文档是否已经关闭
-     * true 表示已经关闭，false 表示未关闭
+     * whether the document is closed
+     * true = closed, false = not closed
      */
     private boolean closed = false;
 
     /**
-     * OFD 打包
+     * OFD packaging
      */
     public final OFDDir ofdDir;
 
     /**
-     * 当前文档中所有对象使用标识的最大值。
-     * 初始值为 0。MaxUnitID主要用于文档编辑，
-     * 在向文档增加一个新对象时，需要分配一个
-     * 新的标识符，新标识符取值宜为 MaxUnitID + 1，
-     * 同时需要修改此 MaxUnitID值。
+     * maximum identifier value for all objects in the current document.
+     * initial value: 0. MaxUnitID is mainly used for document editing;
+     * when adding a new object to the document, a new
+     * identifier must be allocated; the new identifier should be MaxUnitID + 1,
+     * and this MaxUnitID value must be updated accordingly.
      */
     public final AtomicInteger MaxUnitID = new AtomicInteger(0);
 
     /**
-     * 外部资源管理器
+     * external resource manager
      */
     public final ResManager prm;
 
     /**
-     * 文档属性信息，该对象会在初始化是被创建并且添加到文档中
-     * 此处只是保留引用，为了方便操作。
+     * document properties; this object is created during initialization and added to the document
+     * a reference is kept here for convenience.
      */
     public CT_CommonData cdata;
 
 
     /**
-     * OFD文档对象
+     * OFD document object
      */
     public final Document document;
 
     /**
-     * 正在操作的文档目录
+     * document directory currently being operated
      */
     public final DocDir docDir;
 
 
     /**
-     * 在指定路径位置上创建一个OFD文件
+     * create an OFD file at the specified path
      *
-     * @param outPath OFD输出路径
+     * @param outPath OFD output path
      */
     public BareOFDDoc(Path outPath) {
         this();
         if (outPath == null) {
-            throw new IllegalArgumentException("OFD文件存储路径(outPath)为空");
+            throw new IllegalArgumentException("OFD file storage path(outPath)为空");
         }
         if (Files.isDirectory(outPath)) {
-            throw new IllegalArgumentException("OFD文件存储路径(outPath)不能是目录");
+            throw new IllegalArgumentException("OFD file storage path(outPath)不能是目录");
         }
         if (!Files.exists(outPath.toAbsolutePath().getParent())) {
-            throw new IllegalArgumentException("OFD文件存储路径(outPath)上级目录 [" + outPath.getParent().toAbsolutePath() + "] 不存在");
+            throw new IllegalArgumentException("OFD file storage path(outPath)上级目录 [" + outPath.getParent().toAbsolutePath() + "] 不存在");
         }
         this.outPath = outPath;
     }
 
     /**
-     * 文档初始化构造器
+     * document initialization constructor
      */
     private BareOFDDoc() {
-        // 初始化文档对象
+        // initialize document object
         CT_DocInfo docInfo = new CT_DocInfo()
                 .setDocID(UUID.randomUUID())
                 .setCreationDate(LocalDate.now())
@@ -111,19 +111,19 @@ public class BareOFDDoc implements Closeable {
                 .setDocRoot(new ST_Loc("Doc_0/Document.xml"));
         OFD ofd = new OFD().addDocBody(docBody);
 
-        // 创建一个低层次的文档对象
+        // create a low-level document object
         document = new Document();
         cdata = new CT_CommonData();
-        // 默认使用RGB颜色空间所以此处不设置颜色空间
-        // 设置页面属性
+        // use RGB color space by default, so color space is not set here
+        // set page properties
         cdata.setPageArea(PageLayout.A4().getPageArea());
         document.setCommonData(cdata)
-                // 空的页面引用集合，该集合将会在解析虚拟页面时得到填充
+                // empty page reference collection; populated when parsing virtual pages
                 .setPages(new Pages());
 
         ofdDir = OFDDir.newOFD()
                 .setOfd(ofd);
-        // 创建一个新的文档
+        // create a new document
         DocDir docDir = ofdDir.newDoc();
         this.docDir = docDir;
         docDir.setDocument(document);
@@ -140,17 +140,17 @@ public class BareOFDDoc implements Closeable {
         }
 
         try {
-            // 设置最大对象ID
+            // set maximum object ID
             cdata.setMaxUnitID(MaxUnitID.get());
-            // final. 执行打包程序
+            // final: execute packaging
             if (outPath != null) {
                 ofdDir.jar(outPath.toAbsolutePath());
             } else {
-                throw new IllegalArgumentException("OFD文档输出地址错误或没有设置输出流");
+                throw new IllegalArgumentException("OFD document输出地址错误或没有设置输出流");
             }
         } finally {
             if (ofdDir != null) {
-                // 清除在生成OFD过程中的工作区产生的文件
+                // clean up working directory files generated during OFD creation
                 ofdDir.clean();
             }
         }

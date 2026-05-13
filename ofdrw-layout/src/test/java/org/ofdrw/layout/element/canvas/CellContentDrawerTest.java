@@ -234,7 +234,7 @@ class CellContentDrawerTest {
     }
 
     /**
-     * 设置字间距
+     * set character spacing
      */
     @Test
     void cellLetterSpace() throws IOException {
@@ -256,7 +256,7 @@ class CellContentDrawerTest {
     }
 
     /**
-     * 设置字间距
+     * set character spacing
      */
     @Test
     void cellImg() throws IOException {
@@ -277,7 +277,7 @@ class CellContentDrawerTest {
     }
 
     /**
-     * 图片居中
+     * imagecenter
      */
     @Test
     void cellImgCenter() throws IOException {
@@ -299,7 +299,7 @@ class CellContentDrawerTest {
     }
 
     /**
-     * 图片右下角
+     * image右下角
      */
     @Test
     void cellImgBottomRight() throws IOException {

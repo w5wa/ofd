@@ -11,7 +11,7 @@ import java.awt.geom.RoundRectangle2D;
  * <p>
  * 将AWT的 {@link Shape} 转换为OFD的路径绘制数据 {@link AbbreviatedData}
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-01-18 16:13:58
  */
 public class OFDShapes {
@@ -58,12 +58,12 @@ public class OFDShapes {
     /**
      * 创建圆角矩形
      *
-     * @param x         矩形左上角X坐标
-     * @param y         矩形左上角Y坐标
-     * @param width     矩形宽度
-     * @param height    矩形高度
-     * @param arcWidth  水平圆角半径
-     * @param arcHeight 垂直圆角半径
+     * @param x         rectangle X coordinate of top-left corner
+     * @param y         rectangle Y coordinate of top-left corner
+     * @param width     rectangle width
+     * @param height    rectangle height
+     * @param arcWidth  horizontal corner radius
+     * @param arcHeight vertical corner radius
      * @return 圆角矩形图形对象
      */
     public static RoundRectangle2D roundRect(int x, int y, int width, int height,

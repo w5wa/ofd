@@ -7,7 +7,7 @@ import org.ofdrw.core.OFDElement;
 /**
  * 表 70 版本描述入口
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-29 10:40:02
  */
 public class Version extends OFDElement {
@@ -25,9 +25,9 @@ public class Version extends OFDElement {
      * 创建版本描述入口
      *
      * 默认为默认版本（Current=“false”）
-     * @param id 版本标识（不含特殊字符字符串）
+     * @param id 版本标识（不含特殊字符string）
      * @param index 版本号
-     * @param baseLoc 指向包内的版本描述文件
+     * @param baseLoc points to包内的版本描述文件
      */
     public Version(String id, int index, ST_Loc baseLoc) {
         this();
@@ -37,10 +37,10 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置版本标识
      *
-     * @param id 版本标识 （不含特殊字符，字符串）
+     * @param id 版本标识 （不含特殊字符，string）
      * @return this
      */
     public Version setID(String id) {
@@ -49,7 +49,7 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取版本标识
      * @return 版本标识
      */
@@ -58,7 +58,7 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 版本号
      *
      * @param index 版本号
@@ -70,7 +70,7 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 版本号
      *
      * @return 版本号， null表示没有
@@ -81,10 +81,10 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 是否是默认版本
      * <p>
-     * 默认值：false
+     * default value: false
      *
      * @return true 表示是默认版本
      */
@@ -94,7 +94,7 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 是否是默认版本
      *
      * @param current true 表示是默认版本
@@ -106,10 +106,10 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 指向包内的版本描述文件
+     * [required]
+     * 设置 points to包内的版本描述文件
      *
-     * @param baseLoc 版本描述文件路径
+     * @param baseLoc 版本描述file path
      * @return this
      */
     public Version setBaseLoc(ST_Loc baseLoc) {
@@ -118,10 +118,10 @@ public class Version extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 指向包内 的版本描述文件
+     * [required]
+     * 设置 points to包内 的版本描述文件
      *
-     * @return 版本描述文件路径
+     * @return 版本描述file path
      */
     public ST_Loc getBaseLoc() {
         String value = this.attributeValue("BaseLoc");

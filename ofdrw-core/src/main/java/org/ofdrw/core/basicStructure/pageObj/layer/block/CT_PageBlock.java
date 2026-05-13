@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * <p>
  * 7.7 页对象 图 17 表 16
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-10 06:39:58
  */
 public class CT_PageBlock extends OFDElement implements PageBlockType {
@@ -33,12 +33,12 @@ public class CT_PageBlock extends OFDElement implements PageBlockType {
 
 
     /**
-     * 【可选】
-     * 增加 页块
+     * [optional]
+     * add page block
      * <p>
-     * 一个页块中可以嵌套其他页块，可含有0到多个页块
+     * a page block can nest other page blocks and contain 0 or more page blocks
      *
-     * @param pageBlock 页块实例
+     * @param pageBlock page block instance
      * @return this
      */
     public CT_PageBlock addPageBlock(PageBlockType pageBlock) {
@@ -47,10 +47,10 @@ public class CT_PageBlock extends OFDElement implements PageBlockType {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 当前页块内的所有页块
      * <p>
-     * 一个页块中可以嵌套其他页块，可含有0到多个页块
+     * a page block can nest other page blocks and contain 0 or more page blocks
      * <p>
      * Tip： 从列表取出的元素可以使用<code>instanceof</code> 判断元素的类型
      *

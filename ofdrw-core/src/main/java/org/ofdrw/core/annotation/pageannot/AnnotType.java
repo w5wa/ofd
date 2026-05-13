@@ -4,7 +4,7 @@ package org.ofdrw.core.annotation.pageannot;
  * 注释类型取值
  *
  * 15.2 表 62
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-16 02:26:03
  */
 public enum AnnotType {
@@ -21,7 +21,7 @@ public enum AnnotType {
      */
     Highlight,
     /**
-     * 签章注释
+     * seal/signature注释
      */
     Stamp,
     /**

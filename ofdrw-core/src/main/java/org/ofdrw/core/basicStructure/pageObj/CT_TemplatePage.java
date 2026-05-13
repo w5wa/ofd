@@ -11,7 +11,7 @@ import org.ofdrw.core.basicType.ST_Loc;
  * <p>
  * ————《GB/T 33190-2016》 图 14
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-04 10:37:10
  */
 public class CT_TemplatePage extends OFDElement {
@@ -24,7 +24,7 @@ public class CT_TemplatePage extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 模板页的标识符，不能与已有标识符重复
      *
      * @param id 模板页的标识符
@@ -36,7 +36,7 @@ public class CT_TemplatePage extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 模板页的标识符，不能与已有标识符重复
      *
      * @return 模板页的标识符
@@ -47,7 +47,7 @@ public class CT_TemplatePage extends OFDElement {
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 模板页名称
      *
      * @param name 模板页名称
@@ -64,8 +64,8 @@ public class CT_TemplatePage extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 模板页名称
+     * [optional attribute]
+     * get template page name
      *
      * @return 模板页名称
      */
@@ -75,16 +75,16 @@ public class CT_TemplatePage extends OFDElement {
 
 
     /**
-     * 【可选 属性】
-     * 设置 模板页的默认视图类型
+     * [optional attribute]
+     * 设置 default view type of template page
      * <p>
-     * 其类型描述和呈现顺序与 Layer中 Type的描述和处理一致，见表 15
-     * 如果页面引用的多个模板的次属性相同，则应根据引用的顺序来显示
-     * 先引用者先绘制
+     * its type description and rendering order are consistent with the Type in Layer; see Table 15
+     * if multiple referenced templates have the same order attribute, display by reference order
+     * referenced first is drawn first
      * <p>
-     * 默认值为 Background
+     * default value: Background
      *
-     * @param zOrder 模板页的默认视图类型
+     * @param zOrder default view type of template page
      * @return this
      */
     public CT_TemplatePage setZOrder(Type zOrder) {
@@ -97,16 +97,16 @@ public class CT_TemplatePage extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 模板页的默认视图类型
+     * [optional attribute]
+     * get default view type of template page
      * <p>
-     * 其类型描述和呈现顺序与 Layer中 Type的描述和处理一致，见表 15
-     * 如果页面引用的多个模板的次属性相同，则应根据引用的顺序来显示
-     * 先引用者先绘制
+     * its type description and rendering order are consistent with the Type in Layer; see Table 15
+     * if multiple referenced templates have the same order attribute, display by reference order
+     * referenced first is drawn first
      * <p>
-     * 默认值为 Background
+     * default value: Background
      *
-     * @return 模板页的默认视图类型
+     * @return default view type of template page
      */
     public Type getZOrder() {
         String value = this.attributeValue("ZOrder");
@@ -115,10 +115,10 @@ public class CT_TemplatePage extends OFDElement {
 
 
     /**
-     * 【可选 属性】
-     * 设置 指向模板页内容描述文件 路径
+     * [optional attribute]
+     * 设置 points to模板页内容描述文件 路径
      *
-     * @param baseLoc 指向模板页内容描述文件 路径
+     * @param baseLoc points to模板页内容描述文件 路径
      * @return this
      */
     public CT_TemplatePage setBaseLoc(ST_Loc baseLoc) {
@@ -131,10 +131,10 @@ public class CT_TemplatePage extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 指向模板页内容描述文件 路径
+     * [optional attribute]
+     * 获取 points to模板页内容描述文件 路径
      *
-     * @return 指向模板页内容描述文件 路径
+     * @return points to模板页内容描述文件 路径
      */
     public ST_Loc getBaseLoc() {
         return ST_Loc.getInstance(this.attributeValue("BaseLoc"));

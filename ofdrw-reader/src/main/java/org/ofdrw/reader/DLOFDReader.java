@@ -45,7 +45,7 @@ public class DLOFDReader extends OFDReader {
     private ST_Box documentBox;
     private OFDDocumentVo ofdDocumentVo;
     /**
-     * 资源管理器
+     * resource manager
      */
     private ResourceManage resMgt;
 
@@ -220,7 +220,7 @@ public class DLOFDReader extends OFDReader {
                         type = toSign.getEseal().getEsealInfo().getPicture().getType().getString();
                         sealBytes = toSign.getEseal().getEsealInfo().getPicture().getData().getOctets();
                     } else {
-//                throw new OFDVerifyException("未知的电子签章数据版本，无法解析");
+//                throw new OFDVerifyException("未知的电子seal/signature数据版本，无法解析");
                     }
                     if (type != null) {
                         stampAnnotVo.setType(type);
@@ -273,11 +273,11 @@ public class DLOFDReader extends OFDReader {
     }
 
     /**
-     * 获取资源管理器
+     * 获取resource manager
      * <p>
-     * 资源管理器获取到的对象均为只读对象
+     * resource manager获取到的对象均为只读对象
      *
-     * @return 资源管理器
+     * @return resource manager
      */
     public ResourceManage getResMgt() {
         return resMgt;

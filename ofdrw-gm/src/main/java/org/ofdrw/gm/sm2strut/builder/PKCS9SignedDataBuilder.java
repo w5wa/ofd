@@ -21,27 +21,27 @@ import java.util.Locale;
 
 
 /**
- * 签名数据类型构造器
+ * signature data type构造器
  * <p>
- * 符合 GBT35275 8 签名数据类型 signedData
+ * 符合 GBT35275 8 signature data type signedData
  * <p>
- * 签名对象为 signerInfos中的authenticatedAttributes字段（内部结构为 PKCS#9）
+ * 签名对象为 signerInfos中的authenticatedAttributes字segment（内部结构为 PKCS#9）
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2022-6-24 22:37:33
  */
 public final class PKCS9SignedDataBuilder {
 
     /**
-     * 组装 签名数据类型
+     * assemble signature data type
      *
      * @param plaintext  需要保护原文
      * @param signFnc    签名实现，已经初始化。
-     * @param signCert   签名使用的证书
-     * @param extCertArr 扩展证书序列，如根证书等。
+     * @param signCert   签名使用的certificate
+     * @param extCertArr 扩展certificate序列，如根certificate等。
      * @return SignedData
-     * @throws GeneralSecurityException 证书解析异常
-     * @throws IOException              IO操作异常
+     * @throws GeneralSecurityException certificate parsing exception
+     * @throws IOException              IO operation exception
      */
     public static SignedData signedData(@NotNull byte[] plaintext,
                                         @NotNull Signature signFnc,
@@ -51,7 +51,7 @@ public final class PKCS9SignedDataBuilder {
             throw new IllegalArgumentException("签名原文(plaintext)为空");
         }
         if (signCert == null) {
-            throw new IllegalArgumentException("证书(signCert)为空");
+            throw new IllegalArgumentException("certificate(signCert)为空");
         }
         if (signFnc == null) {
             throw new IllegalArgumentException("签名函数(signFnc)为空");
@@ -75,16 +75,16 @@ public final class PKCS9SignedDataBuilder {
         final org.bouncycastle.asn1.x509.Certificate signerCert = CertTools.asn1(signCert);
         certArr[0] = signerCert;
         if (extCertArr != null) {
-            // 如果附加的证书不为空，那么追加到证书列表
+            // 如果附加的certificate不为空，那么追加到certificate列表
             for (Certificate c : extCertArr) {
                 certArr[i] = CertTools.asn1(c);
                 i++;
             }
         }
         ASN1Set certificates = new DERSet(certArr);
-        // 签名证书ID
+        // 签名certificateID
         IssuerAndSerialNumber isn = new IssuerAndSerialNumber(signerCert.getIssuer(), signerCert.getSerialNumber());
-        // 签名生成签名者信息
+        // 签名生成signer information
         SignerInfo signerInfo = sign(digest, signFnc, isn);
 
         ASN1Set signerInfos = new DERSet(new ASN1Encodable[]{signerInfo});
@@ -93,13 +93,13 @@ public final class PKCS9SignedDataBuilder {
     }
 
     /**
-     * 构造签名者信息
+     * construct signer information
      *
      * @param digest  需要保护的原文
      * @param signFnc 签名实现
-     * @param isn     签名者公钥证书序列号
-     * @return 签名者信息
-     * @throws GeneralSecurityException 安全计算异常
+     * @param isn     签名者public keycertificate序列号
+     * @return signer information
+     * @throws GeneralSecurityException security computation exception
      */
     public static SignerInfo sign(byte[] digest, Signature signFnc, IssuerAndSerialNumber isn) throws GeneralSecurityException {
         /*

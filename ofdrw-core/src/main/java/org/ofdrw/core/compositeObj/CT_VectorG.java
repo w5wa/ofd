@@ -13,11 +13,11 @@ import java.util.List;
 /**
  * 矢量图像
  * <p>
- * 复合对象引用的资源时 Res 中的矢量图像（CompositeGraphUnit）
+ * when referencing resources from composite objects: vector images in Res (CompositeGraphUnit)
  * <p>
  * 13 图 72 表 50
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-27 04:56:42
  */
 public class CT_VectorG extends OFDElement {
@@ -44,76 +44,76 @@ public class CT_VectorG extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 矢量图像的宽度
+     * [required attribute]
+     * 设置 矢量图像的width
      * <p>
-     * 超出部分做裁剪处理
+     * clip parts that exceed the area
      *
-     * @param width 矢量图像的宽度
+     * @param width 矢量图像的width
      * @return this
      */
     public CT_VectorG setWidth(Double width) {
         if (width == null) {
-            throw new IllegalArgumentException("矢量图像的宽度（Width）不能为空");
+            throw new IllegalArgumentException("矢量图像的width（Width）不能为空");
         }
         this.addAttribute("Width", STBase.fmt(width));
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 矢量图像的宽度
+     * [required attribute]
+     * 获取 矢量图像的width
      * <p>
-     * 超出部分做裁剪处理
+     * clip parts that exceed the area
      *
-     * @return 矢量图像的宽度
+     * @return 矢量图像的width
      */
     public Double getWidth() {
         String str = this.attributeValue("Width");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("格式非法无法获取到矢量图像的宽度（Width）");
+            throw new IllegalArgumentException("格式非法无法获取到矢量图像的width（Width）");
         }
         return Double.parseDouble(str);
     }
 
     /**
-     * 【必选 属性】
-     * 设置 矢量图像的高度
+     * [required attribute]
+     * 设置 矢量图像的height
      * <p>
-     * 超出部分做裁剪处理
+     * clip parts that exceed the area
      *
-     * @param height 矢量图像的高度
+     * @param height 矢量图像的height
      * @return this
      */
     public CT_VectorG setHeight(Double height) {
         if (height == null) {
-            throw new IllegalArgumentException("矢量图像的高度（Height）不能为空");
+            throw new IllegalArgumentException("矢量图像的height（Height）不能为空");
         }
         this.addAttribute("Height", STBase.fmt(height));
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 矢量图像的高度
+     * [required attribute]
+     * 获取 矢量图像的height
      * <p>
-     * 超出部分做裁剪处理
+     * clip parts that exceed the area
      *
-     * @return 矢量图像的高度
+     * @return 矢量图像的height
      */
     public Double getHeight() {
         String str = this.attributeValue("Height");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("格式非法无法获取到矢量图像的宽度（Height）");
+            throw new IllegalArgumentException("格式非法无法获取到矢量图像的width（Height）");
         }
         return Double.parseDouble(str);
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 缩略图
      * <p>
-     * 指向包内的图像文件
+     * points to image file within package
      *
      * @param thumbnail 缩略图路径
      * @return this
@@ -124,10 +124,10 @@ public class CT_VectorG extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 缩略图
      * <p>
-     * 指向包内的图像文件
+     * points to image file within package
      *
      * @return 缩略图路径
      */
@@ -136,11 +136,11 @@ public class CT_VectorG extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 替换图像
      * <p>
      * 用于高分辨率输出时将缩略图替换为此高分辨率的图像
-     * 指向包内的图像文件
+     * points to image file within package
      *
      * @param substitution 替换图像
      * @return this
@@ -151,11 +151,11 @@ public class CT_VectorG extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 替换图像
      * <p>
      * 用于高分辨率输出时将缩略图替换为此高分辨率的图像
-     * 指向包内的图像文件
+     * points to image file within package
      *
      * @return 替换图像
      */
@@ -165,7 +165,7 @@ public class CT_VectorG extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 内容的矢量描述
      *
      * @param content 内容的矢量描述
@@ -180,7 +180,7 @@ public class CT_VectorG extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 内容的矢量描述
      *
      * @param blockType 内容的矢量描述
@@ -198,7 +198,7 @@ public class CT_VectorG extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 内容的矢量描述
      *
      * @return 内容的矢量描述

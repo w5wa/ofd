@@ -7,7 +7,7 @@ import java.io.IOException;
  * <p>
  * 用于绘制Canvas中的实际内容
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-01 11:22:05
  */
 @FunctionalInterface
@@ -16,8 +16,8 @@ public interface Drawer {
     /**
      * 绘制
      *
-     * @param ctx 绘制上下文
-     * @throws IOException 图片读取过程中IO异常
+     * @param ctx drawing context
+     * @throws IOException image读取过程中IO exception
      */
     void draw(DrawContext ctx) throws IOException;
 }

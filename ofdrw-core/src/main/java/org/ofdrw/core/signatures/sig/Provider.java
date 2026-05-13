@@ -7,11 +7,11 @@ import org.ofdrw.core.OFDElement;
 import java.util.Base64;
 
 /**
- * 创建签名时所用的签章组件提供者信息
+ * 创建签名时所用的seal/signature组件提供者信息
  * <p>
- * 18.2.1 文件摘要 图 86 表 67
+ * 18.2.1 File Digest - Figure 86 Table 67
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-20 19:26:15
  */
 public class Provider extends OFDElement {
@@ -24,39 +24,39 @@ public class Provider extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 创建签名时所用的签章组件提供者信息
+     * [required attribute]
+     * set the seal component provider information used when creating the signature
      *
-     * @param providerName 创建签名时所用的签章组件提供者信息
+     * @param providerName 创建签名时所用的seal/signature组件提供者信息
      * @return this
      */
     public Provider setProviderName(String providerName) {
         if (providerName == null || providerName.trim().length() == 0) {
-            throw new IllegalArgumentException("创建签名时所用的签章组件提供者信息（ProviderName）为空");
+            throw new IllegalArgumentException("创建签名时所用的seal/signature组件提供者信息（ProviderName）为空");
         }
         this.addAttribute("ProviderName", providerName);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 设置 创建签名时所用的签章组件提供者信息
+     * [required attribute]
+     * set the seal component provider information used when creating the signature
      *
-     * @return 创建签名时所用的签章组件提供者信息
+     * @return 创建签名时所用的seal/signature组件提供者信息
      */
     public String getProviderName() {
         String str = this.attributeValue("ProviderName");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("创建签名时所用的签章组件提供者信息（ProviderName）为空");
+            throw new IllegalArgumentException("创建签名时所用的seal/signature组件提供者信息（ProviderName）为空");
         }
         return str;
     }
 
     /**
-     * 【可选 属性】
-     * 设置 创建签名时所使用的签章组件的版本
+     * [optional attribute]
+     * 设置 创建签名时所使用的seal/signature组件的版本
      *
-     * @param version 创建签名时所使用的签章组件的版本
+     * @param version 创建签名时所使用的seal/signature组件的版本
      * @return this
      */
     public Provider setVersion(String version) {
@@ -69,20 +69,20 @@ public class Provider extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 创建签名时所使用的签章组件的版本
+     * [optional attribute]
+     * 获取 创建签名时所使用的seal/signature组件的版本
      *
-     * @return 创建签名时所使用的签章组件的版本
+     * @return 创建签名时所使用的seal/signature组件的版本
      */
     public String getVersion() {
         return this.attributeValue("Version");
     }
 
     /**
-     * 【可选 属性】
-     * 设置 创建签名时所使用的签章组件的制造商
+     * [optional attribute]
+     * 设置 创建签名时所使用的seal/signature组件的制造商
      *
-     * @param company 创建签名时所使用的签章组件的制造商
+     * @param company 创建签名时所使用的seal/signature组件的制造商
      * @return this
      */
     public Provider setCompany(String company) {
@@ -95,22 +95,22 @@ public class Provider extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 创建签名时所使用的签章组件的制造商
+     * [optional attribute]
+     * 设置 创建签名时所使用的seal/signature组件的制造商
      *
-     * @return 创建签名时所使用的签章组件的制造商
+     * @return 创建签名时所使用的seal/signature组件的制造商
      */
     public String getCompany() {
         return this.attributeValue("Company");
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
-     * 设置 创建签名时所用的签章组件的接口协议版本
+     * [optional attribute, OFD 2.0]
+     * 设置 创建签名时所用的seal/signature组件的接口协议版本
      * <p>
-     * GMT0099 表 B.2
+     * GMT0099 Table B.2
      *
-     * @param protocolVer 创建签名时所用的签章组件的接口协议版，如果为空则删除该属性
+     * @param protocolVer 创建签名时所用的seal/signature组件的接口协议版，如果为空则删除该属性
      * @return this
      */
     public Provider setProtocolVer(@Nullable String protocolVer) {
@@ -123,12 +123,12 @@ public class Provider extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
-     * 获取 创建签名时所用的签章组件的接口协议版本
+     * [optional attribute, OFD 2.0]
+     * 获取 创建签名时所用的seal/signature组件的接口协议版本
      * <p>
-     * GMT0099 表 B.2
+     * GMT0099 Table B.2
      *
-     * @return 创建签名时所用的签章组件的接口协议版，可能为空
+     * @return 创建签名时所用的seal/signature组件的接口协议版，可能为空
      */
     @Nullable
     public String getProtocolVer() {
@@ -136,12 +136,12 @@ public class Provider extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
-     * 设置 创建签名时所用的签章组件的扩展信息
+     * [optional, OFD 2.0]
+     * 设置 创建签名时所用的seal/signature组件的扩展信息
      * <p>
-     * GMT0099 表 B.2
+     * GMT0099 Table B.2
      *
-     * @param extendData 创建签名时所用的签章组件的扩展信息
+     * @param extendData 创建签名时所用的seal/signature组件的扩展信息
      * @return this
      */
     public Provider setExtendData(@Nullable byte[] extendData) {
@@ -153,12 +153,12 @@ public class Provider extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
-     * 获取 创建签名时所用的签章组件的扩展信息
+     * [optional, OFD 2.0]
+     * 获取 创建签名时所用的seal/signature组件的扩展信息
      * <p>
-     * GMT0099 表 B.2
+     * GMT0099 Table B.2
      *
-     * @return 创建签名时所用的签章组件的扩展信息，可能为空字节数组
+     * @return 创建签名时所用的seal/signature组件的扩展信息，可能为空字节数组
      */
     public byte[] getExtendData() {
         Element e = this.getOFDElement("ExtendData");

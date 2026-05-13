@@ -5,7 +5,7 @@ package org.ofdrw.core.crypto;
  * <p>
  * 见GMT 0099-2020 A.1 密码保护方案 表 A.1 密码保护方案标识符
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-21 18:38:16
  */
 public enum ProtectionCaseID {
@@ -14,15 +14,15 @@ public enum ProtectionCaseID {
      * 采用口令方式加密（国密）
      * <p>
      * 对称算法 SM4，CBC模式
-     * CBC模式的初始化向量放入附录C密钥描述文件内，
+     * CBC模式的初始化向量放入附录Ckey描述文件内，
      * 填充算法遵循PKCS#7，分块长度为16字节（8位）
      */
     EncryptGMPassword("1.1.1"),
     /**
-     * 采用口证书方式加密（国密）
+     * 采用口certificate方式加密（国密）
      * <p>
      * 对称算法 SM4，CBC模式。非对称算法SM2。
-     * CBC模式的初始化向量放入附录C密钥描述文件内，
+     * CBC模式的初始化向量放入附录Ckey描述文件内，
      * 填充算法遵循PKCS#7，分块长度为16字节（8位）
      */
     EncryptGMCert("1.1.2"),
@@ -31,7 +31,7 @@ public enum ProtectionCaseID {
      */
 
     /**
-     * 采用证书进行数字签名
+     * 采用certificate进行number签名
      * <p>
      * 签名应遵循GT/T 35275 信息安全技术 SM2 密码算法加密签名消息语法规范
      */
@@ -50,10 +50,10 @@ public enum ProtectionCaseID {
     }
 
     /**
-     * 获取ID实例
+     * 获取IDinstance
      *
-     * @param id id字符串
-     * @return 实例
+     * @param id idstring
+     * @return instance
      */
     public static ProtectionCaseID getInstance(String id) {
         switch (id) {

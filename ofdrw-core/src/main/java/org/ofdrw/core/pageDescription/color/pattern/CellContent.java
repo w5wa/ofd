@@ -8,13 +8,13 @@ import org.ofdrw.core.basicType.ST_RefID;
 /**
  * 底纹单元
  * <p>
- * 用底纹填充目标区域时，所使用的单元对象
+ * the unit object used when filling the target area with a pattern
  * <p>
  * CellContent 作为底纹对象的绘制单元，使用一种和外界没有
  * 任何关联的独立的坐标空间：坐上角（0,0）为原点，X 轴向右增长，
  * Y 轴向下增长，单位为毫米。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-12 09:07:00
  */
 public class CellContent extends CT_PageBlock {
@@ -28,10 +28,10 @@ public class CellContent extends CT_PageBlock {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 引用资源文件中缩略图图像的标识符
+     * [optional attribute]
+     * 设置 引用resource file中缩略图图像的标识符
      *
-     * @param thumbnail 引用资源文件中缩略图图像的标识符
+     * @param thumbnail 引用resource file中缩略图图像的标识符
      * @return this
      */
     public CellContent setThumbnail(ST_RefID thumbnail) {
@@ -44,12 +44,12 @@ public class CellContent extends CT_PageBlock {
     }
 
     /**
-     * 【可选】
-     * 增加 页块
+     * [optional]
+     * add page block
      * <p>
-     * 一个页块中可以嵌套其他页块，可含有0到多个页块
+     * a page block can nest other page blocks and contain 0 or more page blocks
      *
-     * @param pageBlock 页块实例
+     * @param pageBlock page block instance
      * @return this
      */
     @Override
@@ -59,10 +59,10 @@ public class CellContent extends CT_PageBlock {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 引用资源文件中缩略图图像的标识符
+     * [optional attribute]
+     * 获取 引用resource file中缩略图图像的标识符
      *
-     * @return 引用资源文件中缩略图图像的标识符
+     * @return 引用resource file中缩略图图像的标识符
      */
     public ST_RefID getThumbnail() {
         return ST_RefID.getInstance(this.attributeValue("Thumbnail"));

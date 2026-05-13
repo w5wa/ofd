@@ -20,21 +20,21 @@ import java.util.zip.ZipOutputStream;
 
 
 /**
- * OFD文档对象
+ * OFD document object
  * <p>
  * 请显示的调用Close或clean方法清除工作过程中的文件和目录
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-01-18 13:00:45
  */
 public class OFDDir extends VirtualContainer {
 
     /**
-     * OFD文档主入口文件名称
+     * OFD document主入口file name
      */
     public static final String OFDFileName = "OFD.xml";
     /**
-     * 解密入口文件名称
+     * 解密入口file name
      */
     public static final String EncryptionsFileName = "Encryptions.xml";
 
@@ -49,14 +49,14 @@ public class OFDDir extends VirtualContainer {
     private int maxDocIndex = 0;
 
     /**
-     * 新建一个OFD文档
+     * 新建一个OFD document
      *
-     * @return OFD文档
+     * @return OFD document
      */
     public static OFDDir newOFD() {
         try {
             Path tempDirectory = Files.createTempDirectory("ofd-tmp-");
-//            System.out.println(">> 工作目录: " + tempDirectory.toAbsolutePath());
+//            System.out.println(">> working directory: " + tempDirectory.toAbsolutePath());
             return new OFDDir(tempDirectory);
         } catch (IOException e) {
             throw new RuntimeException("无法创建OFD虚拟容器工作空间，原因：" + e.getMessage(), e);
@@ -64,7 +64,7 @@ public class OFDDir extends VirtualContainer {
     }
 
     /**
-     * 指定路径创建或读取OFD文档容器
+     * 指定路径创建或读取OFDdocument container
      * <p>
      * 如果容器文档已经存在，那么读取
      * <p>
@@ -85,9 +85,9 @@ public class OFDDir extends VirtualContainer {
         File fullDirFile = new File(getSysAbsPath());
         File[] files = fullDirFile.listFiles();
         if (files != null) {
-            // 遍历容器中已经有的文档目录，初始文档数量
+            // 遍历容器中已经有的document directory，初始文档数量
             for (File f : files) {
-                // 文档目录名为： Doc_N
+                // document directory名为： Doc_N
                 if (f.getName().startsWith(DocDir.DocContainerPrefix)) {
                     String numb = f.getName().replace(DocDir.DocContainerPrefix, "");
                     int num = Integer.parseInt(numb);
@@ -103,8 +103,8 @@ public class OFDDir extends VirtualContainer {
      * 获取
      *
      * @return 文档主入口文件对象
-     * @throws FileNotFoundException 文档主入口文件不存在
-     * @throws DocumentException     文档主入口文件解析异常
+     * @throws FileNotFoundException 文档主入口file not found
+     * @throws DocumentException     文档主入口file parsing exception
      */
     public OFD getOfd() throws FileNotFoundException, DocumentException {
         Element obj = this.getObj(OFDFileName);
@@ -125,7 +125,7 @@ public class OFDDir extends VirtualContainer {
     /**
      * 获取 解密入口文件
      * <p>
-     * 如果文件不存在那么创建新的文件
+     * 如果file not found那么创建新的文件
      *
      * @return 解密入口文件
      */
@@ -178,9 +178,9 @@ public class OFDDir extends VirtualContainer {
     }
 
     /**
-     * 新建一个文档容器
+     * 新建一个document container
      *
-     * @return 新建的文档容器
+     * @return 新建的document container
      */
     public DocDir newDoc() {
         String name = DocDir.DocContainerPrefix + maxDocIndex;
@@ -194,7 +194,7 @@ public class OFDDir extends VirtualContainer {
      * 如果文档不存在那么创建
      *
      * @param index index
-     * @return 文档容器
+     * @return document container
      */
     public DocDir obtainDoc(int index) {
         String name = DocDir.DocContainerPrefix + index;
@@ -205,11 +205,11 @@ public class OFDDir extends VirtualContainer {
     }
 
     /**
-     * 获取OFD文档中最新的文档目录
+     * 获取OFD document中最新的document directory
      * <p>
      * 一般来说序号最大的最新 Doc_N
      *
-     * @return 文档目录
+     * @return document directory
      */
     public DocDir getLatestDir() {
         String name = DocDir.DocContainerPrefix + (maxDocIndex - 1);
@@ -217,11 +217,11 @@ public class OFDDir extends VirtualContainer {
     }
 
     /**
-     * 通过文档索引获取文档容器
+     * 通过文档索引获取document container
      *
      * @param index 文档索引
-     * @return 文档容器
-     * @throws FileNotFoundException 指定索引的文档容器不存在
+     * @return document container
+     * @throws FileNotFoundException 指定索引的document container不存在
      */
     public DocDir getDocByIndex(int index) throws FileNotFoundException {
         String name = DocDir.DocContainerPrefix + index;
@@ -233,9 +233,9 @@ public class OFDDir extends VirtualContainer {
     }
 
     /**
-     * 获取第一个文档容器作为默认
+     * 获取第一个document container作为默认
      *
-     * @return 第一个文档容器
+     * @return 第一个document container
      */
     public DocDir obtainDocDefault() {
         if (exist(OFDFileName)) {
@@ -261,23 +261,23 @@ public class OFDDir extends VirtualContainer {
     /**
      * 将文件写入OFD虚拟容器，若路径不存在则创建
      *
-     * @param absPath 文件绝对路径，例如："/Doc_0/Document.xml"
-     * @param path    文件路径
+     * @param absPath 文件absolute path，例如："/Doc_0/Document.xml"
+     * @param path    file path
      * @return 文件在OFD虚拟容器中的路径
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     public ST_Loc putFileAbs(String absPath, Path path) throws IOException {
         if (absPath == null || absPath.trim().isEmpty()) {
-            throw new IllegalArgumentException("文件绝对路径（absPath）为空");
+            throw new IllegalArgumentException("文件absolute path（absPath）为空");
         }
         if (path == null) {
-            throw new IllegalArgumentException("文件路径（path）为空");
+            throw new IllegalArgumentException("file path（path）为空");
         }
 
         Path target = Paths.get(this.getSysAbsPath(), absPath);
         // 检查路径是否越界
         if (!target.startsWith(this.getContainerPath())) {
-            throw new IllegalArgumentException("文件路径越界，不能写入到OFD虚拟容器外部");
+            throw new IllegalArgumentException("file path越界，不能写入到OFD虚拟容器外部");
         }
 
         Files.createDirectories(target.getParent());
@@ -286,25 +286,25 @@ public class OFDDir extends VirtualContainer {
         // 获取文件的相对路径
         String relPath = this.getContainerPath().relativize(target).toString();
         String res = FilenameUtils.separatorsToUnix(relPath);
-        // 转换为OFD虚拟容器中的绝对路径
+        // 转换为OFD虚拟容器中的absolute path
         return new ST_Loc("/").cat(res);
     }
 
     /**
      * 获取OFD虚拟容器中的文件
      *
-     * @param absPath 文件绝对路径，例如："/Doc_0/Document.xml"
-     * @return 文件路径
-     * @throws InvalidPathException 文件不存在
+     * @param absPath 文件absolute path，例如："/Doc_0/Document.xml"
+     * @return file path
+     * @throws InvalidPathException file not found
      */
     public Path getFileAbs(String absPath) {
         if (absPath == null || absPath.trim().isEmpty()) {
-            throw new IllegalArgumentException("文件绝对路径（absPath）为空");
+            throw new IllegalArgumentException("文件absolute path（absPath）为空");
         }
         Path target = Paths.get(this.getSysAbsPath(), absPath);
         // 检查路径是否越界
         if (!target.startsWith(this.getContainerPath())) {
-            throw new IllegalArgumentException("文件路径越界，不能读取OFD虚拟容器外部");
+            throw new IllegalArgumentException("file path越界，不能读取OFD虚拟容器外部");
         }
         return target;
     }
@@ -320,11 +320,11 @@ public class OFDDir extends VirtualContainer {
      * 使用操作系统临时文件夹作为输出流数据
      *
      * @param outStream 输出流
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     public void jar(OutputStream outStream) throws IOException {
         if (outStream == null) {
-            throw new IllegalArgumentException("生成OFD文件输出流（outStream）不能为空");
+            throw new IllegalArgumentException("生成OFD file output stream（outStream）不能为空");
         }
         // 刷入缓存中的内容
         this.flush();
@@ -337,13 +337,13 @@ public class OFDDir extends VirtualContainer {
     }
 
     /**
-     * 打包OFD文件
+     * package OFD file
      *
      * @param workDirPath OFD虚拟容器目录
      * @param dir         压缩包内根目录
      * @param fileTime    文件时间
      * @param zip         输出流
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     private void zip(String workDirPath, String dir, FileTime fileTime, ZipOutputStream zip) throws IOException {
         final File[] files = new File(workDirPath).listFiles();
@@ -402,14 +402,14 @@ public class OFDDir extends VirtualContainer {
      * 2. 打包
      * 3. 删除临时文件
      * <p>
-     * 使用操作系统临时文件夹作为生成OFD文件的临时路径
+     * 使用操作系统临时文件夹作为生成OFD file的临时路径
      *
-     * @param filePath OFD文件名称路径（含后缀名）
-     * @throws IOException IO异常
+     * @param filePath OFDfile name路径（含后缀名）
+     * @throws IOException IO exception
      */
     public void jar(Path filePath) throws IOException {
         if (filePath == null) {
-            throw new IllegalArgumentException("生成OFD文件路径（fileName）不能为空");
+            throw new IllegalArgumentException("生成OFDfile path（fileName）不能为空");
         }
         if (Files.exists(filePath)) {
             Files.delete(filePath);
@@ -417,16 +417,16 @@ public class OFDDir extends VirtualContainer {
         // 刷入缓存中的内容
         this.flush();
         String fullOfFilePath = filePath.toAbsolutePath().toString();
-        // 打包OFD文件
+        // package OFD file
         this.zip(getSysAbsPath(), fullOfFilePath);
     }
 
     /**
-     * 打包OFD文件
+     * package OFD file
      *
      * @param workDirPath    OFD虚拟容器目录
-     * @param fullOfFilePath 生成文件的完整路径（包含后缀的路径）
-     * @throws IOException IO异常
+     * @param fullOfFilePath 生成文件的完整路径（contains后缀的路径）
+     * @throws IOException IO exception
      */
     private void zip(String workDirPath, String fullOfFilePath) throws IOException {
         ZipFile ofdFile = new ZipFile(fullOfFilePath);
@@ -444,10 +444,10 @@ public class OFDDir extends VirtualContainer {
     }
 
     /**
-     * 遍历OFD文件包内的所有文件
+     * 遍历OFD file包内的所有文件
      *
-     * @param iterator OFD包内文件迭代器
-     * @throws IOException 文件读写异常
+     * @param iterator within the OFD package文件迭代器
+     * @throws IOException file read/write exception
      */
     public void walk(OFDPackageFileIterator iterator) throws IOException {
         if (iterator == null) {
@@ -457,9 +457,9 @@ public class OFDDir extends VirtualContainer {
         Files.walkFileTree(this.getContainerPath(), new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                // 路径转换为Unix类型的绝对路径
+                // convert path to Unix-style absolute path
                 String abxFilePath = FilenameUtils.separatorsToUnix(file.toAbsolutePath().toString());
-                // 替换文件系统的根路径，这样就为容器系统中的绝对路径
+                // replace file system root path, making it an absolute path in the container system
                 abxFilePath = abxFilePath.replace(sysRoot, "");
                 final boolean continueIterator = iterator.visit(abxFilePath, file);
                 if (!continueIterator) {

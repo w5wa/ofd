@@ -36,29 +36,29 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 资源管理器（只读）
+ * resource manager（只读）
  * <p>
- * 使用ID随机访问文档中出现的资源对象
+ * 使用ID随机访问文档中出现的resource object
  * <p>
- * 包括 公共资源序列（PublicRes） 和 文档资源序列（DocumentRes）
+ * 包括 public resource sequence（PublicRes） 和 文档资源序列（DocumentRes）
  * <p>
- * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改,所有提供的对象
- * 中文档的相对路径均在加载时转换为绝对路径。
+ * 注意：resource manager提供的resource object均为只读对象（副本），不允许对资源进行修改,所有提供的对象
+ * 中文档的相对路径均在加载时转换为absolute path。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-04-10 11:06:00
  */
 public class ResourceManage {
     /**
-     * 颜色空间
+     * color space
      */
     private final Map<String, CT_ColorSpace> colorSpaceMap = new HashMap<>();
     /**
-     * 绘制参数
+     * drawing parameters
      */
     private final Map<String, CT_DrawParam> drawParamMap = new HashMap<>();
     /**
-     * 字形
+     * glyph
      */
     private final Map<String, CT_Font> fontMap = new HashMap<>();
     /**
@@ -76,7 +76,7 @@ public class ResourceManage {
     private final Map<String, OFDElement> allResMap = new HashMap<>();
 
     /**
-     * 文档公共数据结构
+     * document common data structure
      */
     private CT_CommonData commonData;
 
@@ -84,11 +84,11 @@ public class ResourceManage {
     private final OFDReader ofdReader;
 
     /**
-     * 创建资源管理器
+     * 创建resource manager
      * <p>
      * 选择默认文档（Doc_0）进行资源的加载
      *
-     * @param ofdReader OFD解析器
+     * @param ofdReader OFD parser
      */
     public ResourceManage(OFDReader ofdReader) {
         this.ofdReader = ofdReader;
@@ -100,9 +100,9 @@ public class ResourceManage {
     }
 
     /**
-     * 指定文档创建资源管理器
+     * 指定文档创建resource manager
      *
-     * @param ofdReader OFD解析器
+     * @param ofdReader OFD parser
      * @param docNum    文档序号，从0起
      */
     public ResourceManage(OFDReader ofdReader, int docNum) {
@@ -115,33 +115,33 @@ public class ResourceManage {
     }
 
     /**
-     * 获取绘制参数
+     * get drawing parameters
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @param id 资源ID
-     * @return 绘制参数，不存在返回null
+     * @param id resource ID
+     * @return drawing parameters; returns null if not present
      */
     public CT_DrawParam getDrawParam(String id) {
         return drawParamMap.get(id);
     }
 
     /**
-     * 递归的解析绘制参数并覆盖配置参数内容
+     * 递归的解析drawing parameters并覆盖配置参数内容
      *
-     * @param id 资源ID
-     * @return 绘制参数，不存在返回null
+     * @param id resource ID
+     * @return drawing parameters; returns null if not present
      */
     public CT_DrawParam getDrawParamFinal(String id) {
         return getDrawParamFinal(id, new ArrayList<>());
     }
 
     /**
-     * 递归的解析绘制参数并覆盖配置参数内容（内部使用，带访问路径跟踪）
+     * 递归的解析drawing parameters并覆盖配置参数内容（内部使用，带访问路径跟踪）
      *
-     * @param id 资源ID
+     * @param id resource ID
      * @param visited 访问路径（用于检测循环引用）
-     * @return 绘制参数，不存在返回null
+     * @return drawing parameters; returns null if not present
      */
     private CT_DrawParam getDrawParamFinal(String id, List<String> visited) {
         if (id == null) {
@@ -188,7 +188,7 @@ public class ResourceManage {
         if (parent == null) {
             return current;
         }
-        // 本次绘制属性将覆盖其引用的绘制参数中的同名属性。
+        // 本次绘制属性将覆盖其引用的drawing parameters中的同名属性。
         if (current.attributeValue("LineWidth") == null
                 && parent.attributeValue("LineWidth") != null) {
             current.addAttribute("LineWidth", parent.attributeValue("LineWidth"));
@@ -237,10 +237,10 @@ public class ResourceManage {
     /**
      * 补充 图元信息 通过引用的配置参数
      * <p>
-     * 尝试将图元中描述的绘制信息和引用的绘制参数进行合并
+     * 尝试将图元中描述的绘制信息和引用的drawing parameters进行合并
      *
      * @param current 当前图元对象
-     * @return 继承到的绘制参数
+     * @return 继承到的drawing parameters
      */
     public CT_DrawParam superDrawParam(CT_GraphicUnit<?> current) {
         if (current == null) {
@@ -254,7 +254,7 @@ public class ResourceManage {
         if (parent == null) {
             return null;
         }
-        // 本次绘制属性将覆盖其引用的绘制参数中的同名属性。
+        // 本次绘制属性将覆盖其引用的drawing parameters中的同名属性。
         if (current.attributeValue("LineWidth") == null
                 && parent.attributeValue("LineWidth") != null) {
             current.addAttribute("LineWidth", parent.attributeValue("LineWidth"));
@@ -287,9 +287,9 @@ public class ResourceManage {
     /**
      * 获取多媒体对象
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @param id 资源ID
+     * @param id resource ID
      * @return 多媒体对象，不存在返回null
      */
     public CT_MultiMedia getMultiMedia(String id) {
@@ -297,18 +297,18 @@ public class ResourceManage {
     }
 
     /**
-     * 获取图片资源的图片对象
+     * 获取image资源的image对象
      *
      * @param refID 引用ID
-     * @return 图片对象
-     * @throws IOException IO异常
+     * @return image对象
+     * @throws IOException IO exception
      */
     public BufferedImage getImage(String refID) throws IOException {
         CT_MultiMedia multiMedia = getMultiMedia(refID);
         if (multiMedia == null) return null;
         if (MediaType.Image != multiMedia.getType()) return null;
 
-        // 该路径在解析是已经被映射成绝对路径
+        // 该路径在解析是已经被映射成absolute path
         ST_Loc loc = multiMedia.getMediaFile();
         if (loc == null) return null;
         final ResourceLocator rl = ofdReader.getResourceLocator();
@@ -329,18 +329,18 @@ public class ResourceManage {
     }
 
     /**
-     * 获取图片资源的图片对象
+     * 获取image资源的image对象
      *
      * @param refID 引用ID
      * @return byte[]
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     public byte[] getImageByteArray(String refID) throws IOException {
         CT_MultiMedia multiMedia = getMultiMedia(refID);
         if (multiMedia == null) return null;
         if (MediaType.Image != multiMedia.getType()) return null;
 
-        // 该路径在解析是已经被映射成绝对路径
+        // 该路径在解析是已经被映射成absolute path
         ST_Loc loc = multiMedia.getMediaFile();
         if (loc == null) return null;
         final ResourceLocator rl = ofdReader.getResourceLocator();
@@ -356,13 +356,13 @@ public class ResourceManage {
     }
 
     /**
-     * 获取图片对象的图像
+     * 获取image对象的图像
      * <p>
-     * 如果图片存在蒙板，那么返回蒙板后的图像
+     * 如果image存在蒙板，那么返回蒙板后的图像
      *
-     * @param imageObject 图片对象
-     * @return 图片对象（蒙板后的图像）
-     * @throws IOException 图片操作IO异常
+     * @param imageObject image对象
+     * @return image对象（蒙板后的图像）
+     * @throws IOException image操作IO exception
      */
     public BufferedImage getImage(ImageObject imageObject) throws IOException {
         final ST_RefID resourceID = imageObject.getResourceID();
@@ -379,24 +379,24 @@ public class ResourceManage {
     }
 
     /**
-     * 获取 字形
+     * 获取 glyph
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @param id 资源ID
-     * @return 字形，不存在返回null
+     * @param id resource ID
+     * @return glyph，不存在返回null
      */
     public CT_Font getFont(String id) {
         return fontMap.get(id);
     }
 
     /**
-     * 获取颜色空间
+     * 获取color space
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @param id 资源ID，如果为null则返回 Document.xml CommonData 中的默认颜色空间
-     * @return 颜色空间，不存在返回null(null时默认RGB)
+     * @param id resource ID，如果为null则返回 Document.xml CommonData 中的默认color space
+     * @return color space，不存在返回null(null时默认RGB)
      */
     public CT_ColorSpace getColorSpace(String id) {
         if (id == null) {
@@ -414,9 +414,9 @@ public class ResourceManage {
     /**
      * 获取矢量图形
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @param id 资源ID
+     * @param id resource ID
      * @return 矢量图形，不存在返回null
      */
     public CT_VectorG getCompositeGraphicUnit(String id) {
@@ -432,8 +432,8 @@ public class ResourceManage {
      *
      * @param docNum 文档序号，从0起
      * @return this
-     * @throws IOException       文件读写异常
-     * @throws DocumentException 文档解析异常
+     * @throws IOException       file read/write exception
+     * @throws DocumentException document parsing exception
      */
     public ResourceManage loadDoc(int docNum) throws IOException, DocumentException {
 
@@ -457,8 +457,8 @@ public class ResourceManage {
     /**
      * 多文档资源加载
      *
-     * @throws IOException       文件读写异常
-     * @throws DocumentException 文档解析异常
+     * @throws IOException       file read/write exception
+     * @throws DocumentException document parsing exception
      */
     private void loadDefaultDoc() throws IOException, DocumentException {
         final OFDDir ofdDir = ofdReader.getOFDDir();
@@ -472,20 +472,20 @@ public class ResourceManage {
      * 加载文档中的资源
      *
      * @param docBody 文档描述信息
-     * @throws IOException       文件读写异常
-     * @throws DocumentException 文档解析异常
+     * @throws IOException       file read/write exception
+     * @throws DocumentException document parsing exception
      */
     private void loadDocRes(DocBody docBody) throws IOException, DocumentException {
         final ResourceLocator rl = ofdReader.getResourceLocator();
         try {
             rl.save();
             final ST_Loc docRoot = docBody.getDocRoot();
-            // 路径解析对象获取并缓存虚拟容器
+            // path resolver gets and caches the virtual container
             Document document = rl.get(docRoot, Document::new);
             rl.cd(docRoot.parent());
 
             commonData = new CT_CommonData((Element) document.getCommonData().clone());
-            // 公共资源（PublicRes）
+            // public resource（PublicRes）
             for (ST_Loc pubResLoc : commonData.getPublicResList()) {
                 loadResFile(rl, pubResLoc);
             }
@@ -495,19 +495,19 @@ public class ResourceManage {
                 loadResFile(rl, docResLoc);
             }
 
-            // 页面资源，暂时忽略
+            // 页面资源，暂时ignored
         } finally {
             rl.restore();
         }
     }
 
     /**
-     * 加载资源文文件中描述的资源对象
+     * 加载资源文文件中描述的resource object
      * <p>
-     * 该方法不应该抛出异常所有异常均应该被忽略以便程序继续执行
+     * 该方法不应该抛出异常所有异常均应该被ignored以便程序继续执行
      *
-     * @param rl     资源加载器
-     * @param resLoc 资源文件位置
+     * @param rl     resource loader
+     * @param resLoc resource file位置
      */
     private void loadResFile(ResourceLocator rl, ST_Loc resLoc) {
         if (resLoc == null) {
@@ -517,18 +517,18 @@ public class ResourceManage {
             rl.save();
             rl.cd(resLoc.parent());
             Res res = rl.get(resLoc, Res::new);
-            // 如果资源文件的通用存储路径
+            // 如果resource file的通用存储路径
             final ST_Loc baseLoc = res.getBaseLoc();
-            // 遍历每一个资源对象
+            // 遍历每一个resource object
             for (OFDResource ofdResource : res.getResources()) {
-                // 颜色空间
+                // color space
                 if (ofdResource instanceof ColorSpaces) {
                     for (CT_ColorSpace colorSpace : ((ColorSpaces) ofdResource).getColorSpaces()) {
-                        // 复制副本，作为只读对象
+                        // make a copy as a read-only object
                         CT_ColorSpace item = new CT_ColorSpace((Element) colorSpace.clone());
-                        // 如果文件路径存在，则转换为绝对路径
+                        // 如果file path存在，则转换为absolute path
                         if (item.getProfile() != null) {
-                            // 转换文件路径为绝对地址
+                            // convert file path to absolute address
                             ST_Loc absProfile = abs(rl, baseLoc, item.getProfile());
                             // 替换地址
                             item.setProfile(absProfile);
@@ -538,24 +538,24 @@ public class ResourceManage {
                     }
                     continue;
                 }
-                // 绘制参数
+                // drawing parameters
                 if (ofdResource instanceof DrawParams) {
                     for (CT_DrawParam drawParam : ((DrawParams) ofdResource).getDrawParams()) {
-                        // 复制副本，作为只读对象
+                        // make a copy as a read-only object
                         CT_DrawParam item = new CT_DrawParam(drawParam.clone());
                         drawParamMap.put(item.getID().toString(), item);
                         allResMap.put(item.getID().toString(), item);
                     }
                     continue;
                 }
-                // 字体
+                // font
                 if (ofdResource instanceof Fonts) {
                     for (CT_Font font : ((Fonts) ofdResource).getFonts()) {
-                        // 复制副本，作为只读对象
+                        // make a copy as a read-only object
                         CT_Font item = new CT_Font((Element) font.clone());
-                        // 如果地址存在，则转换为绝对路径
+                        // 如果地址存在，则转换为absolute path
                         if (item.getFontFile() != null) {
-                            // 转换文件路径为绝对地址
+                            // convert file path to absolute address
                             ST_Loc absFontFile = abs(rl, baseLoc, item.getFontFile());
                             // 替换地址
                             item.setFontFile(absFontFile);
@@ -568,11 +568,11 @@ public class ResourceManage {
                 // 媒体对象
                 if (ofdResource instanceof MultiMedias) {
                     for (CT_MultiMedia multiMedia : ((MultiMedias) ofdResource).getMultiMedias()) {
-                        // 复制副本，作为只读对象
+                        // make a copy as a read-only object
                         CT_MultiMedia item = new CT_MultiMedia((Element) multiMedia.clone());
-                        // 如果地址存在，则转换为绝对路径
+                        // 如果地址存在，则转换为absolute path
                         if (item.getMediaFile() != null) {
-                            // 转换文件路径为绝对地址
+                            // convert file path to absolute address
                             ST_Loc absMediaFile = abs(rl, baseLoc, item.getMediaFile());
                             item.setMediaFile(absMediaFile);
                         }
@@ -585,7 +585,7 @@ public class ResourceManage {
                 // 矢量图形
                 if (ofdResource instanceof CompositeGraphicUnits) {
                     for (CT_VectorG ctVectorG : ((CompositeGraphicUnits) ofdResource).getCompositeGraphicUnits()) {
-                        // 复制副本，作为只读对象
+                        // make a copy as a read-only object
                         CT_VectorG item = new CT_VectorG((Element) ctVectorG.clone());
                         compositeGraphicUnitMap.put(item.getID().toString(), item);
                         allResMap.put(item.getID().toString(), item);
@@ -593,19 +593,19 @@ public class ResourceManage {
                 }
             }
         } catch (Exception e) {
-            // System.out.println("[可忽略] 无法解析资源描述文件 " + resLoc.toString() + " " + e.getMessage());
+            // System.out.println("[可ignored] 无法解析resource description file " + resLoc.toString() + " " + e.getMessage());
         } finally {
             rl.restore();
         }
     }
 
     /**
-     * 获取资源的绝对地址
+     * 获取资源的absolute address
      *
-     * @param rl     资源加载器
-     * @param base   资源文件的通用存储路径
-     * @param target 资源文件路径
-     * @return 资源文件绝对地址
+     * @param rl     resource loader
+     * @param base   resource file的通用存储路径
+     * @param target 资源file path
+     * @return resource fileabsolute address
      */
     private ST_Loc abs(ResourceLocator rl, ST_Loc base, ST_Loc target) {
         // 目标路径不存在那么就返还null
@@ -613,55 +613,55 @@ public class ResourceManage {
             return null;
         }
         if (target.isRootPath()) {
-            // 绝对路径
+            // absolute path
             return target;
         }
 
         ST_Loc absLoc;
         if (base != null) {
             if (base.isRootPath()) {
-                // 资源文件的通用存储路径 为根路径时直接在此基础上拼接
+                // resource file的通用存储路径 为根路径时直接在此基础上拼接
                 absLoc = base;
             } else {
-                // 资源文件的通用存储路径 为相对路径时，以结合当前资源文件位置推断当前路径
+                // resource file的通用存储路径 为相对路径时，以结合当前resource file位置推断当前路径
                 absLoc = rl.getAbsTo(base);
             }
             absLoc = absLoc.cat(target);
         } else {
-            // 不存在 通用存储路径 直接根据但前目录位置获取到绝对路径
+            // 不存在 通用存储路径 直接根据但前目录位置获取到absolute path
             absLoc = rl.getAbsTo(target);
         }
         return absLoc;
     }
 
     /**
-     * 获取文档中所有 颜色空间
+     * 获取文档中所有 color space
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @return 颜色空间列表
+     * @return color space列表
      */
     public List<CT_ColorSpace> getColorSpaces() {
         return new ArrayList<CT_ColorSpace>(colorSpaceMap.values());
     }
 
     /**
-     * 获取文档中所有 绘制参数
+     * 获取文档中所有 drawing parameters
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @return 绘制参数
+     * @return drawing parameters
      */
     public List<CT_DrawParam> getDrawParams() {
         return new ArrayList<>(drawParamMap.values());
     }
 
     /**
-     * 获取文档中所有 字形
+     * 获取文档中所有 glyph
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
-     * @return 字形
+     * @return glyph
      */
     public List<CT_Font> getFonts() {
         return new ArrayList<>(fontMap.values());
@@ -670,7 +670,7 @@ public class ResourceManage {
     /**
      * 获取文档中所有 媒体对象
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
      * @return 媒体对象
      */
@@ -681,7 +681,7 @@ public class ResourceManage {
     /**
      * 获取文档中所有 矢量图形
      * <p>
-     * 注意：资源管理器提供的资源对象均为只读对象（副本），不允许对资源进行修改。
+     * Note: all resource objects provided by the resource manager are read-only (copies); modifications are not allowed.
      *
      * @return 矢量图形
      */
@@ -701,8 +701,8 @@ public class ResourceManage {
      * <p>
      * 如果资源不存在，那么返回null
      *
-     * @param id 资源ID
-     * @return 资源对象，null
+     * @param id resource ID
+     * @return resource object，null
      */
     public OFDElement get(String id) {
         return allResMap.get(id);

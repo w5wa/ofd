@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>
  * {@link org.ofdrw.layout.element.AreaHolderBlock} 的渲染器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-10-28 12:30:12
  */
 public class AreaHolderBlockRender implements Processor {
@@ -33,12 +33,12 @@ public class AreaHolderBlockRender implements Processor {
      * <p>
      * 2. 向页面加入的页块用于占位。
      *
-     * @param docDir    文档目录，用于设置位置信息
+     * @param docDir    document directory，用于设置位置信息
      * @param pageLoc   页面位置
      * @param ahBlock   区域占位区块
-     * @param layer     将要渲染到的图层
+     * @param layer     将要渲染到的layer
      * @param maxUnitID 最大ID
-     * @throws RenderException 渲染发生错误
+     * @throws RenderException rendering error occurred
      */
     public static void render(DocDir docDir, ST_Loc pageLoc, CT_PageBlock layer, AreaHolderBlock ahBlock, AtomicInteger maxUnitID) throws RenderException {
         CT_PageBlock block = new CT_PageBlock();
@@ -49,7 +49,7 @@ public class AreaHolderBlockRender implements Processor {
         try {
             Double[] border = ahBlock.getBorder();
             Double[] padding = ahBlock.getPadding();
-            // 获取区域占位区块列表文件
+            // 获取area placeholder block list文件
             AreaHolderBlocks blocks = AreaHolderBlocksProcess.obtian(docDir);
             // 构造占位区域位置以及大小
             ST_Box boundary = new ST_Box(
@@ -67,7 +67,7 @@ public class AreaHolderBlockRender implements Processor {
             // 添加到列表中
             blocks.addAreaHolderBlock(obj);
         } catch (DocumentException | FileNotFoundException e) {
-            throw new RenderException("区域占位区块列表文件获取失败 ", e);
+            throw new RenderException("area placeholder block list文件获取失败 ", e);
         }
     }
 
@@ -75,12 +75,12 @@ public class AreaHolderBlockRender implements Processor {
     /**
      * 处理占位区域
      *
-     * @param pageLoc    页面在虚拟容器中绝对路径。
-     * @param layer      占位符所在图层。
-     * @param resManager 资源管理器
+     * @param pageLoc    absolute path of the page in the virtual container.
+     * @param layer      占位符所在layer。
+     * @param resManager resource manager
      * @param e          OFDRW元素
-     * @param maxUnitID  最大元素ID提供器
-     * @throws RenderException 渲染发生错误
+     * @param maxUnitID  maximum element ID provider
+     * @throws RenderException rendering error occurred
      */
     @Override
     public void render(ST_Loc pageLoc, CT_PageBlock layer, ResManager resManager, Div e, AtomicInteger maxUnitID) throws RenderException {

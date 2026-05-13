@@ -21,12 +21,12 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * 测试数科兼容的PKCS#7 CMS 签名格式
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2022-06-24 22:40:45
  */
 class GBT35275PKCS9DSContainerTest {
     /**
-     * 测试数科兼容的数字签名
+     * 测试数科兼容的number签名
      */
     @Test
     void sign() throws GeneralSecurityException, IOException {

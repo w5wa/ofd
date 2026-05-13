@@ -10,7 +10,7 @@ import org.ofdrw.layout.PageLayout;
  * <p>
  * 一个最简单扩展示例可参考 {@link Line}。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2024-6-5 18:45:49
  */
 public abstract class CanvasBase extends Canvas implements Drawer {

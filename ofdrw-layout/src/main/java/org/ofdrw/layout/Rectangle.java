@@ -4,7 +4,7 @@ package org.ofdrw.layout;
 /**
  * 矩形区域
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-28 04:12:39
  */
 public class Rectangle {
@@ -31,7 +31,7 @@ public class Rectangle {
     }
 
     /**
-     * 增加宽度
+     * 增加width
      *
      * @param delta 增加量（正为增，负为减）
      */
@@ -40,7 +40,7 @@ public class Rectangle {
     }
 
     /**
-     * 增加高度
+     * 增加height
      *
      * @param delta 增加量（正为增，负为减）
      */
@@ -86,7 +86,7 @@ public class Rectangle {
 
     /**
      * 缩减矩形区域
-     * @param height 缩减高度
+     * @param height 缩减height
      * @return 减少的区域
      */
     public Rectangle reduce(double height) {

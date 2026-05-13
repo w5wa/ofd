@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-28 20:04:16
  */
 class OFDEntriesTest {

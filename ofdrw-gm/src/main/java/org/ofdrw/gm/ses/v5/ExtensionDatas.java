@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 自定义属性字段序列
+ * 自定义属性字segment序列
  *
  * @since 2026-04-24
  * @author minghu.zhang

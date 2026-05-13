@@ -5,7 +5,7 @@ package org.ofdrw.core.pageDescription.color.color;
  * <p>
  * 8.1.4.4 表 31 附录A.13
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-09 12:33:09
  */
 public enum EdgeFlag {

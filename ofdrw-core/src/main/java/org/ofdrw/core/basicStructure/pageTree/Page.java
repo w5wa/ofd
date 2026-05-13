@@ -11,7 +11,7 @@ import org.ofdrw.core.basicType.ST_Loc;
  * 7.6 页树 表 11 页树属性
  *
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 10:49:09
  */
 public class Page extends OFDElement {
@@ -24,8 +24,8 @@ public class Page extends OFDElement {
     }
 
     /**
-     * @param id 对象ID
-     * @param baseLoc 页面内容位置
+     * @param id object ID
+     * @param baseLoc page content位置
      */
     public Page(long id, String baseLoc) {
         this();
@@ -40,7 +40,7 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 页的标识符，不能与已有标识重复
      *
      * @param id 页的标识符
@@ -52,7 +52,7 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 页的标识符，不能与已有标识重复
      *
      * @return 页的标识符
@@ -62,10 +62,10 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 页对象描述文件
      *
-     * @param baseLoc 页对象描述文件路径
+     * @param baseLoc 页对象描述file path
      * @return this
      */
     public Page setBaseLoc(ST_Loc baseLoc) {
@@ -74,10 +74,10 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 页对象描述文件
      *
-     * @return 页对象描述文件路径
+     * @return 页对象描述file path
      */
     public ST_Loc getBaseLoc() {
         return ST_Loc.getInstance(this.attributeValue("BaseLoc"));

@@ -14,14 +14,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * 数字签名清除工具
+ * number签名清除工具
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-05-24 20:02:56
  */
 public class SignCleaner {
     /**
-     * OFD解析器
+     * OFD parser
      */
     private OFDReader reader;
 
@@ -34,14 +34,14 @@ public class SignCleaner {
     }
 
     /**
-     * 构造实例
+     * 构造instance
      *
      * @param reader 解析器
      * @param out    清空后输出的位置
      */
     public SignCleaner(OFDReader reader, Path out) {
         if (reader == null) {
-            throw new IllegalArgumentException("OFD解析器(reader)为空");
+            throw new IllegalArgumentException("OFD parser(reader)为空");
         }
         if (out == null) {
             throw new IllegalArgumentException("输出位置(out)为空");
@@ -51,11 +51,11 @@ public class SignCleaner {
     }
 
     /**
-     * 所有文档中所有全部数字签名
+     * 所有文档中所有全部number签名
      * <p>
      * 该操作会关闭Reader
      *
-     * @throws IOException 文件操作异常
+     * @throws IOException file operation exception
      * @throws DocumentException 文档结构无法解析
      */
     public void clean() throws IOException, DocumentException {

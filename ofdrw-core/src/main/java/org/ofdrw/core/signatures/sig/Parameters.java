@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * 签名扩展属性集
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-19 12:53:53
  */
 public class Parameters extends OFDElement {
@@ -25,8 +25,8 @@ public class Parameters extends OFDElement {
     }
 
     /**
-     * 【必选 OFD 2.0】
-     * 增加 签名扩展属性
+     * [required, OFD 2.0]
+     * add signature extension attribute
      *
      * @param parameter 签名扩展属性
      * @return this
@@ -46,11 +46,11 @@ public class Parameters extends OFDElement {
     }
 
     /**
-     * 【必选 OFD 2.0】
-     * 增加 签名扩展属性
+     * [required, OFD 2.0]
+     * add signature extension attribute
      *
-     * @param name  属性的名称
-     * @param value 属性的值
+     * @param name  attribute name
+     * @param value attribute value
      * @return this
      */
     public Parameters addParameter(@NotNull String name, String value) {
@@ -58,12 +58,12 @@ public class Parameters extends OFDElement {
         return this.addParameter(parameter);
     }
     /**
-     * 【必选 OFD 2.0】
-     * 增加 签名扩展属性
+     * [required, OFD 2.0]
+     * add signature extension attribute
      *
-     * @param name  属性的名称
+     * @param name  attribute name
      * @param type  属性的类型
-     * @param value 属性的值
+     * @param value attribute value
      * @return this
      */
     public Parameters addParameter(@NotNull String name, String type, String value) {
@@ -72,9 +72,9 @@ public class Parameters extends OFDElement {
     }
 
     /**
-     * 通过 属性名删除 签名扩展属性
+     * 通过 attribute name删除 签名扩展属性
      *
-     * @param name 签名扩展属性名称
+     * @param name 签名扩展attribute name称
      * @return 被删除的属性 或 null
      */
     @Nullable
@@ -90,9 +90,9 @@ public class Parameters extends OFDElement {
     }
 
     /**
-     * 通过属性名称获取签名扩展属性
+     * 通过attribute name称获取签名扩展属性
      *
-     * @param name 签名扩展属性名称
+     * @param name 签名扩展attribute name称
      * @return 签名扩展属性，或null
      */
     @Nullable
@@ -107,7 +107,7 @@ public class Parameters extends OFDElement {
     }
 
     /**
-     * 【必选 OFD 2.0】
+     * [required, OFD 2.0]
      * 获取 所有签名扩展属性
      *
      * @return 签名扩展属性列表

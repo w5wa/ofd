@@ -12,7 +12,7 @@ public interface TimeStampHook {
     /**
      * 执行方法获取时间戳
      *
-     * @param signature 签章签名值
+     * @param signature seal/signaturesignature value
      * @return 返回时间戳二进制结果
      */
     byte[] apply(byte[] signature);

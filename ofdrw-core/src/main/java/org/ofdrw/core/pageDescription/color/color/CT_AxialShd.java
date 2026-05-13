@@ -17,11 +17,11 @@ import java.util.List;
  * <p>
  * 当轴向渐变某个方向设定为延伸时（Extend 不等于 0），渐变应沿轴在该方向的延长线
  * 延伸到超出裁剪区在该轴线的投影区域为止。当 MapType 为 Direct 时，延伸区域的
- * 渲染颜色使用该方向轴点所在的段的颜色；否则，按照在轴线区域内的渲染规则进行渲染。
+ * 渲染颜色使用该方向轴点所在的segment的颜色；否则，按照在轴线区域内的渲染规则进行渲染。
  * <p>
- * 8.3.4.2 轴向渐变 图 29、30 表 29
+ * 8.3.4.2 Axial Gradient - Figure 29, 30, Table 29
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-31 06:53:43
  */
 public class CT_AxialShd extends OFDElement implements ColorClusterType {
@@ -38,10 +38,10 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 渐变绘制的方式
+     * [optional attribute]
+     * set gradient drawing mode
      * <p>
-     * 可选值参考{@link MapType}
+     * optional values see {@link MapType}
      *
      * @param mapType 绘制方向
      * @return this
@@ -56,10 +56,10 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 渐变绘制的方式
      * <p>
-     * 可选值参考{@link MapType}
+     * optional values see {@link MapType}
      *
      * @return 绘制方向
      */
@@ -68,12 +68,12 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 轴线一个渐变区间的长度
      * <p>
-     * 当 MapType 的值不等于 Direct 时出现
+     * appears when MapType value is not Direct
      * <p>
-     * 默认值为轴线长度
+     * default value: axis length
      *
      * @param mapUnit 轴线一个渐变区间的长度
      * @return this
@@ -88,12 +88,12 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 轴线一个渐变区间的长度
      * <p>
-     * 当 MapType 的值不等于 Direct 时出现
+     * appears when MapType value is not Direct
      * <p>
-     * 默认值为轴线长度
+     * default value: axis length
      *
      * @return 轴线一个渐变区间的长度
      */
@@ -106,12 +106,12 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 轴线延长线方向是否继续绘制
      * <p>
      * 可选值参考{@link Extend}
      * <p>
-     * 默认值为 {@link Extend#_0}  不向两侧继续绘制渐变
+     * default value: {@link Extend#_0} — do not extend gradient on either side
      *
      * @param extend 轴线延长线方向是否继续绘制
      * @return this
@@ -126,10 +126,10 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 轴线延长线方向是否继续绘制
      * <p>
-     * 默认值为 {@link Extend#_0}  不向两侧继续绘制渐变
+     * default value: {@link Extend#_0} — do not extend gradient on either side
      *
      * @return 轴线延长线方向是否继续绘制，选值参考{@link Extend}
      */
@@ -138,7 +138,7 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 轴线起始点
      *
      * @param startPoint 轴线起始点
@@ -153,7 +153,7 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 轴线起始点
      *
      * @return 轴线起始点
@@ -163,7 +163,7 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 轴线结束点
      *
      * @param endPoint 轴线结束点
@@ -178,7 +178,7 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 轴线结束点
      *
      * @return 轴线结束点
@@ -188,25 +188,25 @@ public class CT_AxialShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选】
-     * 增加 段
+     * [required]
+     * 增加 segment
      *
-     * @param segment 段
+     * @param segment segment
      * @return this
      */
     public CT_AxialShd addSegment(Segment segment) {
         if (segment == null) {
-            throw new IllegalArgumentException("段（Segment）为空");
+            throw new IllegalArgumentException("segment（Segment）为空");
         }
         this.add(segment);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取 段列表
+     * [required]
+     * 获取 segment列表
      *
-     * @return 段列表
+     * @return segment列表
      */
     public List<Segment> getSegments() {
         return this.getOFDElements("Segment", Segment::new);

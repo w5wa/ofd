@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 动作序列
+ * action sequence
  * <p>
- * 图 19 大纲节点结构
+ * Figure 19: Outline Node Structure
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 11:32:31
  */
 public class Actions extends OFDElement {
@@ -24,10 +24,10 @@ public class Actions extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 到动作列表
      * <p>
-     * 当此大纲节点被激活时将执行的动作，关于动作的描述详见第 14 章
+     * 当此outline node被激活时将执行的动作，关于动作的描述详见第 14 章
      *
      * @param action 动作
      * @return this
@@ -38,10 +38,10 @@ public class Actions extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 动作列表
      * <p>
-     * 当此大纲节点被激活时将依次执行的动作，关于动作的描述详见第 14 章
+     * 当此outline node被激活时将依次执行的动作，关于动作的描述详见第 14 章
      *
      * @return 动作
      */

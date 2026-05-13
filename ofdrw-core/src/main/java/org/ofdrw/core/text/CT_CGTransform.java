@@ -7,12 +7,12 @@ import org.ofdrw.core.basicType.ST_Array;
 /**
  * 变换描述
  * <p>
- * 当存在字形变换时，TextCode对象中使用字形变换节点（CGTransform）描述字符编码
- * 和字形索引之间的关系。
+ * 当存在glyph变换时，TextCode对象中使用glyph变换节点（CGTransform）描述字符编码
+ * 和glyph索引之间的关系。
  * <p>
  * 11.4.1 变换描述 图 66 表 48
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-19 07:01:53
  */
 public class CT_CGTransform extends OFDElement {
@@ -25,10 +25,10 @@ public class CT_CGTransform extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 TextCode 中字符编码的起始位置
      * <p>
-     * 从 0 开始
+     * starting from 0
      *
      * @param codePosition TextCode 中字符编码的起始位置
      * @return this
@@ -42,10 +42,10 @@ public class CT_CGTransform extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 TextCode 中字符编码的起始位置
      * <p>
-     * 从 0 开始
+     * starting from 0
      *
      * @return TextCode 中字符编码的起始位置
      */
@@ -58,12 +58,12 @@ public class CT_CGTransform extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 变换关系中字符的数量
      * <p>
-     * 该数值应大于等于 1，否则属于错误描述
+     * this value must be >= 1; otherwise it is an invalid description
      * <p>
-     * 默认为 1
+     * default: 1
      *
      * @param codeCount 变换关系中字符的数量，数值应大于等于 1，否则属于错误描述
      * @return this
@@ -80,12 +80,12 @@ public class CT_CGTransform extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 变换关系中字符的数量
      * <p>
-     * 该数值应大于等于 1，否则属于错误描述
+     * this value must be >= 1; otherwise it is an invalid description
      * <p>
-     * 默认为 1
+     * default: 1
      *
      * @return 变换关系中字符的数量，数值应大于等于 1，否则属于错误描述
      */
@@ -98,14 +98,14 @@ public class CT_CGTransform extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 变换关系中字形索引的个数
+     * [optional attribute]
+     * set number of glyph indices in the transform relationship
      * <p>
-     * 该数值应大于等于 1，否则属于错误描述
+     * this value must be >= 1; otherwise it is an invalid description
      * <p>
-     * 默认为 1
+     * default: 1
      *
-     * @param glyphCount 变换关系中字形索引的个数
+     * @param glyphCount 变换关系中glyph索引的个数
      * @return this
      */
     public CT_CGTransform setGlyphCount(Integer glyphCount) {
@@ -120,14 +120,14 @@ public class CT_CGTransform extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 变换关系中字形索引的个数
+     * [optional attribute]
+     * set number of glyph indices in the transform relationship
      * <p>
-     * 该数值应大于等于 1，否则属于错误描述
+     * this value must be >= 1; otherwise it is an invalid description
      * <p>
-     * 默认为 1
+     * default: 1
      *
-     * @return 变换关系中字形索引的个数
+     * @return 变换关系中glyph索引的个数
      */
     public Integer getGlyphCount() {
         String str = this.attributeValue("GlyphCount");
@@ -139,10 +139,10 @@ public class CT_CGTransform extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 设置 变换后的字形索引列表
+     * [optional]
+     * 设置 变换后的glyph索引列表
      *
-     * @param glyphs 变换后的字形索引列表
+     * @param glyphs 变换后的glyph索引列表
      * @return this
      */
     public CT_CGTransform setGlyphs(ST_Array glyphs) {
@@ -151,10 +151,10 @@ public class CT_CGTransform extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 变换后的字形索引列表
+     * [optional]
+     * 获取 变换后的glyph索引列表
      *
-     * @return 变换后的字形索引列表
+     * @return 变换后的glyph索引列表
      */
     public ST_Array getGlyphs() {
         return ST_Array.getInstance(this.getOFDElementText("Glyphs"));

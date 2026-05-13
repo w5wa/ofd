@@ -12,7 +12,7 @@ import java.security.GeneralSecurityException;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-22 23:37:16
  */
 class SESV1ValidateContainerTest {

@@ -8,21 +8,21 @@ import org.dom4j.tree.DefaultElement;
 import org.ofdrw.core.Const;
 
 /**
- * 命名空间变更
+ * namespace变更
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-10-15 20:01:20
  */
 public class OFDNameSpaceModifier extends VisitorSupport {
     /**
-     * 期望变更的命名空间
+     * 期望变更的namespace
      */
     private Namespace expectNs;
 
     /**
-     * 指定变更的命名空间
+     * 指定变更的namespace
      *
-     * @param namespace 期望变更的新的命名空间
+     * @param namespace 期望变更的新的namespace
      */
     public OFDNameSpaceModifier(Namespace namespace) {
         if (namespace == null) {
@@ -32,25 +32,25 @@ public class OFDNameSpaceModifier extends VisitorSupport {
     }
 
     /**
-     * 使用默认的命名空间变更元素的命名空间
+     * 使用默认的namespace变更元素的namespace
      * <p>
-     * 默认命名空间为: xmlns:ofd="http://www.ofdspec.org/2016
+     * default namespace为: xmlns:ofd="http://www.ofdspec.org/2016
      */
     public OFDNameSpaceModifier() {
         this(Const.OFD_NAMESPACE);
     }
 
     /**
-     * 根节点遍历
+     * root node遍历
      *
-     * @param document 根节点对象
+     * @param document root node对象
      */
     public void visit(Document document) {
         final DefaultElement rootElement = (DefaultElement) document.getRootElement();
         if (rootElement == null) {
             return;
         }
-        // 如果命名空间不同，那么更新命名空间
+        // 如果namespace不同，那么更新namespace
         if(!nsEqual(rootElement)){
             rootElement.setNamespace(this.expectNs);
             rootElement.additionalNamespaces().clear();
@@ -58,12 +58,12 @@ public class OFDNameSpaceModifier extends VisitorSupport {
     }
 
     /**
-     * 命名空间遍历
+     * namespace遍历
      *
-     * @param namespace 命名空间
+     * @param namespace namespace
      */
     public void visit(Namespace namespace) {
-        // 删除命名空间
+        // 删除namespace
         namespace.detach();
     }
 
@@ -75,7 +75,7 @@ public class OFDNameSpaceModifier extends VisitorSupport {
 //    }
 
     /**
-     * 根节点下的子节点遍历
+     * root node下的子节点遍历
      *
      * @param node 子节点
      */
@@ -93,7 +93,7 @@ public class OFDNameSpaceModifier extends VisitorSupport {
     }
 
     /**
-     * 命名空间是否一致
+     * namespace是否一致
      *
      * @param e 需要比较的元素
      * @return true - 一致；false - 不一致

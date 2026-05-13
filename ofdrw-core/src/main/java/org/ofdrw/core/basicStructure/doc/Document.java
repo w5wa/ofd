@@ -11,12 +11,12 @@ import org.ofdrw.core.basicStructure.pageTree.Pages;
 import org.ofdrw.core.basicType.ST_Loc;
 
 /**
- * 文档根节点
+ * 文档root node
  * Document.xml
  * <p>
  * ————《GB/T 33190-2016》 图 5
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-04 07:43:14
  */
 public class Document extends OFDElement {
@@ -29,10 +29,10 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 文档公共数据
      * <p>
-     * 定义了页面区域、公共资源
+     * defines page area and public resources
      *
      * @param commonData 文档公共数据
      * @return this
@@ -43,10 +43,10 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 文档公共数据
      * <p>
-     * 定义了页面区域、公共资源
+     * defines page area and public resources
      *
      * @return 文档公共数据
      */
@@ -56,10 +56,10 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 页树
      * <p>
-     * 有关页树的描述键 7.6
+     * see section 7.6 for page tree description keys
      *
      * @param pages 页树
      * @return this
@@ -70,10 +70,10 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 页树
      * <p>
-     * 有关页树的描述键 7.6
+     * see section 7.6 for page tree description keys
      *
      * @return 页树
      */
@@ -83,7 +83,7 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 大纲
      *
      * @param outlines 大纲
@@ -95,7 +95,7 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 大纲
      *
      * @return 大纲
@@ -106,7 +106,7 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 文档的权限声明
      *
      * @param permission 文档的权限声明
@@ -118,7 +118,7 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 文档的权限声明
      *
      * @return 文档的权限声明
@@ -129,12 +129,12 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 文档关联的动作序列
+     * [optional]
+     * 设置 文档关联的action sequence
      * <p>
-     * 当存在多个 Action 对象时，所有动作依次执行
+     * when multiple Action objects exist, all actions are executed in order
      *
-     * @param actions 文档关联的动作序列
+     * @param actions 文档关联的action sequence
      * @return this
      */
     public Document setActions(Actions actions) {
@@ -143,12 +143,12 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 文档关联的动作序列
+     * [optional]
+     * 获取 文档关联的action sequence
      * <p>
-     * 当存在多个 Action 对象时，所有动作依次执行
+     * when multiple Action objects exist, all actions are executed in order
      *
-     * @return 文档关联的动作序列
+     * @return 文档关联的action sequence
      */
     public Actions getActions() {
         Element e = this.getOFDElement("Actions");
@@ -156,7 +156,7 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 文档的视图首选项
      *
      * @param vPreferences 文档的视图首选项
@@ -168,7 +168,7 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 文档的视图首选项
      *
      * @return 文档的视图首选项
@@ -180,10 +180,10 @@ public class Document extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 设置 文档的书签集，包含一组书签
+     * [optional]
+     * 设置 文档的书签集，contains一组书签
      * <p>
-     * 7.5 文档根节点 表 5 文档根节点属性
+     * 7.5 Document Root Node - Table 5 Document Root Node Attributes
      *
      * @param bookmarks 文档的书签集
      * @return this
@@ -194,10 +194,10 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 文档的书签集，包含一组书签
+     * [optional]
+     * 获取 文档的书签集，contains一组书签
      * <p>
-     * 7.5 文档根节点 表 5 文档根节点属性
+     * 7.5 Document Root Node - Table 5 Document Root Node Attributes
      *
      * @return 文档的书签集
      */
@@ -207,12 +207,12 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 指向注释列表的文件
+     * [optional]
+     * 设置 points to注释列表的文件
      * <p>
-     * 有关注释描述见第 15 章
+     * see chapter 15 for annotation descriptions
      *
-     * @param annotations 指向注释列表的文件路径
+     * @param annotations points to注释列表的file path
      * @return this
      */
     public Document setAnnotations(ST_Loc annotations) {
@@ -221,24 +221,24 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 指向注释列表的文件
+     * [optional]
+     * 获取 points to注释列表的文件
      * <p>
-     * 有关注释描述见第 15 章
+     * see chapter 15 for annotation descriptions
      *
-     * @return 指向注释列表的文件路径
+     * @return points to注释列表的file path
      */
     public ST_Loc getAnnotations() {
         return ST_Loc.getInstance(this.getOFDElementText("Annotations"));
     }
 
     /**
-     * 【可选】
-     * 设置 指向自定义标引列表文件
+     * [optional]
+     * 设置 points to自定义标引列表文件
      * <p>
-     * 有关自定义标引描述见第 16 章
+     * see chapter 16 for custom index descriptions
      *
-     * @param customTags 指向自定义标引列表文件路径
+     * @param customTags points to自定义标引列表file path
      * @return this
      */
     public Document setCustomTags(ST_Loc customTags) {
@@ -247,24 +247,24 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 指向自定义标引列表文件
+     * [optional]
+     * 获取 points to自定义标引列表文件
      * <p>
-     * 有关自定义标引描述见第 16 章
+     * see chapter 16 for custom index descriptions
      *
-     * @return 指向自定义标引列表文件路径
+     * @return points to自定义标引列表file path
      */
     public ST_Loc getCustomTags() {
         return ST_Loc.getInstance(this.getOFDElementText("CustomTags"));
     }
 
     /**
-     * 【可选】
-     * 设置 指向附件列表文件
+     * [optional]
+     * 设置 points to附件列表文件
      * <p>
-     * 有关附件描述见第 20 章
+     * see chapter 20 for attachment descriptions
      *
-     * @param attachments 指向附件列表文件路径
+     * @param attachments points to附件列表file path
      * @return this
      */
     public Document setAttachments(ST_Loc attachments) {
@@ -273,24 +273,24 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 指向附件列表文件
+     * [optional]
+     * 获取 points to附件列表文件
      * <p>
-     * 有关附件描述见第 20 章
+     * see chapter 20 for attachment descriptions
      *
-     * @return 指向附件列表文件路径
+     * @return points to附件列表file path
      */
     public ST_Loc getAttachments() {
         return ST_Loc.getInstance(this.getOFDElementText("Attachments"));
     }
 
     /**
-     * 【可选】
-     * 设置 指向扩展列表文件
+     * [optional]
+     * set reference to extension list file
      * <p>
-     * 有关扩展列表文件见第 17 章
+     * see chapter 17 for extension list file
      *
-     * @param extensions 指向扩展列表文件路径
+     * @param extensions points to扩展列表file path
      * @return this
      */
     public Document setExtensions(ST_Loc extensions) {
@@ -299,12 +299,12 @@ public class Document extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 指向扩展列表文件
+     * [optional]
+     * set reference to extension list file
      * <p>
-     * 有关扩展列表文件见第 17 章
+     * see chapter 17 for extension list file
      *
-     * @return 指向扩展列表文件路径
+     * @return points to扩展列表file path
      */
     public ST_Loc getExtensions() {
         return ST_Loc.getInstance(this.getOFDElementText("Extensions"));

@@ -7,11 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 段落
+ * segment落
  * <p>
  * 绘制行为详见渲染器：{@link org.ofdrw.layout.engine.render.ParagraphRender}
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-03 01:27:20
  */
 public class Paragraph extends Div<Paragraph> {
@@ -30,12 +30,12 @@ public class Paragraph extends Div<Paragraph> {
     private Double firstLineIndentWidth = null;
 
     /**
-     * 行间距
+     * line spacing
      */
     private Double lineSpace = 2d;
 
     /**
-     * 默认字体
+     * default font
      */
     private Font defaultFont;
 
@@ -55,17 +55,17 @@ public class Paragraph extends Div<Paragraph> {
     private LinkedList<TxtLineBlock> lines;
 
     /**
-     * 字体在段落内的浮动方向
+     * font在segment落内的浮动方向
      * <p>
      * 默认为：左浮动
      */
     private TextAlign textAlign = TextAlign.left;
 
     /**
-     * 创建一个固定大小段落对象
+     * 创建一个固定大小segment落对象
      *
-     * @param width  内容宽度
-     * @param height 内容高度
+     * @param width  内容width
+     * @param height 内容height
      */
     public Paragraph(Double width, Double height) {
         this();
@@ -73,12 +73,12 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 创建一个段落对象
+     * 创建一个segment落对象
      * <p>
-     * 注意如果不主动对 Paragraph 设置宽度，那么Paragraph
-     * 会独占整个段，并且与段具有相同宽度，也就是页面宽度，
+     * 注意如果不主动对 Paragraph 设置width，那么Paragraph
+     * 会独占整个segment，并且与segment具有相同width，也就是页面width，
      * 在需要更加细致盒式的布局时 请设置{@link #setClear(Clear)}
-     * 并设置段落宽度 {@link #setWidth(Double)}。
+     * 并设置segment落width {@link #setWidth(Double)}。
      */
     public Paragraph() {
         this.setClear(Clear.both);
@@ -87,12 +87,12 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 创建绝对定位段落对象
+     * 创建绝对定位segment落对象
      *
-     * @param x      固定布局的盒式模型左上角X坐标
+     * @param x      固定布局的盒式模型X coordinate of top-left corner
      * @param y      固定布局的盒式模型左上角y坐标
-     * @param width  宽度
-     * @param height 高度
+     * @param width  width
+     * @param height height
      */
     public Paragraph(double x, double y, double width, double height) {
         super(x, y, width, height);
@@ -101,12 +101,12 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 创建绝对定位段落对象
+     * 创建绝对定位segment落对象
      *
-     * @param x        固定布局的盒式模型左上角X坐标
+     * @param x        固定布局的盒式模型X coordinate of top-left corner
      * @param y        固定布局的盒式模型左上角y坐标
-     * @param width    宽度
-     * @param height   高度
+     * @param width    width
+     * @param height   height
      * @param text     文本内容
      * @param fontSize 字号
      */
@@ -124,9 +124,9 @@ public class Paragraph extends Div<Paragraph> {
 
 
     /**
-     * 新建一个段落对象
+     * 新建一个segment落对象
      * <p>
-     * 如果在指定段落中文字大小建议使用{@link Paragraph#Paragraph(java.lang.String, java.lang.Double)}
+     * 如果在指定segment落中文字大小建议使用{@link Paragraph#Paragraph(java.lang.String, java.lang.Double)}
      *
      * @param text 文字内容
      */
@@ -139,10 +139,10 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 新建一个段落对象，并指定文字大小
+     * 新建一个segment落对象，并指定文字大小
      *
      * @param text            文字内容
-     * @param defaultFontSize 默认字体大小。
+     * @param defaultFontSize 默认font大小。
      */
     public Paragraph(String text, Double defaultFontSize) {
         this();
@@ -154,11 +154,11 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 新建一个段落对象，并指定文字大小和字体
+     * 新建一个segment落对象，并指定文字大小和font
      *
      * @param text            文字内容
-     * @param defaultFontSize 默认字体大小
-     * @param defaultFont     默认字体
+     * @param defaultFontSize 默认font大小
+     * @param defaultFont     默认font
      */
     public Paragraph(String text, Double defaultFontSize, Font defaultFont) {
         this();
@@ -171,10 +171,10 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 新建一个段落对象，并指定字体
+     * 新建一个segment落对象，并指定font
      *
      * @param text        文字内容
-     * @param defaultFont 默认字体
+     * @param defaultFont 默认font
      */
     public Paragraph(String text, Font defaultFont) {
         this();
@@ -186,9 +186,9 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 增加段落中的文字
+     * 增加segment落中的文字
      * <p>
-     * 文字样式使用span默认字体样式
+     * 文字样式使用span默认font样式
      *
      * @param text 文本内容
      * @return this
@@ -240,12 +240,12 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 设置默认字体
+     * set default font
      * <p>
      * 注意：在设置 defaultFont 之前被添加的内容，不会在调用 defaultFont 方法后而改变，除非指定 refreshBeforeAdd=true
      *
-     * @param defaultFont      默认字体
-     * @param refreshBeforeAdd 是否对之前add的text内容应用这个字体
+     * @param defaultFont      默认font
+     * @param refreshBeforeAdd 是否对之前add的text内容应用这个font
      * @return this
      */
     public Paragraph setDefaultFont(Font defaultFont, boolean refreshBeforeAdd) {
@@ -260,14 +260,14 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 设置段落内默认的字体大小
+     * 设置segment落内默认的font大小
      * <p>
      * 如果加入的文字没有设置大小，那么默认使用该值。
      * <p>
-     * 注意：该操作不会对段落内已经存在的文字生效，
+     * 注意：该操作不会对segment落内已经存在的文字生效，
      * 因此在添加文字之后，在调用该方法，原有的文字大小不会变换。
      *
-     * @param defaultFontSize 默认字体大小
+     * @param defaultFontSize 默认font大小
      * @return this
      */
     public Paragraph setFontSize(Double defaultFontSize) {
@@ -276,15 +276,15 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 设置段落内默认的字体大小
+     * 设置segment落内默认的font大小
      * <p>
      * 如果加入的文字没有设置大小，那么默认使用该值。
      * <p>
-     * 注意：该操作不会对段落内已经存在的文字生效，
+     * 注意：该操作不会对segment落内已经存在的文字生效，
      * 因此在添加文字之后，在调用该方法，原有的文字大小不会变换。
      * 你可以指定 refreshBeforeAdd=true 来使之前添加的内容也生效。
      *
-     * @param defaultFontSize  默认字体大小
+     * @param defaultFontSize  默认font大小
      * @param refreshBeforeAdd 是否刷新之前添加的内容
      * @return this
      */
@@ -312,7 +312,7 @@ public class Paragraph extends Div<Paragraph> {
     /**
      * 创建新的行
      *
-     * @param width 行宽度
+     * @param width 行width
      * @return 行块
      */
     private TxtLineBlock newLine(double width) {
@@ -330,7 +330,7 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 设置段落首行缩进
+     * 设置segment落首行缩进
      * <p>
      * 默认不缩进
      *
@@ -354,7 +354,7 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 设置段落首行缩进数值
+     * 设置segment落首行缩进数值
      *
      * @param firstLineIndentWidth 首行缩进数值（单位：mm）
      * @return this
@@ -375,7 +375,7 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 设置段落内字体浮动
+     * 设置segment落内font浮动
      * <p>
      * 默认为左浮动
      *
@@ -391,7 +391,7 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 获取段落内字体浮动
+     * 获取segment落内font浮动
      * <p>
      * 默认为左浮动
      *
@@ -424,7 +424,7 @@ public class Paragraph extends Div<Paragraph> {
     /**
      * 处理占位符
      *
-     * @param seq 段落中的span队列
+     * @param seq segment落中的span队列
      */
     private void processPlaceholder(LinkedList<Span> seq) {
         if (seq == null || seq.isEmpty()) {
@@ -439,21 +439,21 @@ public class Paragraph extends Div<Paragraph> {
         Span firstSpan = seq.peek();
         if (firstSpan instanceof PlaceholderSpan) {
             PlaceholderSpan h = (PlaceholderSpan) firstSpan;
-            // 已经存在段落缩进并且设置的段落缩进为0，那么删除该占位符
+            // 已经存在segment落缩进并且设置的segment落缩进为0，那么删除该占位符
             if (h.getHoldWidth() == 0 && h.getHoldNum() == 0) {
                 seq.pop();
             }
             if (firstLineIndentWidth != null && firstLineIndentWidth > 0) {
                 h.setHoldWidth(firstLineIndentWidth);
             } else {
-                // 重设占位符的宽度
+                // 重设占位符的width
                 h.setHoldChars(firstLineIndent);
             }
             return;
         }
 
         if (firstLineIndentWidth != null) {
-            // 使用指定宽度和高度的占位符
+            // 使用指定width和height的占位符
             seq.push(new PlaceholderSpan(firstLineIndentWidth, firstSpan.getFontSize()));
         } else {
             // 如果第一个不是占位符，并且占位符数目大于0 那么创建新的占位符,并且加入渲染队列
@@ -462,11 +462,11 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 如果元素高度不存在那么设置高度
+     * 如果元素height不存在那么设置height
      * <p>
-     * 如果已经设置了高度，该方法不会对该高度造成影响
+     * 如果已经设置了height，该方法不会对该height造成影响
      *
-     * @param height 高度
+     * @param height height
      */
     private void setHeightIfNotExist(double height) {
         if (getHeight() == null || getHeight() == 0) {
@@ -475,11 +475,11 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 如果宽度高度不存在那么设置宽度
+     * 如果widthheight不存在那么设置width
      * <p>
-     * 如果已经设置了宽度，该方法不会对该宽度造成影响
+     * 如果已经设置了width，该方法不会对该width造成影响
      *
-     * @param width 宽度
+     * @param width width
      */
     private void setWidthIfNotExist(double width) {
         if (getWidth() == null || getWidth() == 0) {
@@ -493,14 +493,14 @@ public class Paragraph extends Div<Paragraph> {
      * <p>
      * 该方法主要有渲染器调用，请勿主动调用该方法，除非你知道你在做什么。
      *
-     * @param widthLimit 宽度限制
-     * @return 元素尺寸
+     * @param widthLimit width limit
+     * @return element size
      */
     @Override
     public Rectangle doPrepare(Double widthLimit) {
         this.lines.clear();
         Double originW = this.getWidth();
-        // 行内最大可用宽度
+        // 行内最大可用width
         Double lineMaxAvailableWidth = this.getWidth();
         if (widthLimit == null) {
             throw new NullPointerException("widthLimit为空");
@@ -524,7 +524,7 @@ public class Paragraph extends Div<Paragraph> {
             // 获取Span整体的块的大小
             double blockWidth = s.blockSize().getWidth();
             if (blockWidth > lineMaxAvailableWidth && s.isIntegrity()) {
-                // TODO 警告 不可分割元素如果大于行宽度则忽略
+                // TODO 警告 不可分割元素如果大于行width则ignored
                 continue;
             }
             // 特殊的如果文字可以被分割，但是第一个
@@ -570,18 +570,18 @@ public class Paragraph extends Div<Paragraph> {
         if (!line.isEmpty()) {
             lines.add(line);
         }
-        // 合并所有行的高度
+        // 合并所有行的height
         double height = 0;
         for (TxtLineBlock txtLineBlock : lines) {
             height += txtLineBlock.getHeight();
         }
-        // 为了防止Double 类型精度导致部分情况不准确，导致元素高度不够容纳文字
+        // 为了防止Double 类型精度导致部分情况不准确，导致元素height不够容纳文字
         // 添加 0.0001 以弥补精度损失
         height += 0.0001;
-        // 设置元素高度，如果元素已经预设高度那么则不设置
+        // 设置元素height，如果元素已经预设height那么则不设置
         setHeightIfNotExist(height);
-        //  - 宽度 = null: 最长行宽度
-        //  - 宽度 != null: 区间 [宽度, widthLimit]
+        //  - width = null: 最长行width
+        //  - width != null: 区间 [width, widthLimit]
         if (originW == null) {
             double maxWidth = lines.stream().mapToDouble(TxtLineBlock::getWidth).max().getAsDouble();
             setWidth(maxWidth);
@@ -610,13 +610,13 @@ public class Paragraph extends Div<Paragraph> {
 
     @Override
     public <T extends Div> Div[] contentSplitAdjust(double sHeight, T div1, T div2) {
-        // 文字内容或是Bottom 耗尽了空间 分段的情况
+        // 文字内容或是Bottom 耗尽了空间 分segment的情况
         LinkedList<TxtLineBlock> seq2 = new LinkedList<>(this.lines);
         LinkedList<TxtLineBlock> seq1 = new LinkedList<>();
 
-        // 可用空间高度
+        // 可用空间height
         double availableHeight = sHeight - getMarginTop() - getBorderTop() - getPaddingTop();
-        // 在加入行后，剩余可用空间高度，依次递减直至放不下一行。
+        // 在加入行后，剩余可用空间height，依次递减直至放不下一行。
         double remainHeight = availableHeight;
         while (!seq2.isEmpty()) {
             TxtLineBlock line = seq2.pop();
@@ -643,7 +643,7 @@ public class Paragraph extends Div<Paragraph> {
                     .setPaddingTop(0d);
             return new Div[]{p1, p2};
         }
-        // 剩余空间一行都无法放下的情况，整个对象放到下一个段中，并使用占位符占有上一个段的空间
+        // 剩余空间一行都无法放下的情况，整个对象放到下一个segment中，并使用占位符占有上一个segment的空间
         if (seq1.isEmpty()) {
             Div placeholder = Div.placeholder(this.getWidth() + widthPlus(), sHeight, this.getFloat());
             return new Div[]{placeholder, this};
@@ -663,9 +663,9 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 请勿调用该方法克隆段落，除非你知道你在干什么
+     * 请勿调用该方法克隆segment落，除非你知道你在干什么
      *
-     * @return 属性一模一样，但是没有任何内容的段落
+     * @return 属性一模一样，但是没有任何内容的segment落
      */
     @Override
     public Paragraph clone() {
@@ -681,7 +681,7 @@ public class Paragraph extends Div<Paragraph> {
     }
 
     /**
-     * 元素类型
+     * element type
      * <p>
      * 关联渲染器：{@link org.ofdrw.layout.engine.render.ParagraphRender}
      *

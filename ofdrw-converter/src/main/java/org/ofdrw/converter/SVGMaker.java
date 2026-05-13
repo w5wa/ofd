@@ -27,24 +27,24 @@ public class SVGMaker extends AWTMaker {
 
 
     /**
-     * 创建SVG转换对象实例
+     * 创建SVG转换对象instance
      * <p>
-     * OFD内部使用毫米作为基本单位
+     * OFD uses millimeters as the basic unit internally
      *
-     * @param reader OFD解析器
-     * @param ppm    每毫米像素数量(Pixels per millimeter)
+     * @param reader OFD parser
+     * @param ppm    pixels per millimeter
      */
     public SVGMaker(OFDReader reader, int ppm) {
         super(reader, ppm);
     }
 
     /**
-     * 创建SVG转换对象实例
+     * 创建SVG转换对象instance
      * <p>
-     * OFD内部使用毫米作为基本单位
+     * OFD uses millimeters as the basic unit internally
      *
-     * @param reader OFD解析器
-     * @param ppm    每毫米像素数量(Pixels per millimeter) 调用CommonUtil.dpiToPpm(200) 给定DPI下的像素数量
+     * @param reader OFD parser
+     * @param ppm    pixels per millimeter 调用CommonUtil.dpiToPpm(200) 给定DPI下的像素数量
      */
 
     public SVGMaker(OFDReader reader, double ppm) {
@@ -54,8 +54,8 @@ public class SVGMaker extends AWTMaker {
     /**
      * 渲染OFD页面为SVG
      *
-     * @param pageIndex 页码，从0起
-     * @return 渲染完成的SVG字符串
+     * @param pageIndex page number，从0起
+     * @return 渲染完成的SVGstring
      */
     public String makePage(int pageIndex) {
         if (pageIndex < 0 || pageIndex >= pages.size()) {

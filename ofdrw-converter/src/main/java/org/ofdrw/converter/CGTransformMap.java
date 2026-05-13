@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 字形变换映射
+ * glyph变换映射
  * <p>
  * 该映射用于处理一个TextObject的多个TextCode的映射关系。
  * <p>
- * 映射为： TextCode中字符处于整个TextObject的偏移量 字形
+ * 映射为： TextCode中字符处于整个TextObject的偏移量 glyph
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-10-12 19:42:39
  */
 public class CGTransformMap {
@@ -27,9 +27,9 @@ public class CGTransformMap {
     }
 
     /**
-     * 创建字形变换映射
+     * 创建glyph变换映射
      *
-     * @param textObject 文字对象
+     * @param textObject text object
      */
     public CGTransformMap(TextObject textObject) {
         data = textObject.getCGTransforms()
@@ -47,10 +47,10 @@ public class CGTransformMap {
     }
 
     /**
-     * 通过全局字符偏移量获取字形变换，如果字形变换不存在则返还空
+     * 通过全局字符偏移量获取glyph变换，如果glyph变换不存在则返还空
      *
      * @param globalOffset 全局字符偏移量
-     * @return 字形变换，或null
+     * @return glyph变换，或null
      */
     @Nullable
     public CT_CGTransform get(int globalOffset){
@@ -61,7 +61,7 @@ public class CGTransformMap {
         for (CT_CGTransform datum : data) {
             if (datum.getCodePosition() == globalOffset) {
                 res = datum;
-                // 不使用break，在出现多个字形变换Position相同时，取最后一个出现的字形变换。
+                // 不使用break，在出现多个glyph变换Position相同时，取最后一个出现的glyph变换。
             }
         }
         return res;

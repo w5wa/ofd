@@ -20,24 +20,24 @@ import java.io.FileNotFoundException;
 /**
  * 区域占位区块上下文
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-10-28 16:16:02
  */
 public class AreaHolderContext {
 
     /**
-     * 文档上下文
+     * document context
      */
     private final OFDDoc doc;
 
 
     /**
-     * 正在操作的文档目录
+     * document directory currently being operated
      */
     private final DocDir docDir;
 
     /**
-     * 资源加载器
+     * resource loader
      */
     private final ResourceLocator rl;
 
@@ -45,7 +45,7 @@ public class AreaHolderContext {
     /**
      * 创建 区域占位区块 上下文
      *
-     * @param doc 文档上下文
+     * @param doc document context
      * @param n   文档序号
      * @throws FileNotFoundException 文档不存在
      */
@@ -58,7 +58,7 @@ public class AreaHolderContext {
     /**
      * 创建 区域占位区块 上下文
      *
-     * @param doc 文档上下文
+     * @param doc document context
      */
     public AreaHolderContext(OFDDoc doc) {
         this.rl = new ResourceLocator(doc.getOfdDir());
@@ -70,8 +70,8 @@ public class AreaHolderContext {
     /**
      * 获取指定名称的 区域单元格对象
      *
-     * @param areaName 区域名称
-     * @return 区域单元格对象，区域名称若不存在则返回null。
+     * @param areaName area name
+     * @return 区域单元格对象，area name若不存在则返回null。
      */
     public CellContentDrawer getCell(String areaName) {
         if (areaName == null) {
@@ -87,20 +87,20 @@ public class AreaHolderContext {
      * <p>
      * 注意：
      * <p>
-     * 获取的Canvas无法设置图层，图层由 区域占位区块 在设置时指定不可更改。
+     * 获取的Canvas无法设置layer，layer由 区域占位区块 在设置时指定不可更改。
      * <p>
      * 获取到的Canvas 你需要手动Add到文档中才可生效。
      *
-     * @param areaName 区域名称
+     * @param areaName area name
      * @return 图形绘制器，注意：如果区域不存在则返回null
      */
     public Canvas get(String areaName) {
-        // 不存在 区域占位区块列表
+        // 不存在 area placeholder block list
         if (AreaHolderBlocksProcess.exist(docDir) == false) {
             return null;
         }
         try {
-            // 获取区域占位区块列表文件
+            // 获取area placeholder block list文件
             AreaHolderBlocks areaHolderBlocks = AreaHolderBlocksProcess.get(docDir);
             // 获取区域占位区块
             CT_AreaHolderBlock holder = AreaHolderBlocksProcess.find(areaHolderBlocks, areaName);
@@ -153,7 +153,7 @@ public class AreaHolderContext {
             doc.addVPage(virtualPage);
             return canvas;
         } catch (DocumentException | FileNotFoundException e) {
-            throw new IllegalArgumentException("区域占位区块列表文件获取失败 ", e);
+            throw new IllegalArgumentException("area placeholder block list文件获取失败 ", e);
         }
     }
 }

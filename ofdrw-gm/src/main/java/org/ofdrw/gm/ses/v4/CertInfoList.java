@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 签章者证书列表
+ * signer certificate list
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 17:11:49
  */
 public class CertInfoList extends ASN1Object

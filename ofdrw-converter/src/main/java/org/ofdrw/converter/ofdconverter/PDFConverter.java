@@ -39,19 +39,19 @@ import java.util.*;
 /**
  * PDF转换为OFD转换器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-14 23:09:08
  */
 public class PDFConverter implements DocConverter {
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
 
     /**
-     * OFD图形文档对象
+     * OFD图形document object
      */
     final OFDGraphicsDocument ofdDoc;
 
@@ -61,14 +61,14 @@ public class PDFConverter implements DocConverter {
     private Bookmarks bookmarks;
 
     /**
-     * PDF坐标系 转换 OFD坐标系 缩放比例
+     * PDF坐标系 转换 OFD坐标系 scale ratio
      * PDF user unit / OFD mm
      * user unit per millimeter
      */
     double uuPmm = 2.8346;
 
     /**
-     * 已经完成附件复制的文件绝对路径
+     * 已经完成附件复制的文件absolute path
      * <p>
      * 防止重复拷贝同一个文件中的附件
      */
@@ -86,14 +86,14 @@ public class PDFConverter implements DocConverter {
     private boolean enableCopyBookmarks;
 
     /**
-     * 创建PDF转换OFD转换器
+     * create PDF-to-OFD converter
      *
-     * @param ofdPath 转换后的OFD文件路径
-     * @throws IOException 文件解析异常
+     * @param ofdPath path to converted OFD file
+     * @throws IOException file parsing exception
      */
     public PDFConverter(Path ofdPath) throws IOException {
         if (ofdPath == null) {
-            throw new IllegalArgumentException("转换后的OFD文件路径为空");
+            throw new IllegalArgumentException("path to converted OFD file为空");
         }
 
         ofdPath = ofdPath.toAbsolutePath();
@@ -119,9 +119,9 @@ public class PDFConverter implements DocConverter {
     /**
      * PDF转换为OFD页面
      *
-     * @param filepath 待转换文件路径
-     * @param indexes  【可选】【可变】待转换页码（从0起），该参数仅在转换源文件类型为类文档文件时有效，当该参数不传或为空时表示转换全部内容到OFD。
-     * @throws GeneralConvertException 转换异常
+     * @param filepath path to the file to be converted
+     * @param indexes  【可选】【可变】待转换page number（从0起），该参数仅在转换源文件类型为类文档文件时有效，当该参数不传或为空时表示转换全部内容到OFD。
+     * @throws GeneralConvertException conversion exception
      */
     @Override
     public void convert(Path filepath, int... indexes) throws GeneralConvertException {
@@ -137,7 +137,7 @@ public class PDFConverter implements DocConverter {
                     targetPages.add(i);
                 }
             } else {
-                // 获取指定页面信息
+                // get information for specified page
                 for (int index : indexes) {
                     if (index < 0 || index >= total) {
                         continue;
@@ -149,7 +149,7 @@ public class PDFConverter implements DocConverter {
             PDFRenderer pdfRender = new PDFRenderer(pdfDoc);
             RenderingHints r = new RenderingHints(null);
             r.put(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-            // 设置渲染模式为快速，关闭PDFBox对图片的压缩
+            // 设置渲染模式为快速，关闭PDFBox对image的压缩
             r.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
             r.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             pdfRender.setRenderingHints(r);
@@ -159,14 +159,14 @@ public class PDFConverter implements DocConverter {
             for (Integer index : targetPages) {
                 // 获取PDF页面（page）对象
                 PDPage page = pdfDoc.getPage(index);
-                // 获取当前页面“旋转角度”的值
+                // 获取当前页面“rotation angle”的值
                 int rotation = page.getRotation();
                 // 获取页面尺寸对象
                 PDRectangle pdfPageSize = page.getBBox();
-                // 获取页面的宽度、高度
+                // 获取页面的width、height
                 float width = pdfPageSize.getWidth();
                 float height = pdfPageSize.getHeight();
-                // 如果页面“旋转角度”值为90度或270度，则页面显示为“横向”，需要将获取到的宽度、高度值互换。
+                // 如果页面“rotation angle”值为90度或270度，则页面显示为“横向”，需要将获取到的width、height值互换。
                 if (rotation == 90 || rotation == 270){
                     float tmp = width;
                     width = height;
@@ -232,10 +232,10 @@ public class PDFConverter implements DocConverter {
     /**
      * 递归的遍历文档大纲并导出PDF书签
      *
-     * @param pdfDoc      PDF文档对象
+     * @param pdfDoc      PDFdocument object
      * @param bookmark    书签节点
-     * @param pageID      页面对象ID
-     * @param targetIndex 目标页面索引
+     * @param pageID      页面object ID
+     * @param targetIndex 目标page index
      * @throws IOException PDF解析异常
      */
     private void exportBookmark(PDDocument pdfDoc, PDOutlineNode bookmark, ST_ID pageID, int targetIndex) throws IOException {
@@ -248,7 +248,7 @@ public class PDFConverter implements DocConverter {
 
             PDPageDestination pd = null;
 
-            // 获取页码信息
+            // 获取page number信息
             PDDestination destination = current.getDestination();
             if (destination instanceof PDPageDestination) {
                 pd = (PDPageDestination) destination;
@@ -348,7 +348,7 @@ public class PDFConverter implements DocConverter {
      *
      * @param document    PDF文档
      * @param targetPages 目标页面
-     * @throws IOException 文件复制异常
+     * @throws IOException file copy exception
      */
     private void copyAttachFiles(PDDocument document, List<Integer> targetPages) throws IOException {
         PDDocumentNameDictionary namesDictionary = new PDDocumentNameDictionary(document.getDocumentCatalog());
@@ -368,7 +368,7 @@ public class PDFConverter implements DocConverter {
      * 抽取某页PDF内注释相关联的附件到OFD
      *
      * @param page PDF页面
-     * @throws IOException 文件复制异常
+     * @throws IOException file copy exception
      */
     private void extractFilesFromPage(PDPage page) throws IOException {
         for (PDAnnotation annotation : page.getAnnotations()) {
@@ -386,7 +386,7 @@ public class PDFConverter implements DocConverter {
      * 从页树中抽取附件到OFD
      *
      * @param efTree 页树
-     * @throws IOException 文件复制异常
+     * @throws IOException file copy exception
      */
     private void extractFilesFromEFTree(PDNameTreeNode<PDComplexFileSpecification> efTree) throws IOException {
         Map<String, PDComplexFileSpecification> names = efTree.getNames();
@@ -411,7 +411,7 @@ public class PDFConverter implements DocConverter {
      * 添加PDF附件文件到OFD内
      *
      * @param fileSpec 文件描述
-     * @throws IOException 文件复制异常
+     * @throws IOException file copy exception
      */
     private void addFileToOFD(PDComplexFileSpecification fileSpec) throws IOException {
         PDEmbeddedFile embeddedFile = getEmbeddedFile(fileSpec);

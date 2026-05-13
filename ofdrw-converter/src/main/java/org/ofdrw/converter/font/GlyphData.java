@@ -37,7 +37,7 @@ public class GlyphData {
     private GlyfDescript glyphDescription = null;
     
     /**
-     * CFF 字体的直接路径（用于 OpenType/CFF 格式字体）
+     * CFF font的直接路径（用于 OpenType/CFF 格式font）
      */
     private GeneralPath cffPath = null;
 
@@ -47,9 +47,9 @@ public class GlyphData {
     }
     
     /**
-     * 创建包含 CFF 路径的 GlyphData
+     * 创建contains CFF 路径的 GlyphData
      *
-     * @param path CFF 字体路径
+     * @param path CFF font路径
      */
     public GlyphData(GeneralPath path) {
         this.cffPath = path;
@@ -66,7 +66,7 @@ public class GlyphData {
      *
      * @param data            The stream to read the data from.
      * @param leftSideBearing The left side bearing for this glyph.
-     * @param provider        字形数据提供器，用于在符合字形时工作。
+     * @param provider        glyph数据提供器，用于在符合glyph时工作。
      * @throws IOException If there is an error reading the data.
      */
     public void readData(TTFDataStream data, int leftSideBearing, GlyphDataProvider provider) throws IOException {
@@ -130,7 +130,7 @@ public class GlyphData {
      * @return the path
      */
     public GeneralPath getPath() {
-        // 如果是 CFF 字体路径，直接返回
+        // 如果是 CFF font路径，直接返回
         if (cffPath != null) {
             return cffPath;
         }

@@ -5,7 +5,7 @@ package org.ofdrw.core.pageDescription.color.pattern;
  * <p>
  * 8.3.4 渐变 图 28
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-12 08:38:42
  */
 public enum ReflectMethod {
@@ -35,7 +35,7 @@ public enum ReflectMethod {
     RowAndColumn;
 
     /**
-     * 获取 翻转绘制效果 实例
+     * 获取 翻转绘制效果 instance
      *
      * @param method 效果名称
      * @return 翻转绘制效果

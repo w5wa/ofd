@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  * <p>
  * GMT0099 C.3 表C.2
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-23 18:36:33
  */
 public class CT_EncryptInfo extends OFDElement {
@@ -32,27 +32,27 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * <p>
-     * 设置 加密操作标识
+     * 设置 encryption operation identifier
      *
-     * @param id 加密操作标识
+     * @param id encryption operation identifier
      * @return this
      */
     public CT_EncryptInfo setID(@NotNull String id) {
         if (id == null || id.length() == 0) {
-            throw new IllegalArgumentException("加密操作标识(id)为空");
+            throw new IllegalArgumentException("encryption operation identifier(id)为空");
         }
         this.addAttribute("ID", id);
         return this;
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * <p>
-     * 获取 加密操作标识
+     * 获取 encryption operation identifier
      *
-     * @return 加密操作标识
+     * @return encryption operation identifier
      */
     @NotNull
     public String getID() {
@@ -61,10 +61,10 @@ public class CT_EncryptInfo extends OFDElement {
 
 
     /**
-     * 【可选 属性 OFD 2.0】
-     * 设置 上一次加密操作标识
+     * [optional attribute, OFD 2.0]
+     * 设置 上一次encryption operation identifier
      *
-     * @param id 上一次加密操作标识，如果为null表示移除属性
+     * @param id 上一次encryption operation identifier，如果为null表示移除属性
      * @return this
      */
     public CT_EncryptInfo setRelative(String id) {
@@ -77,10 +77,10 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
-     * 获取 上一次加密操作标识
+     * [optional attribute, OFD 2.0]
+     * 获取 上一次encryption operation identifier
      *
-     * @return 上一次加密操作标识，可能为null
+     * @return 上一次encryption operation identifier，可能为null
      */
     @Nullable
     public String getRelative() {
@@ -88,7 +88,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 加密组件的相关信息
      *
      * @param provider 加密组件的相关信息
@@ -103,7 +103,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 加密组件的相关信息
      *
      * @return 加密组件的相关信息
@@ -119,7 +119,7 @@ public class CT_EncryptInfo extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 文档加密相关内容的描述
      * <p>
      * 文档加密类型或范围
@@ -136,7 +136,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 文档加密相关内容的描述
      * <p>
      * 文档加密类型或范围
@@ -153,8 +153,8 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
-     * 设置 加密操作的附加描述集合
+     * [optional, OFD 2.0]
+     * set additional description set for encryption operations
      *
      * @param parameters 加密操作的附加描述集合，null表示删除
      * @return this
@@ -169,7 +169,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 获取 加密操作的附加描述集合
      *
      * @return 加密操作的附加描述集合，可能为null
@@ -181,7 +181,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 加密时间
      *
      * @param encryptDate 加密时间，如果为null表示删除
@@ -197,7 +197,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 加密时间
      *
      * @return 加密时间，可能为null
@@ -211,7 +211,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 加密时间
      *
      * @return 加密时间，可能为null
@@ -222,46 +222,46 @@ public class CT_EncryptInfo extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 设置 指向包内的二进制密钥描述文件
+     * [required]
+     * 设置 points to包内的二进制key描述文件
      * <p>
-     * 其中记录里解密所需的参数，例如密码算法标识、方案标识和其他参数等。
+     * contains parameters required for decryption, such as cipher algorithm identifier, scheme identifier, and other parameters.
      *
-     * @param decryptSeedLoc 指向包内的二进制密钥描述文件，路径
+     * @param decryptSeedLoc points to包内的二进制key描述文件，路径
      * @return this
      */
     public CT_EncryptInfo setDecryptSeedLoc(@NotNull ST_Loc decryptSeedLoc) {
         if (decryptSeedLoc == null) {
-            throw new IllegalArgumentException("指向包内的二进制密钥描述文件(decryptSeedLoc)为空");
+            throw new IllegalArgumentException("points to包内的二进制key描述文件(decryptSeedLoc)为空");
         }
         this.setOFDEntity("DecryptSeedLoc", decryptSeedLoc.toString());
         return this;
     }
 
     /**
-     * 【必选】
-     * 设置 指向包内的二进制密钥描述文件
+     * [required]
+     * 设置 points to包内的二进制key描述文件
      * <p>
-     * 其中记录里解密所需的参数，例如密码算法标识、方案标识和其他参数等。
+     * contains parameters required for decryption, such as cipher algorithm identifier, scheme identifier, and other parameters.
      *
-     * @param decryptSeedLoc 指向包内的二进制密钥描述文件，路径
+     * @param decryptSeedLoc points to包内的二进制key描述文件，路径
      * @return this
      */
     public CT_EncryptInfo setDecryptSeedLoc(@NotNull String decryptSeedLoc) {
         if (decryptSeedLoc == null) {
-            throw new IllegalArgumentException("指向包内的二进制密钥描述文件(decryptSeedLoc)为空");
+            throw new IllegalArgumentException("points to包内的二进制key描述文件(decryptSeedLoc)为空");
         }
         this.setOFDEntity("DecryptSeedLoc", decryptSeedLoc);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取 指向包内的二进制密钥描述文件
+     * [required]
+     * 获取 points to包内的二进制key描述文件
      * <p>
-     * 其中记录里解密所需的参数，例如密码算法标识、方案标识和其他参数等。
+     * contains parameters required for decryption, such as cipher algorithm identifier, scheme identifier, and other parameters.
      *
-     * @return 指向包内的二进制密钥描述文件，路径
+     * @return points to包内的二进制key描述文件，路径
      */
     @NotNull
     public ST_Loc getDecryptSeedLoc() {
@@ -269,7 +269,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 明密文映射表或其加密后的文件存储的路径
      *
      * @param entriesMapLoc 明密文映射表或其加密后的文件存储的路径
@@ -284,7 +284,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 明密文映射表或其加密后的文件存储的路径
      *
      * @param entriesMapLoc 明密文映射表或其加密后的文件存储的路径
@@ -299,7 +299,7 @@ public class CT_EncryptInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 明密文映射表或其加密后的文件存储的路径
      *
      * @return 明密文映射表或其加密后的文件存储的路径

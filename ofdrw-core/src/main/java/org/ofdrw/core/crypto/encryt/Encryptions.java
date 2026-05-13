@@ -10,16 +10,16 @@ import java.util.List;
  * 【OFD 2.0】
  * 解密入口文件
  * <p>
- * 解密入口文件采用XML形式标识。文件以Encryptions为根节点，可包含多个加密信息（EncryptInfo）节点。
+ * 解密入口文件采用XML形式标识。文件以Encryptions为root node，可contains多个加密信息（EncryptInfo）节点。
  * <p>
- * 每个加密信息节点的内容包含两部分，一部分为加密概要信息，
- * 另一部分为密钥描述文件和密密文映射表的位置，如图 C.2
+ * 每个加密信息节点的内容contains两部分，一部分为加密概要信息，
+ * 另一部分为key描述文件和密密文映射表的位置，如图 C.2
  * <p>
- * 解密输入文件的文件名固定为”Encryptions.xml“，应放置在OFD文件的根目录（与OFD.xml位置相同）
+ * 解密输入文件的filename固定为”Encryptions.xml“，应放置在OFD file的根目录（与OFD.xml位置相同）
  * <p>
  * GMT0099-2020
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-23 18:31:35
  */
 public class Encryptions extends OFDElement {
@@ -34,7 +34,7 @@ public class Encryptions extends OFDElement {
 
 
     /**
-     * 【必选 OFD 2.0】
+     * [required, OFD 2.0]
      * 增加 加密描述信息
      * <p>
      * 多重加密形成多个加密操作记录
@@ -53,7 +53,7 @@ public class Encryptions extends OFDElement {
     }
 
     /**
-     * 【必选 OFD 2.0】
+     * [required, OFD 2.0]
      * 获取 加密描述信息 列表
      * <p>
      * GMT0099 附录 C.3
@@ -66,9 +66,9 @@ public class Encryptions extends OFDElement {
     }
 
     /**
-     * 返回当前容器内最大的加密操作标识数字
+     * 返回当前容器内最大的encryption operation identifiernumber
      * <p>
-     * 没有加密标识或无法解析成数字，则返回0
+     * 没有加密标识或无法解析成number，则返回0
      *
      * @return 0
      */

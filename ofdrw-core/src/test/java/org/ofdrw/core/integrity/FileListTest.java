@@ -6,7 +6,7 @@ import org.ofdrw.TestTool;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-28 19:59:43
  */
 class FileListTest {

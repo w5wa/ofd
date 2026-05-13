@@ -15,11 +15,11 @@ import java.util.function.Function;
 import java.util.regex.Pattern;
 
 /**
- * 资源定位器
+ * resource locator
  * <p>
- * 通过给与的资源地址获取对应的资源文件或对象
+ * 通过给与的资源地址获取对应的resource file或对象
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-08 20:05:14
  */
 public class ResourceLocator {
@@ -61,14 +61,14 @@ public class ResourceLocator {
 
     public ResourceLocator(OFDDir ofdDir) {
         this.ofdDir = ofdDir;
-        // 默认工作目录为OFD容器的根目录
+        // 默认working directory为OFD容器的根目录
         this.workDir.add("/");
     }
 
     /***
-     * 通过虚拟容器创建资源加载器
+     * 通过虚拟容器创建resource loader
      *
-     * 创建资源加载器的同时切换路径至虚拟容器的目录
+     * 创建resource loader的同时切换路径至虚拟容器的目录
      *
      * @param vc 虚拟容器
      */
@@ -98,7 +98,7 @@ public class ResourceLocator {
     }
 
     /**
-     * 还原原有工作区
+     * restore the original workspace
      * <p>
      * 如果没有保存过工作区，那么不会造成任何影响
      *
@@ -115,10 +115,10 @@ public class ResourceLocator {
     }
 
     /**
-     * 转换路径对象为绝对路径字符串
+     * 转换路径对象为absolute pathstring
      *
      * @param path 路径对象
-     * @return 绝对路径字符串
+     * @return absolute pathstring
      */
     public String toAbsolutePath(ST_Loc path) {
         if (path == null) {
@@ -128,10 +128,10 @@ public class ResourceLocator {
     }
 
     /**
-     * 路径转换为绝对路径
+     * 路径转换为absolute path
      *
      * @param path 容器路径
-     * @return 绝对路径字符串
+     * @return absolute pathstring
      */
     public String toAbsolutePath(String path) {
         if (path == null || path.trim().isEmpty()) {
@@ -202,7 +202,7 @@ public class ResourceLocator {
      * 路径最后如果是目录也不加 "/"
      *
      * @param path    路径位置
-     * @param workDir 已有工作目录
+     * @param workDir 已有working directory
      * @return this
      * @throws ErrorPathException 路径不存在
      */
@@ -216,7 +216,7 @@ public class ResourceLocator {
             workDir.add("/");
             return this;
         }
-        // 转换路径为绝对路径
+        // 转换路径为absolute path
         String absPath = toAbsolutePath(path);
         String ofwTmp = ofdDir.getSysAbsPath();
         Path sysPath = Paths.get(ofwTmp + absPath);
@@ -242,13 +242,13 @@ public class ResourceLocator {
      * 路径是否存在
      *
      * @param path 末端路径
-     * @return true -存在，false - 不存在
+     * @return true - exists; false - not found
      */
     public boolean exist(String path) {
         String ofwTmp = ofdDir.getSysAbsPath();
         String fullPath = "";
         if (path.startsWith("/")) {
-            // 绝对路径
+            // absolute path
             fullPath = ofwTmp + path;
         } else {
             // 相对路径
@@ -261,7 +261,7 @@ public class ResourceLocator {
      * 判断路径是否存在
      *
      * @param workDir 路径集合
-     * @return true -存在，false - 不存在
+     * @return true - exists; false - not found
      */
     public boolean exist(LinkedList<String> workDir) {
         String pwd = pwd(workDir);
@@ -275,7 +275,7 @@ public class ResourceLocator {
      * 判断路径是否存在
      *
      * @param workDir 工作路径
-     * @return true -存在，false - 不存在
+     * @return true - exists; false - not found
      */
     public boolean dirExit(LinkedList<String> workDir) {
         String pwd = pwd(workDir);
@@ -286,11 +286,11 @@ public class ResourceLocator {
 
 
     /**
-     * 打印工作目录 Print Work Directory
+     * 打印working directory Print Work Directory
      * <p>
      * 路径最后如果是目录也不加 "/"
      *
-     * @return 工作目录路径
+     * @return working directory路径
      */
     public String pwd() {
         return pwd(this.workDir);
@@ -298,10 +298,10 @@ public class ResourceLocator {
 
 
     /**
-     * 打印工作目录 Print Work Directory
+     * 打印working directory Print Work Directory
      *
-     * @param workDir 工作目录
-     * @return 工作目录路径
+     * @param workDir working directory
+     * @return working directory路径
      */
     public String pwd(List<String> workDir) {
         if (workDir.size() == 1) {
@@ -325,10 +325,10 @@ public class ResourceLocator {
 
 
     /**
-     * 获取以当前路径为基础的容器内绝对路径
+     * 获取以当前路径为基础的容器内absolute path
      *
      * @param to 目标路径
-     * @return 容器内绝对路径
+     * @return 容器内absolute path
      */
     public ST_Loc getAbsTo(ST_Loc to) {
         if (to == null) {
@@ -339,13 +339,13 @@ public class ResourceLocator {
             return new ST_Loc(loc);
         }
 
-        // 查询工作目录
+        // query working directory
         LinkedList<String> wd = new LinkedList<>(this.workDir);
-        // 文件名称
+        // file name
         String fileName;
         int indexOf = loc.lastIndexOf('/');
         if (indexOf != -1) {
-            // 切换工作目录
+            // switch working directory
             this.cd(wd, loc.substring(0, indexOf + 1));
             fileName = loc.substring(indexOf + 1);
         } else {
@@ -361,40 +361,40 @@ public class ResourceLocator {
     }
 
     /**
-     * 根据路径获取获取对应的资源对象
+     * 根据路径获取获取对应的resource object
      *
      * @param loc    路径地址
      * @param mapper 对象映射构造器
      * @param <R>    映射对象
-     * @return 对象
-     * @throws FileNotFoundException 文件不存在
-     * @throws DocumentException     文件解析异常
+     * @return object
+     * @throws FileNotFoundException file not found
+     * @throws DocumentException     file parsing exception
      */
     public <R> R get(ST_Loc loc, Function<Element, R> mapper) throws FileNotFoundException, DocumentException {
         return get(loc.getLoc(), mapper);
     }
 
     /**
-     * 根据路径获取获取对应的资源对象
+     * 根据路径获取获取对应的resource object
      *
      * @param loc    路径地址
      * @param mapper 对象映射构造器
      * @param <R>    映射对象
-     * @return 对象
-     * @throws FileNotFoundException 文件不存在
-     * @throws DocumentException     文件解析异常
+     * @return object
+     * @throws FileNotFoundException file not found
+     * @throws DocumentException     file parsing exception
      */
     public <R> R get(String loc, Function<Element, R> mapper) throws FileNotFoundException, DocumentException {
         if (loc == null || loc.trim().equals("")) {
             throw new FileNotFoundException("路径为空（loc）");
         }
-        // 查询工作目录
+        // query working directory
         LinkedList<String> wd = new LinkedList<>(this.workDir);
-        // 文件名称
+        // file name
         String fileName;
         int indexOf = loc.lastIndexOf('/');
         if (indexOf != -1) {
-            // 切换工作目录
+            // switch working directory
             this.cd(wd, loc.substring(0, indexOf + 1));
             fileName = loc.substring(indexOf + 1);
         } else {
@@ -410,7 +410,7 @@ public class ResourceLocator {
      * 获取路径下的文件
      *
      * @param stLoc 路径
-     * @return 系统文件路径
+     * @return 系统file path
      * @throws FileNotFoundException 文件或路径不存在
      */
     public Path getFile(ST_Loc stLoc) throws FileNotFoundException {
@@ -422,20 +422,20 @@ public class ResourceLocator {
      * 获取路径下的文件
      *
      * @param loc 路径
-     * @return 系统文件路径
+     * @return 系统file path
      * @throws FileNotFoundException 文件或路径不存在
      */
     public Path getFile(String loc) throws FileNotFoundException {
         if (loc == null || loc.trim().equals("")) {
             throw new FileNotFoundException("路径为空（loc）");
         }
-        // 查询工作目录
+        // query working directory
         LinkedList<String> wd = new LinkedList<>(this.workDir);
-        // 文件名称
+        // file name
         String fileName;
         int indexOf = loc.lastIndexOf('/');
         if (indexOf != -1) {
-            // 切换工作目录
+            // switch working directory
             this.cd(wd, loc.substring(0, indexOf + 1));
             fileName = loc.substring(indexOf + 1);
         } else {

@@ -16,9 +16,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * 高亮 显示关键字定位
+ * 高亮 显示keyword定位
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2022-03-04 23:02:08
  */
 public class TestHighlight {

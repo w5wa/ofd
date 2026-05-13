@@ -9,15 +9,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * 段落布局演示
+ * segment落布局演示
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-05-26 23:11:21
  */
 public class ParagraphLayoutDemo {
 
     /**
-     * 设置段落内字体颜色
+     * 设置segment落内font color
      */
     @Test
     public void setParagraphColor() throws Exception{
@@ -45,7 +45,7 @@ public class ParagraphLayoutDemo {
         System.out.println("生成文档位置：" + outP.toAbsolutePath().toString());
     }
     /**
-     * 测试段落内文字浮动
+     * 测试segment落内文字浮动
      */
     @Test
     void testParagraphInlineFloat() throws IOException {
@@ -64,7 +64,7 @@ public class ParagraphLayoutDemo {
             Paragraph p4 = new Paragraph("这是\n多行的文本\n\n我将采用向右浮动", 4d)
                     .setTextAlign(TextAlign.right);
 
-            // 居中
+            // center
             Paragraph p5 = new Paragraph("这是居中内容", 4d)
                     .setTextAlign(TextAlign.center);
             Paragraph p6 = new Paragraph("这是\n多行的文本\n\n我将采用向居中", 4d)
@@ -82,9 +82,9 @@ public class ParagraphLayoutDemo {
     }
 
     /**
-     * 段落布局 各种情况演示
+     * segment落布局 各种情况演示
      *
-     * @author 权观宇
+     * @author Quan Guanyu
      * @since 2021-05-26 23:26:24
      */
     @Test
@@ -100,14 +100,14 @@ public class ParagraphLayoutDemo {
             p2.setClear(Clear.none).setBorder(0.1d).setMargin(3d, 0d);
             // 结束共享模式
             Paragraph hit1 = new Paragraph("插入一个Clear=both的元素中断共享模式");
-            // - 手动指定宽度，仅在 Clear != both 模式有效
+            // - 手动指定width，仅在 Clear != both 模式有效
             Paragraph p3 = new Paragraph();
             p3.add("手动指定宽度，仅在 Clear != both 模式有效");
             p3.setWidth(55d);
             p3.setClear(Clear.none).setBorder(0.1d).setMargin(3d, 0d);
             Paragraph hit2 = new Paragraph("插入一个Clear=both的元素中断共享模式");
 
-            // 居中
+            // center
             Paragraph pn = new Paragraph();
             pn.setWidth(80d);
             pn.setHeight(20d);
@@ -144,7 +144,7 @@ public class ParagraphLayoutDemo {
 
 
     /**
-     * 段落首行缩进测试用例
+     * segment落首行缩进测试用例
      */
     @Test
     void testParagraphFirstLineIndent() throws IOException {
@@ -175,14 +175,14 @@ public class ParagraphLayoutDemo {
                     .add(sp2)
                     .setFirstLineIndentWidth((3d + 3d) * 2); // 设置首行缩进宽度，单位mm
 
-            // 将段落加入文档
+            // 将segment落加入文档
             ofdDoc.add(title).add(p1).add(p2);
         }
         System.out.println("生成文档位置：" + outP.toAbsolutePath().toString());
     }
 
     /**
-     * 段落布局模式
+     * segment落布局模式
      */
     @Test
     void testPLayoutPatten() throws IOException {
@@ -197,14 +197,14 @@ public class ParagraphLayoutDemo {
             p2.setClear(Clear.none).setBorder(0.1d).setMargin(3d, 0d);
             // 结束共享模式
             Paragraph hit1 = new Paragraph("插入一个Clear=both的元素中断共享模式");
-            // - 手动指定宽度，仅在 Clear != both 模式有效
+            // - 手动指定width，仅在 Clear != both 模式有效
             Paragraph p3 = new Paragraph();
             p3.add("手动指定宽度，仅在 Clear != both 模式有效");
             p3.setWidth(55d);
             p3.setClear(Clear.none).setBorder(0.1d).setMargin(3d, 0d);
             Paragraph hit2 = new Paragraph("插入一个Clear=both的元素中断共享模式");
 
-            // 居中
+            // center
             Paragraph pn = new Paragraph();
             pn.setWidth(80d);
             pn.setHeight(20d);

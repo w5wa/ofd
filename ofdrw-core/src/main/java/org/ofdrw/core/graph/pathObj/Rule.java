@@ -5,7 +5,7 @@ package org.ofdrw.core.graph.pathObj;
  * <p>
  * 9.1 表 35 图形对象描述
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-16 08:46:57
  */
 public enum Rule {

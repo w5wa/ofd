@@ -7,28 +7,28 @@ import java.time.format.DateTimeFormatter;
 /**
  * 静态变量
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-27 10:22:57
  */
 public class Const {
 
     /**
-     * 命名空间 URI,《GB/T_33190-2016》 7.1 命名空间
+     * namespace URI,《GB/T_33190-2016》 7.1 namespace
      */
     public static final String OFD_NAMESPACE_URI = "http://www.ofdspec.org/2016";
     /**
-     * 元素节点应使用命名空间标识符
-     * ————《GB/T 33190-2016》 7.1 命名空间
+     * element node应使用namespace identifier
+     * — GB/T 33190-2016, Section 7.1: Namespaces
      */
     public static final String OFD_VALUE = "ofd";
     /**
-     * OFD命名空间
+     * OFD namespace
      */
     public static final String OFD_Q = "ofd:";
 
     /**
-     * 使用命名空间为 http://www.ofdspec.org/2016，其表示符应为 ofd。
-     * ————《GB/T 33190-2016》 7.1 命名空间
+     * 使用namespace为 http://www.ofdspec.org/2016，其表示符应为 ofd。
+     * — GB/T 33190-2016, Section 7.1: Namespaces
      */
     public static final Namespace OFD_NAMESPACE = new Namespace("ofd", OFD_NAMESPACE_URI);
     public static final Namespace OFD_NAMESPACE_DEFAULT = new Namespace("", OFD_NAMESPACE_URI);

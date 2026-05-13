@@ -5,7 +5,7 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 签章者证书杂凑值
+ * signer certificate hash value
  *
  * @since 2026-04-24
  * @author minghu.zhang

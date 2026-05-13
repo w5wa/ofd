@@ -37,7 +37,7 @@ import java.time.LocalDate;
 class OFDDocStreamTest {
 
     /**
-     * 字体宽度溢出可用最大宽度测试
+     * fontwidth溢出可用最大width测试
      */
     @Test
     void fontSizeOverflow() throws IOException {
@@ -54,7 +54,7 @@ class OFDDocStreamTest {
     }
 
     /**
-     * 加入印章类型注释对象
+     * 加入seal/stamp类型注释对象
      *
      * @throws IOException
      */
@@ -166,7 +166,7 @@ class OFDDocStreamTest {
     }
 
     /**
-     * 流式文档段落分割死锁
+     * 流式文档segment落分割死锁
      * <p>
      * github issue #228
      */
@@ -174,7 +174,7 @@ class OFDDocStreamTest {
     void testSplitParagraph() throws Exception {
 
         Path srcP = Paths.get("src/test/resources", "SplitParagraph.ofd");
-        //段落内容数组
+        //segment落内容数组
         try (OFDDoc ofdDoc = new OFDDoc(srcP)) {
             PageLayout pageLayOut = PageLayout.A4();
             pageLayOut.setMarginLeft(0.0);

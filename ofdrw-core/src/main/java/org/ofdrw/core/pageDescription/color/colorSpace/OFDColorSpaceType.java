@@ -1,11 +1,11 @@
 package org.ofdrw.core.pageDescription.color.colorSpace;
 
 /**
- * 颜色空间的类型
+ * color space的类型
  * <p>
- * 8.3.1 表 25 颜色空间属性
+ * 8.3.1 表 25 color space属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-11 08:07:31
  */
 public enum OFDColorSpaceType {
@@ -23,11 +23,11 @@ public enum OFDColorSpaceType {
     CMYK;
 
     /**
-     * 获取实例
+     * get instance
      * 
-     * @param type 类型字符串
-     * @return 实例
-     * @throws IllegalArgumentException 未知的颜色空间类型
+     * @param type type string
+     * @return instance
+     * @throws IllegalArgumentException 未知的color space类型
      */
     public static OFDColorSpaceType getInstance(String type) {
         type = (type == null) ? "" : type.trim();
@@ -40,7 +40,7 @@ public enum OFDColorSpaceType {
         // case "CMYK":
         // return CMYK;
         // default:
-        // throw new IllegalArgumentException("未知的颜色空间类型：" + type);
+        // throw new IllegalArgumentException("未知的color space类型：" + type);
         // }
         if (type.equalsIgnoreCase("GRAY")) {
             return GRAY;
@@ -49,7 +49,7 @@ public enum OFDColorSpaceType {
         } else if (type.equalsIgnoreCase("CMYK")) {
             return CMYK;
         } else {
-            throw new IllegalArgumentException("未知的颜色空间类型：" + type);
+            throw new IllegalArgumentException("未知的color space类型：" + type);
         }
     }
 }

@@ -1,9 +1,9 @@
 package org.ofdrw.gm.ses.parse;
 
 /**
- * 电子签章版本号
+ * 电子seal/signature版本号
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-20 09:20:34
  */
 public enum SESVersion {

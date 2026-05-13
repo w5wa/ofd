@@ -41,7 +41,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 文档合并工具
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-11-08 20:49:36
  */
 public class OFDMerger implements Closeable {
@@ -53,7 +53,7 @@ public class OFDMerger implements Closeable {
      */
     public final ArrayList<PageEntry> pageArr;
     /**
-     * 文档上下文映射
+     * document context映射
      */
     private final Map<String, DocContext> docCtxMap;
 
@@ -80,10 +80,10 @@ public class OFDMerger implements Closeable {
 
 
     /**
-     * 资源文件哈希表
+     * resource file哈希表
      * <p>
      * Key: 文件SM3 Hash Hex
-     * Value: 文件在新文档中的文件名
+     * Value: 文件在新文档中的filename
      */
     private final Map<String, ST_Loc> resFileHashTable;
 
@@ -91,8 +91,8 @@ public class OFDMerger implements Closeable {
     /**
      * 模板页面映射表
      * <p>
-     * Key: 模板页对象ID
-     * Value: 模板页面对象
+     * Key: 模板页object ID
+     * Value: 模板page object
      */
     private final Map<String, CT_TemplatePage> tplPageMap;
 
@@ -126,7 +126,7 @@ public class OFDMerger implements Closeable {
         this.dest = dest;
         final Path parent = dest.getParent();
         if (parent == null || !Files.exists(parent)) {
-            throw new IllegalArgumentException("OFD文件存储路径(dest)上级目录 [" + parent + "] 不存在");
+            throw new IllegalArgumentException("OFD file storage path(dest)上级目录 [" + parent + "] 不存在");
         }
         resFileHashTable = new HashMap<>(3);
         tplPageMap = new HashMap<>(2);
@@ -137,10 +137,10 @@ public class OFDMerger implements Closeable {
     /**
      * 向合并文件中添加页面
      *
-     * @param filepath    待合并的OFD文件路径
-     * @param pageIndexes 页面序序列，如果为空表示所有页面（页码从1开始）
+     * @param filepath    待合并的OFDfile path
+     * @param pageIndexes 页面序序列，如果为空表示所有页面（page number从1开始）
      * @return this
-     * @throws IOException 页面读写异常
+     * @throws IOException page read/write exception
      */
     public OFDMerger add(Path filepath, int... pageIndexes) throws IOException {
         if (filepath == null) {
@@ -148,13 +148,13 @@ public class OFDMerger implements Closeable {
         }
         String key = filepath.toAbsolutePath().getFileName().toString();
         DocContext ctx = docCtxMap.get(key);
-        // 缓存中没有该文件映射
+        // no file mapping found in cache
         if (ctx == null) {
             // 加载文件上下文
             ctx = new DocContext(filepath);
             docCtxMap.put(key, ctx);
         }
-        // 没有传递页码时认为需要追加所有页面
+        // 没有传递page number时认为需要追加所有页面
         if (pageIndexes == null || pageIndexes.length == 0) {
             int numberOfPages = ctx.reader.getNumberOfPages();
             pageIndexes = new int[numberOfPages];
@@ -176,11 +176,11 @@ public class OFDMerger implements Closeable {
      * 注意两个页面大小不一致，则以第一个文档的页面大小为准。
      *
      * @param dstDocFilepath   原始文档路径（用于作为基础页面其他文档的页面将加入到该页面中）
-     * @param dstPageIndex     要混合的页面页序列，如果为空表示所有页面（页码从1开始）
-     * @param tbMixDocFilepath 需要混合的文档路径，该文档的页面内容将被混合到目标文档中
-     * @param tbMixPageIndex   需要混合的文档页序列（页码从1开始）
+     * @param dstPageIndex     要混合的页面页序列，如果为空表示所有页面（page number从1开始）
+     * @param tbMixDocFilepath 需要混合的文档路径，该文档的page content将被混合到目标文档中
+     * @param tbMixPageIndex   需要混合的文档页序列（page number从1开始）
      * @return this
-     * @throws IOException 页面读写异常
+     * @throws IOException page read/write exception
      */
     public OFDMerger addMix(Path dstDocFilepath, int dstPageIndex, Path tbMixDocFilepath, int tbMixPageIndex) throws IOException {
         ArrayList<DocPage> pageList = new ArrayList<>(2);
@@ -196,7 +196,7 @@ public class OFDMerger implements Closeable {
      *
      * @param pageList 需要混合的页面列表，按照顺序依次混合，第1个文档页面处于最底下。
      * @return this
-     * @throws IOException 页面读写异常
+     * @throws IOException page read/write exception
      */
     public OFDMerger addMix(List<DocPage> pageList) throws IOException {
         if (pageList == null || pageList.isEmpty()) {
@@ -211,7 +211,7 @@ public class OFDMerger implements Closeable {
 
             String key = page.path.toAbsolutePath().getFileName().toString();
             DocContext ctx = docCtxMap.get(key);
-            // 缓存中没有该文件映射
+            // no file mapping found in cache
             if (ctx == null) {
                 // 加载文件上下文
                 ctx = new DocContext(page.path);
@@ -237,7 +237,7 @@ public class OFDMerger implements Closeable {
      * <p>
      * 通过该方法可以详细设置页面迁移时的属性参数
      *
-     * @param pages 页面对象
+     * @param pages page object
      * @return this
      */
     public OFDMerger add(PageEntry... pages) {
@@ -249,7 +249,7 @@ public class OFDMerger implements Closeable {
                 continue;
             }
             String key = page.docCtx.filepath.toAbsolutePath().getFileName().toString();
-            // 缓存中没有该文件映射
+            // no file mapping found in cache
             if (!docCtxMap.containsKey(key)) {
                 docCtxMap.put(key, page.docCtx);
             }
@@ -257,7 +257,7 @@ public class OFDMerger implements Closeable {
             if (page.tbMixPages != null) {
                 for (PageEntry beMixPage : page.tbMixPages) {
                     String keyMix = beMixPage.docCtx.filepath.toAbsolutePath().getFileName().toString();
-                    // 缓存中没有该文件映射
+                    // no file mapping found in cache
                     if (!docCtxMap.containsKey(keyMix)) {
                         docCtxMap.put(keyMix, beMixPage.docCtx);
                     }
@@ -282,20 +282,20 @@ public class OFDMerger implements Closeable {
         try (final BareOFDDoc ofdDoc = new BareOFDDoc(dest)) {
             this.ofdDoc = ofdDoc;
             final Pages pages = ofdDoc.document.getPages();
-            // 如果存在Pages那么获取，不存在那么创建
+            // get Pages if exists, or create if not
             final PagesDir pagesDir = ofdDoc.docDir.obtainPages();
             for (final PageEntry pageEntry : pageArr) {
-                // 取Doc_0文档对象
+                // 取Doc_0document object
                 final CT_PageArea docDefaultArea = new CT_PageArea((Element) pageEntry.docCtx.getDefaultArea(0).clone());
                 org.ofdrw.core.basicStructure.pageObj.Page page = null;
                 ST_ID oldPageID = null;
                 ST_ID newPageID = null;
                 // 解析原OFD页面的Content.xml 为Page对象
                 try {
-                    // 获取页面在原文档中的对象ID
+                    // 获取页面在原文档中的object ID
                     oldPageID = pageEntry.docCtx.reader.getPageObjectId(pageEntry.pageIndex);
                 } catch (NumberFormatException e) {
-                    // 忽略页码非法的页面复制
+                    // ignoredpage number非法的页面复制
                     continue;
                 }
 
@@ -304,12 +304,12 @@ public class OFDMerger implements Closeable {
                 document.add(copy);
                 page = new org.ofdrw.core.basicStructure.pageObj.Page(copy);
 
-                // 若当前页面的页面区域的大小和位置为空，则使用文档默认的尺寸
+                // 若当前页面的page area的大小和位置为空，则使用文档默认的尺寸
                 if (page.getArea() == null) {
                     page.setArea(docDefaultArea);
                 }
 
-                // 创建页面容器
+                // 创建page container
                 PageDir pageDir = pagesDir.newPageDir();
                 String pageLoc = String.format("Pages/Page_%d/Content.xml", pageDir.getIndex());
                 // 将创建的页面加入 Document.xml 中的 Pages 内
@@ -331,7 +331,7 @@ public class OFDMerger implements Closeable {
 
                 // 通过XML 选中与资源有关对象，并实现资源迁移和引用替换
                 domMigrate(pageEntry.docCtx, page);
-                // 页面放入页面容器中
+                // 页面放入page container中
                 pageDir.setContent(page);
 
                 // 迁移注释
@@ -351,11 +351,11 @@ public class OFDMerger implements Closeable {
     }
 
     /**
-     * 执行混合页面内容
+     * 执行混合page content
      *
-     * @param targetPageDir  目标页面容器
+     * @param targetPageDir  目标page container
      * @param newPageID      目标页面ID
-     * @param targetPageObj  目标页面对象
+     * @param targetPageObj  目标page object
      * @param beMixPageEntry 被混合页面
      * @throws IOException 文件读取或复制异常
      */
@@ -363,10 +363,10 @@ public class OFDMerger implements Closeable {
         ST_ID oldPageID = null;
         // 解析原OFD页面的Content.xml 为Page对象
         try {
-            // 获取页面在原文档中的对象ID
+            // 获取页面在原文档中的object ID
             oldPageID = beMixPageEntry.docCtx.reader.getPageObjectId(beMixPageEntry.pageIndex);
         } catch (NumberFormatException e) {
-            // 忽略页码非法的页面复制
+            // ignoredpage number非法的页面复制
             return;
         }
         // 复制页面
@@ -429,7 +429,7 @@ public class OFDMerger implements Closeable {
     /**
      * 页面注释迁移到新文档，若页面无注释则跳过。
      *
-     * @param docCtx           文档上下文
+     * @param docCtx           document context
      * @param oldPageID        原页面ID
      * @param newPageID        迁移后页面ID
      * @param pageAnnotDirName 页面所处容器名称，格式为Page_N
@@ -487,7 +487,7 @@ public class OFDMerger implements Closeable {
         } catch (FileNotFoundException | DocumentException e) {
             System.err.println("页面注释迁移失败：" + e.getMessage());
         } finally {
-            // 还原原有工作区
+            // restore the original workspace
             rl.restore();
         }
     }
@@ -497,10 +497,10 @@ public class OFDMerger implements Closeable {
      * <p>
      * 若模板已经迁移过，那么直接返回迁移后的页面ID
      *
-     * @param docCtx 原文档上下文
+     * @param docCtx 原document context
      * @param tplObj 页面模板信息对象
      * @return 迁移后模板页面在新文档中的引用ID
-     * @throws IOException 文件复制异常
+     * @throws IOException file copy exception
      */
     private ST_RefID pageTplMigrate(DocContext docCtx, Template tplObj) throws IOException {
         final String oldId = tplObj.getTemplateID().toString();
@@ -543,14 +543,14 @@ public class OFDMerger implements Closeable {
 
 
     /**
-     * DOM元素节点的资源迁移
+     * DOMelement node的资源迁移
      * <p>
      * 检查DOM节点下所有引用资源，并将资源迁移到新文档中
      * 更新DOM引用ID
      * <p>
-     * 重新分配对象ID
+     * 重新分配object ID
      *
-     * @param docCtx DOM相关的文档上下文
+     * @param docCtx DOM相关的document context
      * @param dom    待迁移DOM
      * @throws IOException 文件读取或复制异常
      */
@@ -565,22 +565,22 @@ public class OFDMerger implements Closeable {
             for (Node node : nodes) {
                 if (node instanceof Element) {
                     Element element = (Element) node;
-                    // 获取原资源ID
+                    // 获取原resource ID
                     final String oldResId = element.attributeValue(attrName);
                     // 迁移资源到新文档，并返回新文档中该资源的ID
                     long newResId = resMigrate(docCtx, oldResId);
-                    // 设置新的资源ID
+                    // 设置新的resource ID
                     element.addAttribute(attrName, Long.toString(newResId));
                 }
             }
         }
 
-        // 修改DOM中原有的对象ID为新页面的对象ID
+        // 修改DOM中原有的object ID为新页面的object ID
         final List<Node> objArr = dom.selectNodes("//*[@ID]");
         for (Node node : objArr) {
             if (node instanceof Element) {
                 Element element = (Element) node;
-                // 设置新的对象ID
+                // 设置新的object ID
                 element.addAttribute("ID", Integer.toString(ofdDoc.MaxUnitID.incrementAndGet()));
             }
         }
@@ -589,8 +589,8 @@ public class OFDMerger implements Closeable {
     /**
      * 从原文当迁移资源到新页面
      *
-     * @param docCtx   被迁移的页面文档上下文
-     * @param oldResId 资源ID
+     * @param docCtx   被迁移的页面document context
+     * @param oldResId resource ID
      * @return 资源在新文档中的ID, 0标识没有找到资源
      * @throws IOException 文件读取或复制错误
      */
@@ -613,7 +613,7 @@ public class OFDMerger implements Closeable {
             CT_ColorSpace cs = (CT_ColorSpace) resObj;
             ST_Loc profile = cs.getProfile();
             if (profile != null) {
-                // 复制资源到新的文档中
+                // copy resources to new document
                 Path filepath = rl.getFile(profile);
                 profile = copyResFile(filepath);
                 cs.setProfile(profile);
@@ -626,7 +626,7 @@ public class OFDMerger implements Closeable {
             CT_Font f = (CT_Font) resObj;
             ST_Loc fontFileLoc = f.getFontFile();
             if (fontFileLoc != null) {
-                // 复制资源到新的文档中
+                // copy resources to new document
                 Path filepath = rl.getFile(fontFileLoc);
                 fontFileLoc = copyResFile(filepath);
                 f.setFontFile(fontFileLoc);
@@ -636,7 +636,7 @@ public class OFDMerger implements Closeable {
             CT_MultiMedia mm = (CT_MultiMedia) resObj;
             ST_Loc mediaFileLoc = mm.getMediaFile();
             if (mediaFileLoc != null) {
-                // 复制资源到新的文档中
+                // copy resources to new document
                 Path filepath = rl.getFile(mediaFileLoc);
                 mediaFileLoc = copyResFile(filepath);
                 mm.setMediaFile(mediaFileLoc);
@@ -666,7 +666,7 @@ public class OFDMerger implements Closeable {
      * <p>
      * 复制后的文档名称为文件的Hash值
      *
-     * @param filepath 文件路径
+     * @param filepath file path
      * @return 复制后基于资源容器的相对路径
      * @throws IOException 文件读取复制异常
      */
@@ -703,7 +703,7 @@ public class OFDMerger implements Closeable {
             resDir.addRaw(fileName, in);
         }
         final ST_Loc res = new ST_Loc(fileName);
-        // 缓存，返回文件名称（基于Res容器的相对路径）
+        // 缓存，返回file name（基于Res容器的相对路径）
         resFileHashTable.put(hash, res);
         return res;
     }
@@ -718,7 +718,7 @@ public class OFDMerger implements Closeable {
                 throw new IOException(e);
             }
         }
-        // 关闭已经打开的文档上下文
+        // 关闭已经打开的document context
         for (DocContext docContext : docCtxMap.values()) {
             docContext.close();
         }

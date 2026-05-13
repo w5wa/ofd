@@ -21,17 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * OFD文档页面删除器
+ * OFD document页面删除器
  * <p>
- * 该删除器仅删除文档树中的页面节点，不会删除相关资源和页面对象 Content.xml
+ * 该删除器仅删除文档树中的页面节点，不会删除相关资源和page object Content.xml
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-8-2 19:31:00
  */
 public class OFDPageDeleter implements Closeable {
 
     /**
-     * OFD文档虚拟容器
+     * OFD document虚拟容器
      */
     private final OFDDir ofdDir;
     /**
@@ -39,12 +39,12 @@ public class OFDPageDeleter implements Closeable {
      */
     private final OFD ofd;
     /**
-     * OFD文档根节点
+     * OFD documentroot node
      */
     private final Document ofdRoot;
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     private final OFDReader reader;
     /**
@@ -53,16 +53,16 @@ public class OFDPageDeleter implements Closeable {
     private final Path outPath;
 
     /**
-     * 创建OFD文档页面删除器
+     * 创建OFD document页面删除器
      *
-     * @param src OFD文件路径
-     * @param out 删除后文件路径
-     * @throws IOException       文件解析异常
+     * @param src OFDfile path
+     * @param out 删除后file path
+     * @throws IOException       file parsing exception
      * @throws DocumentException 文档结构无法解析
      */
     public OFDPageDeleter(Path src, Path out) throws IOException, DocumentException {
         if (src == null || !src.toFile().exists()) {
-            throw new IllegalArgumentException("OFD文件不存在");
+            throw new IllegalArgumentException("OFDfile not found");
         }
         if (out == null) {
             throw new IllegalArgumentException("输出路径（out）为空");
@@ -72,10 +72,10 @@ public class OFDPageDeleter implements Closeable {
         this.outPath = out;
         this.ofdDir = reader.getOFDDir();
         this.ofd = ofdDir.getOfd();
-        // 资源定位器
+        // resource locator
         ResourceLocator rl = reader.getResourceLocator();
         DocBody docBody = ofd.getDocBody();
-        // 找到 Document.xml文件并且序列化
+        // find Document.xml and serialize
         ST_Loc docRoot = docBody.getDocRoot();
         this.ofdRoot = rl.get(docRoot, Document::new);
     }
@@ -84,7 +84,7 @@ public class OFDPageDeleter implements Closeable {
     /**
      * 删除指定索引的页面
      *
-     * @param indexes 页面索引列表（从0起）
+     * @param indexes page index列表（从0起）
      * @return this
      */
     public OFDPageDeleter delete(int... indexes) {
@@ -112,16 +112,16 @@ public class OFDPageDeleter implements Closeable {
      * <p>
      * 注意：请在所有操作完成后调用该方法，否则无法删除页面。
      *
-     * @throws IOException 文件读写异常
+     * @throws IOException file read/write exception
      */
     @Override
     public void close() throws IOException {
         DocBody docBody = ofd.getDocBody();
         CT_DocInfo docInfo = docBody.getDocInfo();
-        // 设置文档修改时间
+        // 设置文档modification time
         docInfo.setModDate(LocalDate.now());
 
-        // final. 执行打包程序
+        // final: execute packaging
         if (outPath != null) {
             ofdDir.jar(outPath.toAbsolutePath());
         }

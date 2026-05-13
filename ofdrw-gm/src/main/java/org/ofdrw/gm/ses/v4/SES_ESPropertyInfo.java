@@ -5,57 +5,57 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 印章属性
+ * seal/stamp属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 16:24:52
  */
 public class SES_ESPropertyInfo extends ASN1Object {
 
     /**
-     * 签章者证书信息类型： 1 - 数字证书类型
+     * seal/signature者certificate信息类型： 1 - numbercertificate类型
      */
     public static final ASN1Integer CertListType = new ASN1Integer(1);
 
     /**
-     * 签章者证书信息类型： 2 - 数字证书杂凑值
+     * seal/signature者certificate信息类型： 2 - numbercertificatehash value
      */
     public static final ASN1Integer CertDigestListType = new ASN1Integer(2);
 
     /**
-     * 印章类型
+     * seal/stamp类型
      */
     private ASN1Integer type;
 
     /**
-     * 印章名称
+     * seal/stamp名称
      */
     private DERUTF8String name;
 
     /**
-     * 签章者证书信息类型
+     * seal/signature者certificate信息类型
      */
     private ASN1Integer certListType;
 
     /**
-     * 签章者证书信息列表
+     * signer certificate information list
      * <p>
      * SES_CertList
      */
     private SES_CertList certList;
 
     /**
-     * 印章制做日期
+     * seal/stamp制做日期
      */
     private ASN1GeneralizedTime createDate;
 
     /**
-     * 印章有效起始日期
+     * seal/stamp有效起始日期
      */
     private ASN1GeneralizedTime validStart;
 
     /**
-     * 印章有效终止日期
+     * seal/stamp有效终止日期
      */
     private ASN1GeneralizedTime validEnd;
 
