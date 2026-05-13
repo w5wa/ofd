@@ -14,19 +14,19 @@ import java.security.cert.Certificate;
 /**
  * PKCS12 解析工具
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-21 02:04:24
  */
 public class PKCS12Tools {
 
     /**
-     * 从P12中获取私钥
+     * get private key from P12
      *
-     * @param userP12 PKCS12文件路径
-     * @param pwd     解密密钥
-     * @return 私钥
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param userP12 PKCS12 file path
+     * @param pwd     decryption key
+     * @return private key
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static PrivateKey ReadPrvKey(Path userP12, String pwd)
             throws GeneralSecurityException, IOException {
@@ -36,13 +36,13 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取私钥
+     * get private key from P12
      *
      * @param rootKsIn PKCS12 is
-     * @param pwd     解密密钥
-     * @return 私钥
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param pwd     decryption key
+     * @return private key
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static PrivateKey ReadPrvKey(InputStream rootKsIn, String pwd)
             throws GeneralSecurityException, IOException {
@@ -54,14 +54,14 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取私钥
+     * get private key from P12
      *
-     * @param userP12 PKCS12文件路径
-     * @param alias   密钥存储别名
-     * @param pwd     解密密钥
-     * @return 私钥
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param userP12 PKCS12 file path
+     * @param alias   key store alias
+     * @param pwd     decryption key
+     * @return private key
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static PrivateKey ReadPrvKey(Path userP12, String alias, String pwd)
             throws GeneralSecurityException, IOException {
@@ -71,14 +71,14 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取私钥
+     * get private key from P12
      *
-     * @param rootKsIn PKCS12文件is
-     * @param alias   密钥存储别名
-     * @param pwd     解密密钥
-     * @return 私钥
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param rootKsIn PKCS12 file input stream
+     * @param alias   key store alias
+     * @param pwd     decryption key
+     * @return private key
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static PrivateKey ReadPrvKey(InputStream rootKsIn, String alias, String pwd)
             throws GeneralSecurityException, IOException {
@@ -88,13 +88,13 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取证书链
+     * 从P12中获取certificate链
      *
-     * @param rootKsIn PKCS12文件is
-     * @param pwd     解密密钥
-     * @return 证书链，第一张证书为用户证书
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param rootKsIn PKCS12 file input stream
+     * @param pwd     decryption key
+     * @return certificate链，第一张certificate为user certificate
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static Certificate[] ReadCertChain(InputStream rootKsIn, String pwd)
             throws GeneralSecurityException, IOException {
@@ -106,13 +106,13 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取用户证书
+     * get user certificate from P12
      *
-     * @param userP12 PKCS12文件路径
-     * @param pwd     解密密钥
-     * @return 用户证书
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param userP12 PKCS12 file path
+     * @param pwd     decryption key
+     * @return user certificate
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static Certificate ReadUserCert(Path userP12, String pwd)
             throws GeneralSecurityException, IOException {
@@ -123,13 +123,13 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取用户证书
+     * get user certificate from P12
      *
-     * @param rootKsIn PKCS12文件is
-     * @param pwd     解密密钥
-     * @return 用户证书
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param rootKsIn PKCS12 file input stream
+     * @param pwd     decryption key
+     * @return user certificate
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static Certificate ReadUserCert(InputStream rootKsIn, String pwd)
             throws GeneralSecurityException, IOException {
@@ -138,14 +138,14 @@ public class PKCS12Tools {
 
 
     /**
-     * 从P12中获取证书链
+     * 从P12中获取certificate链
      *
      * @param rootKsIn PKCS12的is
-     * @param alias    密钥存储别名
-     * @param pwd      解密密钥
-     * @return 证书链，第一张证书为用户证书
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param alias    key store alias
+     * @param pwd      decryption key
+     * @return certificate链，第一张certificate为user certificate
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static Certificate[] ReadCertChain(InputStream rootKsIn, String alias, String pwd)
             throws GeneralSecurityException, IOException {
@@ -155,14 +155,14 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取用户证书
+     * get user certificate from P12
      *
-     * @param userP12 PKCS12文件路径
-     * @param alias   密钥存储别名
-     * @param pwd     解密密钥
-     * @return 用户证书
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param userP12 PKCS12 file path
+     * @param alias   key store alias
+     * @param pwd     decryption key
+     * @return user certificate
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static Certificate ReadUserCert(Path userP12, String alias, String pwd)
             throws GeneralSecurityException, IOException {
@@ -173,14 +173,14 @@ public class PKCS12Tools {
     }
 
     /**
-     * 从P12中获取用户证书
+     * get user certificate from P12
      *
-     * @param rootKsIn PKCS12文件is
-     * @param alias   密钥存储别名
-     * @param pwd     解密密钥
-     * @return 用户证书
-     * @throws GeneralSecurityException 加解密异常
-     * @throws IOException              文件读取异常
+     * @param rootKsIn PKCS12 file input stream
+     * @param alias   key store alias
+     * @param pwd     decryption key
+     * @return user certificate
+     * @throws GeneralSecurityException encryption/decryption exception
+     * @throws IOException              file read exception
      */
     public static Certificate ReadUserCert(InputStream rootKsIn, String alias, String pwd)
             throws GeneralSecurityException, IOException {

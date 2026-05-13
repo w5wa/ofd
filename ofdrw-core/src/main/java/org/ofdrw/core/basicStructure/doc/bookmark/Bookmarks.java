@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 文档的书签集，包含一组书签
+ * 文档的书签集，contains一组书签
  * <p>
- * 7.5 文档根节点 表 5 文档根节点属性
+ * 7.5 Document Root Node - Table 5 Document Root Node Attributes
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-09 08:01:58
  */
 public class Bookmarks extends OFDElement {
@@ -26,7 +26,7 @@ public class Bookmarks extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 书签
      *
      * @param bookmark 书签
@@ -38,7 +38,7 @@ public class Bookmarks extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 书签列表
      *
      * @return 书签列表

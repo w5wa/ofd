@@ -11,7 +11,7 @@ import org.ofdrw.core.pageDescription.clips.Clips;
 /**
  * 裁剪区域构造器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-04 16:11:55
  */
 @Deprecated
@@ -23,7 +23,7 @@ public class ClipFactory implements Cloneable {
     private AbbreviatedData data;
 
     /**
-     * 裁剪路径的变换矩阵
+     * 裁剪路径的transformation matrix
      */
     private ST_Array ctm;
 

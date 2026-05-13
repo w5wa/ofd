@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 /**
  * 页面目录容器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-01-18 03:05:23
  */
 public class PageDir extends VirtualContainer {
@@ -28,17 +28,17 @@ public class PageDir extends VirtualContainer {
     public static final Pattern AnnotFileRegex = Pattern.compile("Annot_(\\d+).xml");
 
     /**
-     * 页面容器名称前缀
+     * page container名称前缀
      */
     public static final String PageContainerPrefix = "Page_";
 
     /**
-     * 页面描述文件名称
+     * 页面描述file name
      */
     public static final String ContentFileName = "Content.xml";
 
     /**
-     * 记录了资源描述文件名称
+     * 记录了资源描述file name
      */
     public static final String PageResFileName = "PageRes.xml";
 
@@ -56,9 +56,9 @@ public class PageDir extends VirtualContainer {
 
 
     /**
-     * 代表OFD  页面索引号
+     * 代表OFD  page index号
      * <p>
-     * index 从 0 开始取
+     * index starting from 0取
      */
     private String index = "0";
 
@@ -84,30 +84,30 @@ public class PageDir extends VirtualContainer {
 
 
     /**
-     * 获取页面索引
+     * 获取page index
      *
-     * @return 页面索引
-     * @throws NumberFormatException 非规范的页面索引可能导致该问题
+     * @return page index
+     * @throws NumberFormatException 非规范的page index可能导致该问题
      */
     public Integer getIndex() {
         return Integer.parseInt(index);
     }
 
     /**
-     * 获取页面索引字符串，默认为数字如 "1"，非规范情况下将返回自定义名称
+     * 获取page indexstring，默认为number如 "1"，非规范情况下将返回自定义名称
      *
-     * @return 页面索引字符串，默认为数字如 "1"，非规范情况下将返回自定义名称
+     * @return page indexstring，默认为number如 "1"，非规范情况下将返回自定义名称
      */
     public String getIndexStr() {
         return index;
     }
 
     /**
-     * 获取页面资源描述文件
+     * 获取页面resource description file
      *
-     * @return 页面资源描述文件
-     * @throws FileNotFoundException 资源文件不存在
-     * @throws DocumentException     资源文件解析失败
+     * @return 页面resource description file
+     * @throws FileNotFoundException 资源file not found
+     * @throws DocumentException     resource file解析失败
      */
     public Res getPageRes() throws FileNotFoundException, DocumentException {
         Element obj = this.getObj(PageResFileName);
@@ -129,7 +129,7 @@ public class PageDir extends VirtualContainer {
      * 获取分页注释文件
      *
      * @return 分页注释文件
-     * @throws FileNotFoundException 描述文件不存在
+     * @throws FileNotFoundException 描述file not found
      * @throws DocumentException     描述文件内容错误
      */
     public PageAnnot getPageAnnot() throws FileNotFoundException, DocumentException {
@@ -142,7 +142,7 @@ public class PageDir extends VirtualContainer {
      * <p>
      * 注释文件前缀： Annot_M.xml
      * <p>
-     * Key: 文件名
+     * Key: filename
      * Value: 注释对象
      *
      * @return 容器内所有注释对象
@@ -154,7 +154,7 @@ public class PageDir extends VirtualContainer {
         try (Stream<Path> stream = Files.list(this.getContainerPath())) {
             stream.filter((item) -> {
                 String fileName = item.getFileName().toString().toLowerCase();
-                // 不是目录 并且 文件名以 Annot_ 开头
+                // not a directory and filename starts with Annot_
                 return Files.isRegularFile(item)
                         && fileName.startsWith(AnnotFilePrefix.toLowerCase())
                         && fileName.endsWith(".xml");
@@ -198,10 +198,10 @@ public class PageDir extends VirtualContainer {
     }
 
     /**
-     * 获取资源文件虚拟容器
+     * 获取resource file虚拟容器
      *
      * @return 获取资源目录
-     * @throws FileNotFoundException 该页面没有资源文件目录
+     * @throws FileNotFoundException 该页面没有resource file目录
      */
     public ResDir getResDir() throws FileNotFoundException {
         return this.getContainer("Res", ResDir::new);
@@ -210,12 +210,12 @@ public class PageDir extends VirtualContainer {
     /**
      * 向页面中增加页面资源
      *
-     * @param resource 资源
+     * @param resource resource
      * @return this
      * @throws IOException 文件复制过程中发生异常
      */
     public PageDir add(Path resource) throws IOException {
-        // 如果存在那么获取容器，不存在则创建容器
+        // 如果存在那么获取容器，不存在则create container
         obtainRes().add(resource);
         return this;
     }
@@ -224,7 +224,7 @@ public class PageDir extends VirtualContainer {
      * 向页面加入新的注释文件
      *
      * @param pageAnnot 注释对象
-     * @return 注释文件容器内绝对路径
+     * @return 注释文件容器内absolute path
      * @throws IOException 文件复制过程中发生异常
      */
     public ST_Loc addAnnot(PageAnnot pageAnnot) throws IOException {
@@ -240,9 +240,9 @@ public class PageDir extends VirtualContainer {
     /**
      * 向页面内添加注释文件
      *
-     * @param fileName  文件名称
+     * @param fileName  file name
      * @param pageAnnot 注释
-     * @return 注释文件容器内绝对路径
+     * @return 注释文件容器内absolute path
      */
     public ST_Loc addAnnot(String fileName, PageAnnot pageAnnot) {
         this.putObj(fileName, pageAnnot);
@@ -252,8 +252,8 @@ public class PageDir extends VirtualContainer {
     /**
      * 获取当Page_N容器中最大的注释文件索引号
      *
-     * @return 索引数字
-     * @throws IOException 文件读取异常
+     * @return 索引number
+     * @throws IOException file read exception
      */
     public Integer getMaxAnnotFileIndex() throws IOException {
         if (maxAnnotIndex < 0) {
@@ -261,7 +261,7 @@ public class PageDir extends VirtualContainer {
             try (Stream<Path> stream = Files.list(this.getContainerPath())) {
                 stream.forEach((item) -> {
                     String fileName = item.getFileName().toString().toLowerCase();
-                    // 不是目录 并且 文件名以 Annot_ 开头
+                    // not a directory and filename starts with Annot_
                     if (fileName.startsWith(AnnotFilePrefix.toLowerCase())) {
                         String numStr = fileName.replace(AnnotFilePrefix.toLowerCase(), "")
                                 .split("\\.")[0];
@@ -284,12 +284,12 @@ public class PageDir extends VirtualContainer {
     /**
      * 获取页面资源
      *
-     * @param name 资源名称，包含后缀
-     * @return 资源路径，如果资源不存在则为null
-     * @throws FileNotFoundException 文件不存在
+     * @param name 资源名称，contains后缀
+     * @return resource path，如果资源不存在则为null
+     * @throws FileNotFoundException file not found
      */
     public Path get(String name) throws FileNotFoundException {
-        // 如果存在那么获取容器，不存在则创建容器
+        // 如果存在那么获取容器，不存在则create container
         return obtainRes().getFile(name);
     }
 
@@ -298,7 +298,7 @@ public class PageDir extends VirtualContainer {
      * 获取页面描述对象
      *
      * @return 页面描述
-     * @throws FileNotFoundException 描述文件不存在
+     * @throws FileNotFoundException 描述file not found
      * @throws DocumentException     描述文件内容错误
      */
     public Page getContent() throws FileNotFoundException, DocumentException {

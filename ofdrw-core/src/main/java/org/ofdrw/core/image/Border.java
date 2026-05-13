@@ -11,7 +11,7 @@ import org.ofdrw.core.pageDescription.color.color.CT_Color;
  * <p>
  * 10 表 43
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-27 02:45:46
  */
 public class Border extends OFDElement {
@@ -24,12 +24,12 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 边框线宽
      * <p>
      * 如果为 0 则表示边框不进行绘制
      * <p>
-     * 默认值为 0.353 mm
+     * default value: 0.353 mm
      *
      * @param lineWidth 边框线宽
      * @return this
@@ -44,12 +44,12 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 边框线宽
      * <p>
      * 如果为 0 则表示边框不进行绘制
      * <p>
-     * 默认值为 0.353 mm
+     * default value: 0.353 mm
      *
      * @return 边框线宽
      */
@@ -62,10 +62,10 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 边框水平角半径
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param horizonalCornerRadius 边框水平角半径
      * @return this
@@ -80,10 +80,10 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 边框水平角半径
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 边框水平角半径
      */
@@ -96,10 +96,10 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 边框垂直角半径
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param verticalCornerRadius 边框垂直角半径
      * @return this
@@ -114,10 +114,10 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 边框垂直角半径
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 边框垂直角半径
      */
@@ -130,12 +130,12 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 边框虚线重复样式开始的位置
      * <p>
-     * 边框的起点位置为左上角，绕行方向为顺时针
+     * border starts from the top-left corner, traversed clockwise
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param dashOffset 边框虚线重复样式开始的位置
      * @return this
@@ -150,12 +150,12 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 边框虚线重复样式开始的位置
      * <p>
-     * 边框的起点位置为左上角，绕行方向为顺时针
+     * border starts from the top-left corner, traversed clockwise
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 边框虚线重复样式开始的位置
      */
@@ -169,10 +169,10 @@ public class Border extends OFDElement {
 
 
     /**
-     * 【属性 可选】
+     * [attribute, optional]
      * 设置 边框虚线重复样式
      * <p>
-     * 边框的起点位置为左上角，绕行方向为顺时针
+     * border starts from the top-left corner, traversed clockwise
      *
      * @param dashPattern 边框虚线重复样式
      * @return this
@@ -187,10 +187,10 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【属性 可选】
+     * [attribute, optional]
      * 获取 边框虚线重复样式
      * <p>
-     * 边框的起点位置为左上角，绕行方向为顺时针
+     * border starts from the top-left corner, traversed clockwise
      *
      * @return 边框虚线重复样式
      */
@@ -200,14 +200,14 @@ public class Border extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 设置 边框颜色
+     * [optional]
+     * set border color
      * <p>
-     * 有关边框颜色描述见 8.3.2 基本颜色
+     * see 8.3.2 Basic Colors for border color description
      * <p>
-     * 默认为黑色
+     * default: black
      *
-     * @param borderColor 边框颜色
+     * @param borderColor border color
      * @return this
      */
     public Border setBorderColor(CT_Color borderColor) {
@@ -222,14 +222,14 @@ public class Border extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 边框颜色
+     * [optional]
+     * 获取 border color
      * <p>
-     * 有关边框颜色描述见 8.3.2 基本颜色
+     * see 8.3.2 Basic Colors for border color description
      * <p>
-     * 默认为黑色
+     * default: black
      *
-     * @return 边框颜色，null表示为黑色
+     * @return border color，null表示为黑色
      */
     public BorderColor getBorderColor() {
         Element e = this.getOFDElement("BorderColor");

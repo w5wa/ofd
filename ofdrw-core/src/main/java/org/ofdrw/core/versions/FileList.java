@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 版本包含的文件列表
+ * 版本contains的文件列表
  * <p>
  * 19.2 标 71
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-28 07:26:09
  */
 public class FileList extends OFDElement {
@@ -27,7 +27,7 @@ public class FileList extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加  文件列表文件描述
      *
      * @param file 文件列表文件描述
@@ -42,7 +42,7 @@ public class FileList extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加  文件列表文件描述
      *
      * @param id      文件列表文件标识
@@ -54,7 +54,7 @@ public class FileList extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取  文件列表文件描述列表
      *
      * @return 文件列表文件描述列表

@@ -7,7 +7,7 @@ import org.ofdrw.core.crypto.ProtectionCaseID;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-23 19:18:49
  */
 class DecyptSeedTest {

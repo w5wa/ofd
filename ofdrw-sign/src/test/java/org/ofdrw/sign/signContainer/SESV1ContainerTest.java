@@ -20,9 +20,9 @@ import java.security.cert.Certificate;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * 测试V1版本的电子签章
+ * 测试V1版本的电子seal/signature
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-21 01:59:21
  */
 class SESV1ContainerTest {

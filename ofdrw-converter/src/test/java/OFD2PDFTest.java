@@ -25,7 +25,7 @@ public class OFD2PDFTest {
 //        Path dst = Paths.get("target/zsbk.pdf");
 
         FontLoader.DEBUG = true;
-        // 为不规范的字体名创建映射
+        // 为不规范的font name创建映射
         FontLoader.getInstance()
                 .addAliasMapping("小标宋体", "方正小标宋简体")
                 .addSimilarFontReplaceRegexMapping(".*SimSun.*", "SimSun");
@@ -75,7 +75,7 @@ public class OFD2PDFTest {
 //    }
 
     /**
-     * 验证转换颜色值异常
+     * 验证转换color value异常
      */
     @Test
     void testExportCE() throws Exception{
@@ -93,7 +93,7 @@ public class OFD2PDFTest {
     }
 
     /**
-     * 验证包含 JPEG 图片的 OFD 文件转换为 PDF 后文件大小是否正常
+     * 验证contains JPEG image的 OFD 文件转换为 PDF 后文件大小是否正常
      */
     @Test
     void testExportContainsJpeg() throws Exception{

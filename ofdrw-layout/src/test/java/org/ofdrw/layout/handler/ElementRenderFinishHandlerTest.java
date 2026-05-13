@@ -27,10 +27,10 @@ class ElementRenderFinishHandlerTest {
             OFDDir ofdDir = ofdDoc.getOfdDir();
             p.onRenderFinish((loc, contentObjId, resObjIds) -> {
                 System.out.println("OFD元素所处页面在OFD容器内的绝对路径: " + loc.toString());
-                System.out.println("内容产生的OFD对象ID: " + contentObjId.toString());
-                System.out.println("元素依赖资源对象ID: " + resObjIds.toString());
+                System.out.println("内容产生的OFDobject ID: " + contentObjId.toString());
+                System.out.println("元素依赖资源object ID: " + resObjIds.toString());
 
-                // 生成一个自定义的XML文件，记录生成的文件ID
+                // 生成一个自定义的XML file，记录生成的文件ID
                 String xml = String.format("<doc><dom>%s</dom></doc>", contentObjId.get(0));
                 try {
                     ofdDir.putFile("custom.xml", xml.getBytes(StandardCharsets.UTF_8));

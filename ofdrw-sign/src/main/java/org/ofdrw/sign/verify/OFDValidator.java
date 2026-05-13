@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * OFD 电子签名验证引擎
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-22 10:33:26
  */
 public class OFDValidator implements Closeable {
@@ -49,26 +49,26 @@ public class OFDValidator implements Closeable {
      */
     private OFDDir ofdDir;
     /**
-     * OFD解析器
+     * OFD parser
      */
     private final OFDReader reader;
 
     /**
-     * 资源定位器
+     * resource locator
      * <p>
      * 用于根据路径获取资源
      */
     private final ResourceLocator rl;
 
     /**
-     * 电子印章
+     * electronic seal
      */
     private SignedDataValidateContainer validator;
 
     /**
      * 创建一个OFD验证引擎
      *
-     * @param reader OFD解析器
+     * @param reader OFD parser
      */
     public OFDValidator(OFDReader reader) {
         this.reader = reader;
@@ -83,14 +83,14 @@ public class OFDValidator implements Closeable {
      *
      * @throws OFDVerifyException       验证异常，电子签名失效
      * @throws DocNotSignException      文件未进行电子签名
-     * @throws IOException              文件读写过程中IO异常
+     * @throws IOException              文件读写过程中IO exception
      * @throws NoSuchAlgorithmException 未知的杂凑算法
      */
     public void exeValidate() throws OFDVerifyException, IOException, GeneralSecurityException {
         rl.save();
         try {
             rl.cd("/");
-            // 获取电子签名列表文件路径
+            // 获取电子签名列表file path
             final ST_Loc signsListLoc = reader.getDefaultDocSignaturesPath();
             if (signsListLoc == null) {
                 throw new DocNotSignException("文件未进行电子签名");
@@ -107,9 +107,9 @@ public class OFDValidator implements Closeable {
                 throw new DocNotSignException("文件未进行电子签名");
             }
             for (org.ofdrw.core.signatures.Signature sigRecord : signatures) {
-                // 获取签章类型
+                // 获取seal/signature类型
                 SigType type = sigRecord.getType();
-                // 获取 Signature.xml 文件路径
+                // 获取 Signature.xml file path
                 ST_Loc signFileLoc = sigRecord.getBaseLoc();
                 Path signatureFilePath = rl.getFile(signFileLoc);
                 Signature sig = rl.get(signFileLoc, Signature::new);
@@ -119,66 +119,66 @@ public class OFDValidator implements Closeable {
                     // 1. 检查文件完整性
                     checkFileIntegrity(sig);
 
-                    // 获取 SignedValue.dat 文件路径
+                    // 获取 SignedValue.dat file path
                     Path signedValueFilePath = rl.getFile(sig.getSignedValue());
                     if (type == null || type == SigType.Seal) {
                         Seal seal = sig.getSignedInfo().getSeal();
                         /*
-                         * 由于 Seal节点在OFD中是可选节点，即便是电子签章也为可选，
+                         * 由于 Seal节点在OFD中是可选节点，即便是电子seal/signature也为可选，
                          * 所以这里只有在该元素存在的情况在进行匹配检查。
                          */
                         if (seal != null) {
-                            // 获取电子印章 Seal.esl 文件路径
+                            // 获取电子seal/stamp Seal.esl file path
                             Path sealFilePath = rl.getFile(seal.getBaseLoc());
-                            // 2. 检查印章匹配
+                            // 2. 检查seal/stamp匹配
                             boolean sealMatch = checkSealMatch(sealFilePath, signedValueFilePath);
                             if (!sealMatch) {
-                                throw new GeneralSecurityException("印章(Seal.esl)与电子签章数据(SignedValue.dat)中的印章不匹配");
+                                throw new GeneralSecurityException("seal/stamp(Seal.esl)与电子seal/signature数据(SignedValue.dat)中的seal/stamp不匹配");
                             }
                         }
                     }
                     // 签名算法名称
                     String alg = sig.getSignedInfo().getSignatureMethod();
-                    // 3. 验证电子签名或签章数据
+                    // 3. 验证电子签名或seal/signature数据
                     checkSignedValue(type, alg, signatureFilePath, signedValueFilePath);
                 } finally {
                     rl.restore();
                 }
             }
         } catch (DocumentException | FileNotFoundException e) {
-            throw new BadOFDException("OFD文件内部结构错误，无法解析。", e);
+            throw new BadOFDException("OFD file内部结构错误，无法解析。", e);
         } finally {
             rl.restore();
         }
     }
 
     /**
-     * 设置用于电子签章数据验证的容器
+     * 设置用于电子seal/signature数据验证的容器
      *
      * @param validator 验证容器
      * @return this
      */
     public OFDValidator setValidator(SignedDataValidateContainer validator) {
         if (validator == null) {
-            throw new IllegalArgumentException("电子签章数据验证容器（validator）为空");
+            throw new IllegalArgumentException("电子seal/signature数据验证容器（validator）为空");
         }
         this.validator = validator;
         return this;
     }
 
     /**
-     * 检查电子签章数据
+     * 检查电子seal/signature数据
      *
-     * @param type              验证类型 数字签名/电子签章
+     * @param type              验证类型 number签名/电子seal/signature
      * @param alg               算法名称
      * @param signatureFilePath 签名文件（Signature.xml）路径
-     * @param signedValuePath   签名值文件（SignedValue.dat）路径
-     * @throws InvalidSignedValueException 电子签章数据失效
-     * @throws IOException                 IO异常
+     * @param signedValuePath   signature value文件（SignedValue.dat）路径
+     * @throws InvalidSignedValueException 电子seal/signature数据失效
+     * @throws IOException                 IO exception
      */
     public void checkSignedValue(SigType type, String alg, Path signatureFilePath, Path signedValuePath) throws IOException, GeneralSecurityException {
         if (validator == null) {
-            throw new IllegalArgumentException("电子签章数据验证容器（validator）为空,Call #setValidator");
+            throw new IllegalArgumentException("电子seal/signature数据验证容器（validator）为空,Call #setValidator");
         }
         if (type == null) {
             type = SigType.Seal;
@@ -192,10 +192,10 @@ public class OFDValidator implements Closeable {
     /**
      * 检查被保护文件的完整性（是否被篡改）
      *
-     * @param sig 签名描述文件的根节点对象
+     * @param sig 签名描述文件的root node对象
      * @throws FileIntegrityException   文件被篡改
      * @throws NoSuchAlgorithmException 杂凑算法不支持
-     * @throws IOException              文件读写IO异常
+     * @throws IOException              文件读写IO exception
      */
     private void checkFileIntegrity(Signature sig)
             throws FileIntegrityException, NoSuchAlgorithmException, IOException {
@@ -208,16 +208,16 @@ public class OFDValidator implements Closeable {
         for (Reference ref : references.getReferences()) {
             ST_Loc fileRef = ref.getFileRef();
             Path file = rl.getFile(fileRef);
-            // 获取预期的文件杂凑值
+            // 获取预期的文件hash value
             byte[] expectDataHash = ref.getCheckValue();
             try (InputStream in = Files.newInputStream(file);
                  DigestInputStream dis = new DigestInputStream(in, md)) {
                 byte[] buffer = new byte[4096];
                 // 根据缓存读入
                 while (dis.read(buffer) > -1) ;
-                // 计算最终文件杂凑值
+                // 计算最终文件hash value
                 byte[] actualDataHash = md.digest();
-                // 比对杂凑值是否一致
+                // 比对hash value是否一致
                 if (!Arrays.equals(expectDataHash, actualDataHash)) {
                     throw new FileIntegrityException(fileRef, expectDataHash, actualDataHash);
                 }
@@ -229,18 +229,18 @@ public class OFDValidator implements Closeable {
 
 
     /**
-     * 电子印章与电子签章数据的匹配性检查
+     * 电子seal/stamp与电子seal/signature数据的匹配性检查
      *
-     * @param sealPath        电子印章文件路径
-     * @param signedValuePath 电子签章数据路径
+     * @param sealPath        电子seal/stampfile path
+     * @param signedValuePath 电子seal/signature数据路径
      * @return true - 匹配；false - 不匹配
-     * @throws IOException        文件流操作异常
-     * @throws OFDVerifyException 未知的电子签章数据版本，无法解析
+     * @throws IOException        文件stream operation exception
+     * @throws OFDVerifyException 未知的电子seal/signature数据版本，无法解析
      */
     private boolean checkSealMatch(Path sealPath, Path signedValuePath) throws IOException, OFDVerifyException {
         final byte[] sesSignatureBin = Files.readAllBytes(signedValuePath);
         byte[] expect = null;
-        // 解析电子印章版本
+        // 解析电子seal/stamp版本
         SESVersionHolder v = VersionParser.parseSES_SignatureVersion(sesSignatureBin);
         if (v.getVersion() == SESVersion.v4) {
             SES_Signature sesSignature = SES_Signature.getInstance(v.getObjSeq());
@@ -257,7 +257,7 @@ public class OFDValidator implements Closeable {
             org.ofdrw.gm.ses.v1.SESeal eseal = sesSignature.getToSign().getEseal();
             expect = eseal.getEncoded("DER");
         } else {
-            throw new OFDVerifyException("未知的电子签章数据版本，无法解析");
+            throw new OFDVerifyException("未知的电子seal/signature数据版本，无法解析");
         }
         byte[] sealBin = Files.readAllBytes(sealPath);
         return Arrays.equals(expect, sealBin);

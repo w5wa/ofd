@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-04-13 22:55:07
  */
 public class TTFPareProgram {

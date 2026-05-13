@@ -17,7 +17,7 @@ import java.util.List;
  * <p>
  * 8.3.4.4 高洛德渐变  图 41 表 31
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-09 12:15:19
  */
 public class CT_GouraudShd extends OFDElement implements ColorClusterType {
@@ -34,7 +34,7 @@ public class CT_GouraudShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 在渐变控制点所确定的部分是否填充
      * <p>
      * 默认值为 false(0)
@@ -53,7 +53,7 @@ public class CT_GouraudShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 在渐变控制点所确定的部分是否填充
      * <p>
      * 默认值为 false (0)
@@ -70,7 +70,7 @@ public class CT_GouraudShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加  渐变控制点
      * <p>
      * 至少出现三个
@@ -87,7 +87,7 @@ public class CT_GouraudShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取  渐变控制点列表
      * <p>
      * 至少出现三个
@@ -100,12 +100,12 @@ public class CT_GouraudShd extends OFDElement implements ColorClusterType {
 
 
     /**
-     * 【可选】
-     * 设置 渐变范围外的填充颜色
+     * [optional]
+     * 设置 渐变范围外的fill color
      * <p>
-     * 应使用基本颜色
+     * should use basic colors
      *
-     * @param backColor 渐变范围外的填充颜色，应使用基本颜色
+     * @param backColor 渐变范围外的fill color，应使用基本颜色
      * @return this
      */
     public CT_GouraudShd setBackColor(CT_Color backColor) {
@@ -119,12 +119,12 @@ public class CT_GouraudShd extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选】
-     * 获取 渐变范围外的填充颜色
+     * [optional]
+     * 获取 渐变范围外的fill color
      * <p>
-     * 应使用基本颜色
+     * should use basic colors
      *
-     * @return 渐变范围外的填充颜色，应使用基本颜色
+     * @return 渐变范围外的fill color，应使用基本颜色
      */
     public CT_Color getBackColor() {
         Element e = this.getOFDElement("BackColor");

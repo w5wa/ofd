@@ -12,7 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 
 /**
- * OFD中的签章信息
+ * OFD中的seal/signature信息
  *
  * @author dltech21
  * @since 2020/8/11
@@ -26,26 +26,26 @@ public class StampAnnotEntity {
 
 
     /**
-     * 印章图片
+     * seal/stampimage
      * <p>
      * 可能是OFD、PNG、gif、svg等，根据类型判断
      */
     private byte[] imageByte;
 
     /**
-     * 印章图片类型
+     * seal/stampimage类型
      * <p>
      * OFD、PNG、gif、svg
      */
     private String imgType;
 
     /**
-     * 多版本印章
+     * 多版本seal/stamp
      */
     private SESVersionHolder sesVersionHolder;
 
 //    /**
-//     * 多版本seal印章
+//     * 多版本sealseal/stamp
 //     */
 //    private SESVersionHolder sealVersionHolder;
 
@@ -53,10 +53,10 @@ public class StampAnnotEntity {
     }
 
     /**
-     * 创建印章实体
+     * 创建seal/stamp实体
      *
      * @param signedInfo       签名要保护的原文及本次签名相关的信息
-     * @param sesVersionHolder 多版本电子签章数据
+     * @param sesVersionHolder 多版本电子seal/signature数据
      */
     public StampAnnotEntity(SESVersionHolder sesVersionHolder, SignedInfo signedInfo) {
         this.signedInfo = signedInfo;
@@ -97,25 +97,25 @@ public class StampAnnotEntity {
     }
 
     /**
-     * 图片数据
+     * image数据
      *
-     * @return 图片数据
+     * @return image数据
      */
     public byte[] getImageByte() {
         return imageByte;
     }
 
     /**
-     * 印章图片类型
+     * seal/stampimage类型
      *
-     * @return 图片类型
+     * @return image类型
      */
     public String getImgType() {
         return imgType;
     }
 
     /**
-     * 获取图片字节流
+     * 获取image字节流
      * @return 字节流
      */
     public ByteArrayInputStream getImageStream(){
@@ -123,9 +123,9 @@ public class StampAnnotEntity {
     }
 
     /**
-     * 获取多版本的电子签章数据信息
+     * 获取多版本的电子seal/signature数据信息
      *
-     * @return 电子签章数据信息
+     * @return 电子seal/signature数据信息
      */
     public SESVersionHolder getHolder() {
         return sesVersionHolder;

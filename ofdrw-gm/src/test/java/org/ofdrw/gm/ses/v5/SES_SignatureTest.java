@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SES_SignatureTest {
 
     /**
-     * 构建一个V5印章用于签章测试
+     * 构建一个V5seal/stamp用于seal/signature测试
      */
     private SESeal buildV5Seal() throws GeneralSecurityException, IOException {
         Path sealerPath = Paths.get("src/test/resources", "SealBuilder.p12");
@@ -75,7 +75,7 @@ class SES_SignatureTest {
     }
 
     /**
-     * 构建V5签章数据的辅助方法
+     * 构建V5seal/signature数据的辅助方法
      */
     private SES_Signature buildV5Signature(boolean withTimeStamp) throws GeneralSecurityException, IOException {
         Path userP12 = Paths.get("src/test/resources", "USER.p12");
@@ -109,7 +109,7 @@ class SES_SignatureTest {
     }
 
     /**
-     * V5签章构建-编码-解码往返测试（不带timeStamp）
+     * V5seal/signature构建-编码-解码往返测试（不带timeStamp）
      */
     @Test
     void buildEncodeDecodeRoundTrip() throws GeneralSecurityException, IOException {
@@ -122,7 +122,7 @@ class SES_SignatureTest {
         SES_Signature decoded = SES_Signature.getInstance(encoded);
         assertNotNull(decoded);
 
-        // 字段断言
+        // 字segment断言
         TBS_Sign toSign = decoded.getToSign();
         assertNotNull(toSign);
         assertEquals(5, toSign.getVersion().getValue().intValue());
@@ -148,11 +148,11 @@ class SES_SignatureTest {
 
         Path out = Paths.get("target/SignedValueV5.dat");
         Files.write(out, encoded);
-        System.out.println(">> V5签章数据(无timeStamp)存储于: " + out.toAbsolutePath());
+        System.out.println(">> V5seal/signature数据(无timeStamp)存储于: " + out.toAbsolutePath());
     }
 
     /**
-     * V5签章timeStamp可选字段测试 - 带timeStamp
+     * V5seal/signaturetimeStamp可选字segment测试 - 带timeStamp
      */
     @Test
     void buildEncodeDecodeWithTimeStamp() throws GeneralSecurityException, IOException {
@@ -167,7 +167,7 @@ class SES_SignatureTest {
                 decoded.getTimeStamp().getOctets()
         );
 
-        // 其他字段也正确
+        // 其他字segment也正确
         assertEquals(5, decoded.getToSign().getVersion().getValue().intValue());
         assertEquals(
                 GMObjectIdentifiers.sm2sign_with_sm3.getId(),
@@ -176,11 +176,11 @@ class SES_SignatureTest {
 
         Path out = Paths.get("target/SignedValueV5_ts.dat");
         Files.write(out, encoded);
-        System.out.println(">> V5签章数据(带timeStamp)存储于: " + out.toAbsolutePath());
+        System.out.println(">> V5seal/signature数据(带timeStamp)存储于: " + out.toAbsolutePath());
     }
 
     /**
-     * V5签章timeStamp可选字段测试 - 不带timeStamp
+     * V5seal/signaturetimeStamp可选字segment测试 - 不带timeStamp
      */
     @Test
     void buildEncodeDecodeWithoutTimeStamp() throws GeneralSecurityException, IOException {
@@ -191,7 +191,7 @@ class SES_SignatureTest {
         assertNotNull(decoded);
         assertNull(decoded.getTimeStamp());
 
-        // 确认序列长度为4（无可选字段）
+        // 确认序列长度为4（无可选字segment）
         ASN1Sequence seq = ASN1Sequence.getInstance(encoded);
         assertEquals(4, seq.size());
     }

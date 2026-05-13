@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 定制化的iText OpenType 字体解析器，用于实现不标准字体文件解析
+ * 定制化的iText OpenType font解析器，用于实现不标准font file解析
  * <p>
  * 源码来自于Itext 7.1.13 的OpenTypeParser类
  * 增加的代码使用注释标识了"代码增加" 修改的代码使用注释标识了"代码修改" 删掉的代码使用注释标识了"代码删除"
@@ -58,7 +58,7 @@ class ItextOpenTypeParser extends OpenTypeParser implements Serializable, Closea
         try {
             readNameTable();
         } catch (Exception e) {
-            log.error("提取所有可用语言的字体名称失败！", e);
+            log.error("提取所有可用语言的font name失败！", e);
         }
         readHeadTable();
         readOs_2Table();
@@ -90,7 +90,7 @@ class ItextOpenTypeParser extends OpenTypeParser implements Serializable, Closea
              ***********************************/
         }
         allNameEntries = new LinkedHashMap<>();
-        /*********** 代码修改 ****************/
+        /*********** Code Modification ****************/
         /**********************************/
         if (table_location != null) {
             raf.seek(table_location[0] + 2);
@@ -112,7 +112,7 @@ class ItextOpenTypeParser extends OpenTypeParser implements Serializable, Closea
                 allNameEntries.put(nameID, names = new ArrayList<>());
             }
             int pos = (int) raf.getPosition();
-            /*********** 代码修改 ****************/
+            /*********** Code Modification ****************/
             /**********************************/
             if (table_location != null) {
                 raf.seek(table_location[0] + startOfStorage + offset);
@@ -204,7 +204,7 @@ class ItextOpenTypeParser extends OpenTypeParser implements Serializable, Closea
         if (table_location != null) {
             raf.seek(table_location[0]);
         } else {
-            // 不管os/2表是否存在，都不要阻止字体继续加载，尽管后续读取的数据不正确
+            // 不管os/2表是否存在，都不要阻止font继续加载，尽管后续读取的数据不正确
             log.error("os/2表不存在: fileName:{}", fileName);
         }
         /** 代码修改 end */
@@ -273,7 +273,7 @@ class ItextOpenTypeParser extends OpenTypeParser implements Serializable, Closea
             post.isFixedPitch = raf.readInt() != 0;
         } else {
             post = new PostTable();
-            /*********** 代码修改 ****************/
+            /*********** Code Modification ****************/
             if (null != hhea) {
                 post.italicAngle = (float) (-Math.atan2(hhea.caretSlopeRun, hhea.caretSlopeRise) * 180 / Math.PI);
             }
@@ -289,9 +289,9 @@ class ItextOpenTypeParser extends OpenTypeParser implements Serializable, Closea
      */
     private void readCmapTable() throws java.io.IOException {
         int[] table_location = tables.get("cmap");
-        /*********** 代码修改 ****************/
+        /*********** Code Modification ****************/
         if (table_location == null) {
-            // 忽略cmap为空
+            // ignoredcmap为空
 
             // if (fileName != null) {
             // throw new IOException(IOException.TableDoesNotExistsIn).setMessageParams("cmap", fileName);
@@ -532,7 +532,7 @@ class ItextOpenTypeParser extends OpenTypeParser implements Serializable, Closea
 
 
     /**
-     * 重写获取字体名称逻辑，增加额外校验
+     * 重写获取font name逻辑，增加额外校验
      */
     @Override
     public FontNames getFontNames() {

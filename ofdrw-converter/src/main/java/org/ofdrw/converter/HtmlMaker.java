@@ -58,9 +58,9 @@ public class HtmlMaker {
     /**
      * 转HTML构造方法
      *
-     * @param ofdReader   OFD输入文件
-     * @param outputFile  HTML输出文件路径
-     * @param screenWidth 页面宽度，或者屏幕宽度
+     * @param ofdReader   OFD input file
+     * @param outputFile  HTML输出file path
+     * @param screenWidth page width or screen width
      * @deprecated {@link  HtmlMaker#HtmlMaker(OFDReader, Path, int)}
      */
     @Deprecated
@@ -91,10 +91,10 @@ public class HtmlMaker {
     /**
      * HTML转换器
      *
-     * @param ofdReader   OFD输入文件
-     * @param outputPath  HTML输出文件路径
-     * @param screenWidth 页面宽度，或者屏幕宽度
-     * @throws IOException 文件创建失败
+     * @param ofdReader   OFD input file
+     * @param outputPath  HTML输出file path
+     * @param screenWidth page width or screen width
+     * @throws IOException file creation failed
      */
     public HtmlMaker(OFDReader ofdReader, Path outputPath, int screenWidth) throws IOException {
         this.ofdReader = ofdReader;
@@ -123,8 +123,8 @@ public class HtmlMaker {
      * <p>
      * 您仅允许使用 {@link #makePageDiv(SVGMaker, int)} 在获取每一页的Div元素
      *
-     * @param ofdReader   OFD输入文件
-     * @param screenWidth 页面宽度，或者屏幕宽度
+     * @param ofdReader   OFD input file
+     * @param screenWidth page width or screen width
      * @throws IOException 不会发生
      */
     public HtmlMaker(OFDReader ofdReader, int screenWidth) throws IOException {
@@ -134,11 +134,11 @@ public class HtmlMaker {
 
 
     /**
-     * 将字符串写入文件
+     * 将string写入文件
      *
-     * @param filepath 文件路径
+     * @param filepath file path
      * @param content  文件内容
-     * @throws IOException IO异常
+     * @throws IOException IO exception
      */
     public void writeToFile(String filepath, String content) throws IOException {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filepath))) {
@@ -228,8 +228,8 @@ public class HtmlMaker {
     /**
      * 转换指定页为HTML
      *
-     * @param svgMaker 图片转换器
-     * @param index    页码，从0开始
+     * @param svgMaker image转换器
+     * @param index    page number，从0开始
      * @return 页面的转换后的HTML Div
      */
     public String makePageDiv(SVGMaker svgMaker, int index) {
@@ -263,20 +263,20 @@ public class HtmlMaker {
     /**
      * ofd每页的图元生成HTML元素
      *
-     * @param pageInfo 页面信息
+     * @param pageInfo page information
      * @return HTML元素
      */
     private List<Element> makePage(PageInfo pageInfo) {
 
         final List<AnnotionEntity> annotationEntities = ofdReader.getAnnotationEntities();
 
-        // 获取页面内容出现的所有图层，包含模板页（所有页面均按照定义ZOrder排列）
+        // get all layers in page content, including template pages (all pages arranged by defined ZOrder)
         List<CT_Layer> layerList = pageInfo.getAllLayer();
 
-        // 绘制 模板层 和 页面内容层
+        // draw template layer and page content layer
         List<Element> elements = renderLayer(layerList);
 
-        // 绘制注释
+        // draw annotations
         List<Element> elements2 = writeAnnoAppearance(pageInfo, annotationEntities);
 
         elements.addAll(elements2);
@@ -437,7 +437,7 @@ public class HtmlMaker {
 
             for (Annot annot : annotList) {
                 List<PageBlockType> pageBlockTypeList = annot.getAppearance().getPageBlocks();
-                //注释的boundary
+                //annotation boundary
                 ST_Box annotBox = annot.getAppearance().getBoundary();
                 List<Element> elements = writePageBlock(pageBlockTypeList, annotBox);
                 pageElements.addAll(elements);
@@ -562,7 +562,7 @@ public class HtmlMaker {
             doc = DocumentHelper.createDocument();
         }
 
-        // 添加根节点
+        // 添加root node
         if (root == null) {
             root = doc.addElement(element.getTagName());
         } else {

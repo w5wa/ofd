@@ -11,7 +11,7 @@ import org.ofdrw.core.basicType.ST_RefID;
  * <p>
  * 图 75 目标区域结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 08:38:08
  */
 public class CT_Dest extends OFDElement implements OFDGotoTarget {
@@ -25,7 +25,7 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
 
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 目标区域的描述方法
      *
      * @param type 目标区域的描述方法
@@ -37,7 +37,7 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 目标区域的描述方法
      *
      * @return 目标区域的描述方法
@@ -47,7 +47,7 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 引用跳转目标页面的标识
      *
      * @param pageId 引用跳转目标页面的标识
@@ -59,7 +59,7 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 引用跳转目标页面的标识
      *
      * @return 引用跳转目标页面的标识
@@ -69,10 +69,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 目标区域左上角 x坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param left 目标区域左上角 x坐标
      * @return this
@@ -83,10 +83,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 目标区域左上角 x坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 目标区域左上角 x坐标
      */
@@ -100,10 +100,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 目标区域右上角 x坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param right 目标区域右上角 x坐标
      * @return this
@@ -114,10 +114,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 目标区域右上角 x坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 目标区域右上角 x坐标
      */
@@ -131,10 +131,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 目标区域左上角 y坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param top 目标区域左上角 y坐标
      * @return this
@@ -145,10 +145,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 目标区域左上角 x坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 目标区域左上角 x坐标
      */
@@ -161,10 +161,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 目标区域右下角 y坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param bottom 目标区域右下角 y坐标
      * @return this
@@ -175,10 +175,10 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 目标区域右下角 y坐标
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 目标区域右下角 y坐标
      */
@@ -192,12 +192,12 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
 
 
     /**
-     * 【可选】
-     * 设置 目标区域页面缩放比例
+     * [optional]
+     * 设置 目标区域页面scale ratio
      * <p>
-     * 为 0 或不出现则按照但前缩放比例跳转，可取值范围[0.1 64.0]
+     * 为 0 或不出现则按照但前scale ratio跳转，可取值范围[0.1 64.0]
      *
-     * @param zoom 目标区域页面缩放比例
+     * @param zoom 目标区域页面scale ratio
      * @return this
      */
     public CT_Dest setZoom(double zoom) {
@@ -206,12 +206,12 @@ public class CT_Dest extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【可选】
-     * 获取 目标区域页面缩放比例
+     * [optional]
+     * 获取 目标区域页面scale ratio
      * <p>
-     * 为 0 或不出现则按照但前缩放比例跳转，可取值范围[0.1 64.0]
+     * 为 0 或不出现则按照但前scale ratio跳转，可取值范围[0.1 64.0]
      *
-     * @return 目标区域页面缩放比例
+     * @return 目标区域页面scale ratio
      */
     public Double getZoom() {
         String str = this.getOFDElementText("Zoom");

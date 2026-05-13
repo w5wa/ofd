@@ -6,19 +6,19 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 /**
- * 电子印章数据
+ * 电子seal/stamp数据
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 15:33:55
  */
 public class SESeal extends ASN1Object {
     /**
-     * 印章信息
+     * seal information
      */
     private SES_SealInfo esealInfo;
 
     /**
-     * 制章人对印章签名的信息
+     * 制章人对seal/stamp签名的信息
      */
     private SES_SignInfo signInfo;
 
@@ -35,7 +35,7 @@ public class SESeal extends ASN1Object {
         Enumeration<?> e = seq.getObjects();
         esealInfo = SES_SealInfo.getInstance(e.nextElement());
         /*
-         * 兼容非标签章 非标签章的签名信息格式与标准不同无法解析
+         * 兼容非标seal/signature 非标seal/signature的签名信息格式与标准不同无法解析
          * */
         try {
             signInfo = SES_SignInfo.getInstance(e.nextElement());
@@ -53,7 +53,7 @@ public class SESeal extends ASN1Object {
                 ASN1Primitive obj = aIn.readObject();
                 return new SESeal(ASN1Sequence.getInstance(obj));
             } catch (IOException e) {
-                throw new IllegalArgumentException("电子印章数据 无法解析", e);
+                throw new IllegalArgumentException("电子seal/stamp数据 无法解析", e);
             }
         } else if (o instanceof DEROctetString) {
             DEROctetString string = (DEROctetString) o;

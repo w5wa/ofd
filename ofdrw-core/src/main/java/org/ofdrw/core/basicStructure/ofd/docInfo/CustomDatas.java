@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 用户自定义元数据集合。其子节点为 CustomData
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-01 07:36:46
  */
 public class CustomDatas extends OFDElement {
@@ -23,11 +23,11 @@ public class CustomDatas extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 增加用户自定义元数据
+     * [required]
+     * add user-defined metadata
      *
      * @param name  用户自定义元数据名称
-     * @param value 用户自定义元数据值
+     * @param value 用户自定义metadata value
      * @return this
      */
     public CustomDatas addCustomData(String name, String value) {
@@ -36,8 +36,8 @@ public class CustomDatas extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 增加用户自定义元数据
+     * [required]
+     * add user-defined metadata
      *
      * @param customData 用户自定义元数据
      * @return this
@@ -48,7 +48,7 @@ public class CustomDatas extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取自定义元数据集合
      *
      * @return 自定义元数据集合
@@ -58,10 +58,10 @@ public class CustomDatas extends OFDElement {
     }
 
     /**
-     * 获取用户自定义元数据值
+     * 获取用户自定义metadata value
      *
      * @param name 元数据名称
-     * @return 元数据值
+     * @return metadata value
      */
     public String getCustomDataValue(String name) {
         List<CustomData> dataList = getCustomDatas();

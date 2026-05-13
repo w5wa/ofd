@@ -8,7 +8,7 @@ import java.util.Enumeration;
 /**
  * GMT 35275-2017 signerInfo 类型
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-02 20:10:24
  */
 public class SignerInfo extends ASN1Object {
@@ -33,8 +33,8 @@ public class SignerInfo extends ASN1Object {
     private ASN1Integer version = VERSION_1;
 
     /**
-     * 一个证书颁发者可识别名和颁发者确定的证书序列号，可据此
-     * 确定一份证书和与此证书对应的实体及公钥。
+     * 一个certificate颁发者可识别名和颁发者确定的certificate序列号，可据此
+     * 确定一份certificate和与此certificate对应的实体及public key。
      */
     private IssuerAndSerialNumber issuerAngSerialNumber;
 
@@ -50,12 +50,12 @@ public class SignerInfo extends ASN1Object {
     private ASN1Set authenticatedAttributes;
 
     /**
-     * SM2 椭圆曲线数字签名算法标识符 {@link OIDs#sm2Sign}
+     * SM2 椭圆曲线numbersignature algorithm identifier {@link OIDs#sm2Sign}
      */
     private AlgorithmIdentifier digestEncryptionAlgorithm;
 
     /**
-     * 值是 SM2Signature，用签名者私钥进行签名，
+     * 值是 SM2Signature，用签名者private key进行签名，
      * 其定义见 GBT 35276-2017 7.3 签名数据格式
      */
     private ASN1OctetString encryptedDigest;

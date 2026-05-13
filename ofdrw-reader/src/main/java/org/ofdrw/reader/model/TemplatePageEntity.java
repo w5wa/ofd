@@ -9,7 +9,7 @@ import org.ofdrw.core.basicType.ST_Loc;
 /**
  * 页面模板对象实体
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-04-17 16:17:34
  */
 public class TemplatePageEntity {
@@ -31,7 +31,7 @@ public class TemplatePageEntity {
     private Type order;
 
     /**
-     * 创建实例
+     * 创建instance
      *
      * @param tplInfo 模板信息
      * @param page    模板页面
@@ -46,7 +46,7 @@ public class TemplatePageEntity {
      * 用于构造排序
      *
      * @param order 顺序
-     * @param page  页面内容
+     * @param page  page content
      */
     public TemplatePageEntity(Type order, Page page) {
         this.page = page;
@@ -63,7 +63,7 @@ public class TemplatePageEntity {
     }
 
     /**
-     * 获取 模板页名称
+     * get template page name
      *
      * @return 模板页名称，可能为null
      */
@@ -76,9 +76,9 @@ public class TemplatePageEntity {
     }
 
     /**
-     * 获取 模板页的默认视图类型
+     * get default view type of template page
      *
-     * @return 模板页的默认视图类型
+     * @return default view type of template page
      */
     public Type getZOrder() {
         return this.order;
@@ -97,18 +97,18 @@ public class TemplatePageEntity {
     }
 
     /**
-     * 获取 指向模板页内容描述文件 路径
+     * 获取 points to模板页内容描述文件 路径
      *
-     * @return 指向模板页内容描述文件 路径
+     * @return points to模板页内容描述文件 路径
      */
     public ST_Loc getBaseLoc() {
         return tplInfo.getBaseLoc();
     }
 
     /**
-     * 获取模板页面内容
+     * 获取模板page content
      *
-     * @return 页面内容
+     * @return page content
      */
     public Page getPage() {
         return page;

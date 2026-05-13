@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class OFD extends OFDElement {
     /**
-     * 【必选】
+     * [required]
      * 文件格式的版本号
      * <p>
      * 固定值： 1.2
@@ -23,7 +23,7 @@ public class OFD extends OFDElement {
     public static final String VERSION = "1.2";
 
     /**
-     * 【必选】
+     * [required]
      * 文件格式子集类型，取值为“OFD”，表明此文件符合本标准。
      */
     public static final String DOC_TYPE = "OFD";
@@ -41,9 +41,9 @@ public class OFD extends OFDElement {
 
 
     /**
-     * 文件对象入口列表创建文档对象
+     * file object entry列表创建document object
      *
-     * @param docBodies 文件对象入口序列
+     * @param docBodies file object entry序列
      */
     public OFD(List<DocBody> docBodies) {
         this();
@@ -56,9 +56,9 @@ public class OFD extends OFDElement {
 
 
     /**
-     * 文件对象入口创建文档对象
+     * file object entry创建document object
      *
-     * @param docBody 文件对象入口
+     * @param docBody file object entry
      */
     public OFD(DocBody docBody) {
         this();
@@ -95,10 +95,10 @@ public class OFD extends OFDElement {
     }
 
     /**
-     * 【必选】增加文件对象入口。
-     * 文件对象入口，可以存在多个，以便在一个文档中包含多个版式文档
+     * 【必选】增加file object entry。
+     * file object entry; multiple can exist to include multiple layout documents in one file
      *
-     * @param docBody 文件对象入口
+     * @param docBody file object entry
      * @return this
      */
     public OFD addDocBody(DocBody docBody) {
@@ -109,7 +109,7 @@ public class OFD extends OFDElement {
     /**
      * 【必选】 获取第一个文档入口
      *
-     * @return 文件对象入口（如果有多个则获取第一个）
+     * @return file object entry (returns the first if multiple exist)
      */
     public DocBody getDocBody() {
         Element e = this.getOFDElement("DocBody");
@@ -120,7 +120,7 @@ public class OFD extends OFDElement {
      * 获取指定序号的文档
      *
      * @param num 文档序号，从0起
-     * @return 文件对象入口（如果有多个则获取第一个）
+     * @return file object entry (returns the first if multiple exist)
      */
     public DocBody getDocBody(int num) {
         return getDocBodies().get(num);

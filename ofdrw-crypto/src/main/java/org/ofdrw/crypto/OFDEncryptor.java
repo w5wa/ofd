@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 /**
  * OFD加密器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-13 18:10:12
  */
 public class OFDEncryptor implements Closeable {
@@ -52,14 +52,14 @@ public class OFDEncryptor implements Closeable {
     private Path dest;
 
     /**
-     * 工作过程中的工作目录
+     * 工作过程中的working directory
      * <p>
-     * 用于存放解压后的OFD文档容器内容
+     * used to store decompressed OFD document container content
      */
     private Path workDir;
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed;
 
@@ -99,9 +99,9 @@ public class OFDEncryptor implements Closeable {
     /**
      * 创建OFD加密器
      *
-     * @param ofdFile 待加密的OFD文件路径
+     * @param ofdFile 待加密的OFDfile path
      * @param dest    加密后的OFD路径
-     * @throws IOException IO操作异常
+     * @throws IOException IO operation exception
      */
     public OFDEncryptor(@NotNull Path ofdFile, @NotNull Path dest) throws IOException {
         if (ofdFile == null || Files.notExists(ofdFile)) {
@@ -112,7 +112,7 @@ public class OFDEncryptor implements Closeable {
         }
         this.dest = dest;
         this.workDir = Files.createTempDirectory("ofd-tmp-");
-        // 解压文档，到临时的工作目录
+        // decompress document to temporary working directory
         ZipUtil.unZipFiles(ofdFile.toFile(), this.workDir.toAbsolutePath() + File.separator);
         this.userEncryptorList = new ArrayList<>(3);
         this.ofdDir = new OFDDir(workDir.toAbsolutePath());
@@ -172,7 +172,7 @@ public class OFDEncryptor implements Closeable {
      * @return this
      * @throws IOException              加密
      * @throws CryptoException          加密异常
-     * @throws GeneralSecurityException 证书解析异常
+     * @throws GeneralSecurityException certificate parsing exception
      */
     public OFDEncryptor encrypt() throws IOException, CryptoException, GeneralSecurityException {
         if (this.userEncryptorList.isEmpty()) {
@@ -192,12 +192,12 @@ public class OFDEncryptor implements Closeable {
         int blockSize = blockCipher.getBlockSize();
         byte[] fek = new byte[blockSize];
         byte[] iv = new byte[blockSize];
-        // a) 生成用于ZIP包内文件加密的对称密钥
+        // a) 生成用于ZIP包内文件加密的对称key
         random.nextBytes(fek);
         random.nextBytes(iv);
         ParametersWithIV keyParam = new ParametersWithIV(new KeyParameter(fek), iv);
 
-        // b) 根据加密方案，使用步骤 a)生成的文件加密对称密钥调用对称密码算法加密包内文件并写入ZIP包内；
+        // b) 根据加密方案，使用步骤 a)生成的文件加密对称key调用对称密码算法加密包内文件并写入ZIP包内；
         // c) 根据加密方案，对已经生成密文的明文文件进行处理，部分写入ZIP包；
         final EncryptEntries encryptEntries = this.encryptFiles(tbEncArr, keyParam);
         encryptEntries.setID(id);
@@ -207,37 +207,37 @@ public class OFDEncryptor implements Closeable {
         CT_EncryptInfo encryptInfo = newEncryptInfo(id);
         encryptions.addEncryptInfo(encryptInfo);
         encryptInfo.setEncryptScope("All");
-        // 密钥描述文件位置配置
+        // key描述文件位置配置
         final ContainerPath decryptseedCp = ContainerPath.newDatFile("decryptseed", this.workDir.toAbsolutePath());
         encryptInfo.setDecryptSeedLoc(decryptseedCp.getPath());
         // 明密文映射表或其加密后的文件存储的路径
         encryptInfo.setEntriesMapLoc(entriesMapCp.getPath());
-        // 创建密钥描述文件
+        // 创建key描述文件
         DecyptSeed decyptSeedObj = new DecyptSeed()
                 .setID(id)
                 .setExtendParams(new ExtendParams());
-        // f) 根据加密方案，对文件加密对称密钥进行密钥包装或非对称加密生成文件对称加密的包装密钥；
+        // f) 根据加密方案，对文件加密对称key进行key包装或非对称加密生成文件对称加密的包装key；
         String encryptCaseId = null;
         for (UserFEKEncryptor fekEncryptor : userEncryptorList) {
             if (encryptCaseId == null) {
                 encryptCaseId = fekEncryptor.encryptCaseId();
             }
-            // 加密 文件加密对称密钥，生成
+            // 加密 文件加密对称key，生成
             final UserInfo userInfo = fekEncryptor.encrypt(fek, iv);
 
-            // 如果是证书加密，需要获取证书
+            // 如果是certificate加密，需要获取certificate
             if (ProtectionCaseID.EncryptGMCert.getId().equals(fekEncryptor.encryptCaseId())) {
-                // 证书加密使用的证书
+                // certificate加密使用的certificate
                 final byte[] certBin = fekEncryptor.userCert();
                 if (certBin == null || certBin.length == 0) {
-                    throw new CryptoException("无法获取加密证书");
+                    throw new CryptoException("无法获取加密certificate");
                 }
                 userInfo.setUserCert(certBin);
             }
             decyptSeedObj.addUserInfo(userInfo);
             // g) 如果电子文件访问者为多人，则重复 7.3.4 的步骤 e)；
         }
-        // h) 组装密钥描述文件，并写入ZIP包。
+        // h) 组装key描述文件，并写入ZIP包。
         ElemCup.dump(decyptSeedObj, decryptseedCp.getAbs());
 
         // 执行打包程序
@@ -248,13 +248,13 @@ public class OFDEncryptor implements Closeable {
     /**
      * 创建 加密描述信息
      *
-     * @param id 加密操作标识
+     * @param id encryption operation identifier
      * @return 加密描述信息
      */
     private CT_EncryptInfo newEncryptInfo(String id) {
         CT_EncryptInfo encryptInfo = new CT_EncryptInfo().setID(id);
         if (this.parameters != null) {
-            // 设置 加密操作的附加描述集合
+            // set additional description set for encryption operations
             encryptInfo.setParameters(this.parameters);
         }
 
@@ -277,7 +277,7 @@ public class OFDEncryptor implements Closeable {
      * 执行过滤器过滤文件
      *
      * @return 待加密文件列表
-     * @throws IOException IO读写异常
+     * @throws IOException IO read/write exception
      */
     private List<ContainerPath> getToBeEncFiles() throws IOException {
         return Files.walk(this.workDir)
@@ -303,16 +303,16 @@ public class OFDEncryptor implements Closeable {
      * 加密文件
      *
      * @param tbEncArr 待加密文件列表
-     * @param keyParam 加密密钥参数
+     * @param keyParam 加密key参数
      * @return 明密文映射表
-     * @throws IOException                文件读写异常
+     * @throws IOException                file read/write exception
      * @throws InvalidCipherTextException 加密过程中异常
      */
     private EncryptEntries encryptFiles(List<ContainerPath> tbEncArr, ParametersWithIV keyParam) throws IOException, InvalidCipherTextException {
         // 创建明密文映射表
         EncryptEntries entriesMap = new EncryptEntries();
         for (ContainerPath plaintextCp : tbEncArr) {
-            // 根据加密方案，使用步骤 a)生成的文件加密对称密钥调用对称密码算法加密包内文件并写入ZIP包内
+            // 根据加密方案，使用步骤 a)生成的文件加密对称key调用对称密码算法加密包内文件并写入ZIP包内
             // 并且对已经生成密文的明文文件进行删除；
             final ContainerPath encryptedCp = encryptFile(plaintextCp, keyParam);
             // 添加明密文映射表的映射关系
@@ -327,9 +327,9 @@ public class OFDEncryptor implements Closeable {
      * 加密后原文件将被删除
      *
      * @param plaintextCp 待加密容器内文件
-     * @param keyParam    加密密钥
+     * @param keyParam    加密key
      * @return 加密后文件在容器内的位置
-     * @throws IOException                文件读写异常
+     * @throws IOException                file read/write exception
      * @throws InvalidCipherTextException 加密运算异常
      */
     private ContainerPath encryptFile(ContainerPath plaintextCp, CipherParameters keyParam) throws IOException, InvalidCipherTextException {
@@ -364,16 +364,16 @@ public class OFDEncryptor implements Closeable {
      *
      * @param obj      OFD对象
      * @param outPath  加密后存放路径，容器内路径
-     * @param keyParam 加密密钥
+     * @param keyParam 加密key
      * @return 加密后文件在容器的路径
-     * @throws IOException                文件读写异常
+     * @throws IOException                file read/write exception
      * @throws InvalidCipherTextException 加密运算异常
      */
     private ContainerPath encryptElement(Element obj, String outPath, CipherParameters keyParam) throws IOException, InvalidCipherTextException {
         if (outPath.startsWith("/")) {
             outPath = outPath.substring(1);
         }
-        // 创建加密后保存的文件路径
+        // 创建加密后保存的file path
         final ContainerPath res = ContainerPath.newDatFile(outPath, workDir);
 
         int len = 0;
@@ -409,7 +409,7 @@ public class OFDEncryptor implements Closeable {
     }
 
     /**
-     * 设置 加密操作的附加描述集合
+     * set additional description set for encryption operations
      *
      * @param parameters 加密操作的附加描述集合，可能为空
      * @return this

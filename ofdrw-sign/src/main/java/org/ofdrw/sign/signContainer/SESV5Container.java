@@ -26,11 +26,11 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * V5电子签章数据生成扩展容器
+ * V5电子seal/signature数据生成扩展容器
  * <p>
- * 签名计算范围：印章签名=Sign(eSealInfo)，签章签名=Sign(TBS_Sign)
+ * 签名计算范围：seal/stamp签名=Sign(eSealInfo)，seal/signature签名=Sign(TBS_Sign)
  * <p>
- * 注意：该容器仅用于测试，电子签章请使用符合国家规范具有国家型号证书的设备进行！
+ * Note: this container is for testing only. For electronic signatures, use devices compliant with national standards and having national type certificates.
  *
  * @since 2026-04-24
  * @author minghu.zhang
@@ -81,7 +81,7 @@ public class SESV5Container implements ExtendSignatureContainer {
                 .setDataHash(dataHash)
                 .setPropertyInfo(propertyInfo);
 
-        // 签章签名 = Sign(TBS_Sign)
+        // seal/signature签名 = Sign(TBS_Sign)
         Signature sg = Signature.getInstance("SM3WithSM2", new BouncyCastleProvider());
         sg.initSign(privateKey);
         sg.update(toSign.getEncoded("DER"));

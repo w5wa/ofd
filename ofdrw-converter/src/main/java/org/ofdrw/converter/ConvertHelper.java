@@ -50,10 +50,10 @@ public class ConvertHelper {
      * OFD转换PDF
      * <p>
      *
-     * @param input  OFD文件路径，支持OutputStream、Path、String（文件路径）
-     * @param output PDF输出流，支持OutputStream、Path、File、String（文件路径）
-     * @throws IllegalArgumentException 参数错误
-     * @throws GeneralConvertException  文档转换过程中异常
+     * @param input  OFDfile path，支持OutputStream、Path、String（file path）
+     * @param output PDF输出流，支持OutputStream、Path、File、String（file path）
+     * @throws IllegalArgumentException invalid parameter
+     * @throws GeneralConvertException  exception during document conversion
      * @deprecated 不建议使用该方法，建议使用 {@link  #toPdf(Path, Path)} 系列明确参数方法。
      */
     @Deprecated
@@ -81,14 +81,14 @@ public class ConvertHelper {
                         long end;
                         int pageNum = 1;
                         ItextMaker pdfMaker = new ItextMaker(reader);
-                        // 循环添加Page
+                        // iteratively add pages
                         for (PageInfo pageInfo : reader.getPageList()) {
                             start = System.currentTimeMillis();
                             pdfMaker.makePage(pdfDocument, pageInfo);
                             end = System.currentTimeMillis();
                             logger.debug(String.format("page %d speed time %d", pageNum++, end - start));
                         }
-                        // 添加附件
+                        // add attachment
                         pdfMaker.addAttachments(pdfDocument, reader);
                     }
                     break;
@@ -144,72 +144,72 @@ public class ConvertHelper {
 
 
     /**
-     * 转PDF
+     * convert to PDF
      *
-     * @param input  OFD输入流
+     * @param input  OFD input stream
      * @param output PDF输出流
-     * @throws IllegalArgumentException 参数错误
-     * @throws GeneralConvertException  文档转换过程中异常
+     * @throws IllegalArgumentException invalid parameter
+     * @throws GeneralConvertException  exception during document conversion
      */
     public static void toPdf(InputStream input, OutputStream output) {
         ofd2pdf(input, output);
     }
 
     /**
-     * 转PDF
+     * convert to PDF
      *
-     * @param input  OFD输入流
+     * @param input  OFD input stream
      * @param output PDF输出文件
-     * @throws IllegalArgumentException 参数错误
-     * @throws GeneralConvertException  文档转换过程中异常
+     * @throws IllegalArgumentException invalid parameter
+     * @throws GeneralConvertException  exception during document conversion
      */
     public static void toPdf(InputStream input, File output) {
         ofd2pdf(input, output);
     }
 
     /**
-     * 转PDF
+     * convert to PDF
      *
-     * @param input  OFD输入流
-     * @param output PDF输出文件路径
-     * @throws IllegalArgumentException 参数错误
-     * @throws GeneralConvertException  文档转换过程中异常
+     * @param input  OFD input stream
+     * @param output PDF输出file path
+     * @throws IllegalArgumentException invalid parameter
+     * @throws GeneralConvertException  exception during document conversion
      */
     public static void toPdf(InputStream input, String output) {
         ofd2pdf(input, output);
     }
 
     /**
-     * 转PDF
+     * convert to PDF
      *
-     * @param input  OFD输入文件
+     * @param input  OFD input file
      * @param output PDF输出流
-     * @throws IllegalArgumentException 参数错误
-     * @throws GeneralConvertException  文档转换过程中异常
+     * @throws IllegalArgumentException invalid parameter
+     * @throws GeneralConvertException  exception during document conversion
      */
     public static void toPdf(Path input, OutputStream output) {
         ofd2pdf(input, output);
     }
 
     /**
-     * 转PDF
+     * convert to PDF
      *
-     * @param input  OFD输入文件
+     * @param input  OFD input file
      * @param output PDF输出文件
-     * @throws IllegalArgumentException 参数错误
-     * @throws GeneralConvertException  文档转换过程中异常
+     * @throws IllegalArgumentException invalid parameter
+     * @throws GeneralConvertException  exception during document conversion
      */
     public static void toPdf(Path input, File output) {
         ofd2pdf(input, output);
     }
 
     /**
-     * 转PDF
+     * convert to PDF
      *
-     * @param input  OFD输入文件
-     * @param output PDF输出文件路径
-     * @throws IllegalArgumentException 参数错误
-     * @throws GeneralConvertException  文档转换过程中异常
+     * @param input  OFD input file
+     * @param output PDF输出file path
+     * @throws IllegalArgumentException invalid parameter
+     * @throws GeneralConvertException  exception during document conversion
      */
     public static void toPdf(Path input, Path output) {
         ofd2pdf(input, output);
@@ -220,7 +220,7 @@ public class ConvertHelper {
      * 转PDF，源文件目录为已经解压的OFD根目录
      *
      * @param unzippedPathRoot 已经解压的OFD根目录位置，因此通过参数控制是否删除目录。
-     * @param output           PDF输出文件路径
+     * @param output           PDF输出file path
      * @param deleteOnClose    退出时是否删除 unzippedPathRoot 文件，true - 退出时删除；false - 不删除
      */
     public static void toPdf(String unzippedPathRoot, String output, boolean deleteOnClose) {
@@ -266,9 +266,9 @@ public class ConvertHelper {
      * <p>
      * 需要手动关闭外部Reader
      *
-     * @param ofdReader   OFD输入文件，OFDReader应该由外部关闭
-     * @param output      HTML输出文件路径
-     * @param screenWidth 页面宽度，或者屏幕宽度
+     * @param ofdReader   OFD input file，OFDReader应该由外部关闭
+     * @param output      HTML输出file path
+     * @param screenWidth page width or screen width
      * @throws IOException 文件处理异常
      */
     public static void toHtml(OFDReader ofdReader, String output, int screenWidth) throws IOException {
@@ -279,9 +279,9 @@ public class ConvertHelper {
     /**
      * OFD转HTML
      *
-     * @param ofdIn       OFD文件路径
-     * @param htmlOut     HTML输出文件路径
-     * @param screenWidth 页面宽度，或者屏幕宽度
+     * @param ofdIn       OFDfile path
+     * @param htmlOut     HTML输出file path
+     * @param screenWidth page width or screen width
      * @throws IOException 文件处理异常
      */
     public static void toHtml(Path ofdIn, Path htmlOut, int screenWidth) throws IOException {

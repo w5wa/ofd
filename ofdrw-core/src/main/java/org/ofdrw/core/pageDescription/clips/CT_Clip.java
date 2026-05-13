@@ -18,7 +18,7 @@ import java.util.List;
  * <p>
  * 8.4 裁剪区 图 44 表 33
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-15 08:15:58
  */
 public class CT_Clip extends OFDElement {
@@ -31,11 +31,11 @@ public class CT_Clip extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 裁剪区域
      * <p>
-     * 用一个图形对象或文字对象来描述裁剪区的一个组成部分，
-     * 最终裁剪区是这些区域的并集。
+     * 用一个图形对象或text object来描述裁剪区的一个组成部分，
+     * the final clipping area is the union of these regions.
      *
      * @param area 裁剪区域
      * @return this
@@ -49,11 +49,11 @@ public class CT_Clip extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 裁剪区域
      * <p>
-     * 用一个图形对象或文字对象来描述裁剪区的一个组成部分，
-     * 最终裁剪区是这些区域的并集。
+     * 用一个图形对象或text object来描述裁剪区的一个组成部分，
+     * the final clipping area is the union of these regions.
      *
      * @return 裁剪区域
      */

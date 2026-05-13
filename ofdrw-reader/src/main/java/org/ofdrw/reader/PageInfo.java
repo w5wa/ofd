@@ -12,9 +12,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 页面信息
+ * page information
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-13 19:10:02
  */
 public class PageInfo {
@@ -28,11 +28,11 @@ public class PageInfo {
      */
     private Page obj;
     /**
-     * 页面在OFD中的对象ID
+     * 页面在OFD中的object ID
      */
     private ST_ID id;
     /**
-     * 页码，从1起
+     * page number，从1起
      */
     private Integer index;
 
@@ -42,12 +42,12 @@ public class PageInfo {
     private ArrayList<TemplatePageEntity> templates = new ArrayList<>();
 
     /**
-     * 页面的绝对路径
+     * 页面的absolute path
      */
     private ST_Loc pageAbsLoc;
 
     /**
-     * 页码目录文件的序号
+     * page number目录文件的序号
      */
     private Integer pageN;
 
@@ -95,11 +95,11 @@ public class PageInfo {
     }
 
     /**
-     * 设置页面的绝对路径
+     * 设置页面的absolute path
      * <p>
      * 同时设置 页面的索引号 Page_N
      *
-     * @param pageAbsLoc 绝对路径
+     * @param pageAbsLoc absolute path
      * @return this
      */
     public PageInfo setPageAbsLoc(ST_Loc pageAbsLoc) {
@@ -108,16 +108,16 @@ public class PageInfo {
     }
 
     /**
-     * 获取 Page_N容器 N的数字
-     * @return N的数字
+     * 获取 Page_N容器 N的number
+     * @return N的number
      */
     public Integer getPageN() {
         return pageN;
     }
 
     /**
-     * 设置 Page_N容器 N的数字
-     * @param pageN 数字
+     * 设置 Page_N容器 N的number
+     * @param pageN number
      * @return this
      */
     public PageInfo setPageN(Integer pageN) {
@@ -139,13 +139,13 @@ public class PageInfo {
     }
 
     /**
-     * 获取整个页面的图层列表（包含模板）
+     * 获取整个页面的layer列表（contains模板）
      *
-     * @return 页面所有图层
+     * @return 页面所有layer
      */
     public List<CT_Layer> getAllLayer() {
         List<CT_Layer> layerList = new ArrayList<>();
-        // 获取排好序的页面列表（包含页面模板和页面本身）
+        // 获取排好序的页面列表（contains页面模板和页面本身）
         for (Page page : getOrderRelatedPageList()) {
             if (page.getContent() != null) {
                 layerList.addAll(page.getContent().getOrderedLayers());

@@ -20,11 +20,11 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * 测试电子签章数据产生
+ * 测试电子seal/signature数据产生
  * <p>
- * 注意：电子签章请使用符合国家规范具有国家型号证书的设备进行！
+ * 注意：电子seal/signature请使用符合国家规范具有国家型号certificate的设备进行！
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-21 01:27:57
  */
 class SES_SignatureTest {
@@ -57,7 +57,7 @@ class SES_SignatureTest {
         try (InputStream rootKsIn = Files.newInputStream(userP12)) {
             userKs.load(rootKsIn, pwd);
 
-            // 取得印章制作者证书的私钥
+            // 取得seal/stamp制作者certificate的private key
             PrivateKey privateKey = (PrivateKey) userKs.getKey("private", pwd);
             Signature signature = Signature.getInstance("SM3withSm2", "BC");
             signature.initSign(privateKey);

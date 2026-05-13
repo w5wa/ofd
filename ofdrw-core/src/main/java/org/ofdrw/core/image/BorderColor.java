@@ -4,13 +4,13 @@ import org.dom4j.Element;
 import org.ofdrw.core.pageDescription.color.color.CT_Color;
 
 /**
- * 边框颜色
+ * border color
  * <p>
- * 有关边框颜色描述见 8.3.2 基本颜色
+ * see 8.3.2 Basic Colors for border color description
  * <p>
- * 默认为黑色
+ * default: black
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-27 03:36:42
  */
 public class BorderColor extends CT_Color {

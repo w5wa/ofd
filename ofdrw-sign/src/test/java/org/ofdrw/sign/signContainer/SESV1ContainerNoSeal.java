@@ -22,8 +22,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 没有提供电子印章文件的容器
- * @author 权观宇
+ * 没有提供电子seal/stamp文件的容器
+ * @author Quan Guanyu
  * @since 2020-05-18 19:48:29
  */
 public class SESV1ContainerNoSeal extends SESV1Container {
@@ -36,8 +36,8 @@ public class SESV1ContainerNoSeal extends SESV1Container {
     /**
      * 返还空
      *
-     * @return 电子印章二进制编码
-     * @throws IOException 获取印章IO异常
+     * @return electronic seal binary encoding
+     * @throws IOException IO exception while retrieving seal
      */
     @Override
     public byte[] getSeal() throws IOException {

@@ -29,9 +29,9 @@ public class MemoryTTFDataStream extends TTFDataStream {
     private int currentPosition = 0;
 
     /**
-     * 构造内存字体随机读取流
+     * 构造内存font随机读取流
      *
-     * @param data 字体数据
+     * @param data font数据
      */
     public MemoryTTFDataStream(byte[] data) {
         this.data = data;

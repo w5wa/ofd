@@ -5,23 +5,23 @@ import org.ofdrw.core.basicType.ST_Loc;
 /**
  * 文件完整性验证异常
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-22 01:14:10
  */
 public class FileIntegrityException extends OFDVerifyException {
 
     /**
-     * 被检测文件在OFD容器中的绝对路径
+     * 被检测文件在OFD容器中的absolute path
      */
     private ST_Loc fileAbsPath;
 
     /**
-     * 预期的文件杂凑值
+     * 预期的文件hash value
      */
     private byte[] exceptDataHash;
 
     /**
-     * 实际的文件杂凑值
+     * 实际的文件hash value
      */
     private byte[] actualDataHash;
 

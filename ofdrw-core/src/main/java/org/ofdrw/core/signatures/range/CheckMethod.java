@@ -5,7 +5,7 @@ package org.ofdrw.core.signatures.range;
  */
 public enum CheckMethod {
     /**
-     * 默认值
+     * default value
      */
     MD5,
     SHA1,

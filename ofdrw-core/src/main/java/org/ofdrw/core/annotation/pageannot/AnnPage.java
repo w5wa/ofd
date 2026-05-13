@@ -11,7 +11,7 @@ import org.ofdrw.core.basicType.ST_RefID;
  * <p>
  * 15.1 注释入口文件 图 80 表 60
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-16 02:04:53
  */
 public class AnnPage extends OFDElement {
@@ -25,7 +25,7 @@ public class AnnPage extends OFDElement {
 
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 引用注释所在页面的标识
      *
      * @param pageId 引用注释所在页面的标识
@@ -43,7 +43,7 @@ public class AnnPage extends OFDElement {
         return setPageID(pageId.ref());
     }
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 引用注释所在页面的标识
      *
      * @return 引用注释所在页面的标识
@@ -54,25 +54,25 @@ public class AnnPage extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 设置 指向包内的分页注释文件
+     * [required]
+     * 设置 points to包内的分页注释文件
      *
-     * @param fileLoc 指向包内的分页注释文件
+     * @param fileLoc points to包内的分页注释文件
      * @return this
      */
     public AnnPage setFileLoc(ST_Loc fileLoc) {
         if (fileLoc == null) {
-            throw new IllegalArgumentException("指向包内的分页注释文件（FileLoc）不能为空");
+            throw new IllegalArgumentException("points to包内的分页注释文件（FileLoc）不能为空");
         }
         this.addOFDEntity("FileLoc", fileLoc);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取 指向包内的分页注释文件
+     * [required]
+     * 获取 points to包内的分页注释文件
      *
-     * @return 指向包内的分页注释文件
+     * @return points to包内的分页注释文件
      */
     public ST_Loc getFileLoc() {
         Element e = this.getOFDElement("FileLoc");

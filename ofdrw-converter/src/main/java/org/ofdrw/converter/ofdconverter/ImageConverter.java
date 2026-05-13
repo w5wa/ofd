@@ -14,21 +14,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * 图片转换为OFD
+ * image转换为OFD
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-14 23:09:08
  */
 public class ImageConverter implements DocConverter {
 
     /**
-     * OFD文档对象
+     * OFD document object
      */
     final OFDDoc ofdDoc;
 
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
@@ -39,14 +39,14 @@ public class ImageConverter implements DocConverter {
 
 
     /**
-     * 创建PDF转换OFD转换器
+     * create PDF-to-OFD converter
      *
-     * @param ofdPath 转换后的OFD文件路径
-     * @throws IOException 文件解析异常
+     * @param ofdPath path to converted OFD file
+     * @throws IOException file parsing exception
      */
     public ImageConverter(Path ofdPath) throws IOException {
         if (ofdPath == null) {
-            throw new IllegalArgumentException("转换后的OFD文件路径为空");
+            throw new IllegalArgumentException("path to converted OFD file为空");
         }
 
         ofdPath = ofdPath.toAbsolutePath();
@@ -65,10 +65,10 @@ public class ImageConverter implements DocConverter {
     }
 
     /**
-     * 创建PDF转换OFD转换器
+     * create PDF-to-OFD converter
      *
      * @param output 转换后的OFD流
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     public ImageConverter(OutputStream output) throws IOException {
         if (output == null) {
@@ -79,11 +79,11 @@ public class ImageConverter implements DocConverter {
 
 
     /**
-     * 新建OFD页面并放入图片
+     * 新建OFD页面并放入image
      *
-     * @param filepath 待转换文件路径
-     * @param indexes  忽略
-     * @throws GeneralConvertException 转换异常
+     * @param filepath path to the file to be converted
+     * @param indexes  ignored
+     * @throws GeneralConvertException conversion exception
      */
     @Override
     public void convert(Path filepath, int... indexes) throws GeneralConvertException {
@@ -100,7 +100,7 @@ public class ImageConverter implements DocConverter {
 
             BufferedImage image = Img.readImage(filepath.toFile());
             if (image != null) {
-                // 图片可以解析时分析大小
+                // image可以解析时分析大小
                 width = image.getWidth() / ppm;
                 height = image.getHeight() / ppm;
                 double scale = 1;
@@ -126,16 +126,16 @@ public class ImageConverter implements DocConverter {
             page.add(item);
             ofdDoc.addVPage(page);
         } catch (IOException e) {
-            throw new GeneralConvertException("图片转换OFD异常", e);
+            throw new GeneralConvertException("image转换OFD异常", e);
         }
     }
 
     /**
-     * 追加图片到新一页
+     * 追加image到新一页
      *
-     * @param filepath 图片文件
-     * @param width    图片在页面中宽度
-     * @param height   图片在页面中高度
+     * @param filepath image文件
+     * @param width    image在页面中width
+     * @param height   image在页面中height
      */
     public void append(Path filepath, double width, double height) {
         try {
@@ -153,12 +153,12 @@ public class ImageConverter implements DocConverter {
             page.add(item);
             ofdDoc.addVPage(page);
         } catch (IOException e) {
-            throw new GeneralConvertException("图片转换OFD异常", e);
+            throw new GeneralConvertException("image转换OFD异常", e);
         }
     }
 
     /**
-     * 设置图片质量
+     * 设置image质量
      *
      * @param ppm 像素每毫米
      */

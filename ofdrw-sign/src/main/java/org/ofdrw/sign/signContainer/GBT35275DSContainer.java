@@ -23,22 +23,22 @@ import java.security.Signature;
 import java.security.cert.Certificate;
 
 /**
- * 根据 GM/T 0099-2020 7.2.2 数据格式要求
+ * according to GM/T 0099-2020 Section 7.2.2 data format requirements
  * <p>
- * b) 签名类型为数字签名且签名算法使用SM2时，签名值数据应遵循 GB/T 35275
+ * b) 签名类型为number签名且签名算法使用SM2时，signature value数据应遵循 GB/T 35275
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-8-9 16:15:16
  */
 public class GBT35275DSContainer implements ExtendSignatureContainer {
 
     /**
-     * 签名私钥
+     * signing private key
      */
     private final PrivateKey prvKey;
 
     /**
-     * 私钥对应公钥的证书
+     * private key对应public key的certificate
      */
     private final Certificate cert;
 
@@ -50,19 +50,19 @@ public class GBT35275DSContainer implements ExtendSignatureContainer {
     private boolean enableFileHashBase64;
 
     /**
-     * 创建数字签名容器
+     * 创建number签名容器
      * <p>
-     * 签名值数据应遵循 GB/T 35275
+     * signature value数据应遵循 GB/T 35275
      *
-     * @param cert   SM2签名证书，应符合GB/T 20518
-     * @param prvKey 私钥
+     * @param cert   SM2签名certificate，应符合GB/T 20518
+     * @param prvKey private key
      */
     public GBT35275DSContainer(@NotNull Certificate cert, @NotNull PrivateKey prvKey) {
         if (cert == null) {
-            throw new IllegalArgumentException("签名使用证书（cert）不能为空");
+            throw new IllegalArgumentException("签名使用certificate（cert）不能为空");
         }
         if (prvKey == null) {
-            throw new IllegalArgumentException("签名使用私钥（prvKey）不能为空");
+            throw new IllegalArgumentException("签名使用private key（prvKey）不能为空");
         }
         this.cert = cert;
         this.prvKey = prvKey;
@@ -70,9 +70,9 @@ public class GBT35275DSContainer implements ExtendSignatureContainer {
     }
 
     /**
-     * SM3摘要算法功能
+     * SM3 digest algorithm function
      *
-     * @return SM3摘要算法功能
+     * @return SM3 digest algorithm function
      */
     @Override
     public MessageDigest getDigestFnc() {
@@ -82,7 +82,7 @@ public class GBT35275DSContainer implements ExtendSignatureContainer {
     /**
      * SM2WithSM3
      *
-     * @return 签名方法OID
+     * @return signature algorithm OID
      */
     @Override
     public ASN1ObjectIdentifier getSignAlgOID() {
@@ -90,31 +90,31 @@ public class GBT35275DSContainer implements ExtendSignatureContainer {
     }
 
     /**
-     * 对待签名数据签名
+     * sign the data to be signed
      *
-     * @param inData       待签名数据流
-     * @param propertyInfo 忽略
-     * @return 签名结果值
-     * @throws IOException       IO流读取异常
-     * @throws SecurityException 签名计算异常
+     * @param inData       data stream to be signed
+     * @param propertyInfo ignored
+     * @return signature result value
+     * @throws IOException       IO stream read exception
+     * @throws SecurityException signature computation exception
      */
     @Override
     public byte[] sign(InputStream inData, String propertyInfo) throws GeneralSecurityException, IOException {
-        // 计算原文摘要
+        // calculate original document digest
         MessageDigest md = new SM3.Digest();
-        // d) 调用杂凑算法计算签名文件的杂凑值
+        // d) 调用hash algorithm computation签名文件的hash value
         byte[] plaintext = md.digest(IOUtils.toByteArray(inData));
         if (this.enableFileHashBase64) {
             plaintext = Base64.encode(plaintext);
         }
 
-        // e) 根据签名方案，使用操作人签名的私钥对杂凑值进行数字签名
+        // e) 根据签名方案，使用操作人签名的private key对hash value进行number签名
         Signature signatureFnc = Signature.getInstance(
                 GMObjectIdentifiers.sm2sign_with_sm3.toString(),
                 new BouncyCastleProvider());
         signatureFnc.initSign(prvKey);
         signatureFnc.update(plaintext);
-        // 执行签名产生签名值
+        // 执行签名产生signature value
         final byte[] signature = signatureFnc.sign();
         final SignedData signedData = SignedDataBuilder.signedData(plaintext, signature, this.cert);
         ContentInfo contentInfo = new ContentInfo(OIDs.signedData, signedData);
@@ -122,10 +122,10 @@ public class GBT35275DSContainer implements ExtendSignatureContainer {
     }
 
     /**
-     * 电子签名不提供印章
+     * electronic signature does not provide seal
      *
      * @return null
-     * @throws IOException 获取印章IO异常
+     * @throws IOException IO exception while retrieving seal
      */
     @Override
     public byte[] getSeal() throws IOException {
@@ -133,9 +133,9 @@ public class GBT35275DSContainer implements ExtendSignatureContainer {
     }
 
     /**
-     * 获取签名节点类型
+     * get signature node type
      *
-     * @return 签名节点类型
+     * @return signature node type
      */
     @Override
     public SigType getSignType() {

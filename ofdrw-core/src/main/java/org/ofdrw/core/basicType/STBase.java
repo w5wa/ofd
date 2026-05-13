@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.function.Function;
 
 /**
- * 简单类型基类，用于提供便捷的方法实例化元素
+ * 简单类型基类，用于提供便捷的方法instance化元素
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-01 03:25:28
  */
 public abstract class STBase implements Serializable {
@@ -37,7 +37,7 @@ public abstract class STBase implements Serializable {
      * 若数值小于10^-8，那么则认为为0
      *
      * @param d 浮点数
-     * @return 数字字符串
+     * @return numberstring
      */
     public static String fmt(double d) {
         if (d == (long) d) {
@@ -66,9 +66,9 @@ public abstract class STBase implements Serializable {
     }
 
     /**
-     * 字符串转换Double
+     * string转换Double
      *
-     * @param str 字符串
+     * @param str string
      * @return Double 或 0
      */
     public static Double toDouble(String str) {
@@ -77,9 +77,9 @@ public abstract class STBase implements Serializable {
     }
 
     /**
-     * 字符串转换 Integer
+     * string转换 Integer
      *
-     * @param str 字符串
+     * @param str string
      * @return Double 或 0
      */
     public static Integer toInt(String str) {
@@ -88,12 +88,12 @@ public abstract class STBase implements Serializable {
     }
 
     /**
-     * 字符串转换函数
+     * string转换函数
      *
-     * @param str    字符串
+     * @param str    string
      * @param mapper 转换函数
      * @param <R>    转换返回值类型
-     * @return 数字
+     * @return number
      */
     private static <R extends Number> R num(String str, Function<String, R> mapper) {
         R res = null;

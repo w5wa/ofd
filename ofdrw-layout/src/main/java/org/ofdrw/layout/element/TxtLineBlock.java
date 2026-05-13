@@ -8,14 +8,14 @@ import java.util.List;
 /**
  * 行内文字
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-13 01:03:54
  */
 public class TxtLineBlock {
     /**
-     * 行内字体浮动方向
+     * 行内font浮动方向
      * <p>
-     * 默认：左浮动
+     * default: float left
      */
     private TextAlign textAlign;
     /**
@@ -24,21 +24,21 @@ public class TxtLineBlock {
     private List<Span> inlineSpans;
 
     /**
-     * 最高的文字高度
+     * 最高的文字height
      */
     private Double maxSpanHeight = 0d;
 
     /**
-     * 行宽度
+     * 行width
      */
     private Double width = 0d;
     /**
-     * 行间距
+     * line spacing
      */
     private Double lineSpace;
 
     /**
-     * 行最大宽度
+     * 行最大width
      */
     private double lineMaxAvailableWidth;
 
@@ -48,7 +48,7 @@ public class TxtLineBlock {
     /**
      * 创建行块
      *
-     * @param lineMaxAvailableWidth 行内运行最大宽度
+     * @param lineMaxAvailableWidth 行内运行最大width
      * @param lineSpace             行间距
      */
     public TxtLineBlock(double lineMaxAvailableWidth, Double lineSpace) {
@@ -58,9 +58,9 @@ public class TxtLineBlock {
     /**
      * 创建行块
      *
-     * @param lineMaxAvailableWidth 行内运行最大宽度
+     * @param lineMaxAvailableWidth 行内运行最大width
      * @param lineSpace             行间距
-     * @param textAlign             行内字体浮动方式
+     * @param textAlign             行内font浮动方式
      */
     public TxtLineBlock(double lineMaxAvailableWidth, Double lineSpace, TextAlign textAlign) {
         this.lineMaxAvailableWidth = lineMaxAvailableWidth;
@@ -108,7 +108,7 @@ public class TxtLineBlock {
         if (span.isIntegrity()) {
             throw new IllegalStateException("文字单元（Span）不可拆分");
         }
-        // 获取剩余宽度
+        // 获取剩余width
         double remainWidth = lineMaxAvailableWidth - width;
         // 文字单元切分点
         int splitIndex = 0;
@@ -130,9 +130,9 @@ public class TxtLineBlock {
         }
         // 切分文字单元
         Span[] split = span.split(splitIndex);
-        // 前半段放入行中
+        // 前半segment放入行中
         tryAdd(split[0]);
-        // 后半段返回，准备加入下一段
+        // 后半segment返回，准备加入下一segment
         return split[1];
     }
 
@@ -159,9 +159,9 @@ public class TxtLineBlock {
     }
 
     /**
-     * 获取整个行占据的高度（文字高度 + 行间距）
+     * 获取整个行占据的height（文字height + 行间距）
      *
-     * @return 行占据的高度
+     * @return 行占据的height
      */
     public double getHeight() {
         return maxSpanHeight + lineSpace;
@@ -178,18 +178,18 @@ public class TxtLineBlock {
     }
 
     /**
-     * 行内最高元素高度
+     * 行内最高元素height
      *
-     * @return 行内最高元素高度
+     * @return 行内最高元素height
      */
     public Double getMaxSpanHeight() {
         return maxSpanHeight;
     }
 
     /**
-     * 行内容元素宽度
+     * 行内容元素width
      *
-     * @return 行宽度
+     * @return 行width
      */
     public Double getWidth() {
         return width;
@@ -198,7 +198,7 @@ public class TxtLineBlock {
     /**
      * 获取文字在行内的浮动方式
      * <p>
-     * 默认：左浮动
+     * default: float left
      *
      * @return 浮动方式
      */
@@ -207,9 +207,9 @@ public class TxtLineBlock {
     }
 
     /**
-     * 获取 行内可用最大宽度
+     * 获取 行内可用最大width
      *
-     * @return 行内可用最大宽度
+     * @return 行内可用最大width
      */
     public double getLineMaxAvailableWidth() {
         return lineMaxAvailableWidth;

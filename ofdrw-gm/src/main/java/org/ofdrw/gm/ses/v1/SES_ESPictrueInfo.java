@@ -5,32 +5,32 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 印章图片信息
+ * seal/stampimage信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 14:30:22
  */
 public class SES_ESPictrueInfo extends ASN1Object {
 
     /**
-     * 图片类型
+     * image类型
      * <p>
-     * 代表印章图片类型，如 GIF、BMP、JPG、SVG等
+     * 代表seal/stampimage类型，如 GIF、BMP、JPG、SVG等
      */
     private DERIA5String type;
 
     /**
-     * 印章图片数据
+     * seal/stampimage数据
      */
     private ASN1OctetString data;
 
     /**
-     * 图片显示宽度，单位为毫米（mm）
+     * image显示width，单位为毫米（mm）
      */
     private ASN1Integer width;
 
     /**
-     * 图片显示高度，单位为毫米（mm）
+     * image显示height，单位为毫米（mm）
      */
     private ASN1Integer height;
 

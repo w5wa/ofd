@@ -12,57 +12,57 @@ import java.util.List;
 
 public class CuttingRideStampPos implements StampAppearance {
     /**
-     * 默认骑缝章以右侧边作为骑缝的位置
+     * 默认骑缝章以右side边作为骑缝的位置
      */
     private Side side;
 
     /**
-     * 图章整章宽度
+     * 图章整章width
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double width;
 
     /**
-     * 图章整章高度
+     * 图章整章height
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double height;
 
     /**
      * 图章在边上距离原地最近的边的偏移坐标
      * <p>
-     * 单位毫米mm
+     * unit: mm
      * <p>
-     * 默认居中，为null
+     * 默认center，为null
      */
     private Double offset = null;
 
     /**
      * 图章在边上的margin
      * <p>
-     * 单位毫米mm
+     * unit: mm
      * <p>
      * 默认为0
      */
     private double margin = 0;
 
     /**
-     * 两侧对开时图章在左右两边的比例，List的size与骑缝章数量一致，若出现null则采用左右各0.5
+     * 两side对开时图章在左右两边的比例，List的size与骑缝章数量一致，若出现null则采用左右各0.5
      */
     private List<CuttingRatio> cuttingRatios;
 
 
     /**
-     * 指定图章在边上的相对位置
+     * specify the relative position of the seal on the edge
      *
-     * @param side          指定图章所处的边
-     * @param offset        相对于原点最近的边的顶点位置，null则默认居中
-     * @param width         章宽度，单位毫米mm
-     * @param height        章高度，单位毫米mm
+     * @param side          specified edge where the seal is placed
+     * @param offset        相对于原点最近的边的顶点位置，null则默认center
+     * @param width         章width，单位毫米mm
+     * @param height        章height，单位毫米mm
      * @param margin        页边距，单位毫米mm
-     * @param cuttingRatios 两侧对开时图章在左右两边的比例
+     * @param cuttingRatios 两side对开时图章在左右两边的比例
      */
     public CuttingRideStampPos(Side side, Double offset, double width, double height, double margin, List<CuttingRatio> cuttingRatios) {
         this.side = side;
@@ -76,7 +76,7 @@ public class CuttingRideStampPos implements StampAppearance {
 
     @Override
     public List<StampAnnot> getAppearance(OFDReader ctx, SignIDProvider idProvider) {
-        // 总页码数
+        // 总page number数
         int numPage = ctx.getNumberOfPages();
         List<StampAnnot> res = new ArrayList<>(numPage);
         if (side == Side.Right) {

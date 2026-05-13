@@ -17,13 +17,13 @@ import java.security.Signature;
 import java.util.Arrays;
 
 /**
- * 根据 GM/T 0099-2020 7.2.2 数据格式要求
+ * according to GM/T 0099-2020 Section 7.2.2 data format requirements
  * <p>
- * b) 签名类型为数字签名且签名算法使用SM2时，签名值数据应符合 GB/T 35275 要求
+ * b) 签名类型为number签名且签名算法使用SM2时，signature value数据应符合 GB/T 35275 要求
  * <p>
- * 数字签名验证容器
+ * digital signature verification container
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-8-9 16:15:11
  */
 public class GBT35275Validate {
@@ -34,7 +34,7 @@ public class GBT35275Validate {
      *
      * @param alg         算法
      * @param tbsContent  待签名数据原文，不需要提前计算摘要
-     * @param signedValue 签名值DER编码
+     * @param signedValue signature valueDER编码
      * @return 验证结果
      * @throws GeneralSecurityException 签名计算法错误
      */
@@ -45,16 +45,16 @@ public class GBT35275Validate {
             throw new IllegalArgumentException("无法解析ContentInfo结构");
         }
         if (!OIDs.signedData.equals(contentInfo.getContentType())) {
-            throw new IllegalArgumentException("非法的签名数据类型，类型：" + contentInfo.getContentType());
+            throw new IllegalArgumentException("非法的signature data type，类型：" + contentInfo.getContentType());
         }
 
         SignedData signedData = SignedData.getInstance(contentInfo.getContent());
         if (signedData == null) {
-            throw new IllegalArgumentException("无法解析签名值格式，不符 GBT35275");
+            throw new IllegalArgumentException("无法解析signature value格式，不符 GBT35275");
         }
-        // 计算原文摘要
+        // calculate original document digest
         MessageDigest md = new SM3.Digest();
-        // a) 根据签名文件中的签名方案，调用杂凑算法计算签名文件的杂凑值。
+        // a) 根据签名文件中的签名方案，调用hash algorithm computation签名文件的hash value。
         byte[] digestAct = md.digest(tbsContent);
         byte[] plaintext = null;
 
@@ -75,7 +75,7 @@ public class GBT35275Validate {
         }
 
 
-        // b) 根据签名文件的签名方案，结合步骤 a) 所得的杂凑值进行签名验证。
+        // b) 根据签名文件的签名方案，结合步骤 a) 所得的hash value进行签名验证。
         for (ASN1Encodable item : signedData.getSignerInfos()) {
             final SignerInfo signerInfo = SignerInfo.getInstance(item);
 
@@ -100,11 +100,11 @@ public class GBT35275Validate {
                 }
             }
             if (plaintext == null) {
-                throw new IllegalArgumentException("GBT35275签名值格式错误");
+                throw new IllegalArgumentException("GBT35275signature value格式错误");
             }
 
             IssuerAndSerialNumber iaSn = signerInfo.getIssuerAngSerialNumber();
-            // 根据提供者信息找到证书
+            // 根据提供者信息找到certificate
             final Certificate c = signedData.getSignCert(iaSn);
             if (c == null) {
                 return VerifyInfo.Err("没有找到匹配的证书无法验证签名");

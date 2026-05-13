@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * 骑缝章测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-25 12:31:43
  */
 class RidingStampPosTest {

@@ -10,11 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 包含了一组颜色空间的描述
+ * contains了一组color space的描述
  * <p>
- * 7.9 图 20 表 18
+ * 7.9 Figure 20 Table 18
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-13 07:27:47
  */
 public class ColorSpaces extends OFDElement implements OFDResource {
@@ -27,12 +27,12 @@ public class ColorSpaces extends OFDElement implements OFDResource {
     }
 
     /**
-     * 【必选】
-     * 增加  颜色空间描述
+     * [required]
+     * 增加  color space描述
      * <p>
-     * 必须要有ID属性
+     * must have ID attribute
      *
-     * @param colorSpace 颜色空间描述，必须要有ID属性
+     * @param colorSpace color space描述，必须要有ID属性
      * @return this
      */
     public ColorSpaces addColorSpace(CT_ColorSpace colorSpace) {
@@ -40,17 +40,17 @@ public class ColorSpaces extends OFDElement implements OFDResource {
             return this;
         }
         if (colorSpace.getID() == null) {
-            throw new IllegalArgumentException("颜色空间ID不能为空");
+            throw new IllegalArgumentException("color spaceID不能为空");
         }
         this.add(colorSpace);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取  颜色空间描述列表
+     * [required]
+     * 获取  color space描述列表
      *
-     * @return 颜色空间描述列表
+     * @return color space描述列表
      */
     public List<CT_ColorSpace> getColorSpaces() {
         return this.getOFDElements("ColorSpace", CT_ColorSpace::new);

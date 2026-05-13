@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * @deprecated {@link DLOFDReader}
- * 印章ofd的解析器
+ * seal/stampofd的解析器
  * @author dltech21
  * @since 2020/8/11
  */

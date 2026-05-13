@@ -5,7 +5,7 @@ package org.ofdrw.core.action;
  * <p>
  * 参照 52 事件类型
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 11:38:04
  */
 public enum EventType {
@@ -23,10 +23,10 @@ public enum EventType {
     CLICK;
 
     /**
-     * 根据字符串获取匹配类型实例
+     * 根据string获取匹配类型instance
      *
      * @param event 事件名称，只能是 DO，PO，CLICK
-     * @return 实例
+     * @return instance
      * @throws IllegalArgumentException 未知类型事件
      */
     public static EventType getInstance(String event) {

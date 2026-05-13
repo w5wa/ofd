@@ -10,7 +10,7 @@ import java.nio.file.Path;
  * <p>
  * GMT0099 OFD 2.0
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-6-15 19:58:58
  */
 public class AnnotsDir extends VirtualContainer {
@@ -21,10 +21,10 @@ public class AnnotsDir extends VirtualContainer {
     }
 
     /**
-     * 设置注释列表对象
+     * 设置annotation list object
      *
-     * @param annotations 注释列表对象
-     * @return 注释列表对象
+     * @param annotations annotation list object
+     * @return annotation list object
      */
     public AnnotsDir setAnnotations(Annotations annotations) {
         this.putObj(DocDir.AnnotationsFileName, annotations);
@@ -36,8 +36,8 @@ public class AnnotsDir extends VirtualContainer {
      * <p>
      * 如果目录不存在那么创建
      *
-     * @param index 页面索引
-     * @return 指定索引页面容器
+     * @param index page index
+     * @return page container at specified index
      */
     public PageDir obtainByIndex(int index) {
         String containerName = PageDir.PageContainerPrefix + index;
@@ -50,7 +50,7 @@ public class AnnotsDir extends VirtualContainer {
      * 如果目录不存在那么创建
      *
      * @param containerName 虚拟容器名称
-     * @return 指定索引页面容器
+     * @return page container at specified index
      * @throws FileNotFoundException 无法找到指定索引页面
      */
     public PageDir getPageDir(String containerName) throws FileNotFoundException {

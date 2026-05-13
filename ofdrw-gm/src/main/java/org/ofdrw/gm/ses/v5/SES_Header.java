@@ -5,7 +5,7 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 头信息
+ * header information
  *
  * @since 2026-04-24
  * @author minghu.zhang

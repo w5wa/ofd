@@ -16,9 +16,9 @@ import org.ofdrw.core.text.text.CT_Text;
 public interface ClipAble extends Element {
 
     /**
-     * 获取可裁剪对象实例
+     * 获取可裁剪对象instance
      *
-     * @param e 元素对象
+     * @param e element object
      * @return 可裁剪对象
      */
     static ClipAble getInstance(Element e) {

@@ -10,13 +10,13 @@ import org.ofdrw.core.basicType.ST_Loc;
 import java.time.LocalDateTime;
 
 /**
- * 为了支持防夹带机制，OFD文件中需引入完整性保护描述文件。
+ * 为了支持防夹带机制，OFD file中需引入完整性保护描述文件。
  * <p>
- * 防夹带文件的文件名固定位“OFDEntries.xml”，应放置在OFD文件的根目录（与OFD.xml位置相同）
+ * 防夹带文件的filename固定位“OFDEntries.xml”，应放置在OFD file的根目录（与OFD.xml位置相同）
  * <p>
  * GMT0099 D.1 完整性保护描述文件
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-28 19:17:24
  */
 public class OFDEntries extends OFDElement {
@@ -30,7 +30,7 @@ public class OFDEntries extends OFDElement {
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * 设置 标识符
      *
      * @param id 标识符
@@ -42,7 +42,7 @@ public class OFDEntries extends OFDElement {
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * 获取 标识符
      *
      * @return 标识符
@@ -52,7 +52,7 @@ public class OFDEntries extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 设置 创建者名称
      *
      * @param creatorName 创建者名称，为null表示删除
@@ -68,7 +68,7 @@ public class OFDEntries extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 获取 创建者名称
      *
      * @return 创建者名称，为null表示删除
@@ -79,7 +79,7 @@ public class OFDEntries extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 设置 模块版本
      *
      * @param version 模块版本，null表示删除
@@ -95,7 +95,7 @@ public class OFDEntries extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 获取 模块版本
      *
      * @return 模块版本
@@ -107,9 +107,9 @@ public class OFDEntries extends OFDElement {
 
     /**
      * 【可选属性】
-     * 设置 创建时间
+     * set creation time
      *
-     * @param creationDate 创建时间，null表示删除
+     * @param creationDate creation time，null表示删除
      * @return this
      */
     public OFDEntries setCreationDate(LocalDateTime creationDate) {
@@ -123,9 +123,9 @@ public class OFDEntries extends OFDElement {
 
     /**
      * 【可选属性】
-     * 获取 创建时间
+     * get creation time
      *
-     * @return creationDate 创建时间
+     * @return creationDate creation time
      */
     @Nullable
     public LocalDateTime getCreationDate() {
@@ -138,41 +138,41 @@ public class OFDEntries extends OFDElement {
 
 
     /**
-     * 【必选 OFD 2.0】
-     * 设置 针对防夹带文件所在文件形成的签名值。
+     * [required, OFD 2.0]
+     * 设置 针对防夹带文件所在文件形成的signature value。
      * <p>
-     * 签名值应符合“GB/T 35275”标注
+     * signature value应符合“GB/T 35275”标注
      *
-     * @param signedValueLoc 针对防夹带文件所在文件形成的签名值
+     * @param signedValueLoc 针对防夹带文件所在文件形成的signature value
      * @return this
      */
     public OFDEntries setSignedValueLoc(@NotNull ST_Loc signedValueLoc) {
         if (signedValueLoc == null) {
-            throw new IllegalArgumentException("防夹带文件形成的签名值(signedValueLoc)为空");
+            throw new IllegalArgumentException("防夹带文件形成的signature value(signedValueLoc)为空");
         }
         this.setOFDEntity("SignedValueLoc", signedValueLoc.toString());
         return this;
     }
 
     /**
-     * 【必选 OFD 2.0】
-     * 获取 针对防夹带文件所在文件形成的签名值。
+     * [required, OFD 2.0]
+     * 获取 针对防夹带文件所在文件形成的signature value。
      * <p>
-     * 签名值应符合“GB/T 35275”标注
+     * signature value应符合“GB/T 35275”标注
      *
-     * @return 针对防夹带文件所在文件形成的签名值
+     * @return 针对防夹带文件所在文件形成的signature value
      */
     @NotNull
     public ST_Loc getSignedValueLoc() {
         Element e = this.getOFDElement("SignedValueLoc");
         if (e == null) {
-            throw new IllegalArgumentException("防夹带文件形成的签名值(signedValueLoc)为空");
+            throw new IllegalArgumentException("防夹带文件形成的signature value(signedValueLoc)为空");
         }
         return new ST_Loc(e.getTextTrim());
     }
 
     /**
-     * 【必选 OFD 2.0】
+     * [required, OFD 2.0]
      * 设置 防止夹带文件列表
      *
      * @param fileList 防止夹带文件列表
@@ -187,7 +187,7 @@ public class OFDEntries extends OFDElement {
     }
 
     /**
-     * 【必选 OFD 2.0】
+     * [required, OFD 2.0]
      * 获取 防止夹带文件列表
      *
      * @return 防止夹带文件列表

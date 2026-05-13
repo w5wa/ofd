@@ -9,16 +9,16 @@ import java.nio.file.Path;
 /**
  * 文件在容器中的路径
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-15 18:57:45
  */
 public class ContainerPath {
     /**
-     * 容器内绝对路径
+     * 容器内absolute path
      */
     private String path;
     /**
-     * 文件系统内绝对路径
+     * 文件系统内absolute path
      */
     private Path abs;
 
@@ -28,8 +28,8 @@ public class ContainerPath {
     /**
      * 创建  文件在容器中的路径
      *
-     * @param path 容器内绝对路径
-     * @param abs  文件系统内绝对路径
+     * @param path 容器内absolute path
+     * @param abs  文件系统内absolute path
      */
     public ContainerPath(String path, Path abs) {
         this.path = path;
@@ -46,12 +46,12 @@ public class ContainerPath {
 
 
     /**
-     * 创建加密后的文件路径（空）
+     * 创建加密后的file path（空）
      * <p>
-     * 输出加密文件命名规则 原文件名全小写 + .dat 后缀，如果重复，那么在文件名后面增加后缀
+     * 输出加密文件命名规则 原filename全小写 + .dat 后缀，如果重复，那么在filename后面增加后缀
      *
      * @return 创建加密后输出文件
-     * @throws IOException 文件操作异常
+     * @throws IOException file operation exception
      */
     public ContainerPath createEncryptedFile() throws IOException {
         return newDatFile(this.path, abs.toAbsolutePath().getParent());
@@ -61,12 +61,12 @@ public class ContainerPath {
      * 创建 后缀为.dat 的文件
      * <p>
      * 加密文件为 原文件 后缀改为 .dat
-     * 若文件存在，则在文件名后追加下滑线序号 _N
+     * 若文件存在，则在filename后追加下滑线序号 _N
      *
-     * @param cAbs   容器内绝对路径
+     * @param cAbs   容器内absolute path
      * @param parent 生成的加密文件存储目录
      * @return 容器路径对象
-     * @throws IOException 文件操作异常
+     * @throws IOException file operation exception
      */
     public static ContainerPath newDatFile(String cAbs, Path parent) throws IOException {
         if (cAbs.charAt(0) != '/') {
@@ -76,7 +76,7 @@ public class ContainerPath {
             Files.createDirectories(parent);
         }
         final ST_Loc containerLoc = ST_Loc.getInstance(cAbs);
-        // 获取文件名
+        // 获取filename
         String originalName = containerLoc.getFileName();
         int off = originalName.lastIndexOf('.');
         String name = originalName;
@@ -86,7 +86,7 @@ public class ContainerPath {
         String encFileName = name.toLowerCase() + ".dat";
         Path resPath = parent.resolve(encFileName);
         int cnt = 1;
-        // 输出加密文件命名规则 原文件名全小写 + .dat 后缀，如果重复，那么在文件名后面增加后缀
+        // 输出加密文件命名规则 原filename全小写 + .dat 后缀，如果重复，那么在filename后面增加后缀
         while (Files.exists(resPath)) {
             encFileName = name.toLowerCase() + "_" + cnt + ".dat";
             resPath = parent.resolve(encFileName);

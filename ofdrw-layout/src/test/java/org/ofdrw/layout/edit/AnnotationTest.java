@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * 注释测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2022-05-16 22:44:28
  */
 class AnnotationTest {

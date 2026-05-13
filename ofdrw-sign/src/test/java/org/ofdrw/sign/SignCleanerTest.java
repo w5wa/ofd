@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * 测试清空电子签名
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-05-24 20:38:21
  */
 class SignCleanerTest {
@@ -25,7 +25,7 @@ class SignCleanerTest {
     void clean() throws IOException, DocumentException {
         Path src = Paths.get("src/test/resources", "v4signed.ofd");
         Path out = Paths.get("target", "remove_sign.ofd");
-        // 1. 创建 OFD解析器
+        // 1. 创建 OFD parser
         try (OFDReader reader = new OFDReader(src)) {
             // 2. 构造签名清理工具
             SignCleaner sCleaner = new SignCleaner(reader, out);

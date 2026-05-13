@@ -9,7 +9,7 @@ import org.ofdrw.core.basicType.ST_Loc;
  * <p>
  * 19.2 表 71
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-28 07:36:21
  */
 public class File extends OFDElement {
@@ -32,7 +32,7 @@ public class File extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 文件列表文件标识
      *
      * @param id 文件列表文件标识
@@ -47,7 +47,7 @@ public class File extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 文件列表文件标识
      *
      * @return 文件列表文件标识
@@ -61,7 +61,7 @@ public class File extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 文件列表文件描述
      *
      * @param file 文件列表文件描述
@@ -76,7 +76,7 @@ public class File extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 文件列表文件描述
      *
      * @return 文件列表文件描述

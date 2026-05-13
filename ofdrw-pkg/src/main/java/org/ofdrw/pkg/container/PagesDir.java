@@ -5,14 +5,14 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 
 /**
- * 页面容器
+ * page container
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-01-18 03:34:34
  */
 public class PagesDir extends VirtualContainer {
     /**
-     * 最大页面索引 + 1
+     * 最大page index + 1
      * <p>
      * index + 1
      */
@@ -50,24 +50,24 @@ public class PagesDir extends VirtualContainer {
     }
 
     /**
-     * 创建一个新的页面容器
+     * 创建一个新的page container
      *
-     * @return 页面容器
+     * @return page container
      */
     public PageDir newPageDir() {
         String name = PageDir.PageContainerPrefix + maxPageIndex;
         maxPageIndex++;
-        // 创建容器
+        // create container
         return this.obtainContainer(name, PageDir::new);
     }
 
     /**
-     * 获取索引的页面容器
+     * 获取索引的page container
      * <p>
-     * 页码 = index + 1
+     * page number = index + 1
      *
      * @param index 索引（从0开始）
-     * @return 指定索引页面容器
+     * @return page container at specified index
      * @throws FileNotFoundException 无法找到指定索引页面
      */
     public PageDir getByIndex(int index) throws FileNotFoundException {

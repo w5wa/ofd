@@ -23,7 +23,7 @@ import java.util.List;
  * <p>
  * 8.5 图元对象 图 45 表 34
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-14 07:32:38
  */
 public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElement {
@@ -36,11 +36,11 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 外接矩形
      * <p>
-     * 采用当前空间坐标系（页面坐标或其他容器坐标），当图
-     * 元绘制超出此矩形区域时进行裁剪。
+     * using the current space coordinate system (page coordinates or other container coordinates); when a graphic
+     * element drawing exceeds this rectangular area, clipping is applied.
      *
      * @param boundary 外接矩形
      * @return this
@@ -55,16 +55,16 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 外接矩形
      * <p>
-     * 采用当前空间坐标系（页面坐标或其他容器坐标），当图
-     * 元绘制超出此矩形区域时进行裁剪。
+     * using the current space coordinate system (page coordinates or other container coordinates); when a graphic
+     * element drawing exceeds this rectangular area, clipping is applied.
      *
-     * @param topLeftX 外接矩形X坐标
-     * @param topLeftY 外接矩形Y坐标
-     * @param width    外接矩形宽度
-     * @param height   外接矩形高度
+     * @param topLeftX 外接矩形X coordinate
+     * @param topLeftY 外接矩形Y coordinate
+     * @param width    外接rectangle width
+     * @param height   外接rectangle height
      * @return this
      */
     public T setBoundary(double topLeftX, double topLeftY, double width, double height) {
@@ -73,11 +73,11 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 外接矩形
      * <p>
-     * 采用当前空间坐标系（页面坐标或其他容器坐标），当图
-     * 元绘制超出此矩形区域时进行裁剪。
+     * using the current space coordinate system (page coordinates or other container coordinates); when a graphic
+     * element drawing exceeds this rectangular area, clipping is applied.
      *
      * @return 外接矩形
      */
@@ -86,7 +86,7 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 图元对象的名字
      *
      * @param name 图元对象的名字
@@ -103,7 +103,7 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取
      *
      * @return 图元对象的名字，可能为null
@@ -113,7 +113,7 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 图元是否可见
      *
      * @param visible true - 可见；false - 不见
@@ -130,7 +130,7 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 图元是否可见
      *
      * @return true - 可见；false - 不见
@@ -145,10 +145,10 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
 
 
     /**
-     * 【可选 属性】
-     * 设置 对空间内的图元变换矩阵
+     * [optional attribute]
+     * 设置 对空间内的图元transformation matrix
      *
-     * @param ctm 变换矩阵
+     * @param ctm transformation matrix
      * @return this
      */
     @SuppressWarnings("unchecked")
@@ -158,20 +158,20 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
-     * 获取 对空间内的图元变换矩阵
+     * [optional attribute]
+     * 获取 对空间内的图元transformation matrix
      *
-     * @return 变换矩阵
+     * @return transformation matrix
      */
     public ST_Array getCTM() {
         return ST_Array.getInstance(this.attributeValue("CTM"));
     }
 
     /**
-     * 【可选 属性】
-     * 设置 引用资源文件中的绘制参数标识
+     * [optional attribute]
+     * 设置 引用resource file中的drawing parameters标识
      *
-     * @param id 绘制参数标识
+     * @param id drawing parameters标识
      * @return this
      */
     @SuppressWarnings("unchecked")
@@ -181,10 +181,10 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
-     * 获取 引用资源文件中的绘制参数标识
+     * [optional attribute]
+     * 获取 引用resource file中的drawing parameters标识
      *
-     * @return 绘制参数标识
+     * @return drawing parameters标识
      */
     public ST_RefID getDrawParam() {
         return ST_RefID.getInstance(this.attributeValue("DrawParam"));
@@ -192,10 +192,10 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 绘制路径时使用的线宽
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @param lineWidth 绘制路径时使用的线宽
      * @return this
@@ -212,10 +212,10 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 绘制路径时使用的线宽
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @return 绘制路径时使用的线宽，可能为null
      */
@@ -228,12 +228,12 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 线端点样式
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @param cap 线端点样式
      * @return this
@@ -249,12 +249,12 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 线端点样式
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @return 线端点样式
      */
@@ -263,14 +263,14 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 线条连接样式
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
-     * @param join 线条连接样式
+     * @param join line join style
      * @return this
      */
     @SuppressWarnings("unchecked")
@@ -284,29 +284,29 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 线条连接样式
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
-     * @return 线条连接样式
+     * @return line join style
      */
     public LineJoinType getJoin() {
         return LineJoinType.getInstance(this.attributeValue("Join"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 Join的截断值
      * <p>
-     * Join为 Miter 时小角度结合点长度的截断值，默认值为 3.528。
-     * 当 Join  不等于 Miter 时该参数无效。
+     * truncation value for small-angle join length when Join is Miter, default: 3.528.
+     * this parameter is invalid when Join is not Miter.
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @param miterLimit Join的截断值长度
      * @return this
@@ -322,15 +322,15 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 Join的截断值
      * <p>
-     * Join为 Miter 时小角度结合点长度的截断值，默认值为 3.528。
-     * 当 Join  不等于 Miter 时该参数无效。
+     * truncation value for small-angle join length when Join is Miter, default: 3.528.
+     * this parameter is invalid when Join is not Miter.
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @return Join的截断值长度
      */
@@ -344,16 +344,16 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 线条虚线开始位置
      * <p>
-     * 默认值为 0
+     * default value: 0
      * <p>
-     * 当 DashPattern 不出现时，该参数无效
+     * this parameter is invalid when DashPattern is absent
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @param dashOffset 线条虚线开始位置
      * @return this
@@ -369,16 +369,16 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 线条虚线开始位置
      * <p>
-     * 默认值为 0
+     * default value: 0
      * <p>
-     * 当 DashPattern 不出现时，该参数无效
+     * this parameter is invalid when DashPattern is absent
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
      * @return 线条虚线开始位置
      */
@@ -391,21 +391,21 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 线条虚线的重复样式
      * <p>
-     * 数组中共含两个值，第一个值代表虚线的线段的长度，
-     * 第二个值代表虚线间隔的长度。
+     * the array contains two values; the first represents dash length,
+     * the second represents gap length.
      * <p>
-     * 默认值为空。
+     * default value: null.
      * <p>
-     * 线条样式的控制效果见表 23
+     * for line style control effects, see Table 23
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
-     * @param dashPattern 线条虚线的重复样式的数组中共含两个值，第一个值代表虚线的线段的长度，第二个值代表虚线间隔的长度。
+     * @param dashPattern 线条虚线的重复样式的数组中共含两个值，第一个值代表虚线的线segment的长度，第二个值代表虚线间隔的长度。
      * @return this
      */
     @SuppressWarnings("unchecked")
@@ -419,28 +419,28 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 线条虚线的重复样式
      * <p>
-     * 数组中共含两个值，第一个值代表虚线的线段的长度，
-     * 第二个值代表虚线间隔的长度。
+     * the array contains two values; the first represents dash length,
+     * the second represents gap length.
      * <p>
-     * 默认值为空。
+     * default value: null.
      * <p>
-     * 线条样式的控制效果见表 23
+     * for line style control effects, see Table 23
      * <p>
-     * 见 8.2 绘制参数
+     * see section 8.2 Drawing Parameters
      * <p>
-     * 如果图元对象有 DrawParam 属性时，则用此值覆盖 DrawParam 中对应的值
+     * if the graphic object has a DrawParam attribute, this value overrides the corresponding value in DrawParam
      *
-     * @return 线条虚线的重复样式的数组中共含两个值，第一个值代表虚线的线段的长度，第二个值代表虚线间隔的长度。
+     * @return 线条虚线的重复样式的数组中共含两个值，第一个值代表虚线的线segment的长度，第二个值代表虚线间隔的长度。
      */
     public ST_Array getDashPattern() {
         return ST_Array.getInstance(this.attributeValue("DashPattern"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 图元对象透明度
      * <p>
      * 取值区间为 [0,255]
@@ -467,7 +467,7 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 图元对象透明度
      * <p>
      * 取值区间为 [0,255]
@@ -486,12 +486,12 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
 
 
     /**
-     * 【可选】
-     * 设置 图元对象的动作序列
+     * [optional]
+     * 设置 图元对象的action sequence
      * <p>
-     * 当存在多个 Action 对象时，所有动作依次执行
+     * when multiple Action objects exist, all actions are executed in order
      *
-     * @param actions 图元对象的动作序列
+     * @param actions 图元对象的action sequence
      * @return this
      */
     @SuppressWarnings("unchecked")
@@ -501,12 +501,12 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选】
-     * 设置 图元对象的动作序列
+     * [optional]
+     * 设置 图元对象的action sequence
      * <p>
-     * 当存在多个 Action 对象时，所有动作依次执行
+     * when multiple Action objects exist, all actions are executed in order
      *
-     * @return 图元对象的动作序列
+     * @return 图元对象的action sequence
      */
     public Actions getActions() {
         Element e = this.getOFDElement("Actions");
@@ -515,10 +515,10 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 图元对象的裁剪区域序列
      * <p>
-     * 采用对象空间坐标系
+     * uses the object space coordinate system
      * <p>
      * 当存在多个 Clip 对象时，最终裁剪区域为所有 Clip 区域的交集。
      *
@@ -539,10 +539,10 @@ public abstract class CT_GraphicUnit<T extends CT_GraphicUnit> extends OFDElemen
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 图元对象的裁剪区域序列
      * <p>
-     * 采用对象空间坐标系
+     * uses the object space coordinate system
      * <p>
      * 当存在多个 Clip 对象时，最终裁剪区域为所有 Clip 区域的交集。
      *

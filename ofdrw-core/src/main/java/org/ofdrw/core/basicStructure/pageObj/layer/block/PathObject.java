@@ -6,13 +6,13 @@ import org.ofdrw.core.basicType.ST_ID;
 import org.ofdrw.core.graph.pathObj.CT_Path;
 
 /**
- * 图形对象
+ * graphics object
  * <p>
  * 见 9.1
  * <p>
- * 7.7 表 16
+ * 7.7 Table 16
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-29 05:14:52
  */
 public class PathObject extends CT_Path implements PageBlockType {
@@ -32,10 +32,10 @@ public class PathObject extends CT_Path implements PageBlockType {
 
 
     /**
-     * 【必选 属性】
-     * 设置 对象ID
+     * [required attribute]
+     * set object ID
      *
-     * @param id 对象ID
+     * @param id object ID
      * @return this
      */
     public PathObject setID(ST_ID id) {
@@ -51,10 +51,10 @@ public class PathObject extends CT_Path implements PageBlockType {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 对象ID
+     * [required attribute]
+     * get object ID
      *
-     * @return 对象ID
+     * @return object ID
      */
     public ST_ID getID() {
         return this.getObjID();

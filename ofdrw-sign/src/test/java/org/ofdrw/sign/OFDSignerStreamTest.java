@@ -23,13 +23,13 @@ import java.security.cert.Certificate;
 /**
  * OFD签名引擎测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 11:10:43
  */
 class OFDSignerStreamTest {
 
     /**
-     * 测试文档中没有Doc_0 只有Doc_1的情况签章
+     * 测试文档中没有Doc_0 只有Doc_1的情况seal/signature
      *
      * @throws GeneralSecurityException _
      * @throws IOException              _
@@ -75,7 +75,7 @@ class OFDSignerStreamTest {
     }
 
     /**
-     * 已经有印章的情况下再追加签章
+     * 已经有seal/stamp的情况下再追加seal/signature
      *
      * @throws GeneralSecurityException _
      * @throws IOException              _
@@ -121,7 +121,7 @@ class OFDSignerStreamTest {
     }
 
     /**
-     * 文档全保护状态下签章测试，应该抛出异常
+     * 文档全保护状态下seal/signature测试，应该抛出异常
      *
      * @throws GeneralSecurityException _
      * @throws IOException              _

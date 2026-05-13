@@ -3,7 +3,7 @@ package org.ofdrw.layout.engine.render;
 /**
  * 渲染异常
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-04 23:45:57
  */
 public class RenderException extends RuntimeException {

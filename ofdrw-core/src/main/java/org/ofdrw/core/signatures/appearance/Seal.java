@@ -6,11 +6,11 @@ import org.ofdrw.core.OFDElement;
 import org.ofdrw.core.basicType.ST_Loc;
 
 /**
- * 电子印章信息
+ * 电子seal/stamp信息
  * <p>
  * 18.2.1 图 86 表 67
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-21 18:54:20
  */
 public class Seal extends OFDElement {
@@ -29,44 +29,44 @@ public class Seal extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 设置 指向包内的安全电子印章文件路径
+     * [required]
+     * 设置 points to包内的安全电子seal/stampfile path
      * <p>
      * 遵循密码领域的相关规范
      *
-     * @param baseLoc 指向包内的安全电子印章文件路径
+     * @param baseLoc points to包内的安全电子seal/stampfile path
      * @return this
      */
     public Seal setBaseLoc(ST_Loc baseLoc) {
         if (baseLoc == null) {
-            throw new IllegalArgumentException("指向包内的安全电子印章文件路径（BaseLoc）为空");
+            throw new IllegalArgumentException("points to包内的安全电子seal/stampfile path（BaseLoc）为空");
         }
         this.setOFDEntity("BaseLoc", baseLoc);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取 指向包内的安全电子印章文件路径
+     * [required]
+     * 获取 points to包内的安全电子seal/stampfile path
      * <p>
      * 遵循密码领域的相关规范
      *
-     * @return 指向包内的安全电子印章文件路径
+     * @return points to包内的安全电子seal/stampfile path
      */
     public ST_Loc getBaseLoc() {
         Element e = this.getOFDElement("BaseLoc");
         if (e == null) {
-            throw new IllegalArgumentException("指向包内的安全电子印章文件路径（BaseLoc）为空");
+            throw new IllegalArgumentException("points to包内的安全电子seal/stampfile path（BaseLoc）为空");
         }
         return ST_Loc.getInstance(e);
     }
 
 
     /**
-     * 【可选 OFD 2.0】
-     * 设置 印模图片存储位置
+     * [optional, OFD 2.0]
+     * 设置 印模image存储位置
      *
-     * @param imageLoc 印模图片存储位置，null表示删除
+     * @param imageLoc 印模image存储位置，null表示删除
      * @return this
      */
     public Seal setImageLoc(@Nullable ST_Loc imageLoc) {
@@ -79,10 +79,10 @@ public class Seal extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
-     * 获取 印模图片存储位置
+     * [optional, OFD 2.0]
+     * 获取 印模image存储位置
      *
-     * @return 印模图片存储位置，可能为null
+     * @return 印模image存储位置，可能为null
      */
     @Nullable
     public ST_Loc getImageLoc(){

@@ -5,13 +5,13 @@ import org.ofdrw.core.OFDElement;
 import org.ofdrw.core.basicType.STBase;
 
 /**
- * 颜色段
+ * 颜色segment
  * <p>
  * 至少出现两个
  * <p>
- * 8.3.4.2 轴向渐变 图 29、30 表 29
+ * 8.3.4.2 Axial Gradient - Figure 29, 30, Table 29
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-31 07:57:48
  */
 public class Segment extends OFDElement {
@@ -24,9 +24,9 @@ public class Segment extends OFDElement {
     }
 
     /**
-     * 构造段颜色
+     * 构造segment颜色
      *
-     * @param color 段颜色
+     * @param color segment颜色
      */
     public Segment(CT_Color color) {
         this();
@@ -34,10 +34,10 @@ public class Segment extends OFDElement {
     }
 
     /**
-     * 构造段颜色
+     * 构造segment颜色
      *
-     * @param position 段坐标
-     * @param color    段颜色
+     * @param position segment坐标
+     * @param color    segment颜色
      */
     public Segment(Double position, CT_Color color) {
         this();
@@ -47,13 +47,13 @@ public class Segment extends OFDElement {
 
 
     /**
-     * 【可选 属性】
-     * 设置 渐变段颜色位置参数
+     * [optional attribute]
+     * 设置 渐变segment颜色位置参数
      * <p>
      * 用于确定 StartPoint 和 EndPoint 中的各颜色的位置值，
      * 取值范围是 [0, 1.0]，各颜色的 Position 值应根据颜色出现
      * 的顺序递增第一个 Segment 的 Position 属性默认值为 0，最后
-     * 一个 Segment 的 Position 属性默认值为 1.0，当不存在时，
+     * 一个 Segment 的 Position 属性default value: 1.0，当不存在时，
      * 在空缺的区间内平局分配。
      * <p>
      * 举例： Segment 个数等于 2 且不出现 Position 属性时，
@@ -74,13 +74,13 @@ public class Segment extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 渐变段颜色位置参数
+     * [optional attribute]
+     * 获取 渐变segment颜色位置参数
      * <p>
      * 用于确定 StartPoint 和 EndPoint 中的各颜色的位置值，
      * 取值范围是 [0, 1.0]，各颜色的 Position 值应根据颜色出现
      * 的顺序递增第一个 Segment 的 Position 属性默认值为 0，最后
-     * 一个 Segment 的 Position 属性默认值为 1.0，当不存在时，
+     * 一个 Segment 的 Position 属性default value: 1.0，当不存在时，
      * 在空缺的区间内平局分配。
      * <p>
      * 举例： Segment 个数等于 2 且不出现 Position 属性时，
@@ -100,17 +100,17 @@ public class Segment extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 设置 该段的颜色
+     * [required]
+     * 设置 该segment的颜色
      * <p>
      * 应是基本颜色
      *
-     * @param color 该段的颜色，应是基本颜色
+     * @param color 该segment的颜色，应是基本颜色
      * @return this
      */
     public Segment setColor(CT_Color color) {
         if (color == null) {
-            throw new IllegalArgumentException("段颜色（Color）为空");
+            throw new IllegalArgumentException("segment颜色（Color）为空");
         }
         this.removeAll();
         this.add(color);
@@ -118,12 +118,12 @@ public class Segment extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 获取 该段的颜色
+     * [required]
+     * 获取 该segment的颜色
      * <p>
      * 应是基本颜色
      *
-     * @return 该段的颜色，应是基本颜色
+     * @return 该segment的颜色，应是基本颜色
      */
     public CT_Color getColor() {
         Element e = this.getOFDElement("Color");

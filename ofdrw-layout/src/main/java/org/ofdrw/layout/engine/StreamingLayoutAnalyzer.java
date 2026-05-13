@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * 流式布局分析器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-07 12:08:41
  */
 public class StreamingLayoutAnalyzer {
@@ -49,9 +49,9 @@ public class StreamingLayoutAnalyzer {
     }
 
     /**
-     * 进行段的布局分析
+     * 进行segment的布局分析
      *
-     * @param segmentSequence 段序列
+     * @param segmentSequence segment序列
      * @return 虚拟页面序列
      */
     public List<VirtualPage> analyze(List<Segment> segmentSequence) {
@@ -70,31 +70,31 @@ public class StreamingLayoutAnalyzer {
                 // 空间不足则换页
                 addNewPage();
             }
-            // 特殊的如果是一个填充段那么设置页面
+            // 特殊的如果是一个填充segment那么设置页面
             if (segment.isRemainAreaFiller()) {
                 remainArea.setHeight(0d);
                 continue;
             }
-            // 高度足够能够放入剩余空间中
+            // height足够能够放入剩余空间中
             if (segment.getHeight() <= remainArea.getHeight()) {
-                // 分配段空间
+                // 分配segment空间
                 Rectangle area = remainArea.reduce(segment.getHeight());
                 // 定位元素，加入虚拟页面
                 elementPositioning(segment, area);
                 continue;
             }
-            // 段不可以拆分情况下
+            // segment不可以拆分情况下
             if (segment.isBlockable() == false) {
                 if (segment.getHeight() > pageWorkArea.getHeight()) {
-                    // TODO 警告: 如果段不可拆分，并且高度大于整个页面的高度，那么这样的段应该舍弃
+                    // TODO 警告: 如果segment不可拆分，并且height大于整个页面的height，那么这样的segment应该舍弃
                 } else {
-                    // 如果段不可拆分，并且高度小于整个页面的高度，那么新起一个页面，重新加入队列布局
+                    // 如果segment不可拆分，并且height小于整个页面的height，那么新起一个页面，重新加入队列布局
                     addNewPage();
                     seq.push(segment);
                 }
                 continue;
             }
-            // 段可以拆分，那么通过剩余空间对段分块，这个分块只会分为两块
+            // segment可以拆分，那么通过剩余空间对segment分块，这个分块只会分为两块
             Segment[] blocks = segmentBlocking(segment, remainArea.clone());
             if (blocks != null && blocks.length > 0) {
                 // 因为是栈的原因，需要把最后一个元素最新压到栈顶。
@@ -109,13 +109,13 @@ public class StreamingLayoutAnalyzer {
     }
 
     /**
-     * 由于剩余空间不足且段可以分块
+     * 由于剩余空间不足且segment可以分块
      * <p>
-     * 对段进行分块，剩余的块将流转到下一个页面的段中
+     * 对segment进行分块，剩余的块将流转到下一个页面的segment中
      *
-     * @param segment 段
+     * @param segment segment
      * @param area    剩余空间
-     * @return 分块后的段序列，含两个Segment元素。
+     * @return 分块后的segment序列，含两个Segment元素。
      */
     private Segment[] segmentBlocking(Segment segment, Rectangle area) {
         // 分为两块
@@ -127,17 +127,17 @@ public class StreamingLayoutAnalyzer {
             // 1. 能够放置到剩余空间中
             double availableHeight = area.getHeight();
             if (rec.getHeight() <= availableHeight) {
-                // 向第一个段，加入实际的Div
+                // 向第一个segment，加入实际的Div
                 sgm1.tryAdd(div);
-                // 向第下一个段加入占位符
+                // 向第下一个segment加入占位符
                 sgmNext.tryAdd(Div.placeholder(rec, div.getFloat()));
                 continue;
             }
             // 2. 在剩余空间中无法放置，且元素本身不可分割
             if (div.isIntegrity()) {
-                // 向第一个段中加入占位符
+                // 向第一个segment中加入占位符
                 sgm1.tryAdd(Div.placeholder(rec.getWidth(), availableHeight, div.getFloat()));
-                // 把实际元素加入下一个段中
+                // 把实际元素加入下一个segment中
                 sgmNext.tryAdd(div);
                 continue;
             }
@@ -150,20 +150,20 @@ public class StreamingLayoutAnalyzer {
     }
 
     /**
-     * 段中的元素定位，并加入到虚拟页面中
+     * segment中的元素定位，并加入到虚拟页面中
      *
-     * @param segment 待定位的段
-     * @param area    分配给该段的页面空间
+     * @param segment 待定位的segment
+     * @param area    分配给该segment的页面空间
      */
     private void elementPositioning(Segment segment, Rectangle area) {
         /*
          根据浮动方式，判断元素在段中X坐标定位
          */
-        // 居中的布局分析
+        // center的布局分析
         if (segment.isCenterFloat()) {
-            // 获取段内所有元素的宽度
+            // 获取segment内所有元素的width
             double totalWidth = segment.getSizeList().stream().mapToDouble(Rectangle::getWidth).sum();
-            // 第一个元素偏移的X坐标
+            // 第一个元素偏移的X coordinate
             double offsetX = area.getX() + ((area.getWidth() - totalWidth) / 2);
             for (Map.Entry<Div, Rectangle> item : segment) {
                 Div itemDiv = item.getKey();

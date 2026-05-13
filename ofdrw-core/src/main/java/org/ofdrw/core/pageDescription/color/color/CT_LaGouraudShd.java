@@ -13,7 +13,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * 8.3.4.5 图 43 表 32
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-09 12:54:50
  */
 public class CT_LaGouraudShd extends CT_GouraudShd {
@@ -26,7 +26,7 @@ public class CT_LaGouraudShd extends CT_GouraudShd {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 渐变区域内每行的网格数
      *
      * @param verticesPerRow 渐变区域内每行的网格数
@@ -41,7 +41,7 @@ public class CT_LaGouraudShd extends CT_GouraudShd {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 渐变区域内每行的网格数
      *
      * @return 渐变区域内每行的网格数
@@ -55,7 +55,7 @@ public class CT_LaGouraudShd extends CT_GouraudShd {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加  渐变控制点
      * <p>
      * 至少出现四个

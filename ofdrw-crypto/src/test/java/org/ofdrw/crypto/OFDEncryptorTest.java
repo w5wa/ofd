@@ -26,7 +26,7 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-15 18:20:18
  */
 class OFDEncryptorTest {

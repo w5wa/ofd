@@ -15,17 +15,17 @@ import java.util.List;
 /**
  * OFD SVG转换器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-8 21:45:48
  */
 public class SVGExporter implements OFDExporter {
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     final OFDReader ofdReader;
     /**
-     * 图片转换器
+     * image转换器
      */
     final SVGMaker svgMaker;
 
@@ -35,50 +35,50 @@ public class SVGExporter implements OFDExporter {
     final Path outDirPath;
 
     /**
-     * 转换生成的图片文件序列
+     * 转换生成的image文件序列
      */
     List<Path> svgFileArr;
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdFilePath 待转换OFD文件
+     * @param ofdFilePath OFD file to be converted
      * @param imgDirPath  生成SVG存放目录
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     public SVGExporter(Path ofdFilePath, Path imgDirPath) throws IOException {
         this(ofdFilePath, imgDirPath, 15);
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdInput   待转换OFD文件流，该流由调用者负责关闭
+     * @param ofdInput   OFD file to be converted stream; caller is responsible for closing
      * @param imgDirPath 生成SVG存放目录
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     public SVGExporter(InputStream ofdInput, Path imgDirPath) throws IOException {
         this(ofdInput, imgDirPath, 15);
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdFilePath 待转换OFD文件
+     * @param ofdFilePath OFD file to be converted
      * @param imgDirPath  生成SVG存放目录
-     * @param ppm         转换SVG质量，每毫米像素数量(Pixels per millimeter)
-     * @throws IOException 文件解析异常
+     * @param ppm         转换SVG质量，pixels per millimeter
+     * @throws IOException file parsing exception
      */
     public SVGExporter(Path ofdFilePath, Path imgDirPath, double ppm) throws IOException {
         ofdReader = new OFDReader(ofdFilePath);
 
         if (imgDirPath == null) {
-            throw new IllegalArgumentException("导出图片文件路径为空");
+            throw new IllegalArgumentException("导出imagefile path为空");
         }
         imgDirPath = imgDirPath.toAbsolutePath();
         if (Files.exists(imgDirPath) && !Files.isDirectory(imgDirPath)) {
@@ -95,17 +95,17 @@ public class SVGExporter implements OFDExporter {
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdInput   待转换OFD文件流，该文件流由调用者负责关闭
+     * @param ofdInput   OFD file to be converted流，该文件流由调用者负责关闭
      * @param imgDirPath 生成SVG存放目录
-     * @param ppm        转换SVG质量，每毫米像素数量(Pixels per millimeter)
-     * @throws IOException 文件解析异常
+     * @param ppm        转换SVG质量，pixels per millimeter
+     * @throws IOException file parsing exception
      */
     public SVGExporter(InputStream ofdInput, Path imgDirPath, double ppm) throws IOException {
         ofdReader = new OFDReader(ofdInput);
         if (imgDirPath == null) {
-            throw new IllegalArgumentException("导出图片文件路径为空");
+            throw new IllegalArgumentException("导出imagefile path为空");
         }
         imgDirPath = imgDirPath.toAbsolutePath();
         if (Files.exists(imgDirPath) && !Files.isDirectory(imgDirPath)) {
@@ -122,10 +122,10 @@ public class SVGExporter implements OFDExporter {
     }
 
     /**
-     * 导出指定OFD页为SVG
+     * export specified OFD page为SVG
      *
-     * @param indexes 页码序列，如果为空表示全部页码（注意：页码从0起）
-     * @throws GeneralConvertException 转换异常
+     * @param indexes page index sequence; if null, means all pages (note: page index starts from 0)
+     * @throws GeneralConvertException conversion exception
      */
     @Override
     public void export(int... indexes) throws GeneralConvertException {
@@ -136,7 +136,7 @@ public class SVGExporter implements OFDExporter {
             }
         } else {
             int maxPageIndex = ofdReader.getNumberOfPages();
-            // 获取指定页面信息
+            // get information for specified page
             for (int index : indexes) {
                 if (index < 0 || index >= maxPageIndex) {
                     continue;
@@ -152,7 +152,7 @@ public class SVGExporter implements OFDExporter {
                 this.svgFileArr.add(dst);
             }
         } catch (IOException e) {
-            throw new GeneralConvertException("SVG转换异常", e);
+            throw new GeneralConvertException("SVGconversion exception", e);
         }
     }
 
@@ -168,9 +168,9 @@ public class SVGExporter implements OFDExporter {
     }
 
     /**
-     * 获取已经转换完成的页面的图片路径
+     * 获取已经转换完成的页面的image path
      *
-     * @return 页面图片路径
+     * @return 页面image path
      */
     public List<Path> getSvgFilePaths() {
         return svgFileArr;
@@ -181,7 +181,7 @@ public class SVGExporter implements OFDExporter {
      * <p>
      * 请在调用 {@link #export(int...)} 方法之前设置PPM！
      *
-     * @param ppm 每毫米像素数量(Pixels per millimeter)
+     * @param ppm pixels per millimeter
      */
     public void setPPM(double ppm) {
         if (svgMaker == null) {

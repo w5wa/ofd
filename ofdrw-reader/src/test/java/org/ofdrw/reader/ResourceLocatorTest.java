@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-08 21:48:36
  */
 class ResourceLocatorTest {

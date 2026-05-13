@@ -10,11 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 包含了文档所有字形的描述
+ * contains了文档所有glyph的描述
  * <p>
- * 7.9 图 20 表 18
+ * 7.9 Figure 20 Table 18
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-13 19:41:17
  */
 public class Fonts extends OFDElement implements OFDResource {
@@ -28,12 +28,12 @@ public class Fonts extends OFDElement implements OFDResource {
 
 
     /**
-     * 【必选】
-     * 添加 字形描述
+     * [required]
+     * 添加 glyph描述
      * <p>
-     * 必须要有ID属性
+     * must have ID attribute
      *
-     * @param font 字形描述
+     * @param font glyph描述
      * @return this
      */
     public Fonts addFont(CT_Font font) {
@@ -41,19 +41,19 @@ public class Fonts extends OFDElement implements OFDResource {
             return this;
         }
         if (font.getID() == null) {
-            throw new IllegalArgumentException("字形描述ID不能为空");
+            throw new IllegalArgumentException("glyph描述ID不能为空");
         }
         this.add(font);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取 字形描述序列
+     * [required]
+     * 获取 glyph描述序列
      * <p>
-     * 必须要有ID属性
+     * must have ID attribute
      *
-     * @return 字形描述
+     * @return glyph描述
      */
     public List<CT_Font> getFonts() {
         return this.getOFDElements("Font", CT_Font::new);

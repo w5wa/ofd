@@ -18,7 +18,7 @@ import java.util.Arrays;
  * 绘制行为详见渲染器：{@link org.ofdrw.layout.engine.render.DivRender}
  *
  * @param <T> 链式调用返还值，Div的子类
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-03 12:46:15
  */
 public class Div<T extends Div> implements RenderPrepare, ElementSplit {
@@ -31,46 +31,46 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     private int[] backgroundColor = null;
 
     /**
-     * 边框颜色
+     * border color
      * <p>
      * (R,G,B) 三色数组
      */
     private int[] borderColor = null;
 
     /**
-     * 内容宽度
+     * 内容width
      * <p>
-     * 如果不设置，则为自适应。最大宽度不能大于页面版心宽度。
+     * 如果不设置，则为自适应。最大width不能大于页面版心width。
      */
     private Double width = null;
 
     /**
-     * 内容高度
+     * 内容height
      * <p>
      * 如果不设置则为自适应。
      * <p>
-     * 注意如果需要保证块完整，那么高度不能大于版心高度。
+     * 注意如果需要保证块完整，那么height不能大于版心height。
      */
     private Double height = null;
 
     /**
      * 内边距
      * <p>
-     * 数组中个元素意义：上、右、下、左
+     * array element meanings: top, right, bottom, left
      */
     private Double[] padding = {0d, 0d, 0d, 0d};
 
     /**
-     * 边框宽度
+     * 边框width
      * <p>
-     * 数组中个元素意义：上、右、下、左
+     * array element meanings: top, right, bottom, left
      */
     private Double[] border = {0d, 0d, 0d, 0d};
 
     /**
      * 外边距
      * <p>
-     * 数组中个元素意义：上、右、下、左
+     * array element meanings: top, right, bottom, left
      */
     private Double[] margin = {0d, 0d, 0d, 0d};
 
@@ -82,7 +82,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     private Double[] borderDash = null;
 
     /**
-     * 固定布局的盒式模型左上角X坐标
+     * 固定布局的盒式模型X coordinate of top-left corner
      */
     private Double x = null;
 
@@ -92,24 +92,24 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     private Double y = null;
 
     /**
-     * 对段的占用情况
+     * 对segment的占用情况
      */
     private Clear clear = Clear.both;
 
     /**
-     * 在段中的浮动方向
+     * 在segment中的浮动方向
      * <p>
-     * 为了避免与float关键字冲突采用AFloat
+     * 为了避免与floatkeyword冲突采用AFloat
      */
     private AFloat aFloat = AFloat.left;
 
     /**
-     * 相对于段的左边界距离
+     * 相对于segment的左边界距离
      */
     private double left = 0d;
 
     /**
-     * 相对于段的右边界距离
+     * 相对于segment的右边界距离
      */
     private double right = 0d;
 
@@ -149,13 +149,13 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     private boolean placeholder = false;
 
     /**
-     * 图层，默认为Body
+     * layer，默认为Body
      */
     private Type layer = Type.Body;
 
     /**
      * 渲染完成后的处理器
-     * 在该回调中可以获取到生成OFD元素在容器中的位置，以及过程中生成的所有OFD元素。
+     * 在该回调中可以获取到生成OFD element在容器中的位置，以及过程中生成的所有OFD element。
      */
     private ElementRenderFinishHandler renderFinishHandler = null;
 
@@ -170,10 +170,10 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 创建绝对定位的Div对象
      *
-     * @param x      固定布局的盒式模型左上角X坐标
+     * @param x      固定布局的盒式模型X coordinate of top-left corner
      * @param y      固定布局的盒式模型左上角y坐标
-     * @param width  宽度
-     * @param height 高度
+     * @param width  width
+     * @param height height
      */
     public Div(double x, double y, double width, double height) {
         setX(x);
@@ -198,7 +198,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 是否是块级元素
      * <p>
-     * 块元素将会独占整个段
+     * 块元素将会独占整个segment
      * <p>
      * 绝对定位默认不为块级元素
      *
@@ -209,7 +209,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
             return false;
         }
         /*
-         独占段的元素类型
+         独占段的element type
          1. 独占
          2. 浮动 + Clear 对立
          */
@@ -228,7 +228,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 设置透明度
+     * set transparency
      * <p>
      * 0 - 表示全透明， 1 - 表示不透明
      *
@@ -247,16 +247,16 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 获取 边框颜色
+     * 获取 border color
      *
-     * @return 边框颜色 RGB值，null 表示无色。
+     * @return border color RGB值，null 表示无色。
      */
     public int[] getBorderColor() {
         return borderColor;
     }
 
     /**
-     * 设置边框颜色
+     * 设置border color
      *
      * @param r 红色值（0~255）
      * @param g 绿色值（0~255）
@@ -269,7 +269,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 设置 边框颜色
+     * set border color
      *
      * @param rgb RGB数组，null 表示无色。
      * @return this
@@ -280,15 +280,15 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 设置 边框颜色
+     * set border color
      *
-     * @param color 颜色值，可以是 16进制值 "#FFFFFF"、 16进制值缩写 "#FF"F、RGB "rgb(255,255,255)"、颜色名称 "white"
+     * @param color color value: hex "#FFFFFF", hex shorthand "#FFF", RGB "rgb(255,255,255)", or color name "white"
      * @return this
      */
     public T setBorderColor(String color) {
         int[] c = NamedColor.rgb(color);
         if (c == null || c.length < 3) {
-            throw new IllegalArgumentException("边框颜色 颜色值错误：" + color);
+            throw new IllegalArgumentException("border color color value错误：" + color);
         }
         this.setBorderColor(c);
         return (T) this;
@@ -332,13 +332,13 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 设置 背景颜色
      *
-     * @param color 颜色值，可以是 16进制值 "#FFFFFF"、 16进制值缩写 "#FF"F、RGB "rgb(255,255,255)"、颜色名称 "white"
+     * @param color color value: hex "#FFFFFF", hex shorthand "#FFF", RGB "rgb(255,255,255)", or color name "white"
      * @return this
      */
     public T setBackgroundColor(String color) {
         int[] c = NamedColor.rgb(color);
         if (c == null || c.length < 3) {
-            throw new IllegalArgumentException("背景颜色 颜色值错误：" + color);
+            throw new IllegalArgumentException("背景颜色 color value错误：" + color);
         }
         this.setBackgroundColor(c);
         return (T) this;
@@ -388,14 +388,14 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 设置 内边距
      * <p>
-     * 根据参数的参数不同设置涉及到了到 上、右、下、左 各部分参数
-     * 1个参数，上、右、下、左 都相同      {arr[0], arr[0], arr[0], arr[0]}
+     * sets top, right, bottom, left parameters based on the number of arguments:
+     * 1 arg: top=right=bottom=left = arr[0]
      * <p>
-     * 2个参数，上和下相同、左和右相同       {arr[0], arr[1], arr[0], arr[1]}
+     * 2 args: top=bottom=arr[0], left=right=arr[1]
      * <p>
-     * 3个参数，上、右、下、左(0) 分别设置  {arr[0], arr[1], arr[2], 0}
+     * 3 args: top=arr[0], right=arr[1], bottom=arr[2], left=0
      * <p>
-     * 4个参数，上、右、下、左 分别设置     {arr[0], arr[1], arr[2], arr[3]}
+     * 4 args: top=arr[0], right=arr[1], bottom=arr[2], left=arr[3]
      *
      * @param padding 内边距，可变参数。
      * @return this
@@ -410,18 +410,18 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 设置 边框宽度
+     * 设置 边框width
      * <p>
-     * 根据参数的参数不同设置涉及到了到 上、右、下、左 各部分参数
-     * 1个参数，上、右、下、左 都相同      {arr[0], arr[0], arr[0], arr[0]}
+     * sets top, right, bottom, left parameters based on the number of arguments:
+     * 1 arg: top=right=bottom=left = arr[0]
      * <p>
-     * 2个参数，上和下相同、左和右相同       {arr[0], arr[1], arr[0], arr[1]}
+     * 2 args: top=bottom=arr[0], left=right=arr[1]
      * <p>
-     * 3个参数，上、右、下、左(0) 分别设置  {arr[0], arr[1], arr[2], 0}
+     * 3 args: top=arr[0], right=arr[1], bottom=arr[2], left=0
      * <p>
-     * 4个参数，上、右、下、左 分别设置     {arr[0], arr[1], arr[2], arr[3]}
+     * 4 args: top=arr[0], right=arr[1], bottom=arr[2], left=arr[3]
      *
-     * @param border 边框宽度，可变参数。
+     * @param border 边框width，可变参数。
      * @return this
      */
     public T setBorder(Double... border) {
@@ -486,14 +486,14 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 设置 外边距
      * <p>
-     * 根据参数的参数不同设置涉及到了到 上、右、下、左 各部分参数
-     * 1个参数，上、右、下、左 都相同      {arr[0], arr[0], arr[0], arr[0]}
+     * sets top, right, bottom, left parameters based on the number of arguments:
+     * 1 arg: top=right=bottom=left = arr[0]
      * <p>
-     * 2个参数，上和下相同、左和右相同       {arr[0], arr[1], arr[0], arr[1]}
+     * 2 args: top=bottom=arr[0], left=right=arr[1]
      * <p>
-     * 3个参数，上、右、下、左(0) 分别设置  {arr[0], arr[1], arr[2], 0}
+     * 3 args: top=arr[0], right=arr[1], bottom=arr[2], left=0
      * <p>
-     * 4个参数，上、右、下、左 分别设置     {arr[0], arr[1], arr[2], arr[3]}
+     * 4 args: top=arr[0], right=arr[1], bottom=arr[2], left=arr[3]
      *
      * @param margin 外边距，可变参数。
      * @return this
@@ -634,8 +634,8 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 设置位置
      *
-     * @param x 左上角X坐标
-     * @param y 左上角Y坐标
+     * @param x X coordinate of top-left corner
+     * @param y Y coordinate of top-left corner
      * @return this
      */
     public T setXY(Double x, Double y) {
@@ -647,10 +647,10 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 设置盒式模型的主要属性
      *
-     * @param x      左上角X坐标
-     * @param y      左上角Y坐标
-     * @param width  宽度
-     * @param height 高度
+     * @param x      X coordinate of top-left corner
+     * @param y      Y coordinate of top-left corner
+     * @param width  width
+     * @param height height
      * @return this
      */
     public T setBox(Double x, Double y, Double width, Double height) {
@@ -677,7 +677,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 设置浮动样式
      * <p>
-     * 注意：如果需要设置居中，那么还需要同时设置 {@link #setClear(Clear)}
+     * 注意：如果需要设置center，那么还需要同时设置 {@link #setClear(Clear)}
      * 为{@link Clear#none}或{@link Clear#right}
      *
      * @param aFloat 浮动样式
@@ -721,7 +721,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * @return 额外宽度
+     * @return 额外width
      */
     public double widthPlus() {
         return (this.margin[1] + this.margin[3])
@@ -730,7 +730,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * @return 额外高度
+     * @return 额外height
      */
     public double heightPlus() {
         return (this.margin[0] + this.margin[2])
@@ -741,8 +741,8 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 获取尺寸
      *
-     * @param widthLimit 宽度限制
-     * @return 元素尺寸
+     * @param widthLimit width limit
+     * @return element size
      */
     @Override
     public Rectangle doPrepare(Double widthLimit) {
@@ -769,7 +769,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
      * <p>
      * 注意：该方法必须在元素内容大小确定的情况才能放回正确的尺寸
      * <p>
-     * 也就是说必须在 {@link #doPrepare(Double)} 或是手动设置宽度和高度之后调用才能返还正确值
+     * 也就是说必须在 {@link #doPrepare(Double)} 或是手动设置width和height之后调用才能返还正确值
      *
      * @return 模型大小
      */
@@ -781,20 +781,20 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 返回 图层
+     * 返回 layer
      * <p>
      * 默认为Body
      *
-     * @return 图层
+     * @return layer
      */
     public Type getLayer() {
         return layer;
     }
 
     /**
-     * 设置 图层
+     * 设置 layer
      *
-     * @param layer 图层
+     * @param layer layer
      * @return this
      */
     public T setLayer(Type layer) {
@@ -858,10 +858,10 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 空间占位符
      * <p>
-     * 共享段空间，且不可分割
+     * 共享segment空间，且不可分割
      *
-     * @param width  宽度
-     * @param height 高度
+     * @param width  width
+     * @param height height
      * @param aFloat 浮动方向
      * @return 空间占位符
      */
@@ -930,27 +930,27 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 根据给定的高度切分元素
+     * 根据给定的height切分元素
      * <p>
-     * 截断元素前必须确定元素的宽度和高度，否则将会抛出异常
+     * 截断元素前必须确定元素的width和height，否则将会抛出异常
      * <p>
      * 元素的分割只作用于竖直方向上，水平方向不做分割每次只会截断1次。
      * <p>
      * 截断的元素在截断出均无margin、border、padding
      * <p>
-     * 截断后的内容比截断高度高的多
+     * 截断后的内容比截断height高的多
      *
-     * @param sHeight 切分高度
+     * @param sHeight 切分height
      * @return 根据给定空间分割之后的新元素
      */
     @Override
     public Div[] split(double sHeight) {
         if (width == null || height == null) {
-            throw new RuntimeException("切分元素必须要有固定的宽度（width）和高度（height）");
+            throw new RuntimeException("切分元素必须要有固定的width（width）和height（height）");
         }
         double totalH = height + heightPlus();
         if (totalH <= sHeight) {
-            // 小于切分高度时返还自身，表示不切分
+            // 小于切分height时返还自身，表示不切分
             return new Div[]{this};
         }
         // 否则切分元素，首先克隆元素
@@ -961,7 +961,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
          Margin border Padding 的考虑
          */
         if (getMarginTop() >= sHeight) {
-            // Margin 分段情况
+            // Margin 分segment情况
             double deltaM = getMarginTop() - sHeight;
             // 只留下一个Margin的div
             div1.setMarginTop(sHeight)
@@ -973,10 +973,10 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
                     .setMarginBottom(0d)
                     // 只有Margin那么只是一个占位符
                     .setPlaceholder(true);
-            // 减去部分残留在上一个段的margin
+            // 减去部分残留在上一个segment的margin
             div2.setMarginTop(deltaM);
         } else if (getMarginTop() + getBorderTop() >= sHeight) {
-            // Border + Margin 耗尽了空间 分段的情况
+            // Border + Margin 耗尽了空间 分segment的情况
             double deltaB = getBorderTop() - (sHeight - getMarginTop());
             // 剩余空间除去Margin剩下都是border
             div1.setBorderTop(sHeight - getMarginTop())
@@ -1049,10 +1049,10 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 内容分割调整
      * <p>
-     * 根据分割高度调整两个克隆元素，达成分割元素的效果
+     * 根据分割height调整两个克隆元素，达成分割元素的效果
      *
      * @param <T>     Div子类泛型参数
-     * @param sHeight 分割内容的高度
+     * @param sHeight 分割内容的height
      * @param div1    克隆元素1
      * @param div2    克隆元素2
      * @return 分割调整后的两个Div
@@ -1060,8 +1060,8 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     public <T extends Div> Div[] contentSplitAdjust(double sHeight, T div1, T div2) {
         /*
          * 调整边框等配置
-         * div1 无下边，总高度为切分高度
-         * div2 无上边，高度为剩余高度
+         * div1 无下边，总height为切分height
+         * div2 无上边，height为剩余height
          */
         // 减去顶边的布局区域
         double h1 = sHeight - (div1.getMarginTop() + div1.getBorderTop() + div1.getPaddingTop());
@@ -1082,13 +1082,13 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     }
 
     /**
-     * 获取元素类型名称
+     * 获取element type名称
      * <p>
-     * 用于标识元素类型，选择合适的处理器，自定义元素请重写该方法
+     * 用于标识element type，选择合适的处理器，自定义元素请重写该方法
      * <p>
      * 关联绘制器：{@link org.ofdrw.layout.engine.render.DivRender}
      *
-     * @return 元素类型名称
+     * @return element type名称
      */
     public String elementType() {
         return "Div";
@@ -1106,7 +1106,7 @@ public class Div<T extends Div> implements RenderPrepare, ElementSplit {
     /**
      * 设置渲染完成回调事件
      * <p>
-     * 在该处理器中你可以得到元素在OFD容器的中文件位置和对象ID
+     * 在该处理器中你可以得到元素在OFD容器的中文件位置和object ID
      *
      * @param renderFinishHandler 处理器
      */

@@ -13,7 +13,7 @@ import java.util.Base64;
  * <p>
  * GMT0099 附录 C.1
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-23 18:39:00
  */
 public class UserInfo extends OFDElement {
@@ -36,7 +36,7 @@ public class UserInfo extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 设置 用户名称
      *
      * @param userName 用户名称，如果为null则删除该属性。
@@ -52,7 +52,7 @@ public class UserInfo extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 获取 用户名称
      *
      * @return 用户名称，可能为null。
@@ -64,7 +64,7 @@ public class UserInfo extends OFDElement {
 
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 设置 用户角色类型
      * <p>
      * 当时文档管理员时取值为Owner，普通用户取值为User，默认为User。
@@ -84,7 +84,7 @@ public class UserInfo extends OFDElement {
     }
 
     /**
-     * 【可选 属性 OFD 2.0】
+     * [optional attribute, OFD 2.0]
      * 获取 用户角色类型
      * <p>
      * 默认值： User（用户）
@@ -98,12 +98,12 @@ public class UserInfo extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
-     * 设置 用户的加解密公钥证书
+     * [optional, OFD 2.0]
+     * 设置 用户的加解密public keycertificate
      * <p>
      * 加密方案标识符为 1.1.2时必选
      *
-     * @param userCert 用户的加解密公钥证书，null时表示删除属性
+     * @param userCert 用户的加解密public keycertificate，null时表示删除属性
      * @return this
      */
     public UserInfo setUserCert(@Nullable byte[] userCert) {
@@ -116,10 +116,10 @@ public class UserInfo extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
-     * 获取 用户的加解密公钥证书
+     * [optional, OFD 2.0]
+     * 获取 用户的加解密public keycertificate
      *
-     * @return 用户的加解密公钥证书，可能为null
+     * @return 用户的加解密public keycertificate，可能为null
      */
     @Nullable
     public byte[] getUserCert() {
@@ -132,14 +132,14 @@ public class UserInfo extends OFDElement {
 
     /**
      * 【必选  OFD 2.0】
-     * 设置 文件对称加密的包装密钥
+     * 设置 文件对称加密的包装key
      *
-     * @param encryptedWk 文件对称加密的包装密钥
+     * @param encryptedWk 文件对称加密的包装key
      * @return this
      */
     public UserInfo setEncryptedWK(@NotNull byte[] encryptedWk) {
         if (encryptedWk == null) {
-            throw new IllegalArgumentException("文件对称加密的包装密钥（EncrypteWk）为空");
+            throw new IllegalArgumentException("文件对称加密的包装key（EncrypteWk）为空");
         }
         this.setOFDEntity("EncryptedWK", Base64.getEncoder().encodeToString(encryptedWk));
         return this;
@@ -147,23 +147,23 @@ public class UserInfo extends OFDElement {
 
 
     /**
-     * 【必选 OFD 2.0】
-     * 获取 文件对称加密的包装密钥
+     * [required, OFD 2.0]
+     * 获取 文件对称加密的包装key
      *
-     * @return 文件对称加密的包装密钥
+     * @return 文件对称加密的包装key
      */
     @NotNull
     public byte[] getEncryptedWK() {
         final Element e = this.getOFDElement("EncryptedWK");
         if (e == null) {
-            throw new IllegalArgumentException("文件对称加密的包装密钥(EncryptedWK)不存在");
+            throw new IllegalArgumentException("文件对称加密的包装key(EncryptedWK)不存在");
         }
         return Base64.getDecoder().decode(e.getTextTrim());
     }
 
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 设置 初始化向量值
      * <p>
      * 默认16个0
@@ -180,7 +180,7 @@ public class UserInfo extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 获取 初始化向量值
      * <p>
      * 默认16个0

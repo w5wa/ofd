@@ -8,7 +8,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * 表 53 跳转动作属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 09:10:51
  */
 public class Bookmark extends OFDElement implements OFDGotoTarget {
@@ -26,7 +26,7 @@ public class Bookmark extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 目标书签的名称，引用文档书签中的名称
      *
      * @param name 目标书签的名称
@@ -38,7 +38,7 @@ public class Bookmark extends OFDElement implements OFDGotoTarget {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 目标书签的名称，引用文档书签中的名称
      *
      * @return 目标书签的名称

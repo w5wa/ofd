@@ -25,7 +25,7 @@ import java.security.cert.Certificate;
 import java.util.List;
 
 /**
- * 关键字签章测试
+ * keywordseal/signature测试
  *
  * @author minghu-zhang
  * @since 2020-09-26 12:31:43
@@ -33,9 +33,9 @@ import java.util.List;
 class KeywordPosSignTest {
 
     /**
-     * 多关键字，跨TextObject，后缀匹配测试
+     * 多keyword，跨TextObject，后缀匹配测试
      *
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     @Test
     void multiKeywordSign() throws IOException, GeneralSecurityException, DocumentException {
@@ -54,7 +54,7 @@ class KeywordPosSignTest {
         String[] keyword = {"备注", "销售方", "价金", "项目名称"};
         try (OFDReader reader = new OFDReader(src)) {
             List<KeywordPosition> positionList = KeywordExtractor.getKeyWordPositionList(reader, keyword);
-            // 保证有且只有四个关键字返还
+            // 保证有且只有四个keyword返还
             Assertions.assertEquals(4, positionList.size());
             if (positionList.size() > 0) {
                 try (OFDSigner signer = new OFDSigner(reader, out, new NumberFormatAtomicSignID())) {
@@ -85,7 +85,7 @@ class KeywordPosSignTest {
     /**
      * 获取ofd文本节点
      *
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     @Test
     void keywordSign() throws IOException, GeneralSecurityException, DocumentException {
@@ -105,7 +105,7 @@ class KeywordPosSignTest {
 
         try (OFDReader reader = new OFDReader(src)) {
             List<KeywordPosition> positionList = KeywordExtractor.getKeyWordPositionList(reader, keyword);
-            // 保证有且只有一个关键字返还
+            // 保证有且只有一个keyword返还
             Assertions.assertEquals(1, positionList.size());
             if (positionList.size() > 0) {
                 try (OFDSigner signer = new OFDSigner(reader, out, new NumberFormatAtomicSignID())) {

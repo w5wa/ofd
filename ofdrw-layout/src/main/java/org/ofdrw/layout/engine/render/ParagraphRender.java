@@ -18,23 +18,23 @@ import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 段落渲染器
+ * segment落渲染器
  * <p>
  * {@link org.ofdrw.layout.element.Paragraph} 的渲染器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-24 04:31:37
  */
 public class ParagraphRender implements Processor {
     /**
-     * 执行段落渲染
+     * 执行segment落渲染
      *
-     * @param pageLoc    页面在虚拟容器中绝对路径。
-     * @param layer      图片将要放置的图层
-     * @param resManager 资源管理器
-     * @param e          段落对象
-     * @param maxUnitID  最大元素ID提供器
-     * @throws RenderException 渲染发生错误
+     * @param pageLoc    absolute path of the page in the virtual container.
+     * @param layer      the layer where the image will be placed
+     * @param resManager resource manager
+     * @param e          segment落对象
+     * @param maxUnitID  maximum element ID provider
+     * @throws RenderException rendering error occurred
      */
     @Override
     public void render(ST_Loc pageLoc, CT_PageBlock layer, ResManager resManager, Div e, AtomicInteger maxUnitID) throws RenderException{
@@ -44,37 +44,37 @@ public class ParagraphRender implements Processor {
     }
 
     /**
-     * 将段落渲染到图层上
+     * 将segment落渲染到layer上
      *
-     * @param layer      图层
-     * @param resManager 资源管理器
-     * @param e          段落对象
-     * @param maxUnitID  对象ID提供者
+     * @param layer      layer
+     * @param resManager resource manager
+     * @param e          segment落对象
+     * @param maxUnitID  object ID提供者
      */
     public static void render(CT_PageBlock layer, ResManager resManager, Paragraph e, AtomicInteger maxUnitID) {
         if (e == null) {
             return;
         }
         LinkedList<TxtLineBlock> lines = e.getLines();
-        // 段落中没有任何内容，那么跳过不渲染
+        // segment落中没有任何内容，那么跳过不渲染
         if (lines == null || lines.isEmpty()) {
-            // 直接加入到虚拟页面的段落对象是经过预处理的，所以此处尝试预处理。
+            // 直接加入到虚拟页面的segment落对象是经过预处理的，所以此处尝试预处理。
             e.doPrepare(e.getWidth() + e.widthPlus());
             lines = e.getLines();
             if (lines == null || lines.isEmpty()) {
-                // 如果还是没有行，那么是个空段落，跳过
+                // 如果还是没有行，那么是个空segment落，跳过
                 return;
             }
         }
 
-        // 可容纳元素的总高度
+        // 可容纳元素的总height
         Double containerHeight = e.getHeight();
         /*
         每一行左上角坐标
          */
         double lineTopX = e.getX() + e.getMarginLeft() + e.getBorderLeft() + e.getPaddingLeft();
         double offsetY = e.getY() + e.getMarginTop() + e.getBorderTop() + e.getPaddingTop();
-        // 已经写入的元素高度统计
+        // 已经写入的元素height统计
         double hCount = 0;
         // 渲染每一行文字
         for (TxtLineBlock txtLine : lines) {
@@ -94,43 +94,43 @@ public class ParagraphRender implements Processor {
                     break;
             }
 
-            // 一行内的所有Span的图元高度都为行高度（最高文字高度 + 行间距）
+            // 一行内的所有Span的图元height都为行height（最高文字height + 行间距）
             double h = txtLine.getHeight();
             if (hCount + h > containerHeight) {
-                // 如果文字内容高度大于容纳文字的容器高度，那么将该部分内容舍弃，不渲染。
+                // 如果文字内容height大于容纳文字的容器height，那么将该部分内容舍弃，不渲染。
                 break;
             }
 
             // 遍历行内的每个Span
             for (Span s : txtLine.getInlineSpans()) {
-                // 文字图元宽度
+                // 文字图元width
                 double w = s.blockSize().getWidth();
                 if (w == 0) {
                     // 空行
                     continue;
                 }
                 if (s instanceof PlaceholderSpan) {
-                    // 忽略占位符的渲染只进行坐标偏移
+                    // ignored占位符的渲染只进行坐标偏移
                     offsetX += w;
                     continue;
                 }
 
-                // 将字体加入到资源中
+                // 将font加入到资源中
                 ST_ID id = null;
                 try {
                     id = resManager.addFont(s.getFont());
                 } catch (IOException ex) {
-                    throw new RenderException("渲染异常，字体复制失败：" + ex.getMessage(), ex);
+                    throw new RenderException("渲染异常，font复制失败：" + ex.getMessage(), ex);
                 }
-                // 新建字体对象
+                // 新建font object
                 TextObject txtObj = new TextObject(maxUnitID.incrementAndGet());
                 ST_Box boundary = new ST_Box(offsetX, offsetY, w, h);
                 txtObj.setBoundary(boundary)
-                        // 设置字体ID
+                        // 设置fontID
                         .setFont(id.ref())
-                        // 设置字体大小
+                        // 设置font大小
                         .setSize(s.getFontSize());
-                // 设置字体粗细
+                // set font weight
                 if (s.getWeight() != null) {
                     txtObj.setWeight(s.getWeight());
                 } else if (s.isBold()) {
@@ -145,7 +145,7 @@ public class ParagraphRender implements Processor {
                 if (!s.isFill()) {
                     txtObj.setFill(false);
                 }
-                // 设置字体颜色，默认颜色为黑色
+                // 设置font color，默认颜色为黑色
                 int[] color = s.getColor();
                 if (color != null && color.length >= 3) {
                     txtObj.setFillColor(CT_Color.rgb(color));
@@ -153,7 +153,7 @@ public class ParagraphRender implements Processor {
                 // 创建OFD文字定位对象
                 Double offset = txtLine.getMaxSpanHeight();
                 TextCode tcSTTxt = new TextCode()
-                        // 定位点位于文字的左下角，文字文字Y偏移量为该行最高文字的高度
+                        // 定位点位于文字的左下角，文字文字Y偏移量为该行最高文字的height
                         .setCoordinate(0d, offset)
                         .setContent(s.getText());
                 Double[] deltaX = s.getDeltaX();
@@ -164,12 +164,12 @@ public class ParagraphRender implements Processor {
                 // 加入到字符对象中
                 txtObj.addTextCode(tcSTTxt);
                 if (e.getOpacity() != null) {
-                    // 图元透明度
+                    // graphic element transparency
                     txtObj.setAlpha((int) (e.getOpacity() * 255));
                 }
-                // 将文字对象加入到图层
+                // 将text object加入到layer
                 layer.addPageBlock(txtObj);
-                // 是否包含下划线
+                // 是否contains下划线
                 if (s.isUnderline()) {
                     ST_ID underlineId = new ST_ID(maxUnitID.incrementAndGet());
                     // 构造下划线
@@ -181,13 +181,13 @@ public class ParagraphRender implements Processor {
                     }
                     PathObject underline = drawUnderline(underlineId, boundary, color, underlineOffset, underlineWidth);
                     if (e.getOpacity() != null) {
-                        // 图元透明度
+                        // graphic element transparency
                         underline.setAlpha((int) (e.getOpacity() * 255));
                     }
-                    // 加入到文字对象的上方
+                    // 加入到text object的上方
                     layer.addPageBlock(underline);
                 }
-                // 计算行内下一个图元的X坐标
+                // 计算行内下一个图元的X coordinate
                 offsetX += w;
             }
             offsetY += h;

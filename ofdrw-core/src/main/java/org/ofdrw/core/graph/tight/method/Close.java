@@ -7,7 +7,7 @@ import org.dom4j.Element;
  * <p>
  * 表 37 图形对象描述方法
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 06:21:39
  */
 public class Close extends Command {

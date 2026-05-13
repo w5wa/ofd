@@ -5,9 +5,9 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 待电子签章数据
+ * 待电子seal/signature数据
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 15:37:57
  */
 public class TBS_Sign extends ASN1Object {
@@ -17,38 +17,38 @@ public class TBS_Sign extends ASN1Object {
     private ASN1Integer version;
 
     /**
-     * 电子印章
+     * electronic seal
      */
     private SESeal eseal;
 
     /**
-     * 签章时间信息
+     * seal/signature时间信息
      * <p>
      * 可以是时间戳，也可以是UTCTIME时间；
      */
     private ASN1BitString timeInfo;
 
     /**
-     * 原文杂凑值
+     * 原文hash value
      */
     private ASN1BitString dataHash;
 
     /**
      * 原文数据的属性信息
      * <p>
-     * 如文档ID、日期、段落、原文内容的字节数、指示信息、签章保护范围等
+     * 如文档ID、日期、segment落、原文内容的字节数、指示信息、seal/signature保护范围等
      * <p>
      * 自行定义
      */
     private DERIA5String propertyInfo;
 
     /**
-     * 签章人对应的签名证书
+     * seal/signature人对应的签名certificate
      */
     private ASN1OctetString cert;
 
     /**
-     * 签名算法标识符
+     * signature algorithm identifier
      */
     private ASN1ObjectIdentifier signatureAlgorithm;
 
@@ -78,7 +78,7 @@ public class TBS_Sign extends ASN1Object {
         eseal = SESeal.getInstance(e.nextElement());
 
         /*
-         * 兼容非标签章
+         * 兼容非标seal/signature
          * */
 
         Object timeInfoObj = e.nextElement();

@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-17 18:58:51
  */
 class TempsDirTest {

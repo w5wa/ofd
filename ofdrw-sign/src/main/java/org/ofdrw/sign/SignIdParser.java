@@ -3,20 +3,20 @@ package org.ofdrw.sign;
 import java.util.regex.Matcher;
 
 /**
- * 签名ID解析器
+ * signature ID解析器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-10-13 19:38:50
  */
 public class SignIdParser {
 
     /**
-     * 解析出电子签名的ID数字
+     * parse the ID number of the electronic signature
      * <p>
-     * 支持标准推荐样式s'NNN'、sN、N三种类型签名ID的解析
+     * 支持标准推荐样式s'NNN'、sN、N三种类型signature ID的解析
      *
-     * @param id ID字符串
-     * @return ID数字
+     * @param id ID string
+     * @return ID number
      */
     public static int parseIndex(String id) {
         Matcher m = SignIDProvider.IDPattern.matcher(id);

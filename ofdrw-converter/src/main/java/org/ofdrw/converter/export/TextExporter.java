@@ -16,16 +16,16 @@ import java.util.List;
 /**
  * OFD导出为纯文本
  * <p>
- * 注意：部分OFD文档由于采用字形索引来定位文字、有个OFD整个页面均为路径数据图元而不是文字图元、有的OFD页面整个都为图片等诸多原因。
+ * 注意：部分OFD document由于采用glyph索引来定位文字、有个OFD整个页面均为路径数据图元而不是文字图元、有的OFD页面整个都为image等诸多原因。
  * 因此该导出器可能文档文本，另外由于文本布局等各种因素，导出文档也难以保证文本顺序与预期一致。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-14 21:07:41
  */
 public class TextExporter implements OFDExporter {
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     final OFDReader ofdReader;
 
@@ -40,21 +40,21 @@ public class TextExporter implements OFDExporter {
     final PrintStream out;
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdFilePath 待转换OFD文件
-     * @param txtPath     生成图片存放目录
-     * @throws IOException 文件解析异常
+     * @param ofdFilePath OFD file to be converted
+     * @param txtPath     生成image存放目录
+     * @throws IOException file parsing exception
      */
     public TextExporter(Path ofdFilePath, Path txtPath) throws IOException {
         ofdReader = new OFDReader(ofdFilePath);
         if (txtPath == null) {
-            throw new IllegalArgumentException("导出文本文件路径为空");
+            throw new IllegalArgumentException("导出文本file path为空");
         }
         txtPath = txtPath.toAbsolutePath();
         if (!Files.exists(txtPath)) {
@@ -73,11 +73,11 @@ public class TextExporter implements OFDExporter {
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdInput  待转换OFD文件流，该文件流由调用者负责关闭
+     * @param ofdInput  OFD file to be converted流，该文件流由调用者负责关闭
      * @param txtOutput 文本输出流
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     public TextExporter(InputStream ofdInput, OutputStream txtOutput) throws IOException {
         ofdReader = new OFDReader(ofdInput);
@@ -89,10 +89,10 @@ public class TextExporter implements OFDExporter {
     }
 
     /**
-     * 导出指定OFD页为图片
+     * export specified OFD page as image
      *
-     * @param indexes 页码序列，如果为空表示全部页码（注意：页码从0起）
-     * @throws GeneralConvertException 转换异常
+     * @param indexes page index sequence; if null, means all pages (note: page index starts from 0)
+     * @throws GeneralConvertException conversion exception
      */
     @Override
     public void export(int... indexes) throws GeneralConvertException {
@@ -103,7 +103,7 @@ public class TextExporter implements OFDExporter {
             }
         } else {
             int maxPageIndex = ofdReader.getNumberOfPages();
-            // 获取指定页面信息
+            // get information for specified page
             for (int index : indexes) {
                 if (index < 0 || index >= maxPageIndex) {
                     continue;

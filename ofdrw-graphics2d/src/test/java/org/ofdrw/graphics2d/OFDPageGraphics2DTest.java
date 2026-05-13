@@ -293,7 +293,7 @@ class OFDPageGraphics2DTest {
 
 
     /**
-     * 背景颜色填充透明图片
+     * 背景颜色填充透明image
      */
     @Test
     void drawImageBackground() throws Exception {
@@ -322,7 +322,7 @@ class OFDPageGraphics2DTest {
     }
 
     /**
-     * 绘制部分图片到页面
+     * 绘制部分image到页面
      */
     @Test
     void drawImagePiece() throws Exception {
@@ -442,7 +442,7 @@ class OFDPageGraphics2DTest {
     }
 
     /**
-     * 获取但前变换矩阵
+     * 获取但前transformation matrix
      */
     @Test
     void getTransform() throws Exception {
@@ -469,7 +469,7 @@ class OFDPageGraphics2DTest {
     }
 
     /**
-     * 应用变换矩阵
+     * 应用transformation matrix
      */
     @Test
     void transform() throws Exception {
@@ -495,7 +495,7 @@ class OFDPageGraphics2DTest {
     }
 
     /**
-     * 裁剪区域
+     * clipping area
      */
     @Test
     void setClip() throws Exception {

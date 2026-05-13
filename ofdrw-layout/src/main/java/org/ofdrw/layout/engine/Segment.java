@@ -9,34 +9,34 @@ import org.ofdrw.layout.element.PageAreaFiller;
 import java.util.*;
 
 /**
- * 段对象
+ * segment对象
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-29 11:41:28
  */
 public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Map.Entry<Div, Rectangle>> {
     /**
-     * 段中的内容
+     * segment中的内容
      */
     private List<Div> content;
     private List<Rectangle> sizeList;
 
     /**
-     * 段高度
+     * segmentheight
      */
     private double height = 0d;
     /**
-     * 段最大宽度
+     * segment最大width
      */
     private double width;
 
     /**
-     * 段剩余宽度
+     * segment剩余width
      */
     private double remainWidth;
 
     /**
-     * 段是否可以分块
+     * segment是否可以分块
      * <p>
      * true - 可拆分； false - 不可拆分
      * <p>
@@ -45,9 +45,9 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
     private boolean blockable = false;
 
     /**
-     * 剩余页面空间填充段
+     * 剩余页面空间填充segment
      * <p>
-     * true - 填充剩余页面空间； false - 非填充段
+     * true - 填充剩余页面空间； false - 非填充segment
      */
     private boolean isRemainAreaFiller = false;
 
@@ -67,31 +67,31 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
     }
 
     /**
-     * 向段中添加元素
+     * 向segment中添加元素
      *
      * @param div 元素
-     * @return 元素是否能加入段中 true - 可加入；false - 不可加入
+     * @return 元素是否能加入segment中 true - 可加入；false - 不可加入
      */
     public boolean tryAdd(Div div) {
         if (div == null) {
             return true;
         }
         // 剩余空间已经不足
-        // 可是是应为: 段内已经有元素，并且新加入的元素为独占，那么不能加入段中
+        // 可是是应为: segment内已经有元素，并且新加入的元素为独占，那么不能加入segment中
         //            也可能是刚好空间耗尽
         if (this.remainWidth == 0) {
             return false;
         }
-        // 根据段宽度重置加入元素尺寸
+        // 根据segmentwidth重置加入element size
         Rectangle blockSize = div.doPrepare(this.width);
         if (blockSize.getWidth() > this.remainWidth) {
-            // 段剩余宽度不足无法放入元素，舍弃
+            // segment剩余width不足无法放入元素，舍弃
             return false;
         }
 
-        // 上面过程保证了元素一定可以加入到段中
+        // 上面过程保证了元素一定可以加入到segment中
         /*
-        独占段的元素类型
+        独占段的element type
         1. 独占
         2. 浮动 + Clear 对立
          */
@@ -107,8 +107,8 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
 
         if (!this.isEmpty()) {
             if (isCenterFloat()) {
-                // 段内含有居中元素:
-                // 1. 新加入元素非居中元素
+                // segment内含有center元素:
+                // 1. 新加入元素非center元素
                 // 2. 新加入元素设置 clear left
                 // 3. 最后一个元素设置 clear right
                 if (div.getFloat() != AFloat.center) {
@@ -121,10 +121,10 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
                     return false;
                 }
             } else {
-                // 段内不含居中元素:
-                // 1. Float == Clear Left: 段内已经含有左浮动元素
-                // 2. Float == Clear Right: 段内已经含有右浮动元素
-                // 3. 新加入元素为居中元素
+                // segment内不含center元素:
+                // 1. Float == Clear Left: segment内已经含有左浮动元素
+                // 2. Float == Clear Right: segment内已经含有右浮动元素
+                // 3. 新加入元素为center元素
                 if (AFloat.left == div.getFloat() && Clear.left == div.getClear()) {
                     for (Div existDiv : content) {
                         if (existDiv.getFloat() == AFloat.left) {
@@ -144,7 +144,7 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
                 }
             }
         }
-        // 段内不含元素时直接加入
+        // segment内不含元素时直接加入
 
         this.remainWidth -= blockSize.getWidth();
         add(div, blockSize);
@@ -155,14 +155,14 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
      * 加入元素
      *
      * @param div       元素本身
-     * @param blockSize 元素尺寸
+     * @param blockSize element size
      */
     private void add(Div<?> div, Rectangle blockSize) {
         if (height < blockSize.getHeight()) {
             this.height = blockSize.getHeight();
         }
         if (div.isIntegrity() == false) {
-            // 判断是否可以拆分段，只要出现了一个可拆分的，那么该段就是可以拆分
+            // 判断是否可以拆分segment，只要出现了一个可拆分的，那么该segment就是可以拆分
             this.blockable = true;
         }
         if (div instanceof PageAreaFiller) {
@@ -174,7 +174,7 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
 
 
     /**
-     * 段是否可拆分
+     * segment是否可拆分
      *
      * @return true - 可拆分；false - 不可拆分
      */
@@ -183,9 +183,9 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
     }
 
     /**
-     * 判断段内是否为居中布局
+     * 判断segment内是否为center布局
      *
-     * @return true - 居中布局；false - 不居中
+     * @return true - center布局；false - 不center
      */
     boolean isCenterFloat() {
         if (isEmpty()) {
@@ -201,9 +201,9 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
     }
 
     /**
-     * 段是否是空段，也就是没有任何元素
+     * segment是否是空segment，也就是没有任何元素
      *
-     * @return true - 空段；false - 含有元素
+     * @return true - 空segment；false - 含有元素
      */
     public boolean isEmpty() {
         return this.content.isEmpty();
@@ -219,18 +219,18 @@ public class Segment implements Iterable<Map.Entry<Div, Rectangle>>, Iterator<Ma
     }
 
     /**
-     * 获取段中的元素
+     * 获取segment中的元素
      *
-     * @return 段中的元素
+     * @return segment中的元素
      */
     public List<Div> getContent() {
         return content;
     }
 
     /**
-     * 获取元素尺寸序列
+     * 获取element size序列
      *
-     * @return 段内元素尺寸序列
+     * @return segment内element size序列
      */
     public List<Rectangle> getSizeList() {
         return sizeList;

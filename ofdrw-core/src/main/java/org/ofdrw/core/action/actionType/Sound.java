@@ -7,11 +7,11 @@ import org.ofdrw.core.basicType.ST_RefID;
 /**
  * 播放音频动作
  * <p>
- * Sound 动作表明播放一段音频
+ * Sound 动作表明播放一segment音频
  * <p>
  * 图 78 播放音频动作结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 09:48:46
  */
 public class Sound extends OFDElement implements OFDAction {
@@ -29,10 +29,10 @@ public class Sound extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 引用资源文件中的音频资源标识符
+     * [required attribute]
+     * 设置 引用resource file中的音频资源标识符
      *
-     * @param resourceId 引用资源文件中的音频资源标识符
+     * @param resourceId 引用resource file中的音频资源标识符
      * @return this
      */
     public Sound setResourceID(ST_RefID resourceId) {
@@ -41,17 +41,17 @@ public class Sound extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 引用资源文件中的音频资源标识符
+     * [required attribute]
+     * 获取 引用resource file中的音频资源标识符
      *
-     * @return 引用资源文件中的音频资源标识符
+     * @return 引用resource file中的音频资源标识符
      */
     public ST_RefID getResourceID() {
         return ST_RefID.getInstance(this.attributeValue("ResourceID"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 播放音量，取值范围[0,100]
      *
      * @param volume 播放音量，取值范围[0,100]
@@ -65,7 +65,7 @@ public class Sound extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 播放音量，取值范围[0,100]
      *
      * @return 播放音量，取值范围[0,100]
@@ -76,12 +76,12 @@ public class Sound extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置  此音频是否需要同步播放
      * <p>
      * 如果此属性为 true，则 Synchronous 值无效
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @param repeat true - 同步； false - 异步
      * @return this
@@ -96,12 +96,12 @@ public class Sound extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取  此音频是否需要同步播放
      * <p>
      * 如果此属性为 true，则 Synchronous 值无效
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @return true - 同步； false - 异步
      */
@@ -115,7 +115,7 @@ public class Sound extends OFDElement implements OFDAction {
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 是否同步播放
      * <p>
      * true 表示后续动作应等待此音频播放结束后才能开始，
@@ -134,7 +134,7 @@ public class Sound extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 是否同步播放
      * <p>
      * true 表示后续动作应等待此音频播放结束后才能开始，

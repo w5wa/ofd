@@ -1,15 +1,15 @@
 package org.ofdrw.core.text.font;
 
 /**
- * 字形适用的字符分类
+ * glyph适用的字符分类
  * <p>
- * 用于匹配替代字形
+ * used for matching substitute glyphs
  * <p>
  * 11.1 表 44
  * <p>
  * 附录 A.5 CT_Font
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-18 08:38:14
  */
 public enum Charset {
@@ -23,7 +23,7 @@ public enum Charset {
     wansung,
     johab,
     /**
-     * 默认值
+     * default value
      */
     unicode;
 
@@ -46,7 +46,7 @@ public enum Charset {
         //     case "unicode":
         //         return unicode;
         //     default:
-        //         throw new IllegalArgumentException("未知的字形适用的字符分类：" + name);
+        //         throw new IllegalArgumentException("未知的glyph适用的字符分类：" + name);
         // }
         if (name.equalsIgnoreCase("symbol")) {
             return symbol;
@@ -63,7 +63,7 @@ public enum Charset {
         } else if (name.equals("") || name.equalsIgnoreCase("unicode")) {
             return unicode;
         } else {
-            throw new IllegalArgumentException("未知的字形适用的字符分类：" + name);
+            throw new IllegalArgumentException("未知的glyph适用的字符分类：" + name);
         }
     }
     

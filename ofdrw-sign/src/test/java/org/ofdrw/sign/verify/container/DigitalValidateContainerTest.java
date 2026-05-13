@@ -12,7 +12,7 @@ import java.security.GeneralSecurityException;
 import java.security.cert.Certificate;
 
 /**
- * 数字电子签章验证
+ * number电子seal/signature验证
  */
 class DigitalValidateContainerTest {
 

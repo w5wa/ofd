@@ -24,71 +24,71 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 /**
- * 自签名证书生成测试
+ * 自签名certificate生成测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-21 09:42:40
  */
 class PKCGenerateTest {
     /**
-     * 根证书 PKCS12
+     * 根certificate PKCS12
      */
     public static final Path RootP12Path = Paths.get("src/main/resources", "ROOT.p12");
 
     /**
-     * 生成测试用的用户证书
+     * 生成测试用的user certificate
      */
     @Test
     void generateUseCert() throws GeneralSecurityException, OperatorCreationException, IOException {
-        // 生成密钥对
+        // 生成key对
         KeyPair keyPair = PKCGenerate.GenerateKeyPair();
-        // 产生证书请求
+        // 产生certificate请求
         PKCS10CertificationRequest p12Req = PKCGenerate.CertRequest(keyPair, PKCGenerate.TestND());
 
         char[] RootPwd = "123456".toCharArray();
-        // 1. 载入P12得到证书和私钥
+        // 1. 载入P12得到certificate和private key
         KeyStore rootKs = KeyStore.getInstance("PKCS12", "BC");
         Certificate rootCert;
         PrivateKey rootPriKey;
         try (InputStream rootKsIn = Files.newInputStream(RootP12Path)) {
             rootKs.load(rootKsIn, RootPwd);
-            // 2. 取得CA根证书
+            // 2. 取得CA根certificate
             rootCert = rootKs.getCertificateChain("private")[0];
-            // 3. 取得CA根证书的私钥
+            // 3. 取得CA根certificate的private key
             rootPriKey = (PrivateKey) rootKs.getKey("private", RootPwd);
         }
-        // 生成用户证书
+        // 生成user certificate
         X509Certificate userCert = PKCGenerate.GenCert(p12Req, rootCert, rootPriKey);
 
         Path out = Paths.get("target/SealBuilder.p12");
-        // 保存用户公私钥对和证书到文件
+        // 保存用户公private key对和certificate到文件
         PKCGenerate.SaveToPKCS12(keyPair, new Certificate[]{userCert}, "777777", out);
     }
 
 
     /**
-     * 生成测试用的用户证书
+     * 生成测试用的user certificate
      */
     @Test
     void generateUseCertPEM() throws GeneralSecurityException, OperatorCreationException, IOException {
-        // 生成密钥对
+        // 生成key对
         KeyPair keyPair = PKCGenerate.GenerateKeyPair();
-        // 产生证书请求
+        // 产生certificate请求
         PKCS10CertificationRequest p12Req = PKCGenerate.CertRequest(keyPair, PKCGenerate.TestND());
 
         char[] RootPwd = "123456".toCharArray();
-        // 1. 载入P12得到证书和私钥
+        // 1. 载入P12得到certificate和private key
         KeyStore rootKs = KeyStore.getInstance("PKCS12", "BC");
         Certificate rootCert;
         PrivateKey rootPriKey;
         try (InputStream rootKsIn = Files.newInputStream(RootP12Path)) {
             rootKs.load(rootKsIn, RootPwd);
-            // 2. 取得CA根证书
+            // 2. 取得CA根certificate
             rootCert = rootKs.getCertificateChain("private")[0];
-            // 3. 取得CA根证书的私钥
+            // 3. 取得CA根certificate的private key
             rootPriKey = (PrivateKey) rootKs.getKey("private", RootPwd);
         }
-        // 生成用户证书
+        // 生成user certificate
         X509Certificate userCert = PKCGenerate.GenCert(p12Req, rootCert, rootPriKey);
 
         Path certPemFile = Paths.get("target/sign_cert.pem");
@@ -104,7 +104,7 @@ class PKCGenerateTest {
     }
 
     /**
-     * 解析证书和私钥
+     * 解析certificate和private key
      */
     @Test
     public void testLoadPEM() throws IOException, GeneralSecurityException {
@@ -116,10 +116,10 @@ class PKCGenerateTest {
              final PEMParser certParser = new PEMParser(new InputStreamReader(certOut));
              final PEMParser keyParser = new PEMParser(new InputStreamReader(keyOut))) {
 
-            // 解析证书
+            // 解析certificate
             final X509CertificateHolder certificateHolder = (X509CertificateHolder)certParser.readObject();
             final X509Certificate certificate = new JcaX509CertificateConverter().setProvider("BC").getCertificate(certificateHolder);
-            // 解析私钥
+            // 解析private key
             JcaPEMKeyConverter converter = new JcaPEMKeyConverter().setProvider("BC");
             final PEMKeyPair pemKeyPair = (PEMKeyPair) keyParser.readObject();
             final PrivateKey privateKey = converter.getPrivateKey(pemKeyPair.getPrivateKeyInfo());

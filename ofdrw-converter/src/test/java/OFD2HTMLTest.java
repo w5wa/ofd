@@ -25,10 +25,10 @@ public class OFD2HTMLTest {
             //发票示例.ofd
             Path ofdIn = Paths.get("src/test/resources/999.ofd");
             Path htmlOut = Paths.get("target/999.ofd/999.html");
-            // 2. [可选]配置字体，别名，扫描目录等
+            // 2. [可选]配置font，别名，扫描目录等
             // FontLoader.getInstance().addAliasMapping(null, "小标宋体", "方正小标宋简体", "方正小标宋简体")
             // FontLoader.getInstance().scanFontDir(new File("src/test/resources/fonts"));
-            // 3. 配置参数（HTML页面宽度(px)），转换并存储HTML到文件。
+            // 3. 配置参数（HTML页面width(px)），转换并存储HTML到文件。
             ConvertHelper.toHtml(ofdIn, htmlOut, 1000);
         } catch (GeneralConvertException | IOException e) {
             e.printStackTrace();

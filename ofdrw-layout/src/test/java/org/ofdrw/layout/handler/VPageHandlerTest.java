@@ -25,7 +25,7 @@ class VPageHandlerTest {
     void handle() throws Exception {
         Path path = Paths.get("target/auto-page-number.ofd");
         try (OFDDoc ofdDoc = new OFDDoc(path)) {
-            // 添加页码
+            // 添加page number
             ofdDoc.onPage((page) -> {
                 System.out.println("第 " + page.getPageNum() + " 页");
 
@@ -60,7 +60,7 @@ class VPageHandlerTest {
     void setOnPage2() throws Exception {
         Path path = Paths.get("target/auto-page-number-2.ofd");
         try (OFDDoc ofdDoc = new OFDDoc(path)) {
-            // 添加页码
+            // 添加page number
             ofdDoc.onPage((page) -> {
                 System.out.println("第 " + page.getPageNum() + " 页");
                 PageLayout style = page.getStyle();

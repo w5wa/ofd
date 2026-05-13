@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * <p>
  * 图 12 页树结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 10:39:31
  */
 public class Pages extends OFDElement {
@@ -26,11 +26,11 @@ public class Pages extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 增加 叶节点
      * <p>
-     * 一个页树中可以包含一个或多个叶节点，页顺序是
-     * 根据页树进行前序遍历时叶节点的顺序。
+     * a page tree can contain one or more leaf nodes; page order is
+     * determined by the order of leaf nodes in a pre-order traversal of the page tree.
      *
      * @param page 叶节点
      * @return this
@@ -51,11 +51,11 @@ public class Pages extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 获取 叶节点序列
      * <p>
-     * 一个页树中可以包含一个或多个叶节点，页顺序是
-     * 根据页树进行前序遍历时叶节点的顺序。
+     * a page tree can contain one or more leaf nodes; page order is
+     * determined by the order of leaf nodes in a pre-order traversal of the page tree.
      *
      * @return 叶节点序列 （大于等于 1）
      */
@@ -65,7 +65,7 @@ public class Pages extends OFDElement {
 
     /**
      * 获取指定页面
-     * @param index 页面索引（页码 - 1）
+     * @param index page index（page number - 1）
      * @return 页节点
      */
     public Page getPageByIndex(int index) {

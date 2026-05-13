@@ -7,7 +7,7 @@ package org.ofdrw.layout.element;
  * <p>
  * 仅在流式布局中有效
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-10-28 19:42:28
  */
 public class BR extends Div {

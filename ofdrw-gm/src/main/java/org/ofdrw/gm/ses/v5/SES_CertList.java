@@ -5,7 +5,7 @@ import org.bouncycastle.asn1.*;
 import java.io.IOException;
 
 /**
- * 签章者证书信息列表
+ * signer certificate information list
  *
  * @since 2026-04-24
  * @author minghu.zhang

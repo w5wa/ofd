@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 签章者证书杂凑值列表
+ * signer certificate hash value list
  *
  * @since 2026-04-24
  * @author minghu.zhang

@@ -5,7 +5,7 @@ package org.ofdrw.core.action.actionType.actionMovie;
  * <p>
  * 表 59 放映参数属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-06 05:56:41
  */
 public enum PlayType {
@@ -27,10 +27,10 @@ public enum PlayType {
     Resume;
 
     /**
-     * 根据字符串类型获取 实例
+     * 根据string类型获取 instance
      *
-     * @param type 放映参数字符串
-     * @return 实例
+     * @param type 放映参数string
+     * @return instance
      */
     public static PlayType getInstance(String type) {
         type = type == null ? "" : type.trim();

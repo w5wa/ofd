@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>
  * {@link org.ofdrw.layout.element.canvas.Canvas} 的渲染器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-01 17:44:41
  */
 public class CanvasRender implements Processor {
@@ -26,11 +26,11 @@ public class CanvasRender implements Processor {
     /**
      * 执行Canvas 渲染器
      *
-     * @param layer      将要渲染到的图层
-     * @param resManager 资源管理器
+     * @param layer      将要渲染到的layer
+     * @param resManager resource manager
      * @param canvas     canvas对象
      * @param maxUnitID  最大ID
-     * @throws RenderException 渲染发生错误
+     * @throws RenderException rendering error occurred
      */
     public static void render(CT_PageBlock layer,
                               ResManager resManager,
@@ -48,7 +48,7 @@ public class CanvasRender implements Processor {
             block = new CT_PageBlock();
             block.setObjID(maxUnitID.incrementAndGet());
             canvas.setPreferBlock(block);
-            // 添加到图层中
+            // 添加到layer中
             layer.addPageBlock(block);
         }
 
@@ -71,12 +71,12 @@ public class CanvasRender implements Processor {
     /**
      * 渲染Canvas对象
      *
-     * @param pageLoc    页面在虚拟容器中绝对路径。
-     * @param layer      图片将要放置的图层
-     * @param resManager 资源管理器
+     * @param pageLoc    absolute path of the page in the virtual container.
+     * @param layer      the layer where the image will be placed
+     * @param resManager resource manager
      * @param e          Canvas对象
-     * @param maxUnitID  最大元素ID提供器
-     * @throws RenderException 渲染发生错误
+     * @param maxUnitID  maximum element ID provider
+     * @throws RenderException rendering error occurred
      */
     @Override
     public void render(ST_Loc pageLoc, CT_PageBlock layer, ResManager resManager, Div e, AtomicInteger maxUnitID)throws RenderException {

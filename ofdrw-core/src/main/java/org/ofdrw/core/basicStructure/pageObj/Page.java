@@ -15,12 +15,12 @@ import java.util.List;
  * 页对象
  * <p>
  * 页对象支持模板页描述，每一页经常要重复显示的内容可统一在模板页中描述，
- * 文档可以包含多个模板页。通过使用模板页可以使重复显示的内容不必出现在
+ * 文档可以contains多个模板页。通过使用模板页可以使重复显示的内容不必出现在
  * 描述每一页的页面描述内容中，而只需通过 Template 节点进行应用。
  * <p>
  * 7.7 图 13 页对象结构；表 12 页对象属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-09 09:38:35
  */
 public class Page extends OFDElement {
@@ -35,13 +35,13 @@ public class Page extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 设置 页面区域的大小和位置，仅对该页面有效。
+     * [optional]
+     * 设置 page area的大小和位置，仅对该页面有效。
      * <p>
-     * 该节点不出现时则使用模板页中的定义，如果模板页不存在或模板页中
-     * 没有定义页面区域，则使用文件 CommonData 中的定义。
+     * when this node is absent, use template page definition; if no template page
+     * or no page area is defined there, use the CommonData definition.
      *
-     * @param area 页面区域的大小和位置
+     * @param area page area的大小和位置
      * @return this
      */
     public Page setArea(CT_PageArea area) {
@@ -51,13 +51,13 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 页面区域的大小和位置，仅对该页面有效。
+     * [optional]
+     * 获取 page area的大小和位置，仅对该页面有效。
      * <p>
-     * 该节点不出现时则使用模板页中的定义，如果模板页不存在或模板页中
-     * 没有定义页面区域，则使用文件 CommonData 中的定义。
+     * when this node is absent, use template page definition; if no template page
+     * or no page area is defined there, use the CommonData definition.
      *
-     * @return 页面区域的大小和位置
+     * @return page area的大小和位置
      */
     public CT_PageArea getArea() {
         Element e = this.getOFDElement("Area");
@@ -66,15 +66,15 @@ public class Page extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 页面使用的模板页
      * <p>
-     * 模板页的内容和结构与普通页相同，定义在 CommonData
-     * 指定的 XML 文件中。一个页可以使用多个模板页。该节点
-     * 使用是通过 TemplateID 来引用具体模板，并通过 ZOrder
-     * 属性来控制模板在页面中的显示顺序。
+     * template page content and structure are the same as normal pages, defined in CommonData
+     * in the specified XML file. A page can use multiple template pages. This node
+     * references the specific template via TemplateID and uses ZOrder
+     * attribute to control the display order of the template on the page.
      * <p>
-     * 注：在模板页的内容描述中该属性无效。
+     * Note: this attribute is invalid in template page content descriptions.
      *
      * @param template 页面使用的模板页
      * @return this
@@ -99,15 +99,15 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 页面使用的模板页
      * <p>
-     * 模板页的内容和结构与普通页相同，定义在 CommonData
-     * 指定的 XML 文件中。一个页可以使用多个模板页。该节点
-     * 使用是通过 TemplateID 来引用具体模板，并通过 ZOrder
-     * 属性来控制模板在页面中的显示顺序。
+     * template page content and structure are the same as normal pages, defined in CommonData
+     * in the specified XML file. A page can use multiple template pages. This node
+     * references the specific template via TemplateID and uses ZOrder
+     * attribute to control the display order of the template on the page.
      * <p>
-     * 注：在模板页的内容描述中该属性无效。
+     * Note: this attribute is invalid in template page content descriptions.
      *
      * @return 页面使用的模板页
      */
@@ -127,12 +127,12 @@ public class Page extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 页资源
      * <p>
-     * 指向该页使用的资源文件
+     * points to the resource file used by this page
      *
-     * @param pageRes 页资源路径
+     * @param pageRes 页resource path
      * @return this
      */
     public Page addPageRes(ST_Loc pageRes) {
@@ -141,12 +141,12 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 页资源
      * <p>
-     * 指向该页使用的资源文件
+     * points to the resource file used by this page
      *
-     * @return 页资源路径列表
+     * @return 页resource path列表
      */
     public List<ST_Loc> getPageResList() {
         return this.getOFDElements("PageRes", e -> new ST_Loc(e.getText()));
@@ -154,10 +154,10 @@ public class Page extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 设置 页面内容描述，该节点不存在时，标识空白页
+     * [optional]
+     * 设置 page content描述，该节点不存在时，标识空白页
      *
-     * @param content 页面内容
+     * @param content page content
      * @return this
      */
     public Page setContent(Content content) {
@@ -166,10 +166,10 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 页面内容描述，该节点不存在时，标识空白页
+     * [optional]
+     * 获取 page content描述，该节点不存在时，标识空白页
      *
-     * @return 页面内容
+     * @return page content
      */
     public Content getContent() {
         Element e = this.getOFDElement("Content");
@@ -178,14 +178,14 @@ public class Page extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 设置 与页面关联的动作序列。
+     * [optional]
+     * set the action sequence associated with the page.
      * <p>
-     * 当存在多个 Action对象时，所有动作依次执行。
+     * when multiple Action objects exist, all actions are executed in order.
      * <p>
-     * 动作列表的动作与页面关联，事件类型为 PO（页面打开，见表 52 事件类型）
+     * actions in the action list are associated with the page; event type is PO (page open; see Table 52)
      *
-     * @param actions 动作序列
+     * @param actions action sequence
      * @return this
      */
     public Page setActions(Actions actions) {
@@ -194,14 +194,14 @@ public class Page extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 与页面关联的动作序列。
+     * [optional]
+     * set the action sequence associated with the page.
      * <p>
-     * 当存在多个 Action对象时，所有动作依次执行。
+     * when multiple Action objects exist, all actions are executed in order.
      * <p>
-     * 动作列表的动作与页面关联，事件类型为 PO（页面打开，见表 52 事件类型）
+     * actions in the action list are associated with the page; event type is PO (page open; see Table 52)
      *
-     * @return 动作序列
+     * @return action sequence
      */
     public Actions getActions() {
         Element e = this.getOFDElement("Actions");

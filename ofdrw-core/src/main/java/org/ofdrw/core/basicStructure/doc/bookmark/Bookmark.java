@@ -6,11 +6,11 @@ import org.ofdrw.core.OFDElement;
 
 /**
  * 本标准支持书签，可以将常用位置定义为书签，
- * 文档可以包含一组书签。
+ * 文档可以contains一组书签。
  * <p>
  * 7.5 图 11 书签结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-09 08:06:35
  */
 public class Bookmark extends OFDElement {
@@ -23,8 +23,8 @@ public class Bookmark extends OFDElement {
     }
 
     /**
-     * @param name 书签名称
-     * @param dest 书签对应的文档版位置
+     * @param name bookmark name
+     * @param dest document page position for this bookmark
      */
     public Bookmark(String name, CT_Dest dest) {
         this();
@@ -33,10 +33,10 @@ public class Bookmark extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 书签名称
+     * [required attribute]
+     * 设置 bookmark name
      *
-     * @param name 书签名称
+     * @param name bookmark name
      * @return this
      */
     public Bookmark setBookmarkName(String name) {
@@ -45,22 +45,22 @@ public class Bookmark extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 书签名称
+     * [required attribute]
+     * 获取 bookmark name
      *
-     * @return 书签名称
+     * @return bookmark name
      */
     public String getBookmarkName() {
         return this.attributeValue("Name");
     }
 
     /**
-     * 【必选】
-     * 设置 书签对应的文档版位置
+     * [required]
+     * 设置 document page position for this bookmark
      * <p>
-     * 见表 54
+     * see Table 54
      *
-     * @param dest 书签对应的文档版位置
+     * @param dest document page position for this bookmark
      * @return this
      */
     public Bookmark setDest(CT_Dest dest) {
@@ -69,12 +69,12 @@ public class Bookmark extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 获取 书签对应的文档版位置
+     * [required]
+     * 获取 document page position for this bookmark
      * <p>
-     * 见表 54
+     * see Table 54
      *
-     * @return 书签对应的文档版位置
+     * @return document page position for this bookmark
      */
     public CT_Dest getDest() {
         Element e = this.getOFDElement("Dest");

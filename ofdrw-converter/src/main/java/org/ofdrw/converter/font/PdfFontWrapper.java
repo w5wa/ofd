@@ -3,7 +3,7 @@ package org.ofdrw.converter.font;
 import com.itextpdf.kernel.font.PdfFont;
 
 /**
- * 标识PDF字体是否是被相近字体替换
+ * 标识PDFfont是否是被相近font替换
  * @author myf
  * @since 2021-05-28 21:46:18
  * @deprecated {@link FontWrapper}

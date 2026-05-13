@@ -3,7 +3,7 @@ package org.ofdrw.layout.element;
 /**
  * 数组参数工具
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-03 01:09:54
  */
 public final class ArrayParamTool {

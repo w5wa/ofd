@@ -14,7 +14,7 @@ import java.util.LinkedList;
  * <p>
  * 可以实现类似于单元个效果，用于简化区域占位区块绘制。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-11-13 18:48:53
  */
 public class CellContentDrawer implements Drawer {
@@ -37,14 +37,14 @@ public class CellContentDrawer implements Drawer {
     /**
      * 文字水平浮动方式
      * <p>
-     * 默认：左浮动
+     * default: float left
      */
     private TextAlign textAlign = TextAlign.left;
 
     /**
      * 文字垂直方向浮动方式
      * <p>
-     * 默认：居中
+     * 默认：center
      */
     private VerticalAlign verticalAlign = VerticalAlign.center;
 
@@ -52,7 +52,7 @@ public class CellContentDrawer implements Drawer {
     /**
      * 文字颜色
      * <p>
-     * 支持16进制颜色值：#000000
+     * 支持16进制color value：#000000
      * <p>
      * RGB：rgb(0,0,0)
      * <p>
@@ -63,7 +63,7 @@ public class CellContentDrawer implements Drawer {
     private String color = "#000000";
 
     /**
-     * 字体名称
+     * font name
      * <p>
      * 默认：宋体
      */
@@ -77,25 +77,25 @@ public class CellContentDrawer implements Drawer {
     private double fontSize = 3;
 
     /**
-     * 行间距
+     * line spacing
      */
     private Double lineSpace = 0.6;
 
 
     /**
-     * 是否加粗
+     * whether bold
      */
     private Boolean bold = false;
 
     /**
-     * 获取字体宽度
+     * get font width
      *
-     * @return String 字体宽度，应遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * @return String fontwidth，应遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      */
     private String fontWeight = "normal";
 
     /**
-     * 是否斜体
+     * whether italic
      */
     private Boolean italic = false;
 
@@ -105,7 +105,7 @@ public class CellContentDrawer implements Drawer {
     private Double letterSpacing = 0d;
 
     /**
-     * 图片
+     * image
      */
     private Img img = null;
 
@@ -120,7 +120,7 @@ public class CellContentDrawer implements Drawer {
     private boolean deleteLine = false;
 
     /**
-     * 外部字体路径
+     * 外部font路径
      */
     private Path extFontPath = null;
 
@@ -145,8 +145,8 @@ public class CellContentDrawer implements Drawer {
      *
      * @param x      左下角x坐标
      * @param y      左下角y坐标
-     * @param width  宽度
-     * @param height 高度
+     * @param width  width
+     * @param height height
      */
     public CellContentDrawer(double x, double y, double width, double height) {
         this.canvas = new Canvas(x, y, width, height);
@@ -159,11 +159,11 @@ public class CellContentDrawer implements Drawer {
      */
     private static class TextLine {
         /**
-         * 文本内容
+         * text content
          */
         public String text;
         /**
-         * 文本宽度
+         * 文本width
          */
         public double width;
 
@@ -177,20 +177,20 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 图片
+     * image
      */
     private static class Img {
         /**
-         * 图片路径
+         * image path
          */
         public Path path;
         /**
-         * 图片宽度
+         * imagewidth
          */
         public double width;
 
         /**
-         * 图片高度
+         * imageheight
          */
         public double height;
 
@@ -205,19 +205,19 @@ public class CellContentDrawer implements Drawer {
     /**
      * 单元格内部绘制
      *
-     * @param ctx 绘制上下文
-     * @throws IOException 图形绘制异常
+     * @param ctx drawing context
+     * @throws IOException 图形drawing exception
      */
     @Override
     public void draw(DrawContext ctx) throws IOException {
         ctx.save();
         try {
             if (this.img != null) {
-                // 绘制图片
+                // 绘制image
                 drawImg(ctx);
             } else {
                 if (extFontPath != null) {
-                    // 添加外部字体
+                    // add external font
                     ctx.addFont(fontName, extFontPath);
                 }
                 // 绘制文字
@@ -229,22 +229,22 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 单元格图片绘制
+     * 单元格image绘制
      *
-     * @param ctx 绘制上下文
-     * @throws IOException 图片绘制异常
+     * @param ctx drawing context
+     * @throws IOException imagedrawing exception
      */
     private void drawImg(DrawContext ctx) throws IOException {
         if (this.img == null) {
             return;
         }
         if (this.img.width <= 0 || this.img.height <= 0) {
-            // 若未对图片进行宽高设置，则从图片中获取宽高
+            // 若未对image进行宽高设置，则从image中获取宽高
             BufferedImage gImg = ImageIO.read(img.path.toFile());
             this.img.width = ctx.mm(gImg.getWidth());
             this.img.height = ctx.mm(gImg.getHeight());
             if (DEBUG) {
-                System.out.printf(">> 从图片中获取宽高 img.width:%.2f img.height:%.2f\n", img.width, img.height);
+                System.out.printf(">> 从image中获取宽高 img.width:%.2f img.height:%.2f\n", img.width, img.height);
             }
         }
 
@@ -257,7 +257,7 @@ public class CellContentDrawer implements Drawer {
                 x = canvas.getWidth() - img.width;
                 break;
             case center:
-                // 居中
+                // center
                 x = (canvas.getWidth() - img.width) / 2d;
                 break;
             case start:
@@ -290,15 +290,15 @@ public class CellContentDrawer implements Drawer {
     /**
      * 单元格文字内容绘制
      *
-     * @param ctx 绘制上下文
-     * @throws IOException 文字绘制异常
+     * @param ctx drawing context
+     * @throws IOException 文字drawing exception
      */
     private void drawText(DrawContext ctx) throws IOException {
         if (this.value == null || this.value.isEmpty()) {
             return;
         }
 
-        // 设置字体样式
+        // 设置font样式
         String fontStr = "";
         if (italic) {
             fontStr += "italic ";
@@ -310,11 +310,11 @@ public class CellContentDrawer implements Drawer {
         }
         ctx.font = fontStr + STBase.fmt(fontSize) + "mm " + fontName;
         if (this.letterSpacing != 0) {
-            // 设置字间距
+            // set character spacing
             ctx.getFont().setLetterSpacing(this.letterSpacing);
         }
 
-        // 设置字体颜色
+        // set font color
         if (this.color != null && !this.color.isEmpty()) {
             ctx.fillStyle = this.color;
         }
@@ -327,7 +327,7 @@ public class CellContentDrawer implements Drawer {
         LinkedList<TextLine> lines = new LinkedList<>();
         double textLineWidth = 0;
         int offset = 0;
-        // 分段
+        // 分segment
         for (int i = 0; i < this.value.length(); i++) {
             char c = this.value.charAt(i);
             // 换行符提前结束
@@ -344,7 +344,7 @@ public class CellContentDrawer implements Drawer {
                 cWidth = textMetrics.offset[i];
             }
             if (textLineWidth + cWidth > width) {
-                // 超出宽度，换行
+                // 超出width，换行
                 lines.add(new TextLine(this.value.substring(offset, i), textLineWidth));
                 offset = i;
                 textLineWidth = cWidth;
@@ -358,17 +358,17 @@ public class CellContentDrawer implements Drawer {
         }
 
 
-        // 内容高度：(字号 + 行间距) *行数
+        // 内容height：(字号 + 行间距) *行数
         double contentHeight = (this.fontSize + this.lineSpace) * lines.size();
 
         double offsetY = 0;
-        // 第一行 Y 偏移量计算：字体坐标位于字体的左下角
+        // 第一行 Y 偏移量计算：font坐标位于font的左下角
         if (this.verticalAlign == VerticalAlign.top) {
             offsetY = fontSize;
         } else if (this.verticalAlign == VerticalAlign.center) {
             offsetY = height / 2 - contentHeight / 2 + fontSize;
         } else {
-            // 底部对齐 偏移量为：总高度 - 内容高度 + 字号
+            // 底部对齐 偏移量为：总height - 内容height + 字号
             offsetY = height - contentHeight + fontSize;
         }
 
@@ -379,7 +379,7 @@ public class CellContentDrawer implements Drawer {
                 // 左浮动
                 offsetX = 0;
             } else if (this.textAlign == TextAlign.center) {
-                // 居中
+                // center
                 offsetX = (width - line.width) / 2d;
             } else {
                 // 右浮动
@@ -388,7 +388,7 @@ public class CellContentDrawer implements Drawer {
             if (!"".equals(line.text)) {
                 ctx.fillText(line.text, offsetX, offsetY);
             }
-            // 文字装饰线条宽度
+            // 文字装饰线条width
             // 比例系数由经验指定无特定规则
             double fontLineWidth = fontSize / 30;
             double underlineOffset = fontLineWidth * 3.2;
@@ -436,7 +436,7 @@ public class CellContentDrawer implements Drawer {
     /**
      * 绘制辅助线
      *
-     * @param ctx 绘制上下文
+     * @param ctx drawing context
      */
     private void debugBorder(DrawContext ctx) {
 
@@ -480,11 +480,11 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 设置图片
+     * set image
      *
-     * @param imgPath 图片路径，仅支持png、jpg、jpeg、gif、bmp格式
-     * @param w       图片宽度，单位：毫米
-     * @param h       图片高度，单位：毫米
+     * @param imgPath image path, supports png, jpg, jpeg, gif, bmp formats
+     * @param w       imagewidth，单位：毫米
+     * @param h       imageheight，单位：毫米
      * @return this
      */
     public CellContentDrawer setValue(Path imgPath, double w, double h) {
@@ -493,13 +493,13 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 设置图片
+     * set image
      * <p>
-     * 图片宽度与高度通过 {@link DrawContext#mm(int)} } 方法转换为毫米
+     * imagewidth与height通过 {@link DrawContext#mm(int)} } 方法转换为毫米
      *
-     * @param imgPath 图片路径，仅支持png、jpg、jpeg、gif、bmp格式
+     * @param imgPath image path, supports png, jpg, jpeg, gif, bmp formats
      * @return this
-     * @throws IOException 图片加载异常
+     * @throws IOException image加载异常
      */
     public CellContentDrawer setValue(Path imgPath) throws IOException {
         this.img = new Img(imgPath, 0, 0);
@@ -530,18 +530,18 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 获取字体名称
+     * get font name
      *
-     * @return 字体名称
+     * @return font name
      */
     public String getFontName() {
         return fontName;
     }
 
     /**
-     * 设置字体名称
+     * set font name
      *
-     * @param fontName 字体名称，仅支持系统安装字体，且不会嵌入到OFD中。
+     * @param fontName font name，仅支持系统安装font，且不会嵌入到OFD中。
      * @return this
      */
     public CellContentDrawer setFontName(String fontName) {
@@ -550,7 +550,7 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 获取字号
+     * get font size
      *
      * @return 字号，默认：0.353 （单位：毫米）
      */
@@ -559,7 +559,7 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 设置字号
+     * set font size
      *
      * @param fontSize 字号，默认：3（单位：毫米）
      * @return this
@@ -604,7 +604,7 @@ public class CellContentDrawer implements Drawer {
     /**
      * 获取 文字垂直方向浮动方式
      *
-     * @return 文字垂直方向浮动方式，默认：居中 {@link VerticalAlign#center}
+     * @return 文字垂直方向浮动方式，默认：center {@link VerticalAlign#center}
      */
     public VerticalAlign getVerticalAlign() {
         return verticalAlign;
@@ -642,9 +642,9 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * @return 是否加粗，默认：不加粗
-     * @deprecated 单词错误 {@link #getBold()}
-     * 是否加粗
+     * @return whether bold, default: not bold
+     * @deprecated typo — use {@link #getBold()} instead
+     * whether bold
      */
     @Deprecated
     public Boolean getBlob() {
@@ -656,7 +656,7 @@ public class CellContentDrawer implements Drawer {
      * @return this
      * @deprecated 单词错误 {@link #setBold(Boolean)}
      * <p>
-     * 设置 是否加粗
+     * set whether bold
      */
     @Deprecated
     public CellContentDrawer setBlob(Boolean bolb) {
@@ -665,18 +665,18 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 是否加粗
+     * whether bold
      *
-     * @return 是否加粗，默认：不加粗
+     * @return whether bold, default: not bold
      */
     public Boolean getBold() {
         return bold;
     }
 
     /**
-     * 设置 是否加粗
+     * set whether bold
      *
-     * @param bold 是否加粗
+     * @param bold whether bold
      * @return this
      */
     public CellContentDrawer setBold(Boolean bold) {
@@ -685,7 +685,7 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 是否斜体
+     * whether italic
      *
      * @return true - 斜体、false - 正常
      */
@@ -694,7 +694,7 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 设置 是否斜体
+     * set whether italic
      *
      * @param italic 是否斜体，true - 斜体、false - 正常
      * @return this
@@ -725,9 +725,9 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 获取图片路径
+     * 获取image path
      *
-     * @return 图片路径，可能为空。
+     * @return image path，可能为空。
      */
     public Path getImgPath() {
         if (img == null) {
@@ -737,9 +737,9 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 获取图片高度
+     * 获取imageheight
      *
-     * @return 图片高度，可能为0。
+     * @return imageheight，可能为0。
      */
     public double getImgWidth() {
         if (img == null) {
@@ -749,9 +749,9 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 获取图片宽度
+     * 获取imagewidth
      *
-     * @return 图片宽度，可能为0。
+     * @return imagewidth，可能为0。
      */
     public double getImgHeight() {
         if (img == null) {
@@ -801,38 +801,38 @@ public class CellContentDrawer implements Drawer {
     }
 
     /**
-     * 获取字体宽度
+     * get font width
      *
-     * @return 字体宽度，遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * @return fontwidth，遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      */
     public String getFontWeight() {
         return fontWeight;
     }
 
     /**
-     * 设置字体宽度
+     * set font width
      *
-     * @param fontWeight 字体宽度，应遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * @param fontWeight fontwidth，应遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      */
     public void setFontWeight(String fontWeight) {
         this.fontWeight = fontWeight;
     }
 
     /**
-     * 设置单元格绘制器使用的外部字体
+     * set external font for cell drawer
      * <p>
-     * 注意OFDRW不会提供任何字体裁剪功能，您的字体文件将直接加入OFD文件中，这可能造成文件体积剧增。
+     * Note: OFDRW does not provide any font subsetting; your font file will be added directly to the OFD file, which may increase the file size significantly.
      *
-     * @param fontName 字体名称，如“思源宋体”
-     * @param fontPath 字体文件所在路径
+     * @param fontName font name, e.g. "Source Han Serif"
+     * @param fontPath path to the font file
      * @return this
      */
     public CellContentDrawer setFont(String fontName, Path fontPath) {
         if (fontName == null || fontName.isEmpty()) {
-            throw new IllegalArgumentException("字体名称(fontName)不能为空");
+            throw new IllegalArgumentException("font name(fontName)不能为空");
         }
         if (fontPath == null || Files.exists(fontPath) == false) {
-            throw new IllegalArgumentException("字体文件(fontPath)不存在");
+            throw new IllegalArgumentException("font file(fontPath)不存在");
         }
         this.setFontName(fontName);
         this.extFontPath = fontPath;

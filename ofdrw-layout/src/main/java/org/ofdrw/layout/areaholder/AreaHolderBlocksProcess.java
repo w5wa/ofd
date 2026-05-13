@@ -12,23 +12,23 @@ import java.io.IOException;
  * <p>
  * 用于解决区域占位区块 写入生成等操作的工具集合
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-10-28 15:40:19
  */
 public class AreaHolderBlocksProcess {
 
 
     /**
-     * 尝试获取  区域占位区块列表
+     * 尝试获取  area placeholder block list
      *
-     * @param docDir 文档目录
-     * @return 区域占位区块列表
+     * @param docDir document directory
+     * @return area placeholder block list
      * @throws DocumentException     文档结构无法解析
-     * @throws FileNotFoundException 文件不存在
+     * @throws FileNotFoundException file not found
      */
     public static AreaHolderBlocks obtian(DocDir docDir) throws DocumentException, FileNotFoundException {
         if (docDir == null) {
-            throw new IllegalArgumentException("文档目录（docDir）为空");
+            throw new IllegalArgumentException("document directory（docDir）为空");
         }
 
         if (exist(docDir)) {
@@ -39,16 +39,16 @@ public class AreaHolderBlocksProcess {
     }
 
     /**
-     * 创建 区域占位区块列表
+     * 创建 area placeholder block list
      * <p>
      * 如文件已经存在还将覆盖该文件
      *
-     * @param docDir 文档目录
-     * @return 区域占位区块列表
+     * @param docDir document directory
+     * @return area placeholder block list
      */
     public static AreaHolderBlocks create(DocDir docDir) {
         if (docDir == null) {
-            throw new IllegalArgumentException("文档目录（docDir）为空");
+            throw new IllegalArgumentException("document directory（docDir）为空");
         }
         AreaHolderBlocks areaHolderBlocks = new AreaHolderBlocks();
         docDir.putObj(AreaHolderBlocks.AreaHolderBlocksFile, areaHolderBlocks);
@@ -56,12 +56,12 @@ public class AreaHolderBlocksProcess {
     }
 
     /**
-     * 获取 区域占位区块列表
+     * 获取 area placeholder block list
      *
-     * @param docDir 文档目录
-     * @return 区域占位区块列表
+     * @param docDir document directory
+     * @return area placeholder block list
      * @throws DocumentException     文档结构无法解析
-     * @throws FileNotFoundException 文件不存在
+     * @throws FileNotFoundException file not found
      */
     public static AreaHolderBlocks get(DocDir docDir) throws DocumentException, FileNotFoundException {
         Element obj = docDir.getObj(AreaHolderBlocks.AreaHolderBlocksFile);
@@ -70,9 +70,9 @@ public class AreaHolderBlocksProcess {
 
 
     /**
-     * 判断是否存在 区域占位区块列表
+     * 判断是否存在 area placeholder block list
      *
-     * @param docDir 文档目录
+     * @param docDir document directory
      * @return true - 存在类表文件；false - 不存在列表文件
      */
     public static boolean exist(DocDir docDir) {
@@ -87,8 +87,8 @@ public class AreaHolderBlocksProcess {
      * <p>
      * 若出现了多个同名的 区域占位区块 则返回第一个
      *
-     * @param blocks   区域占位区块列表
-     * @param areaName 区域名称
+     * @param blocks   area placeholder block list
+     * @param areaName area name
      * @return 区域占位区块
      */
     public static CT_AreaHolderBlock find(AreaHolderBlocks blocks, String areaName) {
@@ -105,10 +105,10 @@ public class AreaHolderBlocksProcess {
 
 
     /**
-     * 删除区域占位区块列表文件
+     * 删除area placeholder block list文件
      *
-     * @param docDir 文档目录
-     * @throws IOException IO异常
+     * @param docDir document directory
+     * @throws IOException IO exception
      */
     public static void delete(DocDir docDir) throws IOException {
         if (docDir == null) {

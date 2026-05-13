@@ -11,7 +11,7 @@ import java.util.Base64;
  * <p>
  * 18.2.2 签名的范围 图 87 表 68
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-21 18:01:53
  */
 public class Reference extends OFDElement {
@@ -31,25 +31,25 @@ public class Reference extends OFDElement {
 
 
     /**
-     * 【必选 属性】
-     * 设置 指向包内的文件，使用绝对路径
+     * [required attribute]
+     * 设置 points to包内的文件，使用absolute path
      *
-     * @param fileRef 指向包内的文件，使用绝对路径
+     * @param fileRef points to包内的文件，使用absolute path
      * @return this
      */
     public Reference setFileRef(ST_Loc fileRef) {
         if (fileRef == null) {
-            throw new IllegalArgumentException("指向包内的文件（FileRef）为空");
+            throw new IllegalArgumentException("points to包内的文件（FileRef）为空");
         }
         this.addAttribute("FileRef", fileRef.toString());
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 指向包内的文件，使用绝对路径
+     * [required attribute]
+     * 获取 points to包内的文件，使用absolute path
      *
-     * @return 指向包内的文件，使用绝对路径
+     * @return points to包内的文件，使用absolute path
      */
     public ST_Loc getFileRef() {
         return ST_Loc.getInstance(this.attributeValue("FileRef"));
@@ -57,12 +57,12 @@ public class Reference extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 设置 对包内文件进行摘要计算值的杂凑值
+     * [required]
+     * 设置 对包内文件进行摘要计算值的hash value
      * <p>
      * 所得的二进制摘要值进行 base64 编码
      *
-     * @param checkValue 对包内文件进行摘要计算值的杂凑值
+     * @param checkValue 对包内文件进行摘要计算值的hash value
      * @return this
      */
     public Reference setCheckValue(byte[] checkValue) {
@@ -75,10 +75,10 @@ public class Reference extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 获取 对包内文件进行摘要计算值的杂凑值
+     * [required]
+     * 获取 对包内文件进行摘要计算值的hash value
      *
-     * @return 对包内文件进行摘要计算值的杂凑值
+     * @return 对包内文件进行摘要计算值的hash value
      */
     public byte[] getCheckValue() {
         Element e = this.getOFDElement("CheckValue");

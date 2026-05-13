@@ -34,8 +34,8 @@ public class Watermark extends Annotation {
      *
      * @param x      绘制区域左上角横坐标, 单位mm
      * @param y      绘制区域左上角纵坐标, 单位mm
-     * @param width  绘制区域宽度, 单位mm
-     * @param height 绘制区域高度, 单位mm
+     * @param width  绘制区域width, 单位mm
+     * @param height 绘制区域height, 单位mm
      */
     public Watermark(double x, double y,
                      double width, double height) {
@@ -77,7 +77,7 @@ public class Watermark extends Annotation {
     /**
      * 获取水印文字颜色
      *
-     * @return 颜色 CSS3样式的颜色值，可选值 颜色英文单词,例如red,blue、16进制颜色值，#000000、rgb(0,0,0)、rgba(0,0,0,1)
+     * @return 颜色 CSS3样式的color value，可选值 颜色英文单词,例如red,blue、16进制color value，#000000、rgb(0,0,0)、rgba(0,0,0,1)
      */
     public String getColor() {
         return drawer.getColor();
@@ -86,7 +86,7 @@ public class Watermark extends Annotation {
     /**
      * 设置水印文字颜色
      *
-     * @param color 颜色, 符合CSS3样式的颜色值被支持，可选值 颜色英文单词,例如red,blue、16进制颜色值，#000000、rgb(0,0,0)、rgba(0,0,0,1)
+     * @param color 颜色, 符合CSS3样式的color value被支持，可选值 颜色英文单词,例如red,blue、16进制color value，#000000、rgb(0,0,0)、rgba(0,0,0,1)
      * @return this
      */
     public Watermark setColor(String color) {
@@ -95,18 +95,18 @@ public class Watermark extends Annotation {
     }
 
     /**
-     * 获取字体名称
+     * get font name
      *
-     * @return 字体名称
+     * @return font name
      */
     public String getFontName() {
         return drawer.getFontName();
     }
 
     /**
-     * 设置字体名称
+     * set font name
      *
-     * @param fontName 字体名称
+     * @param fontName font name
      * @return this
      */
     public Watermark setFontName(String fontName) {
@@ -115,18 +115,18 @@ public class Watermark extends Annotation {
     }
 
     /**
-     * 获取字体大小
+     * 获取font大小
      *
-     * @return 字体大小, 单位 mm
+     * @return font大小, 单位 mm
      */
     public double getFontSize() {
         return drawer.getFontSize();
     }
 
     /**
-     * 设置字体大小
+     * 设置font大小
      *
-     * @param fontSize 字体大小，单位 mm
+     * @param fontSize font大小，单位 mm
      * @return this
      */
     public Watermark setFontSize(double fontSize) {
@@ -155,18 +155,18 @@ public class Watermark extends Annotation {
     }
 
     /**
-     * 字体宽度，遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * fontwidth，遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      *
-     * @return 字体宽度，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * @return fontwidth，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      */
     public String getFontWeight() {
         return drawer.getFontWeight();
     }
 
     /**
-     * 字体宽度
+     * fontwidth
      *
-     * @param fontWeight 字体宽度，应遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+     * @param fontWeight fontwidth，应遵循 CSS3标准，可选值为 normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
      * @return this
      */
     public Watermark setFontWeight(String fontWeight) {
@@ -184,7 +184,7 @@ public class Watermark extends Annotation {
     }
 
     /**
-     * 是否斜体
+     * whether italic
      *
      * @param italic true 斜体， false-非斜体
      * @return this
@@ -235,19 +235,19 @@ public class Watermark extends Annotation {
     }
 
     /**
-     * 旋转角度
+     * rotation angle
      *
-     * @return 旋转角度，0-360, 默认330(对应数学弧度30度)
+     * @return rotation angle，0-360, 默认330(对应数学弧度30度)
      */
     public Double getAngle() {
         return drawer.getAngle();
     }
 
     /**
-     * 设置旋转角度，表示基于坐标系(0,1)方向，向顺时针方向偏移的角度。
+     * 设置rotation angle，表示基于坐标系(0,1)方向，向顺时针方向偏移的角度。
      * 与数学意义上的圆弧角度存在360度偏差，即 360-angle=数学弧度。
      *
-     * @param angle 旋转角度，0-360, 默认330(对应数学弧度30度)
+     * @param angle rotation angle，0-360, 默认330(对应数学弧度30度)
      * @return this
      */
     public Watermark setAngle(Double angle) {
@@ -305,12 +305,12 @@ public class Watermark extends Annotation {
     }
 
     /**
-     * 设置单元格绘制器使用的外部字体
+     * set external font for cell drawer
      * <p>
-     * 注意OFDRW不会提供任何字体裁剪功能，您的字体文件将直接加入OFD文件中，这可能造成文件体积剧增。
+     * Note: OFDRW does not provide any font subsetting; your font file will be added directly to the OFD file, which may increase the file size significantly.
      *
-     * @param fontName 字体名称，如“思源宋体”
-     * @param fontPath 字体文件所在路径
+     * @param fontName font name, e.g. "Source Han Serif"
+     * @param fontPath path to the font file
      * @return this
      */
     public Watermark setFont(String fontName, Path fontPath) {

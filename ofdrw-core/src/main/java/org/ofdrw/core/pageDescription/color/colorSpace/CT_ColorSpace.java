@@ -6,16 +6,16 @@ import org.ofdrw.core.basicType.ST_ID;
 import org.ofdrw.core.basicType.ST_Loc;
 
 /**
- * 颜色空间
+ * color space
  * <p>
- * 本标准支持 GRAY、RGB、CMYK 颜色空间。除通过
- * 设置各通道使用颜色空间内的任意颜色之外，还可
- * 在颜色空间内定义调色板或指定相应颜色配置文件，
+ * 本标准支持 GRAY、RGB、CMYK color space。除通过
+ * 设置各通道使用color space内的任意颜色之外，还可
+ * 在color space内定义调色板或指定相应颜色配置文件，
  * 通过设置索引值进行引用。
  * <p>
  * 8.3 颜色 图 24
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-11 08:05:25
  */
 public class CT_ColorSpace extends OFDElement {
@@ -37,7 +37,7 @@ public class CT_ColorSpace extends OFDElement {
 
     /**
      * @param type 颜色类型
-     * @param id   对象ID
+     * @param id   object ID
      */
     public CT_ColorSpace(OFDColorSpaceType type, long id) {
         this();
@@ -55,12 +55,12 @@ public class CT_ColorSpace extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 颜色空间的类型
+     * [required attribute]
+     * 设置 color space的类型
      * <p>
      * 可选类型{@link OFDColorSpaceType}
      *
-     * @param type 颜色空间的类型
+     * @param type color space的类型
      * @return this
      */
     public CT_ColorSpace setType(OFDColorSpaceType type) {
@@ -69,12 +69,12 @@ public class CT_ColorSpace extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 颜色空间的类型
+     * [required attribute]
+     * 获取 color space的类型
      * <p>
      * 可选类型{@link OFDColorSpaceType}
      *
-     * @return 颜色空间的类型
+     * @return color space的类型
      */
     public OFDColorSpaceType getType() {
         return OFDColorSpaceType.getInstance(this.attributeValue("Type"));
@@ -82,7 +82,7 @@ public class CT_ColorSpace extends OFDElement {
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 每个颜色通道使用的位数
      * <p>
      * 有效取值为：1，2，4，8，16 参考{@link BitsPerComponent}
@@ -100,7 +100,7 @@ public class CT_ColorSpace extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 每个颜色通道使用的位数
      * <p>
      * 有效取值为：1，2，4，8，16 参考{@link BitsPerComponent}
@@ -112,10 +112,10 @@ public class CT_ColorSpace extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 指向包内颜色配置文件
+     * [optional attribute]
+     * 设置 points to包内颜色配置文件
      *
-     * @param profile 指向包内颜色配置文件路径
+     * @param profile points to包内颜色配置file path
      * @return this
      */
     public CT_ColorSpace setProfile(ST_Loc profile) {
@@ -128,10 +128,10 @@ public class CT_ColorSpace extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 指向包内颜色配置文件
+     * [optional attribute]
+     * 获取 points to包内颜色配置文件
      *
-     * @return 指向包内颜色配置文件路径
+     * @return points to包内颜色配置file path
      */
     public ST_Loc getProfile() {
         return ST_Loc.getInstance(this.attributeValue("Profile"));
@@ -139,10 +139,10 @@ public class CT_ColorSpace extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 调色板
      * <p>
-     * 调色板中颜色的索引编号从 0 开始
+     * color index numbers in the palette start from 0
      *
      * @param palette 调色板
      * @return this
@@ -153,10 +153,10 @@ public class CT_ColorSpace extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 调色板
      * <p>
-     * 调色板中颜色的索引编号从 0 开始
+     * color index numbers in the palette start from 0
      *
      * @return 调色板
      */

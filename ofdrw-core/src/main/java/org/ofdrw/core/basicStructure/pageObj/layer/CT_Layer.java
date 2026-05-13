@@ -14,7 +14,7 @@ public class CT_Layer extends CT_PageBlock {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 层类型描述
      * <p>
      * 默认值为 Body
@@ -32,7 +32,7 @@ public class CT_Layer extends CT_PageBlock {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 层类型描述
      * <p>
      * 默认值为 Body
@@ -45,10 +45,10 @@ public class CT_Layer extends CT_PageBlock {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 图层的绘制参数，引用资源文件总定义的绘制参数标识
+     * [optional attribute]
+     * 设置 layer的drawing parameters，引用resource file总定义的drawing parameters标识
      *
-     * @param drawParam 资源文件总定义的绘制参数标识
+     * @param drawParam resource file总定义的drawing parameters标识
      * @return this
      */
     public CT_Layer setDrawParam(ST_RefID drawParam) {
@@ -61,10 +61,10 @@ public class CT_Layer extends CT_PageBlock {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 图层的绘制参数，引用资源文件总定义的绘制参数标识
+     * [optional attribute]
+     * 获取 layer的drawing parameters，引用resource file总定义的drawing parameters标识
      *
-     * @return 资源文件总定义的绘制参数标识，null表示不存在
+     * @return resource file总定义的drawing parameters标识，null表示不存在
      */
     public ST_RefID getDrawParam() {
         return ST_RefID.getInstance(this.attributeValue("DrawParam"));

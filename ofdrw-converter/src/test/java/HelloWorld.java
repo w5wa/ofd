@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 /**
  * Hello World!
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-11-20 19:03:12
  */
 public class HelloWorld {

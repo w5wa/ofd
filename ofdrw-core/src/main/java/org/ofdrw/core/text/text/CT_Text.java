@@ -16,11 +16,11 @@ import org.ofdrw.core.text.TextCode;
 import java.util.List;
 
 /**
- * 文字对象
+ * text object
  * <p>
- * 11.2 文字对象 图 59 表 45
+ * 11.2 text object 图 59 表 45
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-18 09:27:41
  */
 public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
@@ -37,10 +37,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 获取文字对象
+     * get text object
      *
-     * @param id 文字对象ID
-     * @return 文字对象 TextObject
+     * @param id 文字object ID
+     * @return text object TextObject
      */
     public static CT_Text textObject(ST_ID id) {
         if (id == null) {
@@ -52,10 +52,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 构造文字对象
+     * 构造text object
      *
-     * @param id 对象ID
-     * @return 对象
+     * @param id object ID
+     * @return object
      */
     public TextObject toObj(ST_ID id) {
         this.setOFDName("TextObject");
@@ -64,23 +64,23 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 引用资源文件中定义的字形标识
+     * [required attribute]
+     * set glyph identifier referenced in the resource file
      *
-     * @param font 引用字形资源文件路径
+     * @param font 引用glyph资源file path
      * @return this
      */
     public CT_Text setFont(ST_RefID font) {
         if (font == null) {
-            throw new IllegalArgumentException("字形资源文件（Font）不能为空");
+            throw new IllegalArgumentException("glyphresource file（Font）不能为空");
         }
         this.addAttribute("Font", font.toString());
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 设置 引用资源文件中定义的字形标识
+     * [required attribute]
+     * set glyph identifier referenced in the resource file
      *
      * @param refId ID
      * @return this
@@ -90,17 +90,17 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 引用资源文件路径
+     * [required attribute]
+     * 获取 引用资源file path
      *
-     * @return 引用字形资源文件路径
+     * @return 引用glyph资源file path
      */
     public ST_RefID getFont() {
         return ST_RefID.getInstance(this.attributeValue("Font"));
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 字号，单位为毫米
      *
      * @param size 字号，单位为毫米
@@ -115,7 +115,7 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 字号，单位为毫米
      *
      * @return 字号，单位为毫米
@@ -129,10 +129,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 是否勾边
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @param stroke true - 勾边；false - 不勾边
      * @return this
@@ -147,10 +147,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 是否勾边
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @return true - 勾边；false - 不勾边
      */
@@ -163,10 +163,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 是否填充
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @param fill true - 填充；false - 不填充
      * @return this
@@ -181,10 +181,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 是否填充
      * <p>
-     * 默认值为 true
+     * default value: true
      *
      * @return true - 填充；false - 不填充
      */
@@ -197,14 +197,14 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 字形在水平方向的缩放比
+     * [optional attribute]
+     * 设置 glyph在水平方向的缩放比
      * <p>
-     * 默认值为 1.0
+     * default value: 1.0
      * <p>
-     * 例如：当 HScale 值为 0.5 时表示实际显示的字宽为原来字宽的一半。
+     * e.g., when HScale is 0.5, the actual display width is half the original character width.
      *
-     * @param hScale 字形在水平方向的缩放比
+     * @param hScale glyph在水平方向的缩放比
      * @return this
      */
     public CT_Text setHScale(Double hScale) {
@@ -217,14 +217,14 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 字形在水平方向的缩放比
+     * [optional attribute]
+     * 获取 glyph在水平方向的缩放比
      * <p>
-     * 默认值为 1.0
+     * default value: 1.0
      * <p>
-     * 例如：当 HScale 值为 0.5 时表示实际显示的字宽为原来字宽的一半。
+     * e.g., when HScale is 0.5, the actual display width is half the original character width.
      *
-     * @return 字形在水平方向的缩放比
+     * @return glyph在水平方向的缩放比
      */
     public Double getHScale() {
         String str = this.attributeValue("HScale");
@@ -235,12 +235,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 指定 阅读方向
      * <p>
-     * 指定了文字排列的方向，描述见 11.3 文字定位
+     * specifies text arrangement direction; see section 11.3 Text Positioning
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param readDirection 阅读方向，可选值为{@link Direction}
      * @return this
@@ -255,12 +255,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 阅读方向
      * <p>
-     * 指定了文字排列的方向，描述见 11.3 文字定位
+     * specifies text arrangement direction; see section 11.3 Text Positioning
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 阅读方向，可选值为{@link Direction}
      */
@@ -269,12 +269,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 指定 字符方向
      * <p>
-     * 指定了文字放置的方向，描述见 11.3 文字定位
+     * specifies text placement direction; see section 11.3 Text Positioning
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @param charDirection 字符方向，可选值为{@link Direction}
      * @return this
@@ -289,12 +289,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 字符方向
      * <p>
-     * 指定了文字放置的方向，描述见 11.3 文字定位
+     * specifies text placement direction; see section 11.3 Text Positioning
      * <p>
-     * 默认值为 0
+     * default value: 0
      *
      * @return 字符方向，可选值为{@link Direction}
      */
@@ -303,12 +303,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 文字对象的粗细值
+     * [optional attribute]
+     * set font weight of text object
      * <p>
-     * 默认值为 400
+     * default value: 400
      *
-     * @param weight 文字对象的粗细值，可选值{@link Weight}
+     * @param weight text object的粗细值，可选值{@link Weight}
      * @return this
      */
     public CT_Text setWeight(Weight weight) {
@@ -321,22 +321,22 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 文字对象的粗细值
+     * [optional attribute]
+     * set font weight of text object
      * <p>
-     * 默认值为 400
+     * default value: 400
      *
-     * @return 文字对象的粗细值，可选值{@link Weight}
+     * @return text object的粗细值，可选值{@link Weight}
      */
     public Weight getWeight() {
         return Weight.getInstance(this.attributeValue("Weight"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 是否是斜体样式
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @param italic true - 斜体样式； false - 正常
      * @return this
@@ -351,10 +351,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 是否是斜体样式
      * <p>
-     * 默认值为 false
+     * default value: false
      *
      * @return true - 斜体样式； false - 正常
      */
@@ -368,12 +368,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
 
 
     /**
-     * 【可选】
-     * 设置 填充颜色
+     * [optional]
+     * set fill color
      * <p>
-     * 默认为黑色
+     * default: black
      *
-     * @param fillColor 填充颜色
+     * @param fillColor fill color
      * @return this
      */
     public CT_Text setFillColor(CT_Color fillColor) {
@@ -386,12 +386,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选】
-     * 获取 填充颜色
+     * [optional]
+     * get fill color
      * <p>
-     * 默认为黑色
+     * default: black
      *
-     * @return 填充颜色，null表示黑色
+     * @return fill color，null表示黑色
      */
     public FillColor getFillColor() {
         Element e = this.getOFDElement("FillColor");
@@ -400,12 +400,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
 
 
     /**
-     * 【可选】
-     * 设置 勾边颜色
+     * [optional]
+     * set outline color
      * <p>
-     * 默认为透明色
+     * default: transparent
      *
-     * @param strokeColor 勾边颜色
+     * @param strokeColor outline color
      * @return this
      */
     public CT_Text setStrokeColor(CT_Color strokeColor) {
@@ -418,12 +418,12 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选】
-     * 获取 勾边颜色
+     * [optional]
+     * get outline color
      * <p>
-     * 默认为透明色
+     * default: transparent
      *
-     * @return 勾边颜色，null为透明色
+     * @return outline color，null为透明色
      */
     public StrokeColor getStrokeColor() {
         Element e = this.getOFDElement("StrokeColor");
@@ -431,10 +431,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 增加  指定字符编码到字符索引之间的变换关系
      * <p>
-     * 描述见 11.4 字符变换
+     * see section 11.4 Character Transformation
      *
      * @param cgTransform 字符编码到字符索引之间的变换关系
      * @return this
@@ -448,10 +448,10 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取  指定字符编码到字符索引之间的变换关系序列
      * <p>
-     * 描述见 11.4 字符变换
+     * see section 11.4 Character Transformation
      *
      * @return 字符编码到字符索引之间的变换关系序列
      */
@@ -460,14 +460,14 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 文字内容
      * <p>
-     * 也就是一段字符编码串
+     * i.e., a segment character encoding string
      * <p>
      * 如果字符编码不在XML编码方式的字符范围之内，应采用“\”加四位
-     * 十六进制数的格式转义；文字内容中出现的空格也需要转义
-     * 若 TextCode 作为占位符使用时一律采用  ¤ （\u00A4）占位
+     * hex digits for escaping; spaces in text content also need to be escaped
+     * when TextCode is used as a placeholder, always use ¤ (\u00A4)
      *
      * @param textCode 文字内容
      * @return this
@@ -481,14 +481,14 @@ public class CT_Text extends CT_GraphicUnit<CT_Text> implements ClipAble {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 文字内容序列
      * <p>
-     * 也就是一段字符编码串
+     * i.e., a segment character encoding string
      * <p>
      * 如果字符编码不在XML编码方式的字符范围之内，应采用“\”加四位
-     * 十六进制数的格式转义；文字内容中出现的空格也需要转义
-     * 若 TextCode 作为占位符使用时一律采用  ¤ （\u00A4）占位
+     * hex digits for escaping; spaces in text content also need to be escaped
+     * when TextCode is used as a placeholder, always use ¤ (\u00A4)
      *
      * @return 文字内容序列
      */

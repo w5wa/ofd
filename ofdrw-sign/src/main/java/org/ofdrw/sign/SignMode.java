@@ -1,7 +1,7 @@
 package org.ofdrw.sign;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 12:04:06
  */
 public enum SignMode {
@@ -13,9 +13,9 @@ public enum SignMode {
     WholeProtected,
 
     /**
-     * 继续签章
+     * 继续seal/signature
      * <p>
-     * 该模式下回忽略对Signatures.xml的保护
+     * 该模式下回ignored对Signatures.xml的保护
      */
     ContinueSign;
 }

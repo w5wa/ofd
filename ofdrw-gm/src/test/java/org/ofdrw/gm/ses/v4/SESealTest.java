@@ -95,7 +95,7 @@ class SESealTest {
 
         Path out = Paths.get("target/UserV4.esl");
         Files.write(out, seal.getEncoded("DER"));
-        System.out.println(">> V4版本印章存储于: " + out.toAbsolutePath().toAbsolutePath());
+        System.out.println(">> V4版本seal/stamp存储于: " + out.toAbsolutePath().toAbsolutePath());
 
     }
 

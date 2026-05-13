@@ -6,7 +6,7 @@ import org.ofdrw.TestTool;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-15 19:41:11
  */
 class EncryptEntryTest {

@@ -33,10 +33,10 @@ public enum BitsPerComponent {
     }
 
     /**
-     * 获取实例
+     * get instance
      *
-     * @param bitStr 比特数字符串
-     * @return 实例
+     * @param bitStr 比特数string
+     * @return instance
      */
     public static BitsPerComponent getInstance(String bitStr) {
         if (bitStr == null || bitStr.trim().length() == 0) {
@@ -46,10 +46,10 @@ public enum BitsPerComponent {
     }
 
     /**
-     * 获取实例
+     * get instance
      *
      * @param bit 比特数
-     * @return 实例
+     * @return instance
      */
     public static BitsPerComponent getInstance(int bit) {
         switch (bit) {

@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * GMT0099 附录C 图 1
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-23 19:31:33
  */
 public class ExtendParams extends OFDElement {
@@ -26,7 +26,7 @@ public class ExtendParams extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 增加 扩展参数
      *
      * @param parameter 扩展参数
@@ -41,7 +41,7 @@ public class ExtendParams extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 增加 扩展参数
      *
      * @param name  扩展参数名称
@@ -53,7 +53,7 @@ public class ExtendParams extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 获取 扩展参数列表
      *
      * @return 扩展参数列表

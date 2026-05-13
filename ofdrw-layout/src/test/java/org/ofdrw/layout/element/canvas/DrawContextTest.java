@@ -21,13 +21,13 @@ import java.nio.file.Paths;
 /**
  * Canvas 测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-02 18:25:25
  */
 class DrawContextTest {
 
     /**
-     * 外部字体测试
+     * 外部font测试
      */
     @Test
     void testExternalFont() throws IOException {
@@ -41,14 +41,14 @@ class DrawContextTest {
                     .setBorder(1d);
 
             canvas.setDrawer(ctx -> {
-                // 添加外部字体
+                // add external font
                 ctx.addFont("仿宋_裁剪", Paths.get("src/test/resources/仿宋_GB2312_subset.ttf"));
 
                 ctx.font = "italic 400 5mm 仿宋_裁剪";
                 ctx.fillStyle = "#0000FF";
                 String text = "你好 Hello World!";
                 double width = ctx.measureText(text).width;
-                System.out.println(">> 文字宽度: " + width + "mm");
+                System.out.println(">> 文字width: " + width + "mm");
                 ctx.fillText(text, 10, 50);
                 ctx.fillText(text, 10 + width, 50);
             });
@@ -61,7 +61,7 @@ class DrawContextTest {
 
 
     /**
-     * 字体样式设置 完整参数
+     * font样式设置 完整参数
      */
     @Test
     void testFontStyle1() throws IOException {
@@ -80,7 +80,7 @@ class DrawContextTest {
                 ctx.fillStyle = "#0000FF";
                 String text = "你好 Hello World!";
                 double width = ctx.measureText(text).width;
-                System.out.println(">> 文字宽度: " + width + "mm");
+                System.out.println(">> 文字width: " + width + "mm");
                 ctx.fillText(text, 10, 50);
                 ctx.fillText(text, 10 + width, 50);
             });
@@ -92,7 +92,7 @@ class DrawContextTest {
     }
 
     /**
-     * 字体样式设置 必要参数
+     * font样式设置 必要参数
      */
     @Test
     void testFontStyle2() throws IOException {
@@ -1022,7 +1022,7 @@ class DrawContextTest {
 
                 String text = "你好 Hello World!";
                 double width = ctx.measureText(text).width;
-                System.out.println(">> 文字宽度: " + width + "mm");
+                System.out.println(">> 文字width: " + width + "mm");
                 ctx.fillText(text, 10, 50);
                 ctx.fillText(text, 10 + width, 50);
 //                Assertions.assertEquals();
@@ -1035,7 +1035,7 @@ class DrawContextTest {
     }
 
     /**
-     * 测量字体所占空间
+     * 测量font所占空间
      */
     @Test
     void measureTextArea() throws IOException {
@@ -1054,7 +1054,7 @@ class DrawContextTest {
 
                 String text = "你好 Hello World!";
                 TextMetricsArea area = ctx.measureTextArea(text);
-                System.out.println(">> 文字宽度: " + area.width + "mm");
+                System.out.println(">> 文字width: " + area.width + "mm");
                 ctx.fillText(text, 10, 50);
                 ctx.fillText(text, 10, 50 + area.height);
             });
@@ -1280,7 +1280,7 @@ class DrawContextTest {
     }
 
     /**
-     * 设置线段虚线样式
+     * 设置线segment虚线样式
      *
      * @throws IOException
      */
@@ -1330,7 +1330,7 @@ class DrawContextTest {
 
 
     /**
-     * 测试 绘制参数 缓存
+     * 测试 drawing parameters 缓存
      */
     @Test
     public void testMultiColorSet() throws Exception {

@@ -17,7 +17,7 @@ public class OFD2SVGTest {
     @Test
     public void test() throws IOException {
 
-//        //为不规范的字体名创建映射
+//        //为不规范的font name创建映射
 //        FontLoader.getInstance()
 //                .addAliasMapping(null, "仿宋简体", null, "方正仿宋简体")
 //                .addAliasMapping(null, "仿宋", null, "方正仿宋简体")
@@ -47,7 +47,7 @@ public class OFD2SVGTest {
 //        toSVG("src/test/resources/signout.ofd", "target/signout.ofd");
 //        toSVG("src/test/resources/n.ofd", "target/n.ofd");
 
-//        toPng("src/test/resources/不规范资源路径.ofd", "target/不规范资源路径.ofd");
+//        toPng("src/test/resources/不规范resource path.ofd", "target/不规范resource path.ofd");
         System.out.printf(">> 总计花费: %dms\n", System.currentTimeMillis() - start);
     }
 

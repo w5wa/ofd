@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 /**
  * 一行两列的表单
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-11-27 18:51:30
  */
 public class Col2Row1Form {

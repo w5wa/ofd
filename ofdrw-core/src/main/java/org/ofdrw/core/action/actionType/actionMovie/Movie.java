@@ -10,7 +10,7 @@ import org.ofdrw.core.basicType.ST_RefID;
  * <p>
  * 图 79 播放视频动作属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-06 05:51:40
  */
 public class Movie extends OFDElement implements OFDAction {
@@ -33,10 +33,10 @@ public class Movie extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 引用资源文件中定义的视频资源标识
+     * [required attribute]
+     * 设置 引用resource file中定义的视频资源标识
      *
-     * @param resourceId 引用资源文件中定义的视频资源标识
+     * @param resourceId 引用resource file中定义的视频资源标识
      * @return this
      */
     public Movie setResourceID(ST_RefID resourceId) {
@@ -45,17 +45,17 @@ public class Movie extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 引用资源文件中定义的视频资源标识
+     * [required attribute]
+     * 获取 引用resource file中定义的视频资源标识
      *
-     * @return 引用资源文件中定义的视频资源标识
+     * @return 引用resource file中定义的视频资源标识
      */
     public ST_RefID getResourceID() {
         return ST_RefID.getInstance(this.attributeValue("ResourceID"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 放映参数
      * <p>
      * 默认值为 Play
@@ -74,7 +74,7 @@ public class Movie extends OFDElement implements OFDAction {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 放映参数
      * <p>
      * 默认值为 Play

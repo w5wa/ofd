@@ -3,9 +3,9 @@ package org.ofdrw.core.basicStructure.doc.vpreferences;
 /**
  * 页面布局
  * <p>
- * 7.5 表 9 视图首选项
+ * 7.5 Table 9 View Preferences
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-07 06:54:01
  */
 public enum PageLayout {

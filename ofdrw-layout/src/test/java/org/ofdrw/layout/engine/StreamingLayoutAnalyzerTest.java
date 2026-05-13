@@ -46,7 +46,7 @@ class StreamingLayoutAnalyzerTest {
         // h: 225 - 25 = 200
         seq.clear();
         sgm = new Segment(layout.contentWidth());
-        // 段内包含和分段和不可分段元素
+        // segment内contains和分segment和不可分segment元素
         sgm.tryAdd(new Div(50d, 50d).setClear(Clear.none));
         sgm.tryAdd(new Div(50d, 225d).setClear(Clear.none).setIntegrity(true));
         seq.add(sgm);

@@ -10,54 +10,54 @@ import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 
 /**
- * 扩展数字签名容器
+ * 扩展number签名容器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 12:09:57
  */
 public interface ExtendSignatureContainer {
 
     /**
-     * 提供文件的摘要算法功能
+     * provide file digest algorithm function
      *
-     * @return 摘要算法功能
+     * @return digest algorithm function
      */
     MessageDigest getDigestFnc();
 
     /**
-     * 签名方法OID
+     * signature methodOID
      *
-     * @return 签名方法OID
+     * @return signature algorithm OID
      */
     ASN1ObjectIdentifier getSignAlgOID();
 
     /**
-     * 对待签名数据签名
+     * sign the data to be signed
      * <p>
      * 在操作过程中请勿对流进行关闭
      *
-     * @param inData       待签名数据流
-     * @param propertyInfo 签章属性信息
-     * @return 签名或签章结果值
-     * @throws IOException              流操作异常
-     * @throws GeneralSecurityException 签名计算异常
+     * @param inData       data stream to be signed
+     * @param propertyInfo seal/signature attribute information
+     * @return signature or seal result value
+     * @throws IOException              stream operation exception
+     * @throws GeneralSecurityException signature computation exception
      */
     byte[] sign(InputStream inData, String propertyInfo) throws IOException, GeneralSecurityException;
 
     /**
-     * 获取电子印章二进制编码
+     * get electronic seal binary encoding
      * <p>
-     * 如果{@link #getSignType()} 返还类型为{@link SigType#Sign}那么请返回null
+     * if {@link #getSignType()} returns type {@link SigType#Sign}, return null
      *
-     * @return 电子印章二进制编码
-     * @throws IOException 获取印章IO异常
+     * @return electronic seal binary encoding
+     * @throws IOException IO exception while retrieving seal
      */
     byte[] getSeal() throws IOException;
 
     /**
-     * 获取签名节点类型
+     * get signature node type
      *
-     * @return 签名节点类型
+     * @return signature node type
      */
     SigType getSignType();
 }

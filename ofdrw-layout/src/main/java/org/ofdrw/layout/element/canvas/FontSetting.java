@@ -8,15 +8,15 @@ import org.ofdrw.layout.element.TextFontInfo;
 import java.awt.geom.Rectangle2D;
 
 /**
- * 字体设置
+ * font设置
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-06 18:21:02
  */
 public class FontSetting implements Cloneable, TextFontInfo {
 
     /**
-     * 字体对象
+     * font object
      */
     private Font fontObj;
 
@@ -31,7 +31,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
     private boolean italic = false;
 
     /**
-     * 规定字体的粗细。
+     * 规定font的粗细。
      * <p>
      * 可能值为： 100、200、300、400、500、600、700、800、900
      * <p>
@@ -42,7 +42,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
     private Integer fontWeight = 400;
 
     /**
-     * 字间距
+     * character spacing
      */
     private double letterSpacing = 0d;
 
@@ -70,30 +70,30 @@ public class FontSetting implements Cloneable, TextFontInfo {
     private TextAlign textAlign = TextAlign.start;
 
     /**
-     * 不同字号的字体每次都需要重新加载AWT字体对象
+     * 不同字号的font每次都需要重新加载AWTfont object
      * <p>
      * 缓存对象不clone
      */
     private java.awt.Font awtFont;
 
     /**
-     * 简化构造提供默认的字体配置
+     * 简化构造提供默认的font配置
      * <p>
-     * 字体类型为宋体
+     * font类型为宋体
      *
-     * @return 字体配置
+     * @return font配置
      */
     public static FontSetting getInstance() {
         return new FontSetting(5, FontName.SimSun.font());
     }
 
     /**
-     * 简化构造提供可选的字体配置
+     * 简化构造提供可选的font配置
      * <p>
-     * 字体类型为宋体
+     * font类型为宋体
      *
-     * @param fontSize 字体大小，单位：毫米（mm）
-     * @return 字体配置
+     * @param fontSize font大小，单位：毫米（mm）
+     * @return font配置
      */
     public static FontSetting getInstance(double fontSize) {
         return new FontSetting(fontSize, FontName.SimSun.font());
@@ -101,7 +101,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
 
     public FontSetting(double fontSize, Font fontObj) {
         if (fontObj == null) {
-            throw new IllegalArgumentException("字体对象(fontObj)为空");
+            throw new IllegalArgumentException("font object(fontObj)为空");
         }
         this.fontObj = fontObj;
         this.fontSize = fontSize;
@@ -114,7 +114,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
     /**
      * 获取文本对齐方式
      *
-     * @return 文本对齐方式
+     * @return text content对齐方式
      */
     public TextAlign getTextAlign() {
         return textAlign;
@@ -135,9 +135,9 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 获取文字对象
+     * get text object
      *
-     * @return 文字对象
+     * @return text object
      */
     @Override
     public Font getFont() {
@@ -145,14 +145,14 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 设置文字对象
+     * 设置text object
      *
-     * @param fontObj 文字对象
+     * @param fontObj text object
      * @return this
      */
     public FontSetting setFont(Font fontObj) {
         if (fontObj == null) {
-            throw new IllegalArgumentException("字体对象(fontObj)为空");
+            throw new IllegalArgumentException("font object(fontObj)为空");
         }
         this.fontObj = fontObj;
         this.awtFont = null;
@@ -183,7 +183,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 字体是否为斜体
+     * font是否为斜体
      *
      * @return true - 斜体
      */
@@ -192,7 +192,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 设置字体是否为斜体
+     * 设置font是否为斜体
      *
      * @param italic true - 斜体；false - 非斜体
      * @return this
@@ -203,9 +203,9 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 设置字体为加粗格式
+     * 设置font为加粗格式
      * <p>
-     * 宽度：800
+     * width：800
      *
      * @return this
      */
@@ -215,9 +215,9 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 获取字体宽度
+     * get font width
      *
-     * @return 字体宽度
+     * @return fontwidth
      */
     public Integer getFontWeight() {
         return fontWeight;
@@ -233,7 +233,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 设置字符方向
+     * set character direction
      *
      * @param charDirection 字符方向(charDirection) 允许值：0、90、180、270
      * @return this
@@ -268,7 +268,7 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 设置字间距
+     * set character spacing
      * <p>
      * 如果字间距小于0，那么将会自动修正为0
      *
@@ -299,9 +299,9 @@ public class FontSetting implements Cloneable, TextFontInfo {
     }
 
     /**
-     * 设置字体宽度
+     * set font width
      *
-     * @param fontWeight 字体宽度，可选值：100、200、300、400、500、600、700、800、900
+     * @param fontWeight fontwidth，可选值：100、200、300、400、500、600、700、800、900
      * @return this
      */
     public FontSetting setFontWeight(Integer fontWeight) {
@@ -318,16 +318,16 @@ public class FontSetting implements Cloneable, TextFontInfo {
                 this.fontWeight = fontWeight;
                 break;
             default:
-                throw new NumberFormatException("字体宽度(fontWeight)可选值： 100、200、300、400、500、600、700、800、900");
+                throw new NumberFormatException("fontwidth(fontWeight)可选值： 100、200、300、400、500、600、700、800、900");
         }
         return this;
     }
 
     /**
-     * 字符宽度
+     * 字符width
      *
      * @param c 字符
-     * @return 宽度单位毫米
+     * @return width单位毫米
      */
     public Double charWidth(char c) {
         return box(c).getWidth();
@@ -344,12 +344,12 @@ public class FontSetting implements Cloneable, TextFontInfo {
             // 如果存在预设的字符映射表那么查表计算
             return new Rectangle2D.Double(0, 0, fontObj.getCharWidthScale(c) * fontSize, fontSize);
         }
-        // 如果字体缓存为空，则加载字体
+        // 如果font缓存为空，则加载font
         if (awtFont == null) {
-            // 尝试从字体中获取AWT字体对象
+            // 尝试从font中获取AWTfont object
             awtFont = fontObj.getFontObj();
             if (awtFont == null) {
-                // 尝试从环境变量中加载字体
+                // 尝试从环境变量中加载font
                 awtFont = EnvFont.getFont(fontObj.getName(), fontObj.getFamilyName());
             }
             if (awtFont == null) {

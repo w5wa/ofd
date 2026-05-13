@@ -27,14 +27,14 @@ public class ContentExtractor {
         /**
          * 处理解析完成的文本
          *
-         * @param pageNum  页码
+         * @param pageNum  page number
          * @param contents 抽取得到的页面文字内容
          */
         void process(int pageNum, List<String> contents);
     }
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     private OFDReader reader;
     /**
@@ -48,7 +48,7 @@ public class ContentExtractor {
     /**
      * 构造文字抽取器
      *
-     * @param reader OFD解析器
+     * @param reader OFD parser
      */
     public ContentExtractor(OFDReader reader) {
         this.reader = reader;
@@ -58,7 +58,7 @@ public class ContentExtractor {
      * 构造文字抽取器
      *
      * @param filter 文本抽取过滤器
-     * @param reader OFD解析器
+     * @param reader OFD parser
      */
     public ContentExtractor(OFDReader reader, ExtractorFilter filter) {
         this.reader = reader;
@@ -68,8 +68,8 @@ public class ContentExtractor {
     /**
      * 抽取指定页面内的所有文字
      *
-     * @param pageNum 页码，从1开始
-     * @return 页面内容的所有文本内容序列
+     * @param pageNum page number, starting from 1
+     * @return page content的所有文本内容序列
      */
     public List<String> getPageContent(int pageNum) {
         Content ofdContentObj = reader.getPage(pageNum).getContent();
@@ -90,8 +90,8 @@ public class ContentExtractor {
     /**
      * 抽取指定页面内的所有文字Text对象
      *
-     * @param pageNum 页码，从1开始
-     * @return 页面内容的所有文本内容序列
+     * @param pageNum page number, starting from 1
+     * @return page content的所有文本内容序列
      */
     public List<TextObject> getPageTextObject(int pageNum) {
         Content ofdContentObj = reader.getPage(pageNum).getContent();
@@ -117,7 +117,7 @@ public class ContentExtractor {
      */
     private void pageBlockHandle(List<String> txtContentList, List<PageBlockType> pageBlocks) {
         for (PageBlockType block : pageBlocks) {
-            // 找出所有的文字对象
+            // 找出所有的text object
             if (block instanceof TextObject) {
                 TextObject text = (TextObject) block;
                 List<TextCode> textCodes = text.getTextCodes();
@@ -146,7 +146,7 @@ public class ContentExtractor {
      */
     private void pageBlockTextObjectHandle(List<TextObject> textObjectList, List<PageBlockType> pageBlocks) {
         for (PageBlockType block : pageBlocks) {
-            // 找出所有的文字对象
+            // 找出所有的text object
             if (block instanceof TextObject) {
                 TextObject text = (TextObject) block;
                 List<TextCode> textCodes = text.getTextCodes();

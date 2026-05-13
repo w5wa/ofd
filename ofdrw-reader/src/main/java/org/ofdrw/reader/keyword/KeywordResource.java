@@ -12,15 +12,15 @@ import org.ofdrw.core.text.text.CT_Text;
 public class KeywordResource {
 
     /**
-     * 页码
+     * page number
      */
     private int page;
     /**
-     * 字体对象
+     * font object
      */
     private CT_Font font;
     /**
-     * 文字对象
+     * text object
      */
     private CT_Text text;
 

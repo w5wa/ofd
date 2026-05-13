@@ -5,9 +5,9 @@ import org.bouncycastle.asn1.*;
 import java.util.Enumeration;
 
 /**
- * 签章者证书杂凑值
+ * signer certificate hash value
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 16:18:40
  */
 public class CertDigestObj extends ASN1Object {
@@ -18,7 +18,7 @@ public class CertDigestObj extends ASN1Object {
     private DERPrintableString type;
 
     /**
-     * 证书杂凑值
+     * certificatehash value
      */
     private ASN1OctetString value;
 

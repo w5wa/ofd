@@ -49,7 +49,7 @@ class PageDirTest {
         Assertions.assertEquals(annotLoc.getFileName(),"Annot_0.xml");
         pd1.clean();
 
-        // test case 2 不规则文件名，如 Annot_Text.xml
+        // test case 2 不规则filename，如 Annot_Text.xml
         pd1 = new PageDir(p);
         pd1.putObj("Annot_Text.xml", pa);
         pd1.flush();

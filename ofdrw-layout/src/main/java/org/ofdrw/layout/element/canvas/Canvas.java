@@ -12,7 +12,7 @@ import org.ofdrw.layout.element.Div;
  * <p>
  * 绘制行为详见渲染器：{@link org.ofdrw.layout.engine.render.CanvasRender}
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-01 11:04:46
  */
 public class Canvas extends Div<Canvas> {
@@ -38,10 +38,10 @@ public class Canvas extends Div<Canvas> {
     /**
      * 创建Canvas对象，并指定绘制器
      * <p>
-     * Canvas的宽度和高度必须在创建时指定
+     * Canvas的width和height必须在创建时指定
      *
-     * @param width  宽度（单位：毫米mm）
-     * @param height 高度（单位：毫米mm）
+     * @param width  width (unit: mm)
+     * @param height height (unit: mm)
      * @param drawer Canvas内容的绘制器
      */
     public Canvas(Double width, Double height, Drawer drawer) {
@@ -53,10 +53,10 @@ public class Canvas extends Div<Canvas> {
     /**
      * 创建Canvas对象
      * <p>
-     * Canvas的宽度和高度必须在创建时指定
+     * Canvas的width和height必须在创建时指定
      *
-     * @param width  宽度（单位：毫米mm）
-     * @param height 高度（单位：毫米mm）
+     * @param width  width (unit: mm)
+     * @param height height (unit: mm)
      */
     public Canvas(Double width, Double height) {
         super(width, height);
@@ -67,8 +67,8 @@ public class Canvas extends Div<Canvas> {
      *
      * @param x 画布左上角的x坐标
      * @param y 画布左上角的y坐标
-     * @param w 画布的宽度
-     * @param h 画布的高度
+     * @param w 画布的width
+     * @param h 画布的height
      */
     public Canvas(double x, double y, double w, double h) {
         super(x, y, w, h);
@@ -77,7 +77,7 @@ public class Canvas extends Div<Canvas> {
     /**
      * 创建Canvas对象
      *
-     * @param style 页面样式属性
+     * @param style page style属性
      */
     public Canvas(PageLayout style) {
         this(style.getWidth(), style.getHeight());
@@ -101,7 +101,7 @@ public class Canvas extends Div<Canvas> {
     }
 
     /**
-     * Canvas 不接受宽度重设
+     * Canvas 不接受width重设
      */
     @Override
     public Rectangle doPrepare(Double widthLimit) {
@@ -135,7 +135,7 @@ public class Canvas extends Div<Canvas> {
     }
 
     /**
-     * 获取元素类型
+     * 获取element type
      * <p>
      * 关联绘制器：{@link org.ofdrw.layout.engine.render.CanvasRender}
      *

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 操作符和操作数
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-04-24 18:19:55
  */
 public class OptVal implements Cloneable {
@@ -40,7 +40,7 @@ public class OptVal implements Cloneable {
 
     /**
      * @param opt          操作符
-     * @param valueStrList 操作数字符序列
+     * @param valueStrList 操作number符序列
      */
     public OptVal(String opt, List<String> valueStrList) {
         this.opt = opt;

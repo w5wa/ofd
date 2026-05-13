@@ -7,7 +7,7 @@ import org.ofdrw.core.text.text.CT_Text;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-10-15 19:13:06
  */
 class ClipAbleTest {

@@ -33,27 +33,27 @@ import java.util.Map;
  * <p>
  * 在 PageGraphics2D 中所有接口参数单位均为 毫米(mm)。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-01-18 10:07:52
  */
 public class OFDPageGraphics2D extends Graphics2D {
     /**
-     * 文档上下文
+     * document context
      */
     private final OFDGraphicsDocument doc;
 
     /**
-     * 所属页面容器
+     * 所属page container
      */
     private final PageDir pageDir;
 
     /**
-     * 页面对象
+     * page object
      */
     private final Page pageObj;
 
     /**
-     * 页面内容容器
+     * page content容器
      */
     private final CT_PageBlock container;
 
@@ -73,7 +73,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     private final ST_Box size;
 
     /**
-     * 页面在页树中的对象ID
+     * 页面在页树中的object ID
      */
     public final ST_ID pageID;
 
@@ -85,17 +85,17 @@ public class OFDPageGraphics2D extends Graphics2D {
     private OFDPageGraphicsConfiguration devConfig;
 
     /**
-     * 用于创建合适的字体规格
+     * 用于创建合适的font规格
      */
     private final Graphics2D fmg;
 
     /**
      * 创建2D图形对象
      *
-     * @param doc     文档上下文
-     * @param pageID  页对象ID
+     * @param doc     document context
+     * @param pageID  页object ID
      * @param pageDir 页面目录
-     * @param pageObj 页面对象
+     * @param pageObj page object
      * @param box     绘制空间大小
      */
     OFDPageGraphics2D(OFDGraphicsDocument doc, ST_ID pageID, PageDir pageDir, Page pageObj, ST_Box box) {
@@ -110,7 +110,7 @@ public class OFDPageGraphics2D extends Graphics2D {
         this.size = box;
         this.drawParam = new OFDGraphics2DDrawParam(doc, box);
 
-        // 页面内容
+        // page content
         final Content content = new Content();
         pageObj.setContent(content);
 
@@ -118,10 +118,10 @@ public class OFDPageGraphics2D extends Graphics2D {
         CT_Layer ctlayer = new CT_Layer();
         ctlayer.setType(Type.Body);
         ctlayer.setObjID(doc.newID());
-        // 添加页面内容
+        // 添加page content
         content.addLayer(ctlayer);
 
-        // 创建容器
+        // create container
         container = new CT_PageBlock();
         container.setObjID(doc.newID());
         // 添加到页面层
@@ -129,7 +129,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 复制当前绘制上下文，并创建新的绘制上下文
+     * 复制当前drawing context，并创建新的drawing context
      *
      * @param parent 复制对象
      */
@@ -164,7 +164,7 @@ public class OFDPageGraphics2D extends Graphics2D {
 
         final AbbreviatedData pData = OFDShapes.path(s);
         if (pData.size() == 0) {
-            // 没有绘制参数时不填充
+            // 没有drawing parameters时不填充
             return;
         }
 
@@ -179,7 +179,7 @@ public class OFDPageGraphics2D extends Graphics2D {
             pathObj.setClips(clips);
         }
 
-        // 构造绘制参数
+        // 构造drawing parameters
         ST_RefID dpId = this.drawParam.makeDrawParam();
         pathObj.setDrawParam(dpId);
 
@@ -188,17 +188,17 @@ public class OFDPageGraphics2D extends Graphics2D {
 
 
     /**
-     * 使用当前的 字体(Font) 以及 画笔参数(Paint) 在指定位置上绘制文字
+     * 使用当前的 font(Font) 以及 画笔参数(Paint) 在指定位置上绘制文字
      * <p>
      * 文字将转换为图形路径绘制填充在OFD页面上
      * <p>
-     * 第一个文字的基线坐标为传入的(x,y)参数位置。
+     * the baseline coordinate of the first character is at the (x, y) parameter position.
      * <p>
-     * 文字绘制的将被裁剪矩阵(clip)、变换矩阵影响。
+     * 文字绘制的将被裁剪矩阵(clip)、transformation matrix影响。
      *
      * @param str 待绘制文字序列
-     * @param x   首个文字基线X坐标
-     * @param y   首个文字基线Y坐标
+     * @param x   首个文字基线X coordinate
+     * @param y   首个文字基线Y coordinate
      */
     @Override
     public void drawString(String str, int x, int y) {
@@ -207,17 +207,17 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 使用当前的 字体(Font) 以及 画笔参数(Paint) 在指定位置上绘制文字
+     * 使用当前的 font(Font) 以及 画笔参数(Paint) 在指定位置上绘制文字
      * <p>
      * 文字将转换为图形路径绘制填充在OFD页面上
      * <p>
-     * 第一个文字的基线坐标为传入的(x,y)参数位置。
+     * the baseline coordinate of the first character is at the (x, y) parameter position.
      * <p>
-     * 文字绘制的将被裁剪矩阵(clip)、变换矩阵影响。
+     * 文字绘制的将被裁剪矩阵(clip)、transformation matrix影响。
      *
      * @param str 待绘制文字序列
-     * @param x   首个文字基线X坐标
-     * @param y   首个文字基线Y坐标
+     * @param x   首个文字基线X coordinate
+     * @param y   首个文字基线Y coordinate
      */
     @Override
     public void drawString(String str, float x, float y) {
@@ -228,13 +228,13 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 使用迭代器绘制文字图形
      * <p>
-     * 文字图形的绘制将绘制将受到画笔参数(Paint) 、被裁剪矩阵(clip)、变换矩阵影响（CTM）。
+     * 文字图形的绘制将绘制将受到画笔参数(Paint) 、被裁剪矩阵(clip)、transformation matrix影响（CTM）。
      * <p>
      * 第一个文字图形的基线坐标为传入的(x,y)参数位置。
      *
      * @param iterator 待绘制文本的迭代器
-     * @param x        首个文字基线X坐标
-     * @param y        首个文字基线Y坐标
+     * @param x        首个文字基线X coordinate
+     * @param y        首个文字基线Y coordinate
      */
     @Override
     public void drawString(AttributedCharacterIterator iterator, int x, int y) {
@@ -245,13 +245,13 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 使用迭代器绘制文字图形
      * <p>
-     * 文字图形的绘制将绘制将受到画笔参数(Paint) 、被裁剪矩阵(clip)、变换矩阵影响（CTM）。
+     * 文字图形的绘制将绘制将受到画笔参数(Paint) 、被裁剪矩阵(clip)、transformation matrix影响（CTM）。
      * <p>
      * 第一个文字图形的基线坐标为传入的(x,y)参数位置。
      *
      * @param iterator 待绘制文本的迭代器
-     * @param x        首个文字基线X坐标
-     * @param y        首个文字基线Y坐标
+     * @param x        首个文字基线X coordinate
+     * @param y        首个文字基线Y coordinate
      */
     @Override
     public void drawString(AttributedCharacterIterator iterator, float x, float y) {
@@ -262,13 +262,13 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 在指定位置上绘制绘制图形路径数据，
      * <p>
-     * 图形的绘制将绘制将受到画笔参数(Paint) 、被裁剪矩阵(clip)、变换矩阵影响（CTM）。
+     * 图形的绘制将绘制将受到画笔参数(Paint) 、被裁剪矩阵(clip)、transformation matrix影响（CTM）。
      * <p>
-     * 第一个文字的基线坐标为传入的(x,y)参数位置。
+     * the baseline coordinate of the first character is at the (x, y) parameter position.
      *
      * @param g 路径向量数据
-     * @param x 图形绘制位置X坐标
-     * @param y 图形绘制位置Y坐标
+     * @param x 图形绘制位置X coordinate
+     * @param y 图形绘制位置Y coordinate
      */
     @Override
     public void drawGlyphVector(GlyphVector g, float x, float y) {
@@ -277,15 +277,15 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 在指定坐标位置上绘制图片
+     * 在指定坐标位置上绘制image
      * <p>
-     * 绘制的图片大小为图元原始大小
+     * 绘制的image大小为图元原始大小
      *
-     * @param img      待绘制图片
-     * @param x        图片左上角 X坐标
-     * @param y        图片左上角 Y坐标
+     * @param img      image to be drawn
+     * @param x        image左上角 X coordinate
+     * @param y        image左上角 Y coordinate
      * @param observer 不使用
-     * @return 固定值 true
+     * @return fixed value true
      */
     @Override
     public boolean drawImage(Image img, int x, int y, ImageObserver observer) {
@@ -304,15 +304,15 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 将图片绘制于指定矩形区域内
+     * 将image绘制于指定矩形区域内
      *
-     * @param img      待绘制的图片
-     * @param x        矩形左上角 X坐标
-     * @param y        矩形左上角 Y坐标
-     * @param width    矩形宽度
-     * @param height   矩形高度
-     * @param observer 忽略
-     * @return 固定值 true
+     * @param img      image to be drawn
+     * @param x        X coordinate of rectangle top-left corner
+     * @param y        Y coordinate of rectangle top-left corner
+     * @param width    rectangle width
+     * @param height   rectangle height
+     * @param observer ignored
+     * @return fixed value true
      */
     @Override
     public boolean drawImage(Image img, int x, int y, int width, int height, ImageObserver observer) {
@@ -320,14 +320,14 @@ public class OFDPageGraphics2D extends Graphics2D {
             return true;
         }
 
-        // 保存图片放置之前变换矩阵
+        // 保存image放置之前transformation matrix
         AffineTransform before = getTransform();
-        // 计算缩放后的图片应用变换矩阵，并作为当前的变换矩阵
+        // 计算缩放后的image应用transformation matrix，并作为当前的transformation matrix
         AffineTransform imgCTM = new AffineTransform(before);
         imgCTM.concatenate(new AffineTransform(width, 0, 0, height, x, y));
 
         /*
-         * 构造图片图元
+         * 构造image图元
          */
         ST_ID objId = this.doc.addResImg(img);
         ImageObject imgObj = new ImageObject(doc.newID());
@@ -349,8 +349,8 @@ public class OFDPageGraphics2D extends Graphics2D {
 
         // 如果存在裁剪区域，那么取裁剪区域与变换后图形的交集作为绘制内容
         if (this.drawParam.clip != null) {
-            // 图片缩放后在画布上的路径
-            // 说明：图片是通过一个 (x: 0,y: 0,w: 1,h: 1)的矩形通过变换矩阵放置到OFD上
+            // image缩放后在画布上的路径
+            // 说明：image是通过一个 (x: 0,y: 0,w: 1,h: 1)的矩形通过transformation matrix放置到OFD上
             Shape imgShape = imgCTM.createTransformedShape(new Rectangle2D.Double(0, 0, 1, 1));
             Clips clips = makeClip(imgShape, imgCTM, true);
             imgObj.setClips(clips);
@@ -360,16 +360,16 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 在指定位置绘制图片
+     * 在指定位置绘制image
      * <p>
-     * 图片保持原有大小，图片的透明部分将会使用指定颜色填充
+     * image保持原有大小，image的透明部分将会使用指定颜色填充
      *
-     * @param img      待绘制的图片
-     * @param x        矩形左上角 X坐标
-     * @param y        矩形左上角 Y坐标
-     * @param bgcolor  背景颜色，用于填充图片透明部分
-     * @param observer 忽略
-     * @return 固定值 true
+     * @param img      image to be drawn
+     * @param x        X coordinate of rectangle top-left corner
+     * @param y        Y coordinate of rectangle top-left corner
+     * @param bgcolor  背景颜色，用于填充image透明部分
+     * @param observer ignored
+     * @return fixed value true
      */
     @Override
     public boolean drawImage(Image img, int x, int y, Color bgcolor, ImageObserver observer) {
@@ -388,18 +388,18 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 在指定矩形区域内绘制图片
+     * 在指定矩形区域内绘制image
      * <p>
-     * 图片将伸缩至矩形区域大小，图片的透明部分将会使用指定颜色填充
+     * image将伸缩至矩形区域大小，image的透明部分将会使用指定颜色填充
      *
-     * @param img      待绘制的图片
-     * @param x        矩形左上角 X坐标
-     * @param y        矩形左上角 Y坐标
-     * @param width    矩形宽度
-     * @param height   矩形高度
-     * @param bgcolor  背景颜色，用于填充图片透明部分
-     * @param observer 忽略
-     * @return 固定值 true
+     * @param img      image to be drawn
+     * @param x        X coordinate of rectangle top-left corner
+     * @param y        Y coordinate of rectangle top-left corner
+     * @param width    rectangle width
+     * @param height   rectangle height
+     * @param bgcolor  背景颜色，用于填充image透明部分
+     * @param observer ignored
+     * @return fixed value true
      */
     @Override
     public boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor, ImageObserver observer) {
@@ -411,19 +411,19 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 绘制图片内某个矩形区域 到 画布的某个指定矩形区域，图片将会缩放适应目标区域
+     * 绘制image内某个矩形区域 到 画布的某个指定矩形区域，image将会缩放适应目标区域
      *
-     * @param img      待绘制图片
-     * @param dx1      画布内 矩形左上角 X坐标（目的坐标）
-     * @param dy1      画布内 矩形左上角 Y坐标（目的坐标）
-     * @param dx2      画布内 矩形右下角 X坐标（目的坐标）
-     * @param dy2      画布内 矩形右下角 Y坐标（目的坐标）
-     * @param sx1      图片内 矩形左上角 X坐标（源坐标）
-     * @param sy1      图片内 矩形左上角 Y坐标（源坐标）
-     * @param sx2      图片内 矩形右下角 X坐标（源坐标）
-     * @param sy2      图片内 矩形右下角 Y坐标（源坐标）
-     * @param observer 忽略
-     * @return 固定值 true
+     * @param img      image to be drawn
+     * @param dx1      画布内 X coordinate of rectangle top-left corner（目的坐标）
+     * @param dy1      画布内 Y coordinate of rectangle top-left corner（目的坐标）
+     * @param dx2      画布内 矩形右下角 X coordinate（目的坐标）
+     * @param dy2      画布内 矩形右下角 Y coordinate（目的坐标）
+     * @param sx1      image内 X coordinate of rectangle top-left corner（源坐标）
+     * @param sy1      image内 Y coordinate of rectangle top-left corner（源坐标）
+     * @param sx2      image内 矩形右下角 X coordinate（源坐标）
+     * @param sy2      image内 矩形右下角 Y coordinate（源坐标）
+     * @param observer ignored
+     * @return fixed value true
      */
     @Override
     public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, ImageObserver observer) {
@@ -436,22 +436,22 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 绘制图片内某个矩形区域 到 画布的某个指定矩形区域
+     * 绘制image内某个矩形区域 到 画布的某个指定矩形区域
      * <p>
-     * 图片将会缩放适应目标区域，图片的透明部分将会使用指定颜色填充
+     * image将会缩放适应目标区域，image的透明部分将会使用指定颜色填充
      *
-     * @param img      待绘制图片
-     * @param dx1      画布内 矩形左上角 X坐标（目的坐标）
-     * @param dy1      画布内 矩形左上角 Y坐标（目的坐标）
-     * @param dx2      画布内 矩形右下角 X坐标（目的坐标）
-     * @param dy2      画布内 矩形右下角 Y坐标（目的坐标）
-     * @param sx1      图片内 矩形左上角 X坐标（源坐标）
-     * @param sy1      图片内 矩形左上角 Y坐标（源坐标）
-     * @param sx2      图片内 矩形右下角 X坐标（源坐标）
-     * @param sy2      图片内 矩形右下角 Y坐标（源坐标）
+     * @param img      image to be drawn
+     * @param dx1      画布内 X coordinate of rectangle top-left corner（目的坐标）
+     * @param dy1      画布内 Y coordinate of rectangle top-left corner（目的坐标）
+     * @param dx2      画布内 矩形右下角 X coordinate（目的坐标）
+     * @param dy2      画布内 矩形右下角 Y coordinate（目的坐标）
+     * @param sx1      image内 X coordinate of rectangle top-left corner（源坐标）
+     * @param sy1      image内 Y coordinate of rectangle top-left corner（源坐标）
+     * @param sx2      image内 矩形右下角 X coordinate（源坐标）
+     * @param sy2      image内 矩形右下角 Y coordinate（源坐标）
      * @param bgcolor  背景颜色，用于填充透明部分
-     * @param observer 忽略
-     * @return 固定值 true
+     * @param observer ignored
+     * @return fixed value true
      */
     @Override
     public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, Color bgcolor, ImageObserver observer) {
@@ -464,11 +464,11 @@ public class OFDPageGraphics2D extends Graphics2D {
 
 
     /**
-     * 通过变换矩阵在指定位置绘制图像
+     * draw image at specified position via transformation matrix
      *
-     * @param img   待绘制的图像（可渲染图像接口）
-     * @param xform 变换矩阵，指定图像绘制方式
-     * @param obs   忽略
+     * @param img   image to be drawn (renderable image interface)
+     * @param xform transformation matrix specifying how to draw the image
+     * @param obs   ignored
      * @return true
      */
     @Override
@@ -494,9 +494,9 @@ public class OFDPageGraphics2D extends Graphics2D {
      * </pre>
      *
      * @param img 待绘制图像
-     * @param op  图片渲染前的过滤器
-     * @param x   图片左上角X坐标
-     * @param y   图片左上角Y坐标
+     * @param op  image渲染前的过滤器
+     * @param x   imageX coordinate of top-left corner
+     * @param y   imageY coordinate of top-left corner
      */
     @Override
     public void drawImage(BufferedImage img, BufferedImageOp op, int x, int y) {
@@ -508,10 +508,10 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 通过变换矩阵在指定位置绘制图像
+     * draw image at specified position via transformation matrix
      *
-     * @param img   待绘制的图像（可渲染图像接口）
-     * @param xform 变换矩阵，指定图像绘制方式
+     * @param img   image to be drawn (renderable image interface)
+     * @param xform transformation matrix specifying how to draw the image
      */
     @Override
     public void drawRenderedImage(RenderedImage img, AffineTransform xform) {
@@ -523,10 +523,10 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 通过变换矩阵在指定位置绘制图像
+     * draw image at specified position via transformation matrix
      *
-     * @param img   待绘制的图像（可渲染图像接口）
-     * @param xform 变换矩阵，指定图像绘制方式
+     * @param img   image to be drawn (renderable image interface)
+     * @param xform transformation matrix specifying how to draw the image
      */
     @Override
     public void drawRenderableImage(RenderableImage img, AffineTransform xform) {
@@ -555,7 +555,7 @@ public class OFDPageGraphics2D extends Graphics2D {
 
         final AbbreviatedData pData = OFDShapes.path(s);
         if (pData.size() == 0) {
-            // 没有绘制参数时不填充
+            // 没有drawing parameters时不填充
             return;
         }
 
@@ -570,7 +570,7 @@ public class OFDPageGraphics2D extends Graphics2D {
             pathObj.setClips(clips);
         }
 
-        // 构造绘制参数
+        // 构造drawing parameters
         ST_RefID dpId = this.drawParam.makeDrawParam();
         pathObj.setDrawParam(dpId);
 
@@ -626,7 +626,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 设置绘制参数
+     * 设置drawing parameters
      *
      * @param paint 设置画笔颜色，用于填充和描边
      */
@@ -636,7 +636,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 设置描边属性
+     * set stroke attributes
      *
      * @param s 描边属性参数
      */
@@ -702,9 +702,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 复制当前绘制上下文为新的上下文
+     * 复制当前drawing context为新的上下文
      *
-     * @return 复制的绘制上下文对象
+     * @return 复制的drawing context对象
      */
     @Override
     public Graphics create() {
@@ -753,9 +753,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 获取当前字体
+     * 获取当前font
      *
-     * @return 字体
+     * @return font
      */
     @Override
     public Font getFont() {
@@ -763,9 +763,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 设置绘图上下文的字体
+     * 设置绘图上下文的font
      *
-     * @param font 字体
+     * @param font font
      */
     @Override
     public void setFont(Font font) {
@@ -773,10 +773,10 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 获取特定字体的字体规格
+     * 获取特定font的font规格
      *
-     * @param f 特定字体
-     * @return 字体规格
+     * @param f 特定font
+     * @return font规格
      */
     @Override
     public FontMetrics getFontMetrics(Font f) {
@@ -801,10 +801,10 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 设置矩形裁剪区域
      *
-     * @param x      裁剪矩形区域X坐标
-     * @param y      裁剪矩形区域Y坐标
-     * @param width  裁剪矩形矩形宽度
-     * @param height 裁剪矩形矩形高度
+     * @param x      裁剪矩形区域X coordinate
+     * @param y      裁剪矩形区域Y coordinate
+     * @param width  裁剪矩形rectangle width
+     * @param height 裁剪矩形rectangle height
      */
     @Override
     public void clipRect(int x, int y, int width, int height) {
@@ -816,10 +816,10 @@ public class OFDPageGraphics2D extends Graphics2D {
      * <p>
      * 若已经存在裁剪区域那么旧的裁剪区域将会被新的裁剪区域覆盖
      *
-     * @param x      裁剪矩形区域X坐标
-     * @param y      裁剪矩形区域Y坐标
-     * @param width  裁剪矩形矩形宽度
-     * @param height 裁剪矩形矩形高度
+     * @param x      裁剪矩形区域X coordinate
+     * @param y      裁剪矩形区域Y coordinate
+     * @param width  裁剪矩形rectangle width
+     * @param height 裁剪矩形rectangle height
      */
     @Override
     public void setClip(int x, int y, int width, int height) {
@@ -837,7 +837,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 设置裁剪区域
+     * set clipping area
      * <p>
      * 若已经存在裁剪区域，那么新的裁剪区域与旧的裁剪区域取交集。
      *
@@ -864,7 +864,7 @@ public class OFDPageGraphics2D extends Graphics2D {
 
 
     /**
-     * 设置裁剪区域
+     * set clipping area
      * <p>
      * 若已经存在裁剪区域那么旧的裁剪区域将会被新的裁剪区域覆盖
      *
@@ -917,8 +917,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      *
      * @param x      矩形区域左上角坐标X
      * @param y      矩形区域左上角坐标Y
-     * @param width  矩形宽度
-     * @param height 矩形高度
+     * @param width  rectangle width
+     * @param height rectangle height
      */
     @Override
     public void fillRect(int x, int y, int width, int height) {
@@ -930,8 +930,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      *
      * @param x      矩形区域左上角坐标X
      * @param y      矩形区域左上角坐标Y
-     * @param width  矩形宽度
-     * @param height 矩形高度
+     * @param width  rectangle width
+     * @param height rectangle height
      */
     @Override
     public void drawRect(int x, int y, int width, int height) {
@@ -946,8 +946,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      *
      * @param x      填充区域矩形左上角 X 坐标
      * @param y      填充区域矩形左上角 X 坐标
-     * @param width  矩形宽度
-     * @param height 矩形高度
+     * @param width  rectangle width
+     * @param height rectangle height
      */
     @Override
     public void clearRect(int x, int y, int width, int height) {
@@ -963,12 +963,12 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 绘制圆角矩形
      *
-     * @param x         矩形左上角X坐标
-     * @param y         矩形左上角Y坐标
-     * @param width     矩形宽度
-     * @param height    矩形高度
-     * @param arcWidth  水平圆角半径
-     * @param arcHeight 垂直圆角半径
+     * @param x         rectangle X coordinate of top-left corner
+     * @param y         rectangle Y coordinate of top-left corner
+     * @param width     rectangle width
+     * @param height    rectangle height
+     * @param arcWidth  horizontal corner radius
+     * @param arcHeight vertical corner radius
      */
     @Override
     public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
@@ -978,12 +978,12 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 填充圆角矩形
      *
-     * @param x         矩形左上角X坐标
-     * @param y         矩形左上角Y坐标
-     * @param width     矩形宽度
-     * @param height    矩形高度
-     * @param arcWidth  水平圆角半径
-     * @param arcHeight 垂直圆角半径
+     * @param x         rectangle X coordinate of top-left corner
+     * @param y         rectangle Y coordinate of top-left corner
+     * @param width     rectangle width
+     * @param height    rectangle height
+     * @param arcWidth  horizontal corner radius
+     * @param arcHeight vertical corner radius
      */
     @Override
     public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
@@ -995,8 +995,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      *
      * @param x      矩形区域左上角 X 坐标
      * @param y      矩形区域左上角 Y 坐标
-     * @param width  矩形区域宽度
-     * @param height 矩形区域高度
+     * @param width  矩形区域width
+     * @param height 矩形区域height
      */
     @Override
     public void drawOval(int x, int y, int width, int height) {
@@ -1008,8 +1008,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      *
      * @param x      矩形区域左上角 X 坐标
      * @param y      矩形区域左上角 Y 坐标
-     * @param width  矩形区域宽度
-     * @param height 矩形区域高度
+     * @param width  矩形区域width
+     * @param height 矩形区域height
      */
     @Override
     public void fillOval(int x, int y, int width, int height) {
@@ -1023,8 +1023,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      *
      * @param x          矩形区域左上角 X 坐标
      * @param y          矩形区域左上角 Y 坐标
-     * @param width      矩形区域宽度
-     * @param height     矩形区域高度
+     * @param width      矩形区域width
+     * @param height     矩形区域height
      * @param startAngle 圆弧开始角度
      * @param arcAngle   圆弧结束角度
      */
@@ -1042,8 +1042,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      *
      * @param x          矩形区域左上角 X 坐标
      * @param y          矩形区域左上角 Y 坐标
-     * @param width      矩形区域宽度
-     * @param height     矩形区域高度
+     * @param width      矩形区域width
+     * @param height     矩形区域height
      * @param startAngle 圆弧开始角度
      * @param arcAngle   圆弧结束角度
      */
@@ -1057,8 +1057,8 @@ public class OFDPageGraphics2D extends Graphics2D {
      * <p>
      * 注意绘制的折线是一个不闭合的图形
      *
-     * @param xPoints 折点 X坐标 序列
-     * @param yPoints 折点 Y坐标 序列
+     * @param xPoints 折点 X coordinate 序列
+     * @param yPoints 折点 Y coordinate 序列
      * @param nPoints 折点总数
      */
     @Override
@@ -1074,8 +1074,8 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 使用当前颜色和描边属性描边多边形
      *
-     * @param xPoints 多边形 X坐标 序列
-     * @param yPoints 多边形 Y坐标 序列
+     * @param xPoints 多边形 X coordinate 序列
+     * @param yPoints 多边形 Y coordinate 序列
      * @param nPoints 多边形点数量
      */
     @Override
@@ -1092,8 +1092,8 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 使用当前颜色填充多边形
      *
-     * @param xPoints 多边形 X坐标 序列
-     * @param yPoints 多边形 Y坐标 序列
+     * @param xPoints 多边形 X coordinate 序列
+     * @param yPoints 多边形 Y coordinate 序列
      * @param nPoints 多边形点数量
      */
     @Override
@@ -1134,7 +1134,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 绕原点旋转画布
      *
-     * @param theta 旋转角度，计算方式为 {@code theta = angle * Math.PI / 180 }，负数表示逆时针。
+     * @param theta rotation angle，计算方式为 {@code theta = angle * Math.PI / 180 }，负数表示逆时针。
      */
     @Override
     public void rotate(double theta) {
@@ -1152,9 +1152,9 @@ public class OFDPageGraphics2D extends Graphics2D {
      *          translate(-x, -y);
      * </pre>
      *
-     * @param theta 旋转角度，计算方式为 {@code theta = angle * Math.PI / 180 }，负数表示逆时针。
-     * @param x     旋转点X坐标
-     * @param y     旋转点Y坐标
+     * @param theta rotation angle，计算方式为 {@code theta = angle * Math.PI / 180 }，负数表示逆时针。
+     * @param x     旋转点X coordinate
+     * @param y     旋转点Y coordinate
      */
     @Override
     public void rotate(double theta, double x, double y) {
@@ -1167,8 +1167,8 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 坐标缩放
      *
-     * @param sx 缩放当前绘图的宽度 (1=100%, 0.5=50%, 2=200%, 依次类推)
-     * @param sy 缩放当前绘图的高度 (1=100%, 0.5=50%, 2=200%, 依次类推)
+     * @param sx 缩放当前绘图的width (1=100%, 0.5=50%, 2=200%, 依次类推)
+     * @param sy 缩放当前绘图的height (1=100%, 0.5=50%, 2=200%, 依次类推)
      */
     @Override
     public void scale(double sx, double sy) {
@@ -1191,7 +1191,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 图形变换
      *
-     * @param tx 变换矩阵
+     * @param tx transformation matrix
      */
     @Override
     public void transform(AffineTransform tx) {
@@ -1203,9 +1203,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 设置变换矩阵
+     * 设置transformation matrix
      *
-     * @param tx 变换矩阵
+     * @param tx transformation matrix
      */
     @Override
     public void setTransform(AffineTransform tx) {
@@ -1217,9 +1217,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 返回当前的变换矩阵
+     * 返回当前的transformation matrix
      *
-     * @return 变换矩阵
+     * @return transformation matrix
      */
     @Override
     public AffineTransform getTransform() {
@@ -1227,9 +1227,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 获取绘制参数
+     * get drawing parameters
      *
-     * @return 绘制参数
+     * @return drawing parameters
      */
     @Override
     public Paint getPaint() {
@@ -1239,7 +1239,7 @@ public class OFDPageGraphics2D extends Graphics2D {
     /**
      * 获取像素合成模式
      * <p>
-     * 该属性只是为了兼容AWT接口保留，并无实际用途。
+     * this attribute is retained for AWT interface compatibility only; it has no actual use.
      *
      * @return 获取像素合成模式
      */
@@ -1279,9 +1279,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 获取绘制上下文中的字体绘制上下文
+     * 获取drawing context中的fontdrawing context
      *
-     * @return 字体绘制上下文
+     * @return fontdrawing context
      */
     @Override
     public FontRenderContext getFontRenderContext() {
@@ -1290,7 +1290,7 @@ public class OFDPageGraphics2D extends Graphics2D {
 
 
     /**
-     * 销毁绘制上下文
+     * 销毁drawing context
      */
     @Override
     public void dispose() {
@@ -1303,7 +1303,7 @@ public class OFDPageGraphics2D extends Graphics2D {
      * 如果图形完全处于裁剪区域中，那么不裁剪
      *
      * @param s      图形对象
-     * @param objCTM 对象当前的变换矩阵
+     * @param objCTM 对象当前的transformation matrix
      * @param isNeedInverse 是否需要将裁剪区域进行逆变换
      * @return 裁剪区 或 null（图形完全处于裁剪区）
      */
@@ -1320,7 +1320,7 @@ public class OFDPageGraphics2D extends Graphics2D {
                 w < 0 ? 0 : w,
                 h < 0 ? 0 : h);
         if (this.drawParam.clip.contains(bounds)) {
-            // 若图形外边框都处于裁剪区域内部，那么忽略裁剪区域
+            // 若图形外边框都处于裁剪区域内部，那么ignored裁剪区域
         } else {
             Clips clips = new Clips();
             org.ofdrw.core.pageDescription.clips.Area area = new org.ofdrw.core.pageDescription.clips.Area();
@@ -1341,7 +1341,7 @@ public class OFDPageGraphics2D extends Graphics2D {
                clips.addClip(new CT_Clip().addArea(area));
                return clips;
            } catch (NoninvertibleTransformException e) {
-               // 初等变换都可逆，若非初等变换那么忽略裁剪区
+               // 初等变换都可逆，若非初等变换那么ignored裁剪区
            }
         }
         return null;
@@ -1377,9 +1377,9 @@ public class OFDPageGraphics2D extends Graphics2D {
     }
 
     /**
-     * 转为AWT变换矩阵 {@link AffineTransform} 为 OFD 类型变换矩阵{@link ST_Array}
+     * 转为AWTtransformation matrix {@link AffineTransform} 为 OFD 类型transformation matrix{@link ST_Array}
      *
-     * @param tx AWT变换矩阵
+     * @param tx AWTtransformation matrix
      * @return OFD ST_Array
      */
     public ST_Array trans(AffineTransform tx) {

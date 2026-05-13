@@ -15,40 +15,40 @@ import java.nio.file.Path;
 import java.util.Iterator;
 
 /**
- * 图片对象
+ * image对象
  * <p>
  * 为了防止与Image对象命名冲突采用Img缩写
  * <p>
  * 绘制行为详见渲染器 {@link org.ofdrw.layout.engine.render.ImgRender}
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-03 03:34:31
  */
 public class Img extends Div<Img> {
     /**
-     * 图片文件路径
+     * imagefile path
      */
     private Path src;
 
     private Img() {
-        // 图片对象不可拆分
+        // image对象不可拆分
         this.setIntegrity(true);
     }
 
     /**
-     * 构造图片对象
+     * 构造image对象
      * <p>
-     * 该构造器不会输入图片进行解析，直接将图片作为资源使用。
+     * 该构造器不会输入image进行解析，直接将image作为资源使用。
      *
-     * @param width  图片在页面内的宽度，单位毫米（mm）
-     * @param height 图片在页面内的高度，单位毫米（mm）
-     * @param src    图片路径（该构造器不会解析图片大小）
+     * @param width  image在页面内的width，单位毫米（mm）
+     * @param height image在页面内的height，单位毫米（mm）
+     * @param src    image path（该构造器不会解析image大小）
      * @throws IOException 读取异常
      */
     public Img(double width, double height, Path src) throws IOException {
         this();
         if (src == null || Files.notExists(src)) {
-            throw new IllegalArgumentException("图片文件为空或不存在");
+            throw new IllegalArgumentException("image文件为空或不存在");
         }
         this.src = src;
         this.setWidth(width);
@@ -56,29 +56,29 @@ public class Img extends Div<Img> {
     }
 
     /**
-     * 创建图片Div
+     * 创建imageDiv
      * <p>
-     * 图片宽度和高度以 每 5pix/mm （像素/毫米）的比例转换。
+     * imagewidth和height以 每 5pix/mm （像素/毫米）的比例转换。
      * <p>
-     * 不建议使用该方式构造图片，图片的宽度和高度应该在由调用者手动指定
+     * 不建议使用该方式构造image，image的width和height应该在由调用者手动指定
      * 建议使用{@link Img#Img(double, double, java.nio.file.Path)}方法构造
      *
-     * @param src 图片路径
-     * @throws IOException 图片解析异常
+     * @param src image path
+     * @throws IOException image解析异常
      * @deprecated {@link Img#Img(double, double, java.nio.file.Path)}
      */
     @Deprecated
     public Img(Path src) throws IOException {
         this();
         if (src == null || Files.notExists(src)) {
-            throw new IllegalArgumentException("图片文件为空或不存在");
+            throw new IllegalArgumentException("image文件为空或不存在");
         }
         this.src = src;
         parseImg();
     }
 
     /**
-     * 解析路径上的图片
+     * 解析路径上的image
      *
      * @throws IOException 读取解析异常
      */
@@ -89,7 +89,7 @@ public class Img extends Div<Img> {
             imgObj = ImageIO.read(fIn);
         } catch (IIOException e) {
             /*
-             * 图片类型的问题，如果图片格式而是CMYK格式，
+             * image类型的问题，如果image格式而是CMYK格式，
              * 使用ImageIO.read方法有时报javax.imageio.IIOException: Unsupported Image Type
              * 此处尝试将CMYK装换为 RGB。
              */
@@ -104,13 +104,13 @@ public class Img extends Div<Img> {
 
 
     /**
-     * 尝试读取图片文件为 BufferedImage
+     * 尝试读取image文件为 BufferedImage
      * <p>
      * 首先尝试采用RGB读取，如果失败那么将CMYK进行色彩空间转化为RGB。
      *
-     * @param imageFile 图片文件
+     * @param imageFile image文件
      * @return BufferedImage
-     * @throws IOException 操作或转换异常
+     * @throws IOException 操作或conversion exception
      * @author zwd
      */
     public static BufferedImage readImage(File imageFile) throws IOException {
@@ -123,7 +123,7 @@ public class Img extends Div<Img> {
             reader.setInput(input);
             BufferedImage image;
             try {
-                // 尝试读取图片 (包括颜色的转换).RGB
+                // 尝试读取image (包括颜色的转换).RGB
                 image = reader.read(0);
             } catch (IIOException e) {
                 // 尝试将CMYK转换为RGB
@@ -134,9 +134,9 @@ public class Img extends Div<Img> {
     }
 
     /**
-     * 装换CMYK图片为RGB
+     * 装换CMYKimage为RGB
      *
-     * @param reader 图片解析器
+     * @param reader image解析器
      * @return BufferedImage
      * @author zwd
      */
@@ -199,11 +199,11 @@ public class Img extends Div<Img> {
      */
     @Override
     public Div[] split(double sHeight) {
-        throw new RuntimeException("图片对象不支持分割操作");
+        throw new RuntimeException("image对象不支持分割操作");
     }
 
     /**
-     * 元素类型
+     * element type
      * <p>
      * 关联绘制器：{@link org.ofdrw.layout.engine.render.ImgRender}
      *

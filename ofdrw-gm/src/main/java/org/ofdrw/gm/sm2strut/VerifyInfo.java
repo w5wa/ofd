@@ -3,7 +3,7 @@ package org.ofdrw.gm.sm2strut;
 /**
  * 签名验证信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-25 19:21:24
  */
 public class VerifyInfo {
@@ -27,7 +27,7 @@ public class VerifyInfo {
      * 获取错误返还值
      *
      * @param errDesp 错误描述
-     * @return 实例
+     * @return instance
      */
     public static VerifyInfo Err(String errDesp) {
         return new VerifyInfo(false, errDesp);

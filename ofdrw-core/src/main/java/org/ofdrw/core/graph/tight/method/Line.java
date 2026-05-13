@@ -4,11 +4,11 @@ import org.dom4j.Element;
 import org.ofdrw.core.basicType.ST_Pos;
 
 /**
- * 线段
+ * 线segment
  * <p>
- * 图 51 线段结构
+ * 图 51 线segment结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 05:14:27
  */
 public class Line extends Command {
@@ -32,10 +32,10 @@ public class Line extends Command {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 线段的结束点
+     * [required attribute]
+     * 设置 线segment的结束点
      *
-     * @param point1 线段的结束点
+     * @param point1 线segment的结束点
      * @return this
      */
     public Line setPoint1(ST_Pos point1) {
@@ -44,10 +44,10 @@ public class Line extends Command {
     }
 
     /**
-     * 【必选 属性】
-     * 获取 线段的结束点
+     * [required attribute]
+     * 获取 线segment的结束点
      *
-     * @return 线段的结束点
+     * @return 线segment的结束点
      */
     public ST_Pos getPoint1() {
         return ST_Pos.getInstance(this.attributeValue("Point1"));

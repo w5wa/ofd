@@ -17,13 +17,13 @@ import java.util.List;
 /**
  * 基于SVG转换的 OFD HTML转换器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-8 21:57:03
  */
 public class HTMLExporter implements OFDExporter {
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     final OFDReader ofdReader;
     /**
@@ -63,7 +63,7 @@ public class HTMLExporter implements OFDExporter {
     /**
      * HTML文件头部
      * <p>
-     * 您可以通过继承的方式重写HTML内容
+     * you can override HTML content through inheritance
      */
     byte[] header = ("<!DOCTYPE html>\n" +
             "<html lang=\"en\">\n" +
@@ -80,7 +80,7 @@ public class HTMLExporter implements OFDExporter {
     /**
      * 文件标签闭合
      * <p>
-     * 您可以通过继承的方式重写HTML内容
+     * you can override HTML content through inheritance
      */
     byte[] booter = ("" +
             "  </div>\n" +
@@ -90,25 +90,25 @@ public class HTMLExporter implements OFDExporter {
     /**
      * 每一页之间的间隔
      * <p>
-     * 您可以通过继承的方式重写HTML内容
+     * you can override HTML content through inheritance
      */
     byte[] margin_bottom = "<div style=\"height: 10px;\"></div>".getBytes(StandardCharsets.UTF_8);
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdFilePath  待转换OFD文件
+     * @param ofdFilePath  OFD file to be converted
      * @param htmlFilePath 生成HTML存放目录
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     public HTMLExporter(Path ofdFilePath, Path htmlFilePath) throws IOException {
         if (htmlFilePath == null) {
-            throw new IllegalArgumentException("导出HTML文件路径为空");
+            throw new IllegalArgumentException("导出HTMLfile path为空");
         }
         htmlFilePath = htmlFilePath.toAbsolutePath();
         if (!Files.exists(htmlFilePath)) {
@@ -133,11 +133,11 @@ public class HTMLExporter implements OFDExporter {
     }
 
     /**
-     * 构造图片转换器
+     * constructor for image converter
      *
-     * @param ofdInput   待转换OFD文件流，该流由调用者负责关闭
+     * @param ofdInput   OFD file to be converted stream; caller is responsible for closing
      * @param htmlOutput 生成HTML输出流
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     public HTMLExporter(InputStream ofdInput, OutputStream htmlOutput) throws IOException {
         if (ofdInput == null) {
@@ -157,10 +157,10 @@ public class HTMLExporter implements OFDExporter {
 
 
     /**
-     * 导出指定OFD页为图片
+     * export specified OFD page as image
      *
-     * @param indexes 页码序列，如果为空表示全部页码（注意：页码从0起）
-     * @throws GeneralConvertException 转换异常
+     * @param indexes page index sequence; if null, means all pages (note: page index starts from 0)
+     * @throws GeneralConvertException conversion exception
      */
     @Override
     public void export(int... indexes) throws GeneralConvertException {
@@ -171,7 +171,7 @@ public class HTMLExporter implements OFDExporter {
             }
         } else {
             int maxPageIndex = ofdReader.getNumberOfPages();
-            // 获取指定页面信息
+            // get information for specified page
             for (int index : indexes) {
                 if (index < 0 || index >= maxPageIndex) {
                     continue;

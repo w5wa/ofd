@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * TrueType 字体解析器
+ * TrueType font解析器
  * <p>
  * https://docs.microsoft.com/zh-cn/typography/opentype/spec/otff
  * <p>
@@ -29,28 +29,28 @@ import java.util.Map;
  * <p>
  * https://docs.microsoft.com/zh-cn/typography/opentype/spec/cmap
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-09-28 21:05:09
  */
 public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
 
     /**
-     * 字形数量
+     * glyph数量
      */
     private int numGlyphs;
 
     /**
-     * 字形偏移量数组
+     * glyph偏移量数组
      */
     private long[] glyphOffsets;
 
     /**
-     * 字形数据对象
+     * glyph数据对象
      */
     private GlyphData[] glyphs;
 
     /**
-     * 字体随机访问对象
+     * font随机访问对象
      */
     private TTFDataStream data;
 
@@ -60,14 +60,14 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     private long[] glyOffset;
 
     /**
-     * 字符编码到字形映射表
+     * 字符编码到glyph映射表
      * <p>
      * 不同字符集使用独立子表表述，数组中的每一个表都是一种类型字符集
      */
     private CmapSubtable[] cmaps;
 
     /**
-     * 字体的单位数，从header中获取
+     * font的单位数，从header中获取
      * <p>
      * 默认0
      */
@@ -75,26 +75,26 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
 
 
     /**
-     * 字体名称来资源有 name表
+     * font name来资源有 name表
      */
     public String fontFamily = null;
-    // 字形样式，如 Regular - 常规；Bold - 加粗； Italic - 斜体
+    // glyph样式，如 Regular - 常规；Bold - 加粗； Italic - 斜体
     public String fontSubFamily = null;
     public String psName = null;
     /**
-     * 用于分析字体宽度的表
+     * 用于分析fontwidth的表
      */
     private HorizontalMetricsTable hmt;
 
     /**
-     * Adobe Compact Font Format, 压缩字体格式
+     * Adobe Compact Font Format, 压缩font格式
      * 在无法使用TTF表格式解析时，尝试采用CFF格式解析。
      */
     private CFFFont cffFont;
 
     /**
-     * Adobe Type1 字体
-     * 开头为 0x80 0x01 或 '%!' 的字体
+     * Adobe Type1 font
+     * 开头为 0x80 0x01 或 '%!' 的font
      */
     private Type1Font type1Font;
 
@@ -104,7 +104,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
 
 
     /**
-     * 创建TTF字体解析器
+     * create TTF font parser
      *
      * @param in 流
      * @return this
@@ -117,9 +117,9 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     }
 
     /**
-     * 创建TTF字体解析器
+     * create TTF font parser
      *
-     * @param buf 读取到内存的字体数据
+     * @param buf 读取到内存的font数据
      * @return this
      * @throws IOException IOE
      */
@@ -129,9 +129,9 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     }
 
     /**
-     * 创建TTF字体解析器
+     * create TTF font parser
      *
-     * @param inPath 字体文件路径
+     * @param inPath fontfile path
      * @return this
      * @throws IOException IOE
      */
@@ -141,9 +141,9 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     }
 
     /**
-     * 解析字体
+     * 解析font
      *
-     * @param raf 随机读取字体
+     * @param raf 随机读取font
      * @return this
      * @throws IOException IOE
      */
@@ -151,7 +151,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
         this.data = raf;
         // Version
         final byte[] version = raf.read(4);
-        // 检查是否是Type1 字体
+        // 检查是否是Type1 font
         if (Type1SegSplitParser.isType1(version)) {
             this.type1Font = Type1SegSplitParser.parse(raf.getOriginalData());
             return this;
@@ -173,15 +173,15 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
 
         /*
             head  头数据
-            maxp  字形数量
+            maxp  glyph数量
             loca  配置参数
-            glyf  字形数据
+            glyf  glyph数据
             CFF   CFF 数据（OpenType/CFF 格式）
          */
         // =========> head
         if (!tables.containsKey("head")) {
             InputStream originalData = raf.getOriginalData();
-            // head 表都不存在的情况，尝试使用CFF格式解析字体
+            // head 表都不存在的情况，尝试使用CFF格式解析font
             List<CFFFont> fonts = new CFFParser().parse(IOUtils.toByteArray(originalData));
             if (fonts != null && !fonts.isEmpty()) {
                 this.cffFont = fonts.get(0);
@@ -193,7 +193,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
 
         // =========> CFF 表（OpenType/CFF 格式）
         if (tables.containsKey("CFF ")) {
-            // CFF 格式字体，不需要 loca/glyf 表
+            // CFF 格式font，不需要 loca/glyf 表
             // 读取 CFF 表
             long cffOffset = tables.get("CFF ")[0];
             long cffLength = tables.get("CFF ")[1];
@@ -203,17 +203,17 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
             List<CFFFont> fonts = new CFFParser().parse(cffData);
             if (fonts != null && !fonts.isEmpty()) {
                 this.cffFont = fonts.get(0);
-                // CFF 字体仍需要从 head 读取 unitsPerEm
+                // CFF font仍需要从 head 读取 unitsPerEm
                 raf.seek(tables.get("head")[0] + 18);
                 unitsPerEm = raf.readUnsignedShort();
 
-                // =========> maxp (CFF 字体也需要读取字形数量)
+                // =========> maxp (CFF font也需要读取glyph数量)
                 if (tables.containsKey("maxp")) {
                     raf.seek(tables.get("maxp")[0] + 4);
                     numGlyphs = raf.readUnsignedShort();
                 }
 
-                // =========> cmap (CFF 字体也需要字符到字形的映射)
+                // =========> cmap (CFF font也需要字符到glyph的映射)
                 if (tables.containsKey("cmap")) {
                     this.cmaps = readCMap(tables.get("cmap")[0], raf);
                 }
@@ -279,7 +279,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
             // GC
             nt = null;
         }
-        // =========> hhea || hmtx 字体宽度
+        // =========> hhea || hmtx fontwidth
         if (tables.containsKey("hhea") && tables.containsKey("hmtx")) {
             final long[] hhOff = tables.get("hhea");
             final long[] hmOff = tables.get("hmtx");
@@ -291,9 +291,9 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     }
 
     /**
-     * 通过字形的Index获取字形数据
+     * 通过glyph的Index获取glyph数据
      *
-     * @param gid 字形Index
+     * @param gid glyphIndex
      * @throws IOException IOE
      */
     @Override
@@ -303,7 +303,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
         }
 
         if (cffFont != null) {
-            // CFF 字体：通过 CFF 获取路径，包装成 GlyphData 返回
+            // CFF font：通过 CFF 获取路径，包装成 GlyphData 返回
             try {
                 Type2CharString cs = this.cffFont.getType2CharString(gid);
                 if (cs != null) {
@@ -313,7 +313,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
             } catch (Exception e) {
                 // 如果获取失败，返回空 GlyphData
                 if (numGlyphs > 0) {
-                    // 仅在有字形时记录警告，避免初始化阶段误报
+                    // 仅在有glyph时记录警告，避免初始化阶segment误报
                     System.err.println("警告: CFF 字体获取字形路径失败, gid=" + gid + ", 原因: " + e.getMessage());
                 }
                 return new GlyphData();
@@ -342,7 +342,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
                 long currentPosition = data.getCurrentPosition();
 
                 data.seek(glyOffset[0] + glyphOffsets[gid]);
-                // 解析字形
+                // 解析glyph
                 glyph = getGlyphData(data, gid);
 
                 // restore
@@ -358,15 +358,15 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     }
 
     /**
-     * 通过字体索引号获取字形绘制路径
+     * 通过font索引号获取glyph绘制路径
      *
-     * @param gid 字形索引号
-     * @return 字形路径或null
-     * @throws IOException 字体解析异常
+     * @param gid glyph索引号
+     * @return glyph路径或null
+     * @throws IOException font解析异常
      */
     @Override
     public GeneralPath getPath(int gid) throws IOException {
-        // 存在CFF的时候采用CFF直接获取字形
+        // 存在CFF的时候采用CFF直接获取glyph
         if (this.cffFont != null) {
             org.apache.fontbox.cff.Type2CharString charString = this.cffFont.getType2CharString(gid);
             return charString != null ? charString.getPath() : null;
@@ -376,11 +376,11 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
 
 
     /**
-     * 从但前偏移量位置读取字形
+     * 从但前偏移量位置读取glyph
      *
-     * @param raf 字体数据
-     * @param gid 字体ID
-     * @return 字形数据
+     * @param raf font数据
+     * @param gid fontID
+     * @return glyph数据
      * @throws IOException IOE
      */
     private GlyphData getGlyphData(TTFDataStream raf, int gid) throws IOException {
@@ -442,14 +442,14 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     }
 
     /**
-     * 获取Unicode到字形的映射表
+     * 获取Unicode到glyph的映射表
      *
      * @return 映射表
-     * @throws IllegalArgumentException 字体没有cmap表
+     * @throws IllegalArgumentException font没有cmap表
      */
     public CmapLookup getUnicodeCmapLookup() {
         if (cmaps == null || cmaps.length == 0) {
-            throw new IllegalArgumentException("字体中没有cmap");
+            throw new IllegalArgumentException("font中没有cmap");
         }
         CmapSubtable cmap = getSubtable(CmapTable.PLATFORM_UNICODE, CmapTable.ENCODING_UNICODE_2_0_FULL);
         if (cmap == null) {
@@ -474,13 +474,13 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
     }
 
     /**
-     * 通过Unicode获取字形数据
+     * 通过Unicode获取glyph数据
      * <p>
      * 如果没有cmap那么返回空白字符
      *
      * @param code unicode
      * @return 字符数据
-     * @throws IOException 字体文件解析异常
+     * @throws IOException fontfile parsing exception
      */
     public GlyphData getUnicodeGlyph(int code) throws IOException {
         int gid;
@@ -495,7 +495,7 @@ public class TrueTypeFont implements GlyphDataProvider,FontDrawPathProvider {
 
 
     /**
-     * 获取变换矩阵
+     * 获取transformation matrix
      *
      * @return 矩阵序列
      */

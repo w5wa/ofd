@@ -15,37 +15,37 @@ import java.nio.file.Path;
 /**
  * 文本转换为OFD
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-3-14 23:09:08
  */
 public class TextConverter implements DocConverter {
 
     /**
-     * OFD文档对象
+     * OFD document object
      */
     final OFDDoc ofdDoc;
 
 
     /**
-     * 字体大小
+     * font size
      */
     double fontSize = 3;
 
     /**
-     * 是否已经关闭
+     * whether the document has been closed
      */
     private boolean closed = false;
 
 
     /**
-     * 创建PDF转换OFD转换器
+     * create PDF-to-OFD converter
      *
-     * @param ofdPath 转换后的OFD文件路径
-     * @throws IOException 文件解析异常
+     * @param ofdPath path to converted OFD file
+     * @throws IOException file parsing exception
      */
     public TextConverter(Path ofdPath) throws IOException {
         if (ofdPath == null) {
-            throw new IllegalArgumentException("转换后的OFD文件路径为空");
+            throw new IllegalArgumentException("path to converted OFD file为空");
         }
 
         ofdPath = ofdPath.toAbsolutePath();
@@ -64,10 +64,10 @@ public class TextConverter implements DocConverter {
     }
 
     /**
-     * 创建PDF转换OFD转换器
+     * create PDF-to-OFD converter
      *
      * @param output 转换后的OFD流，由调用者负责关闭。
-     * @throws IOException 文件解析异常
+     * @throws IOException file parsing exception
      */
     public TextConverter(OutputStream output) throws IOException {
         if (output == null) {
@@ -80,9 +80,9 @@ public class TextConverter implements DocConverter {
     /**
      * 向OFD页面中追加文本
      *
-     * @param filepath 待转换文件路径
-     * @param indexes  忽略
-     * @throws GeneralConvertException 转换异常
+     * @param filepath path to the file to be converted
+     * @param indexes  ignored
+     * @throws GeneralConvertException conversion exception
      */
     @Override
     public void convert(Path filepath, int... indexes) throws GeneralConvertException {
@@ -120,7 +120,7 @@ public class TextConverter implements DocConverter {
     }
 
     /**
-     * 设置字号
+     * set font size
      *
      * @param fontSize 字号，单位：毫米（mm）
      */

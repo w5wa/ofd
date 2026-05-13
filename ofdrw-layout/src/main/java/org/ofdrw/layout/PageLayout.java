@@ -7,9 +7,9 @@ import org.ofdrw.layout.element.ArrayParamTool;
 import java.util.Arrays;
 
 /**
- * 虚拟页面样式
+ * 虚拟page style
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-28 03:25:54
  */
 public class PageLayout {
@@ -59,18 +59,18 @@ public class PageLayout {
     }
 
     /**
-     * 页面宽度
+     * 页面width
      */
     Double width;
     /**
-     * 页面高度
+     * 页面height
      */
     Double height;
 
     /**
      * 外边距
      * <p>
-     * 页边距：上下都是2.54厘米，左右都是3.17厘米。
+     * margins: 2.54 cm top/bottom, 3.17 cm left/right.
      *
      * <p>
      * 上 左 下 右
@@ -157,14 +157,14 @@ public class PageLayout {
     }
 
     /**
-     * @return 实际能放置内容的宽度
+     * @return 实际能放置内容的width
      */
     public double contentWidth() {
         return width - getMarginLeft() - getMarginRight();
     }
 
     /**
-     * @return 实际能放置内容的高度
+     * @return 实际能放置内容的height
      */
     public double contentHeight() {
         return height - getMarginTop() - getMarginBottom();
@@ -173,7 +173,7 @@ public class PageLayout {
     /**
      * 绘制区域原点X
      *
-     * @return 起始X坐标
+     * @return 起始X coordinate
      */
     public double getStartX() {
         return getMarginLeft();
@@ -182,7 +182,7 @@ public class PageLayout {
     /**
      * 绘制区域原点Y
      *
-     * @return 起始Y坐标
+     * @return 起始Y coordinate
      */
     public double getStartY() {
         return getMarginTop();
@@ -202,9 +202,9 @@ public class PageLayout {
     }
 
     /**
-     * 获取OFD页面区域
+     * 获取OFDpage area
      *
-     * @return OFD页面区域
+     * @return OFDpage area
      */
     public CT_PageArea getPageArea() {
         return new CT_PageArea()

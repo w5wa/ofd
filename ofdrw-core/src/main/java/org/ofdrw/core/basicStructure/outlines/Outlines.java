@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 /**
  * 大纲按照树形结构进行组织
  * <p>
- * 图 18 大纲节点结构
+ * 图 18 outline node结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 11:12:39
  */
 public class Outlines extends OFDElement implements Iterable<CT_OutlineElem> {
@@ -25,10 +25,10 @@ public class Outlines extends OFDElement implements Iterable<CT_OutlineElem> {
     }
 
     /**
-     * 【必选】
-     * 增加 大纲节点
+     * [required]
+     * add outline node
      *
-     * @param outlineElem 大纲节点
+     * @param outlineElem outline node
      * @return this
      */
     public Outlines addOutlineElem(CT_OutlineElem outlineElem) {
@@ -37,10 +37,10 @@ public class Outlines extends OFDElement implements Iterable<CT_OutlineElem> {
     }
 
     /**
-     * 【必选】
-     * 增加 大纲节点
+     * [required]
+     * add outline node
      *
-     * @return 大纲节点
+     * @return outline node
      */
     public List<CT_OutlineElem> getOutlineElems() {
         return this.getOFDElements("OutlineElem",CT_OutlineElem::new);

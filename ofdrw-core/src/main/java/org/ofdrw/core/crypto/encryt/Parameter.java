@@ -10,7 +10,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * GMT0099 附录C 图 C.1
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-06-23 19:43:45
  */
 public class Parameter extends OFDElement {
@@ -46,7 +46,7 @@ public class Parameter extends OFDElement {
 
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * 设置  扩展参数名称
      *
      * @param name 扩展参数名称
@@ -61,7 +61,7 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * 设置  扩展参数名称
      *
      * @param name 扩展参数名称
@@ -72,7 +72,7 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * 获取  扩展参数名称
      *
      * @return 扩展参数名称
@@ -87,7 +87,7 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【必选 属性 OFD 2.0】
+     * [required attribute, OFD 2.0]
      * 获取  扩展参数名称
      *
      * @return 扩展参数名称
@@ -98,7 +98,7 @@ public class Parameter extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 设置 扩展参数值
      *
      * @param value 扩展参数值
@@ -114,7 +114,7 @@ public class Parameter extends OFDElement {
 
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 获取 扩展参数值
      *
      * @return 扩展参数值，可能为null

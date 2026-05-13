@@ -12,14 +12,14 @@ public class KeyPairGenerate {
     void gen() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException {
         // 获取SM2椭圆曲线的参数
         final ECGenParameterSpec sm2Spec = new ECGenParameterSpec("sm2p256v1");
-        // 获取一个椭圆曲线类型的密钥对生成器
+        // 获取一个椭圆曲线类型的key对生成器
         final KeyPairGenerator kpg = KeyPairGenerator.getInstance("EC", new BouncyCastleProvider());
         // 使用SM2参数初始化生成器
         kpg.initialize(sm2Spec);
 
-        // 使用SM2的算法区域初始化密钥生成器
+        // 使用SM2的算法区域初始化key生成器
         kpg.initialize(sm2Spec, new SecureRandom());
-        // 获取密钥对
+        // 获取key对
         KeyPair keyPair = kpg.generateKeyPair();
 
         PublicKey pubKey = keyPair.getPublic();

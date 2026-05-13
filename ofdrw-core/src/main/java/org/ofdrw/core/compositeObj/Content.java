@@ -8,7 +8,7 @@ import org.ofdrw.core.basicStructure.pageObj.layer.block.CT_PageBlock;
  * <p>
  * 13 复合对象 表 50
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-27 05:20:54
  */
 public class Content extends CT_PageBlock {

@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * 清理已经存在的命名空间
+ * 清理已经存在的namespace
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-10-15 19:39:20
  */
 class NameSpaceCleanerTest {
@@ -20,7 +20,7 @@ class NameSpaceCleanerTest {
         String src = "src/test/resources/namespace_case.xml";
         SAXReader reader = new SAXReader();
         Document document = reader.read(src);
-        // 清空根节点上已经存在的命名空间
+        // 清空root node上已经存在的namespace
         document.accept(new NameSpaceCleaner());
 
         System.out.println(document.asXML());

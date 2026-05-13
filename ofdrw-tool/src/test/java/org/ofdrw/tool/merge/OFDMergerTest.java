@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * 页面迁移测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-11-10 21:15:31
  */
 class OFDMergerTest {

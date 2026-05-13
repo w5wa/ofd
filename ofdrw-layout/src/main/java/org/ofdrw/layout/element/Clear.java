@@ -1,28 +1,28 @@
 package org.ofdrw.layout.element;
 
 /**
- * 对段的占用情况
+ * 对segment的占用情况
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-03 01:01:38
  */
 public enum Clear {
     /**
-     * 共享: 两侧都允许出现元素。
+     * 共享: 两side都允许出现元素。
      */
     none,
     /**
-     * 左侧不允许出现元素
+     * 左side不允许出现元素
      */
     left,
     /**
-     * 右侧不允许出现元素
+     * 右side不允许出现元素
      */
     right,
     /**
-     * 两侧不允许出现元素
+     * 两side不允许出现元素
      * <p>
-     * 默认值
+     * default value
      */
     both;
 }

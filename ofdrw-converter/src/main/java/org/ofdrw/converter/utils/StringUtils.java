@@ -6,10 +6,10 @@ public class StringUtils {
     }
 
     /**
-     * 移除字符串前后的换行符
+     * 移除string前后的换行符
      *
-     * @param str 字符串
-     * @return 移除后的字符串
+     * @param str string
+     * @return 移除后的string
      */
     public static String removeNewline(String str) {
         if (str == null) {

@@ -3,9 +3,9 @@ package org.ofdrw.sign.verify.exceptions;
 
 
 /**
- * 文件未签章异常
+ * 文件未seal/signature异常
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-22 11:01:18
  */
 public class DocNotSignException extends OFDVerifyException {

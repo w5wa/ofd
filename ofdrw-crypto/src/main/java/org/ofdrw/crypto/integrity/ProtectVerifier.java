@@ -9,7 +9,7 @@ import java.security.GeneralSecurityException;
  * <p>
  * 中签名方案验证内容
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-24 19:34:22
  */
 @FunctionalInterface
@@ -18,14 +18,14 @@ public interface ProtectVerifier {
     /**
      * 根据 GM/T 0099  OFD完整性保护协议 执行完整性保护 7.4.6
      * <p>
-     * b) 根据签名方案，调用杂凑算法计算完整性保护文件得到杂凑值
-     * c) 读取签名值文件，进行签名验证
+     * b) based on the signature scheme, call the hash algorithm to compute the hash of the integrity protection file
+     * c) read signature value file and perform signature verification
      *
-     * @param ofdEntriesXmlPath 防夹带文件路径
-     * @param signedValue 待验证的签名值，数据结构参照 《GM/T 0099 2020》 7.4.3 密码算法要求
-     * @return 签名值验证结果
-     * @throws GeneralSecurityException 安全计算异常
-     * @throws IOException              IO读写异常
+     * @param ofdEntriesXmlPath 防夹带file path
+     * @param signedValue 待验证的signature value，数据结构参照 《GM/T 0099 2020》 7.4.3 密码算法要求
+     * @return signature value验证结果
+     * @throws GeneralSecurityException security computation exception
+     * @throws IOException              IO read/write exception
      */
     boolean digestThenVerify(Path ofdEntriesXmlPath,byte[] signedValue) throws GeneralSecurityException, IOException;
 }

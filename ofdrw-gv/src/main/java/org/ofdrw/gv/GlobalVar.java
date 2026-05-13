@@ -3,7 +3,7 @@ package org.ofdrw.gv;
 /**
  * OFDRW 全局变量
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 19:22:33
  */
 final public class GlobalVar {

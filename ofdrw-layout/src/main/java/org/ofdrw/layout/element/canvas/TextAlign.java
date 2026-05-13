@@ -3,7 +3,7 @@ package org.ofdrw.layout.element.canvas;
 /**
  * 文本内容的当前对齐方式
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-10 18:05:47
  */
 public enum TextAlign {

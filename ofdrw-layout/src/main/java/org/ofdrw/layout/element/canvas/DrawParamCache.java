@@ -11,11 +11,11 @@ import org.ofdrw.layout.engine.ResManager;
 
 
 /**
- * 绘制参数缓存
+ * drawing parameters缓存
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-18 20:45:32
- * @deprecated 通过资源管理解决绘制参数重复问题，该缓存结构冗余因此弃用。
+ * @deprecated 通过资源管理解决drawing parameters重复问题，该缓存结构冗余因此弃用。
  */
 @Deprecated
 public class DrawParamCache {
@@ -159,12 +159,12 @@ public class DrawParamCache {
 
 
     /**
-     * 构造绘制参数并加入资源中
+     * 构造drawing parameters并加入资源中
      * <p>
-     * 如果绘制参数内部属性没有修改过，那么不会重复加入资源
+     * 如果drawing parameters内部属性没有修改过，那么不会重复加入资源
      *
-     * @param resManager 资源管理器
-     * @return 绘制参数对象
+     * @param resManager resource manager
+     * @return drawing parameters对象
      */
     public ST_ID addToResource(ResManager resManager) {
         if (cache == null) {
@@ -196,7 +196,7 @@ public class DrawParamCache {
             if (strokeColor != null) {
                 cache.setStrokeColor(CT_Color.rgb(strokeColor));
             }
-            // 加入到资源问价中并且返还对象ID
+            // 加入到资源问价中并且返还object ID
             return resManager.addDrawParam(cache);
         }
         return cache.getID();

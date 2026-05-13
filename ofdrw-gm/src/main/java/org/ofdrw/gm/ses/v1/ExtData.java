@@ -7,25 +7,25 @@ import java.util.Enumeration;
 /**
  * 厂商自定义数据
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 15:22:12
  */
 public class ExtData extends ASN1Object {
 
     /**
-     * 自定义扩展字段标识
+     * 自定义扩展字segment标识
      */
     private ASN1ObjectIdentifier extnID;
 
     /**
-     * 自定义扩展字段是否关键
+     * 自定义扩展字segment是否关键
      * <p>
      * 默认值FALSE
      */
     private ASN1Boolean critical = ASN1Boolean.FALSE;
 
     /**
-     * 自定义扩展字段数据值
+     * 自定义扩展字segment数据值
      */
     private ASN1OctetString extnValue;
 

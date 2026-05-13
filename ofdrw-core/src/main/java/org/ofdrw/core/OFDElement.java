@@ -14,24 +14,24 @@ import java.util.stream.Collectors;
 
 
 /**
- * 文件根节点
+ * file root node
  * <p>
- * XML文档使用的命名空间为 http://www.ofdspec.org/2016，其表示符应为 ofd；
- * 应在包内各XML文档的根节点申明 defaults:ofd。
- * 元素节点应使用命名空间标识符，元素属性不使用命名空间标识符。
- * ————《GB/T 33190-2016》 7.1 命名空间
+ * XML document使用的namespace为 http://www.ofdspec.org/2016，其表示符应为 ofd；
+ * 应在XML documents within the package的root node declaration defaults:ofd。
+ * element node应使用namespace identifier，element attribute不使用namespace identifier。
+ * — GB/T 33190-2016, Section 7.1: Namespaces
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-28 12:05:55
  */
 public class OFDElement extends DefaultElementProxy {
 
     /**
-     * 命名空间严格模式
+     * namespace strict mode
      * <p>
-     * true - 严格使用OFD空间获取OFD元素
+     * true - strictly useOFD namespace获取OFD element
      * <p>
-     * false - 只要元素名称相同则认为是OFD元素（默认值）
+     * false - as long as the element name is the same则considered an OFD element（默认值）
      */
     public static boolean NSStrictMode = false;
 
@@ -45,18 +45,18 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * @param name 元素名称
-     * @return 获取OFD类型元素实例
+     * @param name element name
+     * @return 获取OFD type elementinstance
      */
     public static OFDElement getInstance(String name) {
         return new OFDElement(name);
     }
 
     /**
-     * 向元素中增加OFD元素
+     * 向in elementadd OFD element
      *
-     * @param name  元素名称
-     * @param value 元素文本
+     * @param name  element name
+     * @param value element text content
      * @return this
      */
     public OFDElement addOFDEntity(String name, Serializable value) {
@@ -67,12 +67,12 @@ public class OFDElement extends DefaultElementProxy {
     /**
      * 设置OFD参数
      * <p>
-     * 如果参数已经存在则修改参数
+     * 如果if parameter exists, modify it
      * <p>
-     * 如果需要删除元素，请使用 {@link #removeOFDElemByNames}
+     * 如果need to delete element，请使用 {@link #removeOFDElemByNames}
      *
-     * @param name  元素名称
-     * @param value 元素文本
+     * @param name  element name
+     * @param value element text content
      * @return this
      */
     public OFDElement setOFDEntity(String name, Serializable value) {
@@ -86,9 +86,9 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 设置 元素名称
+     * 设置 element name
      *
-     * @param name 元素名称
+     * @param name element name
      * @return this
      */
     public OFDElement setOFDName(String name) {
@@ -97,12 +97,12 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 获取OFD的元素
+     * 获取OFD element
      * <p>
-     * 若无法在OFD命名空间下获取同名元素，则尝试从默认命名空间获取。
+     * 若无法在OFD namespace下get element with same name，则尝试从default namespace获取。
      *
-     * @param name OFD元素名称
-     * @return OFD元素或null
+     * @param name OFDelement name
+     * @return OFD element or null
      */
     public Element getOFDElement(String name) {
         Element res;
@@ -116,12 +116,12 @@ public class OFDElement extends DefaultElementProxy {
 
 
     /**
-     * 代理对象创建
+     * proxy object creation
      *
-     * @param name   元素名称
-     * @param mapper 代理对象构造器
-     * @param <R>    元素类型
-     * @return 代理对象
+     * @param name   element name
+     * @param mapper proxy object constructor
+     * @param <R>    element type
+     * @return proxy object
      */
     public <R extends OFDElement> R getOFDElement(String name, Function<? super Element, ? extends R> mapper) {
         Element e = this.getOFDElement(name);
@@ -134,8 +134,8 @@ public class OFDElement extends DefaultElementProxy {
     /**
      * 如果属性存在则删除
      *
-     * @param name 属性名
-     * @return true 删除成功；false 删除失败，可能是由于属性不存在
+     * @param name attribute name
+     * @return true deleted; false = deletion failed，可能是由于attribute does not exist
      */
     public boolean removeAttr(String name) {
         Attribute a = this.attribute(name);
@@ -146,10 +146,10 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 获取OFD元素中的文本
+     * 获取text content of OFD element
      *
-     * @param name 元素名称
-     * @return 文本
+     * @param name element name
+     * @return text content
      */
     public String getOFDElementText(String name) {
         Element element = getOFDElement(name);
@@ -157,16 +157,16 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 获取 指定名称OFD元素集合
+     * 获取 OFD element collection with specified name
      * <p>
      * 集合将会保持原有次序
      * <p>
-     * 若容器内的元素非OFD命名空间，但是名字相同也会被取到
+     * 若容器内的element not in OFD namespace，但是names are the same也会被取到
      *
-     * @param name   OFD元素名称
-     * @param mapper 转换对象构造器引用
-     * @param <R>    指定元素对象
-     * @return 指定名称OFD元素集合
+     * @param name   OFDelement name
+     * @param mapper converter object constructor reference
+     * @param <R>    指定element object
+     * @return OFD element collection with specified name
      */
     public <R> List<R> getOFDElements(String name, Function<? super Element, ? extends R> mapper) {
         List<Element> c;
@@ -185,16 +185,16 @@ public class OFDElement extends DefaultElementProxy {
 
 
     /**
-     * 获取 指定名称OFD元素集合
+     * 获取 OFD element collection with specified name
      * <p>
      * 集合将会保持原有次序
      * qname匹配的时候不再验证namespace，兼容namespace为空的情况。
      *
-     * @param name   OFD元素名称
-     * @param mapper 转换对象构造器引用
-     * @param <R>    指定元素对象
-     * @return 指定名称OFD元素集合
-     * @deprecated {@link #getOFDElements}已经兼容非标准命名空间
+     * @param name   OFDelement name
+     * @param mapper converter object constructor reference
+     * @param <R>    指定element object
+     * @return OFD element collection with specified name
+     * @deprecated {@link #getOFDElements}已经兼容非标准namespace
      */
     @Deprecated
     public <R> List<R> getElements(String name, Function<? super Element, ? extends R> mapper) {
@@ -229,10 +229,10 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 根据 OFD元素的名称删除节点内所有匹配的OFD元素
+     * 根据 OFD element的名称删除节点内所有匹配的OFD element
      *
-     * @param names 需要被删除元素名称序列
-     * @return 被删除的所有OFD元素
+     * @param names 需要被删除element name序列
+     * @return 被删除的所有OFD element
      */
     public List<Element> removeOFDElemByNames(String... names) {
         List<Element> deleteElements = new LinkedList<>();
@@ -258,11 +258,11 @@ public class OFDElement extends DefaultElementProxy {
 
 
     /**
-     * 【可选】
+     * [optional]
      * <p>
-     * 设置 OFD对象标识，无符号整数，应在文档内唯一。
+     * set OFD object identifier, an unsigned integer that must be unique within the document.
      * <p>
-     * 0标识无效标识符
+     * 0 indicates invalid identifier
      *
      * @param objId OFD对象标识
      * @return this
@@ -277,11 +277,11 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * <p>
-     * 设置 OFD对象标识，无符号整数，应在文档内唯一。
+     * set OFD object identifier, an unsigned integer that must be unique within the document.
      *
-     * @param id OFD对象标识，请确保id为数字字符串
+     * @param id OFD对象标识，请确保id为numberstring
      * @return this
      */
     public OFDElement setObjID(String id) {
@@ -290,7 +290,7 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 移除元素中所有内容
+     * 移除in element所有内容
      *
      * @return this
      */
@@ -300,11 +300,11 @@ public class OFDElement extends DefaultElementProxy {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * <p>
-     * 设置 OFD对象标识，无符号整数，应在文档内唯一。
+     * set OFD object identifier, an unsigned integer that must be unique within the document.
      * <p>
-     * 0标识无效标识符
+     * 0 indicates invalid identifier
      *
      * @return OFD对象标识，null表示对象标识不存在
      */
@@ -314,9 +314,9 @@ public class OFDElement extends DefaultElementProxy {
 
 
     /**
-     * OFD元素采用OFD的命名空间，所以直接调用代理对象
+     * OFD element采用OFD namespace，所以直接调用proxy object
      *
-     * @return 元素全名（含有前缀）
+     * @return fully qualified element name (with prefix)
      */
     @Override
     public String getQualifiedName() {

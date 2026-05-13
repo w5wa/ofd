@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * 图 73 动作类型结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 11:34:07
  */
 public class CT_Action extends OFDElement {
@@ -31,7 +31,7 @@ public class CT_Action extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 事件类型
      * <p>
      * 触发动作的条件，事件的具体类型见表 52 {@link EventType}
@@ -45,7 +45,7 @@ public class CT_Action extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 事件类型
      * <p>
      * 触发动作的条件，事件的具体类型见表 52  {@link EventType}
@@ -57,7 +57,7 @@ public class CT_Action extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 多个复杂区域为该链接对象的启动区域
      * <p>
      * 该参数不出现时以所在图元或页面的外接矩形作为启动区域，见 9.3
@@ -71,7 +71,7 @@ public class CT_Action extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 多个复杂区域为该链接对象的启动区域
      * <p>
      * 该参数不出现时以所在图元或页面的外接矩形作为启动区域，见 9.3
@@ -84,7 +84,7 @@ public class CT_Action extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 动作
      *
      * @param action 动作
@@ -98,7 +98,7 @@ public class CT_Action extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 获取 动作
      * <p>
      * 可通过 instanceof 判断动作的具体类型

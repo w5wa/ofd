@@ -3,9 +3,9 @@ package org.ofdrw.core.pageDescription.color.color;
 /**
  * 渐变绘制的方式
  * <p>
- * 8.3.4.2 轴向渐变 图 29、30 表 29
+ * 8.3.4.2 Axial Gradient - Figure 29, 30, Table 29
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-31 06:57:29
  */
 public enum MapType {

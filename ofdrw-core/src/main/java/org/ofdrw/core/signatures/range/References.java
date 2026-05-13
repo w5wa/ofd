@@ -11,7 +11,7 @@ import java.util.List;
  * <p>
  * 18.2.2 签名的范围 图 87 表 68
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-21 17:57:19
  */
 public class References extends OFDElement {
@@ -24,7 +24,7 @@ public class References extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 摘要方法
      * <p>
      * 视应用场景的不同使用不同的摘要方法。
@@ -43,7 +43,7 @@ public class References extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 摘要方法
      * <p>
      * 视应用场景的不同使用不同的摘要方法。
@@ -56,7 +56,7 @@ public class References extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 针对一个文件的摘要节点
      *
      * @param reference 针对一个文件的摘要节点
@@ -71,9 +71,9 @@ public class References extends OFDElement {
     }
 
     /**
-     * 检查是否包含文件
+     * 检查是否contains文件
      *
-     * @param absLoc 文件绝对路径
+     * @param absLoc 文件absolute path
      * @return true - 含有文件；false - 不含
      */
     public boolean hasFile(String absLoc) {
@@ -89,7 +89,7 @@ public class References extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 针对一个文件的摘要节点列表
      *
      * @return 针对一个文件的摘要节点列表

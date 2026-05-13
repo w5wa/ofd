@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 外壳对象，用于解决 lambda语法作用域导致的赋值问题。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2022-03-04 22:07:53
  */
 public final class Holder<T> implements Serializable {

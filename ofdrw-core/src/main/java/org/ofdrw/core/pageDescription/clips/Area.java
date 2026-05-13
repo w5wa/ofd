@@ -8,10 +8,10 @@ import org.ofdrw.core.basicType.ST_RefID;
 import java.util.List;
 
 /**
- * 裁剪区域
+ * clipping area
  * <p>
- * 用一个图形或文字对象来描述裁剪区的一个组成部分，
- * 最终裁剪区是这些区域的并集。
+ * 用一个图形或text object来描述裁剪区的一个组成部分，
+ * the final clipping area is the union of these regions.
  * <p>
  * 8.4 裁剪区 表 33
  */
@@ -26,13 +26,13 @@ public class Area extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 引用资源文件中的绘制参数的标识
+     * [optional attribute]
+     * 设置 引用resource file中的drawing parameters的标识
      * <p>
      * 线宽、结合点和端点样式等绘制特性对裁剪效果会产生影响，
-     * 有关绘制参数的描述见 8.2
+     * 有关drawing parameters的描述见 8.2
      *
-     * @param drawParam 引用资源文件中的绘制参数的标识
+     * @param drawParam 引用resource file中的drawing parameters的标识
      * @return this
      */
     public Area setDrawParam(ST_RefID drawParam) {
@@ -41,25 +41,25 @@ public class Area extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 引用资源文件中的绘制参数的标识
+     * [optional attribute]
+     * 获取 引用resource file中的drawing parameters的标识
      * <p>
      * 线宽、结合点和端点样式等绘制特性对裁剪效果会产生影响，
-     * 有关绘制参数的描述见 8.2
+     * 有关drawing parameters的描述见 8.2
      *
-     * @return 引用资源文件中的绘制参数的标识
+     * @return 引用resource file中的drawing parameters的标识
      */
     public ST_RefID getDrawParam() {
         return ST_RefID.getInstance(this.attributeValue("DrawParam"));
     }
 
     /**
-     * 【可选 属性】
-     * 设置 变换矩阵
+     * [optional attribute]
+     * 设置 transformation matrix
      * <p>
-     * 针对对象坐标系，对Area下包含的 Path 和 Text 进行进一步的变换
+     * 针对对象坐标系，对Area下contains的 Path 和 Text 进行进一步的变换
      *
-     * @param ctm 变换矩阵
+     * @param ctm transformation matrix
      * @return this
      */
     public Area setCTM(ST_Array ctm) {
@@ -68,12 +68,12 @@ public class Area extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 变换矩阵
+     * [optional attribute]
+     * 获取 transformation matrix
      * <p>
-     * 针对对象坐标系，对Area下包含的 Path 和 Text 进行进一步的变换
+     * 针对对象坐标系，对Area下contains的 Path 和 Text 进行进一步的变换
      *
-     * @return 变换矩阵
+     * @return transformation matrix
      */
     public ST_Array getCTM() {
         return ST_Array.getInstance(this.attributeValue("CTM"));
@@ -81,7 +81,7 @@ public class Area extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 裁剪对象
      * <p>
      * 裁剪对象可以是 CT_Text、CT_Path
@@ -95,7 +95,7 @@ public class Area extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 裁剪对象
      * <p>
      * 裁剪对象可以是 CT_Text、CT_Path

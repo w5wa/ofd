@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * 测试验证OFD完整性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-24 19:45:25
  */
 class OFDIntegrityVerifierTest {
@@ -26,7 +26,7 @@ class OFDIntegrityVerifierTest {
         Path in = Paths.get("src/test/resources/hello-integrity.ofd");
         // 1. 创建OFD完整性验证器。
         OFDIntegrityVerifier ofdIntegrityVerifier = new OFDIntegrityVerifier();
-        // 2. 创建用于验证签名值的验证器。
+        // 2. 创建用于验证signature value的验证器。
         GMProtectVerifier gmProtectVerifier = new GMProtectVerifier();
         // 3. 执行完整性验证，获取验证结果。
         final boolean integrity = ofdIntegrityVerifier.integrity(in, gmProtectVerifier);

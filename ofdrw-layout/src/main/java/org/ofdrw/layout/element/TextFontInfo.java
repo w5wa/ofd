@@ -3,15 +3,15 @@ package org.ofdrw.layout.element;
 import org.ofdrw.font.Font;
 
 /**
- * 文本字体信息
+ * 文本font信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-07 19:18:43
  */
 public interface TextFontInfo {
     /**
-     * 获取字体对象
-     * @return 字体对象
+     * 获取font object
+     * @return font object
      */
     Font getFont();
 

@@ -43,7 +43,7 @@ public class ParagraphTest {
     }
 
     /**
-     * 字体大小溢出测试
+     * font大小溢出测试
      */
     @Test
     public void doPrepare2() {

@@ -1,11 +1,11 @@
 package org.ofdrw.sign;
 
 /**
- * 签名终止异常
+ * signature terminated exception
  * <p>
  * 表示该文档不允许在进行签名
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-17 03:10:39
  */
 public class SignatureTerminateException extends SignatureException {

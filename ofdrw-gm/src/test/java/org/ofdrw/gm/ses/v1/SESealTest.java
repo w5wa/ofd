@@ -20,11 +20,11 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * V1 版本电子印章构造
+ * V1 版本电子seal/stamp构造
  * <p>
- * 注意：该方法只用于生成测试数据，电子印章请使用符合国家规范的电子印章服务器生成管理！
+ * 注意：该方法只用于生成测试数据，电子seal/stamp请使用符合国家规范的电子seal/stamp服务器生成管理！
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-21 10:16:02
  */
 public class SESealTest {
@@ -35,9 +35,9 @@ public class SESealTest {
 
 
     /**
-     * 构造测试用电子印章
+     * 构造测试用电子seal/stamp
      * <p>
-     * 注意：该方法只用于生成测试数据，电子印章请使用符合国家规范的电子印章服务器生成管理！
+     * 注意：该方法只用于生成测试数据，电子seal/stamp请使用符合国家规范的电子seal/stamp服务器生成管理！
      */
     @Test
     void sealBuild() throws Exception {
@@ -50,9 +50,9 @@ public class SESealTest {
         SES_Header header = new SES_Header(new ASN1Integer(1), new DERIA5String("OFDR&WTest"));
 
         /*
-         * 印章属性信息构造
+         * seal attribute information构造
          */
-        // 获取用户证书
+        // 获取user certificate
         Certificate userCert = PKCS12Tools.ReadUserCert(userP12, "private", "777777");
         ASN1EncodableVector v = new ASN1EncodableVector(1);
         v.add(new DEROctetString(userCert.getEncoded()));
@@ -68,7 +68,7 @@ public class SESealTest {
                 .setValidEnd(new ASN1UTCTime(then.getTime()));
 
         /*
-         * 印章图片信息 构造
+         * seal/stampimage信息 构造
          */
         SES_ESPictrueInfo picture = new SES_ESPictrueInfo()
                 .setType("PNG")
@@ -77,7 +77,7 @@ public class SESealTest {
                 .setHeight(40);
 
         /*
-         * 印章信息构造
+         * seal/stamp信息构造
          */
         SES_SealInfo sealInfo = new SES_SealInfo()
                 .setHeader(header)
@@ -85,13 +85,13 @@ public class SESealTest {
                 .setProperty(property)
                 .setPicture(picture);
         /*
-         * 电子签章数据构造
+         * 电子seal/signature数据构造
          */
         Certificate sealerCert = PKCS12Tools.ReadUserCert(sealerP12, "private", "777777");
         PrivateKey privateKey = PKCS12Tools.ReadPrvKey(sealerP12, "private", "777777");
         DEROctetString signCert = new DEROctetString(sealerCert.getEncoded());
 
-        // 印章信息、制章人证书、签名算法标识符组成的信息作为签名原文
+        // seal/stamp信息、制章人certificate、signature algorithm identifier组成的信息作为签名原文
         v = new ASN1EncodableVector(3);
         v.add(sealInfo);
         v.add(signCert);

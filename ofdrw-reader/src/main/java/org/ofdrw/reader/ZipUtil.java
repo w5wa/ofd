@@ -43,9 +43,9 @@ public class ZipUtil {
     /**
      * 解压到指定目录
      *
-     * @param zipPath 需要解压的文件路径
-     * @param descDir 解压到目录
-     * @throws IOException 文件操作IO异常
+     * @param zipPath 需要解压的file path
+     * @param descDir directory to decompress to
+     * @throws IOException file IO exception
      */
     public static void unZipFiles(String zipPath, String descDir) throws IOException {
         unZipFiles(new File(zipPath), descDir);
@@ -55,8 +55,8 @@ public class ZipUtil {
      * 解压文件到指定目录
      *
      * @param src     压缩文件流
-     * @param descDir 解压到目录
-     * @throws IOException 文件操作IO异常
+     * @param descDir directory to decompress to
+     * @throws IOException file IO exception
      */
     public static void unZipFiles(InputStream src, String descDir) throws IOException {
         unZipFileByApacheCommonCompress(src, descDir);
@@ -66,8 +66,8 @@ public class ZipUtil {
      * 解压文件到指定目录
      *
      * @param zipFile 需要解压的文件
-     * @param descDir 解压到目录
-     * @throws IOException 文件操作IO异常
+     * @param descDir directory to decompress to
+     * @throws IOException file IO exception
      */
     public static void unZipFiles(File zipFile, String descDir) throws IOException {
         unZipFileByApacheCommonCompress(zipFile, descDir);
@@ -77,12 +77,12 @@ public class ZipUtil {
      * 使用apache common compress库 解压zipFile，能支持更多zip包解压的特性
      *
      * @param srcFile 带解压的源文件
-     * @param descDir 解压到目录
-     * @throws IOException IO异常
+     * @param descDir directory to decompress to
+     * @throws IOException IO exception
      */
     public static void unZipFileByApacheCommonCompress(File srcFile, String descDir) throws IOException {
         if (srcFile == null || srcFile.exists() == false) {
-            throw new IOException("解压文件不存在: " + srcFile);
+            throw new IOException("解压file not found: " + srcFile);
         }
         try (FileInputStream fin = new FileInputStream(srcFile)) {
             unZipFileByApacheCommonCompress(fin, descDir);
@@ -93,8 +93,8 @@ public class ZipUtil {
      * apache common compress库 解压zipFile
      *
      * @param src     带解压的源文件流
-     * @param descDir 解压到目录
-     * @throws IOException IO异常
+     * @param descDir directory to decompress to
+     * @throws IOException IO exception
      */
     public static void unZipFileByApacheCommonCompress(InputStream src, String descDir) throws IOException {
         Path pathFile = Files.createDirectories(Paths.get(descDir));
@@ -126,7 +126,7 @@ public class ZipUtil {
                 }
             }
         } catch (EOFException e) {
-            //捕获异常的文件结尾，部份OFD压缩包会报此错误，忽略异常结尾以期望可以继续处理该OFD文件
+            //捕获异常的文件结尾，部份OFD压缩包会报此错误，ignored异常结尾以期望可以继续处理该OFD file
         }
     }
 }

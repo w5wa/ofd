@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
  * <p>
  * 8.3 颜色 表 25
  * <p>
- * 调色板中颜色的索引编号从 0 开始
+ * color index numbers in the palette start from 0
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-11 08:30:07
  */
 public class Palette extends OFDElement {
@@ -29,7 +29,7 @@ public class Palette extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * <p>
      * 设置 调色板中的预定义颜色
      *
@@ -69,11 +69,11 @@ public class Palette extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * <p>
      * 获取 调色板中的预定义颜色
      * <p>
-     * 调色板中颜色的索引编号从 0 开始
+     * color index numbers in the palette start from 0
      *
      * <p>
      * tip：只读

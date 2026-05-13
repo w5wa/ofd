@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 文档公共数据结构
+ * document common data structure
  * <p>
  * ————《GB/T 33190-2016》 图 6
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-04 07:46:11
  */
 public class CT_CommonData extends OFDElement {
@@ -29,14 +29,14 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 当前文档中所有对象使用标识的最大值。
-     * 初始值为 0。MaxUnitID主要用于文档编辑，
-     * 在向文档增加一个新对象时，需要分配一个
-     * 新的标识符，新标识符取值宜为 MaxUnitID + 1，
-     * 同时需要修改此 MaxUnitID值。
+     * [required]
+     * set maximum identifier value for all objects in the current document.
+     * initial value: 0. MaxUnitID is mainly used for document editing;
+     * when adding a new object to the document, a new
+     * identifier must be allocated; the new identifier should be MaxUnitID + 1,
+     * and this MaxUnitID value must be updated accordingly.
      *
-     * @param maxUnitID 对象标识符最大值
+     * @param maxUnitID maximum object identifier value
      * @return this
      */
     public CT_CommonData setMaxUnitID(ST_ID maxUnitID) {
@@ -45,14 +45,14 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 当前文档中所有对象使用标识的最大值。
-     * 初始值为 0。MaxUnitID主要用于文档编辑，
-     * 在向文档增加一个新对象时，需要分配一个
-     * 新的标识符，新标识符取值宜为 MaxUnitID + 1，
-     * 同时需要修改此 MaxUnitID值。
+     * [required]
+     * set maximum identifier value for all objects in the current document.
+     * initial value: 0. MaxUnitID is mainly used for document editing;
+     * when adding a new object to the document, a new
+     * identifier must be allocated; the new identifier should be MaxUnitID + 1,
+     * and this MaxUnitID value must be updated accordingly.
      *
-     * @param maxUnitID 对象标识符最大值
+     * @param maxUnitID maximum object identifier value
      * @return this
      */
     public CT_CommonData setMaxUnitID(long maxUnitID) {
@@ -60,7 +60,7 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 当前文档中所有对象使用标识的最大值
      *
      * @return 当前文档中所有对象使用标识的最大值0
@@ -70,10 +70,10 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 设置 该文档页面区域的默认大小和位置
+     * [required]
+     * 设置 该文档page area的默认大小和位置
      *
-     * @param pageArea 文档页面区域的默认大小和位置
+     * @param pageArea 文档page area的默认大小和位置
      * @return this
      */
     public CT_CommonData setPageArea(CT_PageArea pageArea) {
@@ -82,10 +82,10 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 获取 该文档页面区域的默认大小和位置
+     * [required]
+     * 获取 该文档page area的默认大小和位置
      *
-     * @return 该文档页面区域的默认大小和位置
+     * @return 该文档page area的默认大小和位置
      */
     public CT_PageArea getPageArea() {
         Element e = this.getOFDElement("PageArea");
@@ -93,13 +93,13 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 公共资源序列 路径 (如果已经存在PublicRes那么替换)
+     * [optional]
+     * 设置 public resource sequence 路径 (如果已经存在PublicRes那么替换)
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，字形和颜色空间等宜在公共资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys see section 7.9; glyphs, color spaces, etc. should be described in public resource files
      *
-     * @param publicRes 公共资源序列
+     * @param publicRes public resource sequence
      * @return this
      */
     public CT_CommonData setPublicRes(ST_Loc publicRes) {
@@ -108,26 +108,26 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 公共资源序列(列表中的第一个PublicRes)
+     * [optional]
+     * 获取 public resource sequence(列表中的第一个PublicRes)
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，字形和颜色空间等宜在公共资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys see section 7.9; glyphs, color spaces, etc. should be described in public resource files
      *
-     * @return 公共资源序列路径
+     * @return public resource sequence path
      */
     public ST_Loc getPublicRes() {
         return ST_Loc.getInstance(this.getOFDElementText("PublicRes"));
     }
 
     /**
-     * 【可选】
-     * 添加 公共资源序列 路径
+     * [optional]
+     * 添加 public resource sequence 路径
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，字形和颜色空间等宜在公共资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys see section 7.9; glyphs, color spaces, etc. should be described in public resource files
      *
-     * @param publicRes 公共资源序列
+     * @param publicRes public resource sequence
      * @return this
      */
     public CT_CommonData addPublicRes(ST_Loc publicRes) {
@@ -140,15 +140,15 @@ public class CT_CommonData extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 获取 公共资源 序列
+     * [optional]
+     * 获取 public resource 序列
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，字形和颜色空间等宜在公共资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys see section 7.9; glyphs, color spaces, etc. should be described in public resource files
      * <p>
      * PublicRes 数量为 0~n
      *
-     * @return 公共资源序列路径
+     * @return public resource sequence path
      */
     public List<ST_Loc> getPublicResList() {
         return this.getOFDElements("PublicRes", OFDElement::new)
@@ -158,14 +158,14 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 文件资源序列 路径（DocumentRes已经存在那么替换）
+     * [optional]
+     * 设置 file resource sequence path（DocumentRes已经存在那么替换）
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，
-     * 绘制参数、多媒体和矢量图像等宜在文件资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys, see section 7.9,
+     * drawing parameters, multimedia, vector images, etc. should be described in file resource files
      *
-     * @param documentRes 公共资源序列
+     * @param documentRes public resource sequence
      * @return this
      */
     public CT_CommonData setDocumentRes(ST_Loc documentRes) {
@@ -174,14 +174,14 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 添加 文件资源序列 路径
+     * [optional]
+     * 添加 file resource sequence path
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，
-     * 绘制参数、多媒体和矢量图像等宜在文件资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys, see section 7.9,
+     * drawing parameters, multimedia, vector images, etc. should be described in file resource files
      *
-     * @param documentRes 公共资源序列
+     * @param documentRes public resource sequence
      * @return this
      */
     public CT_CommonData addDocumentRes(ST_Loc documentRes) {
@@ -193,30 +193,30 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 文件资源序列 路径
+     * [optional]
+     * 获取 file resource sequence path
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，
-     * 绘制参数、多媒体和矢量图像等宜在文件资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys, see section 7.9,
+     * drawing parameters, multimedia, vector images, etc. should be described in file resource files
      *
-     * @return 文件资源序列 路径
+     * @return file resource sequence path
      */
     public ST_Loc getDocumentRes() {
         return ST_Loc.getInstance(this.getOFDElementText("DocumentRes"));
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 文件资源序列
      * <p>
-     * 公共资源序列，每个节点指向OFD包内的一个资源描述文件，
-     * 源部分的描述键见 7.9，
-     * 绘制参数、多媒体和矢量图像等宜在文件资源文件中描述
+     * public resource sequence; each node points to a resource description file within the OFD package,
+     * for source description keys, see section 7.9,
+     * drawing parameters, multimedia, vector images, etc. should be described in file resource files
      * <p>
      * DocumentRes 数量为 0~n
      *
-     * @return 文件资源序列 路径
+     * @return file resource sequence path
      */
     public List<ST_Loc> getDocumentResList() {
         return this.getOFDElements("DocumentRes", OFDElement::new)
@@ -226,10 +226,10 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 增加 模板页序列
      * <p>
-     * 为一些列的模板页的集合，模板页内容机构和普通页相同，描述将7.7
+     * a collection of template pages with the same content structure as normal pages; see section 7.7
      *
      * @param templatePage 模板页序列
      * @return this
@@ -240,10 +240,10 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 模板页序列
      * <p>
-     * 为一些列的模板页的集合，模板页内容机构和普通页相同，描述将7.7
+     * a collection of template pages with the same content structure as normal pages; see section 7.7
      *
      * @return 模板页序列 (可能为空容器)
      */
@@ -252,12 +252,12 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 引用在资源文件中定义的颜色标识符
+     * [optional]
+     * 设置 引用在resource file中定义的颜色标识符
      * <p>
-     * 有关颜色空间的描述见 8.3.1。如果不存在此项，采用RGB作为默认颜色空间
+     * see section 8.3.1 for color space description; if absent, RGB is used as default
      *
-     * @param defaultCS 颜色空间引用
+     * @param defaultCS color space引用
      * @return this
      */
     public CT_CommonData setDefaultCS(ST_RefID defaultCS) {
@@ -266,12 +266,12 @@ public class CT_CommonData extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 引用在资源文件中定义的颜色标识符
+     * [optional]
+     * 获取 引用在resource file中定义的颜色标识符
      * <p>
-     * 有关颜色空间的描述见 8.3.1。如果不存在此项，采用RGB作为默认颜色空间
+     * see section 8.3.1 for color space description; if absent, RGB is used as default
      *
-     * @return 颜色空间引用
+     * @return color space引用
      */
     public ST_RefID getDefaultCS() {
         return ST_RefID.getInstance(this.getOFDElementText("DefaultCS"));

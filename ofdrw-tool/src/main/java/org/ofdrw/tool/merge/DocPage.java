@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 /**
  * 文档的页面
  * 
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2024-11-11 18:37:30
  */
 public class DocPage {
@@ -15,14 +15,14 @@ public class DocPage {
      */
     public Path path;
     /**
-     * 页面索引（从1起）
+     * page index（从1起）
      */
     public int index;
 
     /**
-     * 创建文档页面信息
+     * 创建文档page information
      * @param path 文档路径
-     * @param index 页面索引
+     * @param index page index
      */
     public DocPage(Path path, int index) {
         this.path = path;
@@ -30,9 +30,9 @@ public class DocPage {
     }
 
     /**
-     * 创建文档页面信息
+     * 创建文档page information
      * @param path 文档路径
-     * @param index 页面索引
+     * @param index page index
      */
     public DocPage(String  path, int index) {
         this.path = Paths.get(path);

@@ -34,14 +34,14 @@ public class WatermarkDrawer implements Drawer {
     private Annotation annotation;
 
     /**
-     * 外部字体文件路径
+     * 外部fontfile path
      */
     private Path extFontPath = null;
 
     /**
      * 文字颜色
      * <p>
-     * 支持16进制颜色值：#000000
+     * 支持16进制color value：#000000
      * <p>
      * RGB：rgb(0,0,0)
      * <p>
@@ -52,7 +52,7 @@ public class WatermarkDrawer implements Drawer {
     private String color = "#000000";
 
     /**
-     * 字体名称
+     * font name
      * <p>
      * 默认：宋体
      */
@@ -66,19 +66,19 @@ public class WatermarkDrawer implements Drawer {
     private double fontSize = 4.5;
 
     /**
-     * 是否加粗
+     * whether bold
      */
     private Boolean bold = false;
 
     /**
-     * 字体宽度
+     * fontwidth
      * <p>
      * normal、bold、bolder、lighter、100、200、300、400、500、600、700、800、900
      */
     private String fontWeight = "normal";
 
     /**
-     * 是否斜体
+     * whether italic
      */
     private Boolean italic = false;
 
@@ -93,7 +93,7 @@ public class WatermarkDrawer implements Drawer {
     private Double globalAlpha = 0.5d;
 
     /**
-     * 旋转角度，0-360, 默认330（-30）
+     * rotation angle，0-360, 默认330（-30）
      */
     private Double angle = 330d;
 
@@ -118,7 +118,7 @@ public class WatermarkDrawer implements Drawer {
     /**
      * 绘制水印
      *
-     * @param ctx 绘制上下文
+     * @param ctx drawing context
      * @throws IOException ignore
      */
     @Override
@@ -130,17 +130,17 @@ public class WatermarkDrawer implements Drawer {
             return;
         }
         if (extFontPath != null) {
-            // 添加外部字体
+            // add external font
             ctx.addFont(fontName, extFontPath);
         }
 
         ctx.fillStyle = this.color;
         ctx.font = getFont();
         if (this.letterSpacing != 0) {
-            // 设置字间距
+            // set character spacing
             ctx.getFont().setLetterSpacing(this.letterSpacing);
         }
-        // 设置字体颜色
+        // set font color
         if (this.color != null && !this.color.isEmpty()) {
             ctx.fillStyle = this.color;
         }
@@ -149,7 +149,7 @@ public class WatermarkDrawer implements Drawer {
         double height = annotation.getBoundary().getHeight();
 
         /*
-         * 计算水印实际占位横向宽度和竖向高度，并自适应计算水印的起始坐标.
+         * 计算水印实际占位横向width和竖向height，并自适应计算水印的起始坐标.
          */
         TextMetrics metrics = ctx.measureText(this.value);
 
@@ -173,13 +173,13 @@ public class WatermarkDrawer implements Drawer {
     }
 
     /**
-     * 组装字体描述
+     * 组装font描述
      *
-     * @return 字体描述
+     * @return font描述
      */
     private String getFont() {
 
-        // 设置字体样式
+        // 设置font样式
         String fontStr = "";
         if (italic) {
             fontStr += "italic ";
@@ -215,7 +215,7 @@ public class WatermarkDrawer implements Drawer {
     /**
      * 获取文字颜色
      *
-     * @return 颜色值
+     * @return color value
      */
     public String getColor() {
         return color;
@@ -224,32 +224,32 @@ public class WatermarkDrawer implements Drawer {
     /**
      * 设置文字颜色
      *
-     * @param color 符合CSS3样式的颜色值被支持，可选值 颜色英文单词,例如red,blue、16进制颜色值，#000000、rgb(0,0,0)、rgba(0,0,0,1)
+     * @param color 符合CSS3样式的color value被支持，可选值 颜色英文单词,例如red,blue、16进制color value，#000000、rgb(0,0,0)、rgba(0,0,0,1)
      */
     public void setColor(String color) {
         this.color = color;
     }
 
     /**
-     * 获取字体名称
+     * get font name
      *
-     * @return 字体名称
+     * @return font name
      */
     public String getFontName() {
         return fontName;
     }
 
     /**
-     * 设置字体名称
+     * set font name
      *
-     * @param fontName 字体名称
+     * @param fontName font name
      */
     public void setFontName(String fontName) {
         this.fontName = fontName;
     }
 
     /**
-     * 获取字号
+     * get font size
      *
      * @return 字号，单位 mm
      */
@@ -258,7 +258,7 @@ public class WatermarkDrawer implements Drawer {
     }
 
     /**
-     * 设置字号
+     * set font size
      *
      * @param fontSize 字号，单位 mm
      */
@@ -267,7 +267,7 @@ public class WatermarkDrawer implements Drawer {
     }
 
     /**
-     * 是否加粗
+     * whether bold
      *
      * @return 是否加粗
      */
@@ -276,34 +276,34 @@ public class WatermarkDrawer implements Drawer {
     }
 
     /**
-     * 设置是否加粗
+     * set whether bold
      *
-     * @param bold 是否加粗
+     * @param bold whether bold
      */
     public void setBold(Boolean bold) {
         this.bold = bold;
     }
 
     /**
-     * 获取字体宽度
+     * get font width
      *
-     * @return 字体宽度，如：normal、bold、bolder、lighter、100、200、300、400、500、600、700、800、900
+     * @return fontwidth，如：normal、bold、bolder、lighter、100、200、300、400、500、600、700、800、900
      */
     public String getFontWeight() {
         return fontWeight;
     }
 
     /**
-     * 设置字体宽度
+     * set font width
      *
-     * @param fontWeight 字体宽度，如：normal、bold、bolder、lighter、100、200、300、400、500、600、700、800、900
+     * @param fontWeight fontwidth，如：normal、bold、bolder、lighter、100、200、300、400、500、600、700、800、900
      */
     public void setFontWeight(String fontWeight) {
         this.fontWeight = fontWeight;
     }
 
     /**
-     * 是否斜体
+     * whether italic
      *
      * @return 是否斜体
      */
@@ -347,7 +347,7 @@ public class WatermarkDrawer implements Drawer {
     }
 
     /**
-     * 设置透明度
+     * set transparency
      *
      * @param globalAlpha 透明度，0.0~1.0
      */
@@ -359,23 +359,23 @@ public class WatermarkDrawer implements Drawer {
     }
 
     /**
-     * 获取旋转角度
+     * 获取rotation angle
      *
-     * @return 旋转角度，0-360, 默认330（-30）
+     * @return rotation angle，0-360, 默认330（-30）
      */
     public Double getAngle() {
         return angle;
     }
 
     /**
-     * 设置旋转角度，基于坐标系(0,1)方向，向第4象限偏移的角度。
+     * 设置rotation angle，基于坐标系(0,1)方向，向第4象限偏移的角度。
      * 与数学意义上的弧度角度存在
      *
-     * @param angle 旋转角度，0-360, 默认330（-30）
+     * @param angle rotation angle，0-360, 默认330（-30）
      */
     public void setAngle(Double angle) {
         if (angle > 360 || angle < -360) {
-            throw new IllegalArgumentException("旋转角度超出范围");
+            throw new IllegalArgumentException("rotation angle超出范围");
         }
         if (angle < 0) {
             angle = 360 + angle;
@@ -440,7 +440,7 @@ public class WatermarkDrawer implements Drawer {
     /**
      * 水印注释信息
      *
-     * @return 水印注释对象，{@link Annotation} 的实现实例
+     * @return 水印注释对象，{@link Annotation} 的实现instance
      */
     public Annotation getAnnotation() {
         return annotation;
@@ -449,7 +449,7 @@ public class WatermarkDrawer implements Drawer {
     /**
      * 设置水印注释信息
      *
-     * @param annotation 水印注释对象，{@link Annotation} 的实现实例
+     * @param annotation 水印注释对象，{@link Annotation} 的实现instance
      */
     public void setAnnotation(Annotation annotation) {
         this.annotation = annotation;
@@ -457,20 +457,20 @@ public class WatermarkDrawer implements Drawer {
 
 
     /**
-     * 设置单元格绘制器使用的外部字体
+     * set external font for cell drawer
      * <p>
-     * 注意OFDRW不会提供任何字体裁剪功能，您的字体文件将直接加入OFD文件中，这可能造成文件体积剧增。
+     * Note: OFDRW does not provide any font subsetting; your font file will be added directly to the OFD file, which may increase the file size significantly.
      *
-     * @param fontName 字体名称，如“思源宋体”
-     * @param fontPath 字体文件所在路径
+     * @param fontName font name, e.g. "Source Han Serif"
+     * @param fontPath path to the font file
      * @return this
      */
     public WatermarkDrawer setFont(String fontName, Path fontPath) {
         if (fontName == null || fontName.isEmpty()) {
-            throw new IllegalArgumentException("字体名称(fontName)不能为空");
+            throw new IllegalArgumentException("font name(fontName)不能为空");
         }
         if (fontPath == null || Files.exists(fontPath) == false) {
-            throw new IllegalArgumentException("字体文件(fontPath)不存在");
+            throw new IllegalArgumentException("font file(fontPath)不存在");
         }
         this.setFontName(fontName);
         this.extFontPath = fontPath;
@@ -480,7 +480,7 @@ public class WatermarkDrawer implements Drawer {
     /**
      * 绘制辅助线
      *
-     * @param ctx 绘制上下文
+     * @param ctx drawing context
      * @param metrics 文字度量
      * @param offsetX 横向偏移，单位mm
      * @param offsetY 纵向偏移，单位mm

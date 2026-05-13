@@ -1,11 +1,11 @@
 package org.ofdrw.core.text.text;
 
 /**
- * 文字对象的粗细值
+ * text object的粗细值
  * <p>
  * 11.3 表 45
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-18 09:56:38
  */
 public enum Weight {
@@ -18,7 +18,7 @@ public enum Weight {
     W_200(200),
     W_300(300),
     /**
-     * 默认值
+     * default value
      */
     W_400(400),
     W_500(500),
@@ -61,12 +61,12 @@ public enum Weight {
             case "900":
                 return W_900;
             default:
-                throw new NumberFormatException("错误的文字对象的粗细值：" + weight);
+                throw new NumberFormatException("错误的text object的粗细值：" + weight);
         }
     }
 
     /**
-     * 获取字体粗细值
+     * 获取font粗细值
      *
      * @return 粗细值
      */

@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>
  * {@link org.ofdrw.layout.element.Div} 的渲染器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-21 14:18:40
  */
 public class DivRender implements Processor{
@@ -28,12 +28,12 @@ public class DivRender implements Processor{
     /**
      * 执行Div元素渲染
      *
-     * @param pageLoc   页面在虚拟容器中绝对路径。
-     * @param layer     图层
-     * @param resManager 资源管理器
+     * @param pageLoc   absolute path of page in virtual container。
+     * @param layer     layer
+     * @param resManager resource manager
      * @param e         元素
      * @param maxUnitID 最大ID
-     * @throws RenderException 渲染发生错误
+     * @throws RenderException rendering error occurred
      */
     @Override
     public void render(ST_Loc pageLoc, CT_PageBlock layer, ResManager resManager, Div e, AtomicInteger maxUnitID) throws RenderException{
@@ -41,9 +41,9 @@ public class DivRender implements Processor{
     }
 
     /**
-     * 渲染Div元素到指定图层
+     * 渲染Div元素到指定layer
      *
-     * @param layer     图层
+     * @param layer     layer
      * @param e         元素
      * @param maxUnitID 自增的最大ID提供器
      */
@@ -54,14 +54,14 @@ public class DivRender implements Processor{
             return;
         }
 
-        // 图元透明度
+        // graphic element transparency
         Integer alpha = null;
         if (e.getOpacity() != null) {
             alpha = (int) (e.getOpacity() * 255);
         }
 
         if (e.getHeight() == null) {
-            throw new IllegalArgumentException("Div元素的高度必须指定");
+            throw new IllegalArgumentException("Div元素的height必须指定");
         }
 
         Double borderTop = e.getBorderTop();
@@ -74,7 +74,7 @@ public class DivRender implements Processor{
             1. 首先绘制背景颜色
             2. 绘制边框
          */
-        // 背景颜色 (又背景颜色并且，内容存在高度)
+        // 背景颜色 (又背景颜色并且，内容存在height)
         double eleContentHeight = e.getPaddingTop() + e.getHeight() + e.getPaddingBottom();
 
         if (bgColor != null && eleContentHeight > 0) {
@@ -84,16 +84,16 @@ public class DivRender implements Processor{
             double y = e.getY() + e.getMarginTop() + borderTop;
             double w = e.getPaddingLeft() + e.getWidth() + e.getPaddingRight();
             bg.setBoundary(x, y, w, eleContentHeight)
-                    // 设置填充颜色的矩形区域
+                    // set fill color的矩形区域
                     .setAbbreviatedData(GraphHelper.rect(0, 0, w, eleContentHeight))
-                    // 设置不描边、填充，并且设置填充颜色
+                    // 设置不描边、填充，并且set fill color
                     .setStroke(false)
                     .setFill(true)
                     .setFillColor(CT_Color.rgb(bgColor));
             if (alpha != null) {
                 bg.setAlpha(alpha);
             }
-            // 加入图层
+            // 加入layer
             layer.addPageBlock(bg);
         }
 
@@ -106,7 +106,7 @@ public class DivRender implements Processor{
         // 虚线边框样式：[偏移量,虚线长,空白长, 虚线长,空白长, 虚线长,空白长, 虚线长,空白长, ...]
         Double[] borderDash = e.getBorderDash();
 
-        // 4条边宽度都一致，那么直接定位并且绘制
+        // 4条边width都一致，那么直接定位并且绘制
         if (eq(borderTop, borderRight, borderBottom, borderLeft)) {
             double lineWidth = borderTop;
             ST_ID objId = new ST_ID(maxUnitID.incrementAndGet());
@@ -121,7 +121,7 @@ public class DivRender implements Processor{
                             lineWidth / 2, lineWidth / 2,
                             w - lineWidth,
                             h - lineWidth));
-            // 如果存在边框颜色，那么设置颜色；默认颜色为 黑色
+            // 如果存在border color，那么设置颜色；默认颜色为 黑色
             int[] borderColor = e.getBorderColor();
             if (borderColor != null) {
                 border.setStrokeColor(CT_Color.rgb(borderColor));
@@ -134,7 +134,7 @@ public class DivRender implements Processor{
             }
             layer.addPageBlock(border);
         }
-        // 4条边宽度不一致，需要分别绘制各条边
+        // 4条边width不一致，需要分别绘制各条边
         else {
             /*
                 顶边
@@ -192,7 +192,7 @@ public class DivRender implements Processor{
                 }
                 layer.addPageBlock(bottomBorder);
             }
-            // 元素中没有任何内容和边框，那么认为是占位符，跳过绘制
+            // in element没有任何内容和边框，那么认为是占位符，跳过绘制
             if ((topWidth + bottomWidth + eleContentHeight) == 0) {
                 return;
             }
@@ -273,7 +273,7 @@ public class DivRender implements Processor{
             // 单个参数，设置虚线长度与空白相同
             dash = new Double[]{0.0, dash[0], dash[0]};
         }
-        // 设置 虚线偏移量，忽略double精度误差 0.000001
+        // 设置 虚线偏移量，ignoreddouble精度误差 0.000001
         if (dash[0] != null && dash[0] >= 0.000001) {
             g.setDashOffset(dash[0]);
         }
@@ -286,7 +286,7 @@ public class DivRender implements Processor{
     }
 
     /**
-     * 比较两个double是否相等 忽略精度
+     * 比较两个double是否相等 ignored精度
      *
      * @param arr 数组
      * @return true - 相等, false - 不相等

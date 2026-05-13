@@ -87,7 +87,7 @@ class ContentExtractorTest {
     }
 
     /**
-     * 页面内容迭代器，通过迭代器可以实现对每一页的内容处理
+     * page content迭代器，通过迭代器可以实现对每一页的内容处理
      */
     @Test
     void traverse() throws IOException {

@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * 图 74 跳转动作结构
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 08:33:55
  */
 public class Goto extends OFDElement implements OFDAction  {
@@ -35,7 +35,7 @@ public class Goto extends OFDElement implements OFDAction  {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 跳转的目的区域
      *
      * @param dest 跳转的目的区域
@@ -49,7 +49,7 @@ public class Goto extends OFDElement implements OFDAction  {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 跳转的目标书签
      *
      * @param name 跳转的目标书签
@@ -62,7 +62,7 @@ public class Goto extends OFDElement implements OFDAction  {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 跳转动作的目标
      * <p>
      * 可能是 CT_Dest 或 Bookmark，可以使用<code>instanceof</code>判断类型并转换

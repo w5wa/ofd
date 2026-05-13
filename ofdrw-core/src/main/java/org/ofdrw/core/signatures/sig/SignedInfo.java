@@ -13,11 +13,11 @@ import java.util.List;
 /**
  * 签名要保护的原文及本次签名相关的信息
  * <p>
- * 18.2.1 文件摘要 图 86 表 67
+ * 18.2.1 File Digest - Figure 86 Table 67
  * <p>
  * GMT0099 B.2 图 B.2
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-20 07:23:38
  */
 public class SignedInfo extends OFDElement {
@@ -31,25 +31,25 @@ public class SignedInfo extends OFDElement {
 
 
     /**
-     * 【必选】
-     * 设置 创建签名时所用的签章组件提供者信息
+     * [required]
+     * set the seal component provider information used when creating the signature
      *
-     * @param provider 创建签名时所用的签章组件提供者信息
+     * @param provider 创建签名时所用的seal/signature组件提供者信息
      * @return this
      */
     public SignedInfo setProvider(Provider provider) {
         if (provider == null) {
-            throw new IllegalArgumentException("创建签名时所用的签章组件提供者信息（Provider）为空");
+            throw new IllegalArgumentException("创建签名时所用的seal/signature组件提供者信息（Provider）为空");
         }
         this.set(provider);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取 创建签名时所用的签章组件提供者信息
+     * [required]
+     * 获取 创建签名时所用的seal/signature组件提供者信息
      *
-     * @return 创建签名时所用的签章组件提供者信息
+     * @return 创建签名时所用的seal/signature组件提供者信息
      */
     public Provider getProvider() {
         Element e = this.getOFDElement("Provider");
@@ -57,12 +57,12 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 签名方法
+     * [optional]
+     * set signature method
      * <p>
-     * 记录安全模块返回的签名算法代码，以便验证时使用
+     * record the signature algorithm code returned by the security module for use during verification
      *
-     * @param signatureMethod 签名方法
+     * @param signatureMethod signature method
      * @return this
      */
     public SignedInfo setSignatureMethod(String signatureMethod) {
@@ -71,28 +71,28 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 签名方法
+     * [optional]
+     * set signature method
      * <p>
-     * 记录安全模块返回的签名算法代码，以便验证时使用
+     * record the signature algorithm code returned by the security module for use during verification
      *
-     * @param oid 签名方法ASN1对象标识符
+     * @param oid signature methodASN1对象标识符
      * @return this
      */
     public SignedInfo setSignatureMethod(ASN1ObjectIdentifier oid) {
         if (oid == null) {
-            throw new IllegalArgumentException("签名方法ASN1对象标识符(oid)为空");
+            throw new IllegalArgumentException("signature methodASN1对象标识符(oid)为空");
         }
         return setSignatureMethod(oid.toString());
     }
 
     /**
-     * 【可选】
-     * 设置 签名方法
+     * [optional]
+     * set signature method
      * <p>
-     * 记录安全模块返回的签名算法代码，以便验证时使用
+     * record the signature algorithm code returned by the security module for use during verification
      *
-     * @return 签名方法
+     * @return signature method
      */
     public String getSignatureMethod() {
         return this.getOFDElementText("SignatureMethod");
@@ -100,7 +100,7 @@ public class SignedInfo extends OFDElement {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 签名时间
      * <p>
      * 记录安全模块返回的签名时间，以便验证时使用
@@ -114,7 +114,7 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 签名时间
      * <p>
      * 记录安全模块返回的签名时间，以便验证时使用
@@ -126,7 +126,7 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 设置 扩展签名属性集
      *
      * @param parameters 扩展签名属性集，null表示删除
@@ -142,7 +142,7 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选 OFD 2.0】
+     * [optional, OFD 2.0]
      * 获取 扩展签名属性集
      *
      * @return 扩展签名属性集，可能为null
@@ -155,7 +155,7 @@ public class SignedInfo extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 包内文件计算所得的摘要记录列表
      * <p>
      * 一个受本次签名保护的包内文件对应一个 Reference节点
@@ -172,7 +172,7 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 包内文件计算所得的摘要记录列表
      * <p>
      * 一个受本次签名保护的包内文件对应一个 Reference节点
@@ -188,7 +188,7 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 增加 本签名关联的外观（用OFD中的注解表示）
      * <p>
      * 该节点可出现多次
@@ -205,7 +205,7 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 获取 本签名关联的外观（用OFD中的注解表示）序列
      * <p>
      * 该节点可出现多次
@@ -218,10 +218,10 @@ public class SignedInfo extends OFDElement {
 
 
     /**
-     * 【可选】
-     * 设置 电子印章信息
+     * [optional]
+     * 设置 电子seal/stamp信息
      *
-     * @param seal 电子印章信息
+     * @param seal 电子seal/stamp信息
      * @return this
      */
     public SignedInfo setSeal(Seal seal) {
@@ -234,10 +234,10 @@ public class SignedInfo extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 电子印章信息
+     * [optional]
+     * 设置 电子seal/stamp信息
      *
-     * @return 电子印章信息
+     * @return 电子seal/stamp信息
      */
     public Seal getSeal() {
         Element e = this.getOFDElement("Seal");

@@ -15,15 +15,15 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 
 /**
- * 绘制参数上下文
+ * drawing parameters上下文
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-1-30 21:37:36
  */
 public class OFDGraphics2DDrawParam {
 
     /**
-     * 文档上下文
+     * document context
      */
     private final OFDGraphicsDocument docCtx;
 
@@ -33,7 +33,7 @@ public class OFDGraphics2DDrawParam {
     ST_Box area;
 
     /**
-     * 字体
+     * font
      */
     Font font;
 
@@ -53,13 +53,13 @@ public class OFDGraphics2DDrawParam {
     Paint gColor;
 
     /**
-     * 裁剪区域
+     * clipping area
      */
     java.awt.geom.Area clip;
 
 
     /**
-     * AWT变换矩阵
+     * AWTtransformation matrix
      */
     AffineTransform ctm;
 
@@ -76,32 +76,32 @@ public class OFDGraphics2DDrawParam {
     /**
      * 渲染器信息
      * <p>
-     * 该属性只是为了兼容AWT接口保留，并无实际用途。
+     * this attribute is retained for AWT interface compatibility only; it has no actual use.
      */
     RenderingHints hints;
 
     /**
      * 设置像素合并方式
      * <p>
-     * 该属性只是为了兼容AWT接口保留，并无实际用途。
+     * this attribute is retained for AWT interface compatibility only; it has no actual use.
      */
     Composite composite;
 
     /**
-     * 文字绘制上下文
+     * 文字drawing context
      */
     FontRenderContext fontRenderCtx;
 
     /**
-     * 创建绘制参数
+     * 创建drawing parameters
      *
-     * @param docCtx 文档上下文
+     * @param docCtx document context
      * @param area   工作区大小
      */
     public OFDGraphics2DDrawParam(OFDGraphicsDocument docCtx, ST_Box area) {
         this.docCtx = docCtx;
         this.gStroke = new BasicStroke(0.353f);
-        // 默认 描边颜色为黑色
+        // 默认 stroke color为黑色
         this.gColor = new Color(0, 0, 0);
         this.gBackground = new Color(255, 255, 255);
         this.gForeground = new Color(0, 0, 0);
@@ -121,11 +121,11 @@ public class OFDGraphics2DDrawParam {
     }
 
     /**
-     * 创建绘制参数
+     * 创建drawing parameters
      * <p>
      * 若您需要使用该方法，请手动设置工作区 {@link #area} 否则默认为A4大小
      *
-     * @param docCtx 文档上下文
+     * @param docCtx document context
      * @deprecated {@link OFDGraphics2DDrawParam#OFDGraphics2DDrawParam(OFDGraphicsDocument, ST_Box)}
      */
     @Deprecated
@@ -135,11 +135,11 @@ public class OFDGraphics2DDrawParam {
 
 
     /**
-     * 构造绘制参数，并追加到文档中
+     * 构造drawing parameters，并追加到文档中
      * <p>
-     * 如果存在缓存优先使用缓存中的绘制参数
+     * 如果存在缓存优先使用缓存中的drawing parameters
      *
-     * @return 绘制参数
+     * @return drawing parameters
      */
     ST_RefID makeDrawParam() {
         if (ref != null) {
@@ -147,7 +147,7 @@ public class OFDGraphics2DDrawParam {
         }
 
         CT_DrawParam param = new CT_DrawParam();
-        // 设置描边属性
+        // set stroke attributes
         setStrokeParam(param);
 
         // 设置颜色和填充
@@ -168,7 +168,7 @@ public class OFDGraphics2DDrawParam {
     /**
      * 设置颜色和填充
      *
-     * @param param 绘制参数
+     * @param param drawing parameters
      */
     private void setColorParam(CT_DrawParam param) {
         CT_Color ctColor = null;
@@ -191,7 +191,7 @@ public class OFDGraphics2DDrawParam {
             // 轴线终点
             axialShd.setEndPoint(ST_Pos.getInstance(lgp.getEndPoint().getX(), lgp.getEndPoint().getY()));
 
-            // 设置颜色段以及分布
+            // 设置颜色segment以及分布
             Color[] colors = lgp.getColors();
             float[] fractions = lgp.getFractions();
             for (int i = 0; i < colors.length; i++) {
@@ -203,7 +203,7 @@ public class OFDGraphics2DDrawParam {
                 axialShd.addSegment(new Segment((double) fractions[i], cc));
             }
 
-            // 设置 渐变绘制的方式
+            // set gradient drawing mode
             switch (lgp.getCycleMethod()) {
                 case NO_CYCLE:
                     axialShd.setMapType(MapType.Direct);
@@ -223,7 +223,7 @@ public class OFDGraphics2DDrawParam {
 
             ctColor = new CT_Color();
             CT_RadialShd radialShd = new CT_RadialShd();
-            // 设置颜色段以及分布
+            // 设置颜色segment以及分布
             Color[] colors = rgp.getColors();
             float[] fractions = rgp.getFractions();
             for (int i = 0; i < colors.length; i++) {
@@ -265,7 +265,7 @@ public class OFDGraphics2DDrawParam {
             // 轴线终点
             axialShd.setEndPoint(ST_Pos.getInstance(gp.getPoint2().getX(), gp.getPoint2().getY()));
 
-            // 设置 渐变绘制的方式
+            // set gradient drawing mode
             if (gp.isCyclic()) {
                 axialShd.setMapType(MapType.Repeat);
             }
@@ -277,7 +277,7 @@ public class OFDGraphics2DDrawParam {
         }
 
         if (ctColor != null) {
-            // 同时设置填充颜色和描边颜色
+            // 同时set fill color和stroke color
             param.setFillColor(ctColor);
             param.setStrokeColor(ctColor);
         }
@@ -286,7 +286,7 @@ public class OFDGraphics2DDrawParam {
     /**
      * 设置描边参数
      *
-     * @param param 绘制参数上下文
+     * @param param drawing parameters上下文
      */
     private void setStrokeParam(CT_DrawParam param) {
         // 线条连接样式
@@ -305,7 +305,7 @@ public class OFDGraphics2DDrawParam {
                 break;
         }
 
-        // 线宽度
+        // 线width
         if (gStroke.getLineWidth() > 0) {
             param.setLineWidth((double) gStroke.getLineWidth());
         }
@@ -347,7 +347,7 @@ public class OFDGraphics2DDrawParam {
     }
 
     /**
-     * 设置描边属性
+     * set stroke attributes
      *
      * @param s 属性参数
      */
@@ -393,9 +393,9 @@ public class OFDGraphics2DDrawParam {
     }
 
     /**
-     * 在图元上应用绘制参数配置
+     * 在图元上应用drawing parameters配置
      * <p>
-     * 包括： 描边、变换矩阵、裁剪区域、颜色
+     * 包括： 描边、transformation matrix、裁剪区域、颜色
      *
      * @param target 目标图元
      * @deprecated {@link #makeDrawParam()}
@@ -403,7 +403,7 @@ public class OFDGraphics2DDrawParam {
     @Deprecated
     public void apply(CT_GraphicUnit<?> target) {
 //        if (ref == null) {
-//            // 添加绘制参数至文档资源中，并保存绘制参数在文档对象ID引用
+//            // 添加drawing parameters至文档资源中，并保存drawing parameters在document objectID引用
 //            ref = docCtx.addDrawParam(this.pCache).ref();
 //        }
 //        target.setDrawParam(ref);
@@ -425,13 +425,13 @@ public class OFDGraphics2DDrawParam {
     }
 
     /**
-     * 获取字体绘制上下文
+     * 获取fontdrawing context
      * <p>
-     * 字体绘制上线文使用hit中的绘制参数进行控制
+     * font绘制上线文使用hit中的drawing parameters进行控制
      * <p>
      * code from apache batik: org.apache.batik.ext.awt.g2d.AbstractGraphics2D#getFontRenderContext
      *
-     * @return 字体绘制上下文
+     * @return fontdrawing context
      */
     public FontRenderContext getFontRenderContext() {
         if (this.fontRenderCtx != null) {
@@ -469,7 +469,7 @@ public class OFDGraphics2DDrawParam {
 
 
     /**
-     * 复制绘制参数对象
+     * 复制drawing parameters对象
      *
      * @return 复制的新对象
      */
@@ -492,9 +492,9 @@ public class OFDGraphics2DDrawParam {
     }
 
     /**
-     * 转为AWT变换矩阵 {@link AffineTransform} 为 OFD 类型变换矩阵{@link ST_Array}
+     * 转为AWTtransformation matrix {@link AffineTransform} 为 OFD 类型transformation matrix{@link ST_Array}
      *
-     * @param tx AWT变换矩阵
+     * @param tx AWTtransformation matrix
      * @return OFD ST_Array
      */
     public static ST_Array trans(AffineTransform tx) {

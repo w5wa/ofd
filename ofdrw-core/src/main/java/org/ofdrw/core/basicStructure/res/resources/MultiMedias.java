@@ -10,11 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 包含了一组文档所有多媒体的描述
+ * contains了一组文档所有多媒体的描述
  * <p>
- * 7.9 图 20 表 18
+ * 7.9 Figure 20 Table 18
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-13 08:14:14
  */
 public class MultiMedias extends OFDElement implements OFDResource {
@@ -27,10 +27,10 @@ public class MultiMedias extends OFDElement implements OFDResource {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 多媒体资源描述
      * <p>
-     * 必须含有ID属性
+     * must contain the ID attribute
      *
      * @param multiMedia 多媒体资源描述
      * @return this
@@ -47,10 +47,10 @@ public class MultiMedias extends OFDElement implements OFDResource {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 多媒体资源描述列表
      * <p>
-     * 必须含有ID属性
+     * must contain the ID attribute
      *
      * @return 多媒体资源描述
      */

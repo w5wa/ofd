@@ -3,15 +3,15 @@ package org.ofdrw.core.basicType;
 /**
  * 点坐标，以格分割，前者为 x值，后者为 y值，可以是整数或浮点数
  * <p>
- * 示例：
+ * Example:
  * <code>0 0</code>
  * <p>
- * ————《GB/T 33190-2016》 表 2 基本数据类型
+ * — GB/T 33190-2016, Table 2: Basic Data Types
  */
 public class ST_Pos extends STBase {
 
     /**
-     * X坐标
+     * X coordinate
      * <p>
      * 从左 到 右
      */
@@ -34,10 +34,10 @@ public class ST_Pos extends STBase {
     }
 
     /**
-     * 获取 ST_Pos 实例如果参数非法则返还null
+     * 获取 ST_Pos instance如果参数非法则返还null
      *
-     * @param arrStr 数字字符串
-     * @return 实例 或 null
+     * @param arrStr numberstring
+     * @return instance or null
      */
     public static ST_Pos getInstance(String arrStr) {
         if (arrStr == null || arrStr.trim().length() == 0) {

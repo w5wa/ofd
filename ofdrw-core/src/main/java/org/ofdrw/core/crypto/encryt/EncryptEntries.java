@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * GMT0099 附录C 图C.3
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-07-15 19:14:42
  */
 public class EncryptEntries extends OFDElement {
@@ -25,35 +25,35 @@ public class EncryptEntries extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 加密操作标识
+     * [required attribute]
+     * 设置 encryption operation identifier
      * <p>
      * 应与解密入口描述中的一致
      *
-     * @param id 加密操作标识，应与解密入口描述中的一致
+     * @param id encryption operation identifier，应与解密入口描述中的一致
      * @return this
      */
     public EncryptEntries setID(@NotNull String id) {
         if (id == null || id.isEmpty()) {
-            throw new IllegalArgumentException("加密操作标识(id)为空");
+            throw new IllegalArgumentException("encryption operation identifier(id)为空");
         }
         this.addAttribute("ID", id);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 加密操作标识
+     * [required attribute]
+     * 获取 encryption operation identifier
      *
-     * @return 加密操作标识
+     * @return encryption operation identifier
      */
     public String getID() {
         return this.attributeValue("ID");
     }
 
     /**
-     * 【必选】
-     * 增加 明密文对应关系
+     * [required]
+     * add plaintext-ciphertext mapping
      *
      * @param encryptEntry 明密文对应关系
      * @return this
@@ -67,12 +67,12 @@ public class EncryptEntries extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 增加 明密文对应关系
+     * [required]
+     * add plaintext-ciphertext mapping
      *
-     * @param path           加密前包内文件的绝对路径
-     * @param ePath          加密后形成的包内密文的绝对路径
-     * @param decryptSeedLoc 此项密文独有的密钥数据文件路径
+     * @param path           absolute path of the file in the package before encryption
+     * @param ePath          absolute path of the ciphertext in the package after encryption
+     * @param decryptSeedLoc path to the key data file unique to this ciphertext
      * @return this
      */
     public EncryptEntries addEncryptEntry(@NotNull String path, @NotNull String ePath, @Nullable String decryptSeedLoc) {
@@ -81,11 +81,11 @@ public class EncryptEntries extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 增加 明密文对应关系
+     * [required]
+     * add plaintext-ciphertext mapping
      *
-     * @param path  加密前包内文件的绝对路径
-     * @param ePath 加密后形成的包内密文的绝对路径
+     * @param path  absolute path of the file in the package before encryption
+     * @param ePath absolute path of the ciphertext in the package after encryption
      * @return this
      */
     public EncryptEntries addEncryptEntry(@NotNull String path, @NotNull String ePath) {
@@ -94,7 +94,7 @@ public class EncryptEntries extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 明密文对应关系列表
      *
      * @return 明密文对应关系列表

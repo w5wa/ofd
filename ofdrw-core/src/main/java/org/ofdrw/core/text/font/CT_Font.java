@@ -6,11 +6,11 @@ import org.ofdrw.core.basicType.ST_ID;
 import org.ofdrw.core.basicType.ST_Loc;
 
 /**
- * 字形
+ * glyph
  * <p>
- * 11.1 字形 图 58 表 44
+ * 11.1 glyph 图 58 表 44
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-18 08:26:16
  */
 public class CT_Font extends OFDElement {
@@ -23,7 +23,7 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * @param fontName 字形名
+     * @param fontName glyph name
      */
     public CT_Font(String fontName) {
         this();
@@ -45,41 +45,41 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 字形名
+     * [required attribute]
+     * 设置 glyph name
      *
-     * @param fontName 字形名
+     * @param fontName glyph name
      * @return this
      */
     public CT_Font setFontName(String fontName) {
         if (fontName == null) {
-            throw new IllegalArgumentException("字形名（fontName）不能为空");
+            throw new IllegalArgumentException("glyph name（fontName）不能为空");
         }
         this.addAttribute("FontName", fontName.toString());
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 字形名
+     * [required attribute]
+     * 获取 glyph name
      *
-     * @return 字形名
+     * @return glyph name
      */
     public String getFontName() {
         String str = this.attributeValue("FontName");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("字形名（fontName）不能为空");
+            throw new IllegalArgumentException("glyph name（fontName）不能为空");
         }
         return str;
     }
 
     /**
-     * 【可选 属性】
-     * 设置 字形族名
+     * [optional attribute]
+     * 设置 glyph族名
      * <p>
-     * 用于匹配代替字形
+     * used for matching substitute glyphs
      *
-     * @param familyName 字形族名
+     * @param familyName glyph族名
      * @return this
      */
     public CT_Font setFamilyName(String familyName) {
@@ -92,24 +92,24 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 字形族名
+     * [optional attribute]
+     * 获取 glyph族名
      * <p>
-     * 用于匹配代替字形
+     * used for matching substitute glyphs
      *
-     * @return 字形族名
+     * @return glyph族名
      */
     public String getFamilyName() {
         return this.attributeValue("FamilyName");
     }
 
     /**
-     * 【可选 属性】
-     * 设置 字形适用的字符分类
+     * [optional attribute]
+     * 设置 glyph适用的字符分类
      * <p>
-     * 可选值参考{@link Charset}
+     * optional values see {@link Charset}
      *
-     * @param charset 字形适用的字符分类
+     * @param charset glyph适用的字符分类
      * @return this
      */
     public CT_Font setCharset(Charset charset) {
@@ -121,23 +121,23 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 字形适用的字符分类
-     * 可选值参考{@link Charset}
+     * [optional attribute]
+     * 获取 glyph适用的字符分类
+     * optional values see {@link Charset}
      *
-     * @return 字形适用的字符分类
+     * @return glyph适用的字符分类
      */
     public Charset getCharset() {
         return Charset.getInstance(this.attributeValue("Charset"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 是否是斜体
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
      * @param italic true - 斜体； false - 正常
      * @return this
@@ -151,12 +151,12 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 是否是斜体
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
      * @return true - 斜体； false - 正常
      */
@@ -169,12 +169,12 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 是否是粗字体
+     * [optional attribute]
+     * 设置 是否是粗font
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
      * @param bold true - 粗体； false - 正常
      * @return this
@@ -188,12 +188,12 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 是否是粗字体
+     * [optional attribute]
+     * 获取 是否是粗font
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
      * @return true - 粗体； false - 正常
      */
@@ -206,12 +206,12 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 是否是带衬线字形
+     * [optional attribute]
+     * 设置 是否是带衬线glyph
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
      * @param serif true - 带衬线；false - 正常
      * @return this
@@ -225,12 +225,12 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 是否是带衬线字形
+     * [optional attribute]
+     * 获取 是否是带衬线glyph
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
      * @return true - 带衬线；false - 正常
      */
@@ -243,14 +243,14 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 是否是等宽字形
+     * [optional attribute]
+     * set whether it is a monospaced glyph
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
-     * @param fixedWidth true - 等宽字形；false - 正常
+     * @param fixedWidth true - 等宽glyph；false - 正常
      * @return this
      */
     public CT_Font setFixedWidth(Boolean fixedWidth) {
@@ -262,14 +262,14 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 是否是等宽字形
+     * [optional attribute]
+     * set whether it is a monospaced glyph
      * <p>
-     * 用于匹配替代字形
+     * used for matching substitute glyphs
      * <p>
-     * 默认值是 false
+     * default value: false
      *
-     * @return true - 等宽字形；false - 正常
+     * @return true - 等宽glyph；false - 正常
      */
     public Boolean getFixedWidth() {
         String str = this.attributeValue("FixedWidth");
@@ -280,12 +280,12 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 设置 指向内嵌字形文件
+     * [optional]
+     * 设置 points to内嵌glyph文件
      * <p>
-     * 嵌入字形文件应使用 OpenType 格式
+     * embedded glyph files should use OpenType format
      *
-     * @param fontFile 指向内嵌字形文件路径
+     * @param fontFile points to内嵌glyphfile path
      * @return this
      */
     public CT_Font setFontFile(ST_Loc fontFile) {
@@ -298,12 +298,12 @@ public class CT_Font extends OFDElement {
     }
 
     /**
-     * 【可选】
-     * 获取 指向内嵌字形文件
+     * [optional]
+     * 获取 points to内嵌glyph文件
      * <p>
-     * 嵌入字形文件应使用 OpenType 格式
+     * embedded glyph files should use OpenType format
      *
-     * @return 指向内嵌字形文件路径
+     * @return points to内嵌glyphfile path
      */
     public ST_Loc getFontFile() {
         return ST_Loc.getInstance(this.getOFDElementText("FontFile"));

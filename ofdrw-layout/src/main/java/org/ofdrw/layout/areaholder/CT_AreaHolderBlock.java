@@ -11,7 +11,7 @@ import org.ofdrw.core.basicType.ST_RefID;
  * <p>
  * 该元素用于存储和表示文档生成者在文档中预置的绘制区域占位符。
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-10-28 15:02:23
  */
 public class CT_AreaHolderBlock extends OFDElement {
@@ -26,7 +26,7 @@ public class CT_AreaHolderBlock extends OFDElement {
     /**
      * 创建 区域占位区块
      *
-     * @param areaName 区域名称
+     * @param areaName area name
      */
     public CT_AreaHolderBlock(String areaName) {
         this();
@@ -34,32 +34,32 @@ public class CT_AreaHolderBlock extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 区域名称
+     * [required attribute]
+     * 设置 area name
      *
-     * @param areaName 区域名称
+     * @param areaName area name
      * @return this
      */
     public CT_AreaHolderBlock setAreaName(String areaName) {
         if (areaName == null) {
-            throw new IllegalArgumentException("区域名称（AreaName）不能为空");
+            throw new IllegalArgumentException("area name（AreaName）不能为空");
         }
         this.addAttribute("AreaName", areaName);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 区域名称
+     * [required attribute]
+     * 获取 area name
      *
-     * @return 区域名称
+     * @return area name
      */
     public String getAreaName() {
         return this.attributeValue("AreaName");
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 页块引用
      * <p>
      * 通过该ID在页面中定位容器元素。
@@ -77,7 +77,7 @@ public class CT_AreaHolderBlock extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 页块引用
      * <p>
      * 通过该ID在页面中定位容器元素。
@@ -93,7 +93,7 @@ public class CT_AreaHolderBlock extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 区域外接矩形
      * <p>
      * 区域占位区块在页面中的位置和大小。
@@ -110,7 +110,7 @@ public class CT_AreaHolderBlock extends OFDElement {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 区域外接矩形
      * <p>
      * 区域占位区块在页面中的位置和大小。
@@ -127,25 +127,25 @@ public class CT_AreaHolderBlock extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 页面文件
      *
-     * @param pageLoc 页面文件路径，占位区域块所在页面的在OFD容器中的绝对路径。
+     * @param pageLoc 页面file path，占位区域块所在页面的在OFD容器中的absolute path。
      * @return this
      */
     public CT_AreaHolderBlock setPageFile(ST_Loc pageLoc) {
         if (pageLoc == null || pageLoc.isEmpty()) {
-            throw new IllegalArgumentException("页面对象路径（pageLoc）为空");
+            throw new IllegalArgumentException("page object路径（pageLoc）为空");
         }
         this.setOFDEntity("PageFile", pageLoc.toString());
         return this;
     }
 
     /**
-     * 【必选】
+     * [required]
      * 设置 页面文件
      *
-     * @param absPath 页面文件路径，占位区域块所在页面的在OFD容器中的绝对路径。
+     * @param absPath 页面file path，占位区域块所在页面的在OFD容器中的absolute path。
      * @return this
      */
     public CT_AreaHolderBlock setFontFile(String absPath) {
@@ -153,10 +153,10 @@ public class CT_AreaHolderBlock extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 页面文件
      *
-     * @return 占位区域块所在页面的在OFD容器中的绝对路径。
+     * @return 占位区域块所在页面的在OFD容器中的absolute path。
      */
     public ST_Loc getFontFile() {
         return ST_Loc.getInstance(this.getOFDElementText("PageFile"));

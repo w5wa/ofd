@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 签名数据验证容器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-22 02:25:08
  */
 public interface SignedDataValidateContainer {
@@ -22,10 +22,10 @@ public interface SignedDataValidateContainer {
      *
      * @param type        电子签名类型（Sign/Seal）
      * @param signAlgName 签名算法名称或OID
-     * @param tbsContent  待签章内容
-     * @param signedValue 电子签章数据或签名值（SignedValue.xml文件内容）
-     * @throws InvalidSignedValueException 电子签章数据失效
-     * @throws IOException                 IO异常
+     * @param tbsContent  待seal/signature内容
+     * @param signedValue 电子seal/signature数据或signature value（SignedValue.xml文件内容）
+     * @throws InvalidSignedValueException 电子seal/signature数据失效
+     * @throws IOException                 IO exception
      * @throws GeneralSecurityException    运算过程中异常
      */
     void validate(SigType type, String signAlgName, byte[] tbsContent, byte[] signedValue) throws InvalidSignedValueException, IOException, GeneralSecurityException;

@@ -92,16 +92,16 @@ public class PdfboxMaker {
     private static final Logger logger = LoggerFactory.getLogger(PdfboxMaker.class);
 
     /**
-     * OFD解析器
+     * OFD parser
      */
     private final OFDReader reader;
 
     /**
-     * PDF文档上下文
+     * PDFdocument context
      */
     private final PDDocument pdf;
     /**
-     * 资源加载器
+     * resource loader
      * <p>
      * 用于获取OFD内资源
      */
@@ -109,14 +109,14 @@ public class PdfboxMaker {
 
 
     /**
-     * 字体缓存防止重复加载字体
+     * font缓存防止重复加载font
      * <p>
-     * KEY: 自族名_字体名_字体路径
+     * KEY: 自族名_font name_font路径
      */
     private Map<String, PDFont> fontCache = new HashMap<>();
 
     /**
-     * 默认字体，当无法获取字体时使用
+     * 默认font，当无法获取font时使用
      */
     private PDFont defaultFont = PDType1Font.HELVETICA_BOLD;
 
@@ -130,7 +130,7 @@ public class PdfboxMaker {
     /**
      * 转换OFD页面为PDF页面
      *
-     * @param pageInfo 页面信息
+     * @param pageInfo page information
      * @return PDF页面
      * @throws IOException 操作异常
      */
@@ -145,25 +145,25 @@ public class PdfboxMaker {
         final List<AnnotionEntity> annotationEntities = reader.getAnnotationEntities();
         final List<StampAnnotEntity> stampAnnots = reader.getStampAnnots();
         try (PDPageContentStream contentStream = new PDPageContentStream(pdf, pdfPage)) {
-            // 获取页面内容出现的所有图层，包含模板页（所有页面均按照定义ZOrder排列）
+            // get all layers in page content, including template pages (all pages arranged by defined ZOrder)
             List<CT_Layer> layerList = pageInfo.getAllLayer();
-            // 绘制 模板层 和 页面内容层
+            // draw template layer and page content layer
             writeLayer(resMgt, contentStream, layerList, pageBox, null);
-            // 绘制电子印章
+            // 绘制电子seal/stamp
             writeStamp(contentStream, pageInfo, stampAnnots);
-            // 绘制注释
+            // draw annotations
             writeAnnoAppearance(this.resMgt, pageInfo, annotationEntities, contentStream, pageBox);
         }
         return pdfPage;
     }
 
     /**
-     * 绘制印章
+     * 绘制seal/stamp
      *
      * @param contentStream        PDF内容流
-     * @param parent               OFD页面信息
-     * @param stampAnnotEntityList 印章列表
-     * @throws IOException 文件读写异常
+     * @param parent               OFDpage information
+     * @param stampAnnotEntityList seal/stamp列表
+     * @throws IOException file read/write exception
      */
     private void writeStamp(PDPageContentStream contentStream,
                             PageInfo parent,
@@ -173,7 +173,7 @@ public class PdfboxMaker {
             List<StampAnnot> stampAnnots = stampAnnotVo.getStampAnnots();
             for (StampAnnot stampAnnot : stampAnnots) {
                 if (!stampAnnot.getPageRef().toString().equals(pageID)) {
-                    // 不是同一个页面忽略
+                    // 不是同一个页面ignored
                     continue;
                 }
                 ST_Box pageBox = parent.getSize();
@@ -181,15 +181,15 @@ public class PdfboxMaker {
                 ST_Box clipBox = stampAnnot.getClip();
 
                 if (stampAnnotVo.getImgType().equalsIgnoreCase("ofd")) {
-                    // 尝试读取并解析OFD印章图像
+                    // 尝试读取并解析OFDseal/stamp图像
                     try (OFDReader sealOfdReader = new OFDReader(new ByteArrayInputStream(stampAnnotVo.getImageByte()));) {
                         ResourceManage sealResMgt = sealOfdReader.getResMgt();
                         for (PageInfo ofdPageVo : sealOfdReader.getPageList()) {
-                            // 获取页面内容出现的所有图层，包含模板页（所有页面均按照定义ZOrder排列）
+                            // get all layers in page content, including template pages (all pages arranged by defined ZOrder)
                             List<CT_Layer> layerList = ofdPageVo.getAllLayer();
-                            // 绘制页面内容
+                            // 绘制page content
                             writeLayer(sealResMgt, contentStream, layerList, pageBox, sealBox);
-                            // 绘制注释
+                            // draw annotations
                             writeAnnoAppearance(sealResMgt,
                                     ofdPageVo,
                                     sealOfdReader.getAnnotationEntities(),
@@ -197,7 +197,7 @@ public class PdfboxMaker {
                         }
                     }
                 } else {
-                    // 绘制图片印章内容
+                    // 绘制imageseal/stamp内容
                     writeSealImage(contentStream, pageBox, stampAnnotVo.getImageByte(), sealBox, clipBox);
                 }
             }
@@ -222,14 +222,14 @@ public class PdfboxMaker {
     }
 
     /**
-     * 绘制注释到页面
+     * draw annotations到页面
      *
-     * @param resMgt           资源管理器
-     * @param pageInfo         OFD页面信息
+     * @param resMgt           resource manager
+     * @param pageInfo         OFDpage information
      * @param annotionEntities 注解列表
      * @param contentStream    PDF Content Stream
      * @param box              绘制区域
-     * @throws IOException 绘制过程中IO操作异常
+     * @throws IOException 绘制过程中IO operation exception
      */
     private void writeAnnoAppearance(ResourceManage resMgt,
                                      PageInfo pageInfo,
@@ -247,7 +247,7 @@ public class PdfboxMaker {
             }
             for (Annot annot : annotList) {
                 List<PageBlockType> pageBlockTypeList = annot.getAppearance().getPageBlocks();
-                //注释的boundary
+                //annotation boundary
                 ST_Box annotBox = annot.getAppearance().getBoundary();
                 writePageBlock(resMgt, contentStream, box, null, pageBlockTypeList, null, annotBox, null, null, null);
             }
@@ -267,7 +267,7 @@ public class PdfboxMaker {
         PDColor defaultFillColor = new PDColor(new float[]{0.0f, 0.0f, 0.0f}, PDDeviceRGB.INSTANCE);
         PDColor defaultStrokeColor = new PDColor(new float[]{0.0f, 0.0f, 0.0f}, PDDeviceRGB.INSTANCE);
         float defaultLineWidth = 0.353f;
-        // 递归的获取绘制参数
+        // 递归的获取drawing parameters
         CT_DrawParam ctDrawParam = null;
         if (drawparam != null) {
             ctDrawParam = resMgt.getDrawParamFinal(drawparam.toString());
@@ -456,10 +456,10 @@ public class PdfboxMaker {
                            ST_Array compositeObjectCTM) throws IOException {
         contentStream.saveGraphicsState();
         double scale = scaling(sealBox, pathObject);
-        // 获取引用的绘制参数可能会null
+        // 获取引用的drawing parameters可能会null
         CT_DrawParam ctDrawParam = resMgt.superDrawParam(pathObject);
         if (ctDrawParam != null) {
-            // 使用绘制参数补充缺省的颜色
+            // use drawing parameters to fill in default colors
             if (pathObject.getStrokeColor() == null
                     && ctDrawParam.getStrokeColor() != null) {
                 pathObject.setStrokeColor(ctDrawParam.getStrokeColor());
@@ -473,7 +473,7 @@ public class PdfboxMaker {
             }
         }
 
-        // 设置描边颜色
+        // set stroke color
         final StrokeColor strokeColor = pathObject.getStrokeColor();
         if (strokeColor != null) {
             if (strokeColor.getValue() != null) {
@@ -690,11 +690,11 @@ public class PdfboxMaker {
     }
 
     /**
-     * 计算当前盒子到目标盒子的缩放比例
+     * 计算当前盒子到目标盒子的scale ratio
      * 
      * @param targetBox 目标区域大小
      * @param currentBox 当前区域大小
-     * @return 缩放比例
+     * @return scale ratio
      */
     private double scaling(ST_Box targetBox, ST_Box currentBox) {
         double scale = 1.0;
@@ -706,11 +706,11 @@ public class PdfboxMaker {
     }
 
     /**
-     * 计算图元到目标盒子的缩放比例
+     * 计算图元到目标盒子的scale ratio
      * 
      * @param targetBox 目标盒子
      * @param graphicUnit 图元
-     * @return 缩放比例
+     * @return scale ratio
      */
     private double scaling(ST_Box targetBox, @SuppressWarnings("rawtypes") CT_GraphicUnit graphicUnit) {
         double scale = 1D;
@@ -737,7 +737,7 @@ public class PdfboxMaker {
     }
 
     private void writeImage(ResourceManage resMgt, PDPageContentStream contentStream, ST_Box box, ImageObject imageObject, ST_Box annotBox) throws IOException {
-        // 读取图片
+        // 读取image
         final ST_RefID resourceID = imageObject.getResourceID();
         if (resourceID == null) {
             return;
@@ -747,9 +747,9 @@ public class PdfboxMaker {
             bufferedImage = resMgt.getImage(resourceID.toString());
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
-                logger.error(String.format("图片解析失败！[resourceId: %s][%s]", resourceID.toString(), e.getMessage()));
+                logger.error(String.format("image解析失败！[resourceId: %s][%s]", resourceID.toString(), e.getMessage()));
             } else {
-                logger.warn(String.format("图片解析失败！[resourceId: %s]", resourceID.toString()), e);
+                logger.warn(String.format("image解析失败！[resourceId: %s]", resourceID.toString()), e);
             }
         }
         if (bufferedImage == null) {
@@ -757,12 +757,12 @@ public class PdfboxMaker {
         }
         contentStream.saveGraphicsState();
 
-        // 设置图片混合模式为 Multiply（正片叠底），防止图片遮挡文字
+        // 设置image混合模式为 Multiply（正片叠底），防止image遮挡文字
         // 参考 AWTMaker 使用 AlphaComposite.SRC_ATOP 的效果
         PDExtendedGraphicsState graphicsState = new PDExtendedGraphicsState();
         graphicsState.setBlendMode(org.apache.pdfbox.pdmodel.graphics.blend.BlendMode.MULTIPLY);
 
-        // 处理图片透明度
+        // 处理image透明度
         Integer alpha = imageObject.getAlpha();
         if (alpha != null && alpha < 255) {
             graphicsState.setNonStrokingAlphaConstant(alpha * 1.0f / 255);
@@ -770,7 +770,7 @@ public class PdfboxMaker {
 
         contentStream.setGraphicsStateParameters(graphicsState);
 
-        // 根据图片格式决定图片使用哪种创建方式
+        // 根据image格式决定image使用哪种创建方式
         PDImageXObject pdfImageObject;
         CT_MultiMedia multiMedia = resMgt.getMultiMedia(resourceID.toString());
         if(multiMedia != null && "JPEG".equals(multiMedia.getFormat())){
@@ -814,9 +814,9 @@ public class PdfboxMaker {
     }
 
     /**
-     * 获取字号 ，若无法获取则设置为默认值 0.353。
-     * @param textObject 文字对象
-     * @return 字号。
+     * get font size; if unavailable, default to 0.353.
+     * @param textObject text object
+     * @return font size.
      */
     private float getTextObjectSize(TextObject textObject) {
     	float fontSize = 0.353f;
@@ -857,7 +857,7 @@ public class PdfboxMaker {
         PDColor fillColor = defaultFontColor;
         CT_DrawParam ctDrawParam = resMgt.superDrawParam(textObject);
         if (ctDrawParam != null) {
-            // 使用绘制参数补充缺省的颜色
+            // use drawing parameters to fill in default colors
             if (textObject.getFillColor() == null
                     && ctDrawParam.getFillColor() != null) {
                 fillColor = convertPDColor(ctDrawParam.getFillColor().getValue());
@@ -865,7 +865,7 @@ public class PdfboxMaker {
         }
 
 
-        // 加载字体
+        // load font
         CT_Font ctFont = resMgt.getFont(textObject.getFont().toString());
         PDFont font = getFont(ctFont);
 
@@ -901,7 +901,7 @@ public class PdfboxMaker {
                 contentStream.concatenate2CTM(transform);
             }
 
-            //设置字符方向
+            //set character direction
             if (textObject.getCharDirection() == Angle_90) {
                 contentStream.setTextMatrix(new Matrix(0, -1, 1, 0, (float) textCodePoint.getX(), (float) textCodePoint.getY()));
             } else if (textObject.getCharDirection() == Angle_180) {
@@ -923,10 +923,10 @@ public class PdfboxMaker {
     }
 
     /**
-     * 添加附件
+     * add attachment
      *
-     * @param ofdReader OFD解析器
-     * @throws IOException IO异常
+     * @param ofdReader OFD parser
+     * @throws IOException IO exception
      */
     public void addAttachments(OFDReader ofdReader) throws IOException {
         // 获取OFD中所有附件
@@ -939,7 +939,7 @@ public class PdfboxMaker {
         for (CT_Attachment attachment : attachmentList) {
             PDComplexFileSpecification fs = new PDComplexFileSpecification();
             Path attFile = ofdReader.getAttachmentFile(attachment);
-            // 文件名传
+            // filename传
             fs.setFile(attachment.getAttachmentName());
             fs.setFileUnicode(attachment.getAttachmentName());
             // 文件流，该流将由PDEmbeddedFile内部关闭
@@ -950,13 +950,13 @@ public class PdfboxMaker {
 
             try {
                 Calendar calendar = Calendar.getInstance();
-                // 设置创建时间
+                // 设置creation time
                 LocalDateTime creationDate = attachment.getCreationDateTime();
                 Date date = Date.from(creationDate.atZone(ZoneId.systemDefault()).toInstant());
                 calendar.setTime(date);
                 ef.setCreationDate(calendar);
             }catch (Exception e){
-                logger.info("无法获取附件创建时间 {} : {}",attachment.attributeValue("CreationDate") ,attachment.getAttachmentName(), e);
+                logger.info("无法获取附件creation time {} : {}",attachment.attributeValue("CreationDate") ,attachment.getAttachmentName(), e);
             }
 
             fs.setEmbeddedFile(ef);
@@ -969,7 +969,7 @@ public class PdfboxMaker {
     }
 
     /**
-     * 通过字体信息获取字体对象
+     * 通过font信息获取font object
      * @param ctFont
      * @param fontPath
      * @param embedSubset
@@ -1013,21 +1013,21 @@ public class PdfboxMaker {
 
 
     /**
-     * 加载字体
+     * load font
      * 
-     * @param ctFont 字体对象
+     * @param ctFont font object
      * @return
      * @throws IOException
      */
     private PDFont loadFont(CT_Font ctFont) throws IOException {
-        // 字体是否嵌入
+        // font是否嵌入
         boolean embedSubset = false;
 
-        // 获取嵌入式字体路径
+        // 获取嵌入式font路径
         Path fontPath = null;
         TrueTypeFont ttf = null;
         if (ctFont != null && ctFont.getFontFile() != null) {
-            // 内嵌字体绝对路径
+            // absolute path of embedded font
             try {
                 ResourceLocator resourceLocator = reader.getResourceLocator();
                 fontPath = resourceLocator.getFile(ctFont.getFontFile()).toAbsolutePath();
@@ -1040,25 +1040,25 @@ public class PdfboxMaker {
             embedSubset = true;
             ttf=getTrueTypeFont(ctFont, fontPath, embedSubset);
         }
-        // 如果内嵌字体的OS/2 Table为空, 则尝试使用系统字体替代
+        // 如果内嵌font的OS/2 Table为空, 则尝试使用系统font替代
         if ( ttf == null || ttf.getOS2Windows() == null) {
-            // 获取系统字体
+            // 获取系统font
             String systemFontPath = FontLoader.getInstance().getReplaceSimilarFontPath(ctFont.getFamilyName(),
                     ctFont.getFontName());
             if (systemFontPath != null) {
                 fontPath = Paths.get(systemFontPath);
                 ttf = getTrueTypeFont(ctFont, fontPath, embedSubset);
                 if (ttf !=null ) {
-                    logger.debug("内嵌字体OS/2 Table为null， 使用系统字体替代: " + ttf.getName());
+                    logger.debug("内嵌fontOS/2 Table为null， 使用系统font替代: " + ttf.getName());
                 }
             }
         }
         if (ttf == null || ttf.getOS2Windows() == null) {
-            // 获取默认字体
+            // get default font
             fontPath = FontLoader.getInstance().getDefaultFontPath();
             ttf = getTrueTypeFont(ctFont, fontPath, embedSubset);
             if (ttf !=null ) {
-                logger.debug("使用默认字体: " + ttf.getName());
+                logger.debug("使用默认font: " + ttf.getName());
             }
         }
 
@@ -1068,10 +1068,10 @@ public class PdfboxMaker {
     }
 
     /**
-     * 加载字体
+     * load font
      *
-     * @param ctFont 字体对象
-     * @return 字体
+     * @param ctFont font object
+     * @return font
      */
     private PDFont getFont(CT_Font ctFont) {
         String key = String.format("%s_%s_%s", ctFont.getFamilyName(), ctFont.getFontName(), ctFont.getFontFile());
@@ -1079,24 +1079,24 @@ public class PdfboxMaker {
             return fontCache.get(key);
         }
         try {
-            // 加载字体
+            // load font
             PDFont font = loadFont(ctFont);
             fontCache.put(key, font);
             return font;
         } catch (Exception e) {
             if (ctFont != null && ctFont.getFontFile() != null) {
-                logger.info("无法使用字体: {} {} {}", ctFont.getFamilyName(), ctFont.getFontName(), ctFont.getFontFile());
+                logger.info("无法使用font: {} {} {}", ctFont.getFamilyName(), ctFont.getFontName(), ctFont.getFontFile());
             }
             return defaultFont;
         }
     }
 
     /**
-     * 设置默认字体
+     * set default font
      * <p>
-     * 当无法获取字体时将返回此字体
+     * 当无法获取font时将返回此font
      *
-     * @param font 默认字体
+     * @param font 默认font
      */
     public void setDefaultFont(PDFont font) {
         if (font != null) {
@@ -1105,9 +1105,9 @@ public class PdfboxMaker {
     }
 
     /**
-     * 获取默认字体
+     * get default font
      *
-     * @return 默认字体
+     * @return 默认font
      */
     public PDFont getDefaultFont() {
         return defaultFont;

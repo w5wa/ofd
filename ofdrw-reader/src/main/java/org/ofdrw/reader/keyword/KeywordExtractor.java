@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 关键字抽取
+ * keyword抽取
  *
  * @author minghu-zhang
  * @since 16:25 2020/9/26
@@ -48,54 +48,54 @@ public class KeywordExtractor {
     private static final float POINT_PER_MM = 72 / 25.4f;
 
     /**
-     * 获取关键字坐标列表(坐标单位毫米mm)
+     * get keyword coordinate list (coordinates in mm)
      *
-     * @param reader  OFD解析器
-     * @param keyword 关键字
-     * @return 关键字坐标列表
-     * @throws FileNotFoundException 文件不存在异常
-     * @throws DocumentException     文档解析异常
+     * @param reader  OFD parser
+     * @param keyword keyword
+     * @return keyword coordinate list
+     * @throws FileNotFoundException file not found exception
+     * @throws DocumentException     document parsing exception
      */
     public static List<KeywordPosition> getKeyWordPositionList(OFDReader reader, String keyword) throws FileNotFoundException, DocumentException {
         return getKeyWordPositionList(reader, keyword, null);
     }
 
     /**
-     * 获取关键字坐标列表(坐标单位毫米mm)
+     * get keyword coordinate list (coordinates in mm)
      *
-     * @param reader   OFD解析器
-     * @param keywords 关键字列表
-     * @return 关键字坐标列表
-     * @throws FileNotFoundException 文件不存在异常
-     * @throws DocumentException     文档解析异常
+     * @param reader   OFD parser
+     * @param keywords keyword列表
+     * @return keyword coordinate list
+     * @throws FileNotFoundException file not found exception
+     * @throws DocumentException     document parsing exception
      */
     public static List<KeywordPosition> getKeyWordPositionList(OFDReader reader, String[] keywords) throws FileNotFoundException, DocumentException {
         return getKeyWordPositionList(reader, keywords, null);
     }
 
     /**
-     * 获取关键字坐标列表(坐标单位毫米mm)
+     * get keyword coordinate list (coordinates in mm)
      *
-     * @param reader  OFD解析器
-     * @param keyword 关键字
-     * @param pages   要检索的页码，从1开始，不超过最大页码
-     * @return 关键字坐标列表
-     * @throws FileNotFoundException 文件不存在异常
-     * @throws DocumentException     文档解析异常
+     * @param reader  OFD parser
+     * @param keyword keyword
+     * @param pages   要检索的page number，从1开始，不超过最大page number
+     * @return keyword coordinate list
+     * @throws FileNotFoundException file not found exception
+     * @throws DocumentException     document parsing exception
      */
     public static List<KeywordPosition> getKeyWordPositionList(OFDReader reader, String keyword, int[] pages) throws FileNotFoundException, DocumentException {
         return getKeyWordPositionList(reader, new String[]{keyword}, pages);
     }
 
     /**
-     * 获取关键字坐标列表(坐标单位毫米mm)
+     * get keyword coordinate list (coordinates in mm)
      *
-     * @param reader   OFD解析器
-     * @param keywords 关键字列表
-     * @param pages    要检索的页码，从1开始，不超过最大页码
-     * @return 关键字坐标列表
-     * @throws FileNotFoundException 文件不存在异常
-     * @throws DocumentException     文档解析异常
+     * @param reader   OFD parser
+     * @param keywords keyword列表
+     * @param pages    要检索的page number，从1开始，不超过最大page number
+     * @return keyword coordinate list
+     * @throws FileNotFoundException file not found exception
+     * @throws DocumentException     document parsing exception
      */
     public static List<KeywordPosition> getKeyWordPositionList(OFDReader reader, String[] keywords, int[] pages) throws FileNotFoundException, DocumentException {
         Map<TextCode, KeywordResource> boundaryMapping = new HashMap<>(8);
@@ -108,7 +108,7 @@ public class KeywordExtractor {
         //数据目录
         String dataDir = docFile.split("/")[0];
 
-        //获取字体映射对象
+        //获取font映射对象
         Map<ST_ID, CT_Font> fontMapping = getFontMapping(locator, dataDir, document);
 
         //获取模板字典
@@ -122,7 +122,7 @@ public class KeywordExtractor {
         if (hasPageLimit) {
             for (int page : pages) {
                 if (page < 1 || page > numberOfPages) {
-                    throw new IllegalArgumentException(String.format("页码不正确，支持范围[%d-%d]", 1, numberOfPages));
+                    throw new IllegalArgumentException(String.format("page number不正确，支持范围[%d-%d]", 1, numberOfPages));
                 }
             }
         }
@@ -149,14 +149,14 @@ public class KeywordExtractor {
                     for (String keyword : keywords) {
                         int textIndex = content.indexOf(keyword);
                         if (textIndex != -1) {
-                            //完整包含关键字
+                            //完整containskeyword
                             addNormalKeyword(keyword, boundaryMapping, positionList, textCode, textIndex);
                         } else if (keyword.indexOf(content) == 0 && i != textCodeList.size() - 1) {
-                            //前缀匹配关键字
+                            //前缀匹配keyword
                             addPrefixBreakTextCodeList(keyword, boundaryMapping, textCodeList, positionList, i, textCode);
                         } else {
                             int startIndex = checkPostfixMatch(content, keyword);
-                            //后缀匹配关键字
+                            //后缀匹配keyword
                             if (startIndex != -1) {
                                 addPostfixBreakTextCodeList(keyword, boundaryMapping, textCodeList, positionList, i, startIndex, textCode);
                             }
@@ -174,7 +174,7 @@ public class KeywordExtractor {
      * 检查后缀匹配
      *
      * @param content 待匹配文本
-     * @param keyword 关键字
+     * @param keyword keyword
      * @return 是/否 匹配
      */
     private static int checkPostfixMatch(String content, String keyword) {
@@ -192,12 +192,12 @@ public class KeywordExtractor {
     }
 
     /**
-     * 处理后缀匹配断字断行文本定位关键字
+     * 处理后缀匹配断字断行文本定位keyword
      *
-     * @param keyword         关键字字符串
+     * @param keyword         keywordstring
      * @param boundaryMapping 映射对象
      * @param textCodeList    文本定位列表
-     * @param positionList    关键字位置列表
+     * @param positionList    keyword位置列表
      * @param textCodeIndex   TextCode位置
      * @param startIndex      TextCode文本起始位置
      * @param textCode        第一个文字定位
@@ -210,7 +210,7 @@ public class KeywordExtractor {
         mergeTextCodeList.add(textCode);
         //匹配下一个字
         searchNextText(keyword, textCodeList, mergeTextCodeList, boundaryMapping, textCodeIndex, textCode.getContent().substring(startIndex), textCode);
-        //判断是否包含
+        //判断是否contains
         StringBuilder builder = new StringBuilder();
         for (TextCode code : mergeTextCodeList) {
             builder.append(code.getContent());
@@ -222,12 +222,12 @@ public class KeywordExtractor {
     }
 
     /**
-     * 处理前缀匹配断字断行文本定位关键字
+     * 处理前缀匹配断字断行文本定位keyword
      *
-     * @param keyword         关键字字符串
+     * @param keyword         keywordstring
      * @param boundaryMapping 映射对象
      * @param textCodeList    文本定位列表
-     * @param positionList    关键字位置列表
+     * @param positionList    keyword位置列表
      * @param textCodeIndex   定位起始位置
      * @param textCode        第一个文字定位
      */
@@ -239,7 +239,7 @@ public class KeywordExtractor {
         mergeTextCodeList.add(textCode);
         //匹配下一个字
         searchNextText(keyword, textCodeList, mergeTextCodeList, boundaryMapping, textCodeIndex, textCode.getContent(), textCode);
-        //判断是否包含
+        //判断是否contains
         StringBuilder builder = new StringBuilder();
         for (TextCode code : mergeTextCodeList) {
             builder.append(code.getContent());
@@ -253,12 +253,12 @@ public class KeywordExtractor {
     /**
      * 检索下一个文本定位节点
      *
-     * @param keyword           关键字字符串
+     * @param keyword           keywordstring
      * @param textCodeList      文本定位列表
      * @param mergeTextCodeList 合并的TextCode列表
      * @param boundaryMapping   文本资源映射对象
      * @param textCodeIndex     TextCode位置
-     * @param firstMatchString  最先匹配字符串
+     * @param firstMatchString  最先匹配string
      * @param textCode          第一个匹配文字
      */
     private static void searchNextText(String keyword, List<TextCode> textCodeList, List<TextCode> mergeTextCodeList,
@@ -297,9 +297,9 @@ public class KeywordExtractor {
     }
 
     /**
-     * 处理正常关键字
+     * 处理正常keyword
      *
-     * @param keyword         [in]关键字
+     * @param keyword         [in]keyword
      * @param boundaryMapping [in]映射对象
      * @param positionList    [out]位置列表
      * @param textCode        [in]文字定位
@@ -339,18 +339,18 @@ public class KeywordExtractor {
     }
 
     /**
-     * 获取CTM后的关键字位置
+     * 获取CTM后的keyword位置
      *
      * @param textCode      文字定位
      * @param textIndex     文本索引
      * @param page          文本资源
-     * @param ctText        文字对象
-     * @param height        字体高度
+     * @param ctText        text object
+     * @param height        fontheight
      * @param ctm           CTM对象
      * @param deltaX        X偏移
      * @param deltaY        Y偏移
-     * @param keywordLength 文本长度
-     * @return 关键字位置
+     * @param keywordLength text length
+     * @return keyword位置
      */
     private static KeywordPosition getCtmKeywordPosition(TextCode textCode, int textIndex, int page, CT_Text ctText, double height,
                                                          ST_Array ctm, List<Float> deltaX, List<Float> deltaY, int keywordLength) {
@@ -444,13 +444,13 @@ public class KeywordExtractor {
     }
 
     /**
-     * 合并关键字位置对象
+     * 合并keyword位置对象
      *
-     * @param keyword         关键字
-     * @param firstStartIndex 第一个关键字起始匹配位置
-     * @param positionList    检索到的关键字列表
+     * @param keyword         keyword
+     * @param firstStartIndex 第一个keyword起始匹配位置
+     * @param positionList    检索到的keyword列表
      * @param textCodeList    合并列表
-     * @param boundaryMapping 外接矩形映射
+     * @param boundaryMapping bounding rectangle mapping
      */
     private static void mergeKeywordPosition(String keyword, int firstStartIndex, List<KeywordPosition> positionList, List<TextCode> textCodeList,
                                              Map<TextCode, KeywordResource> boundaryMapping) {
@@ -579,17 +579,17 @@ public class KeywordExtractor {
     /**
      * 获取模板页数据
      *
-     * @param locator  资源定位器
+     * @param locator  resource locator
      * @param dataDir  Document File路径
-     * @param document 文档对象
-     * @throws FileNotFoundException 文件不存在异常
-     * @throws DocumentException     文档解析异常
+     * @param document document object
+     * @throws FileNotFoundException file not found exception
+     * @throws DocumentException     document parsing exception
      */
     private static Map<ST_ID, Page> getTemplatePage(ResourceLocator locator, String dataDir, Document document)
             throws FileNotFoundException, DocumentException {
         Map<ST_ID, Page> templatePage = new HashMap<>(8);
 
-        //创建模板字体对象
+        //创建模板font object
         for (CT_TemplatePage tp : document.getCommonData().getTemplatePages()) {
             String templateFile = dataDir + "/" + tp.getBaseLoc();
             Page page = locator.get(templateFile, Page::new);
@@ -600,17 +600,17 @@ public class KeywordExtractor {
     }
 
     /**
-     * 创建关键字位置对象
+     * 创建keyword位置对象
      *
      * @param textCode      文字定位对象
      * @param textIndex     文本索引
-     * @param page          页码
-     * @param ctText        文字对象
-     * @param lineHeight    字体高度
+     * @param page          page number
+     * @param ctText        text object
+     * @param lineHeight    fontheight
      * @param deltaX        X偏移
      * @param deltaY        Y偏移
-     * @param keywordLength 文本长度
-     * @return 关键字对象
+     * @param keywordLength text length
+     * @return keyword对象
      */
     private static KeywordPosition getKeywordPosition(TextCode textCode, int textIndex, int page, CT_Text ctText, double lineHeight,
                                                       List<Float> deltaX, List<Float> deltaY, int keywordLength) {
@@ -655,11 +655,11 @@ public class KeywordExtractor {
     }
 
     /**
-     * 获取字体高度
+     * 获取fontheight
      *
      * @param str  待测量文字
-     * @param font 字体
-     * @return 高度
+     * @param font font
+     * @return height
      */
     private static Double strHeight(String str, Font font) {
         FontRenderContext frc =
@@ -668,13 +668,13 @@ public class KeywordExtractor {
     }
 
     /**
-     * 获取文本宽度，单位毫米(mm)
+     * 获取文本width，单位毫米(mm)
      *
      * @param textIndex     文字索引
-     * @param keywordLength 文本长度
+     * @param keywordLength text length
      * @param deltaX        X偏移量
      * @param fontSize      文字字号
-     * @return 文本宽度
+     * @return text contentwidth
      */
     private static double getStringWidth(int textIndex, int keywordLength, List<Float> deltaX, Double fontSize) {
         double width = fontSize;
@@ -685,11 +685,11 @@ public class KeywordExtractor {
     }
 
     /**
-     * 获取字体
+     * 获取font
      *
-     * @param ctText 文字对象
-     * @param ctFont 字形对象
-     * @return 字体对象
+     * @param ctText text object
+     * @param ctFont glyph对象
+     * @return font object
      */
     private static Font getFont(CT_Text ctText, CT_Font ctFont) {
         if (ctFont == null) {
@@ -750,12 +750,12 @@ public class KeywordExtractor {
     /**
      * 预处理数据
      *
-     * @param reader          OFD解析器
+     * @param reader          OFD parser
      * @param textCodeList    文本列表
-     * @param boundaryMapping 外接矩形映射
-     * @param fontMapping     字体映射对象
+     * @param boundaryMapping bounding rectangle mapping
+     * @param fontMapping     font映射对象
      * @param templatePageMap 模板数据
-     * @param pageNumber      页码
+     * @param pageNumber      page number
      */
     private static void preparedContextData(OFDReader reader, List<TextCode> textCodeList, Map<TextCode, KeywordResource> boundaryMapping,
                                             Map<ST_ID, CT_Font> fontMapping, Map<ST_ID, Page> templatePageMap, int pageNumber) {
@@ -763,7 +763,7 @@ public class KeywordExtractor {
         List<CT_Layer> layers = new ArrayList<>(0);
         Content content = page.getContent();
         if (content != null) {
-            // 获取模板页正文层
+            // 获取模板页body layer
             layers = content.getLayers();
         }
 
@@ -795,9 +795,9 @@ public class KeywordExtractor {
      * 页面块处理
      *
      * @param textCodeList    文本列表
-     * @param boundaryMapping 外接矩形映射
-     * @param fontMapping     字体映射对象
-     * @param pageNumber      页码
+     * @param boundaryMapping bounding rectangle mapping
+     * @param fontMapping     font映射对象
+     * @param pageNumber      page number
      * @param pageBlocks      页块列表
      */
     private static void pageBlockHandle(List<TextCode> textCodeList, Map<TextCode, KeywordResource> boundaryMapping, Map<ST_ID, CT_Font> fontMapping,
@@ -825,13 +825,13 @@ public class KeywordExtractor {
     }
 
     /**
-     * 获取字体映射对象
+     * 获取font映射对象
      *
-     * @param locator  资源定位器
+     * @param locator  resource locator
      * @param dataDir  Document File路径
-     * @param document 文档对象
-     * @throws FileNotFoundException 文件不存在异常
-     * @throws DocumentException     文档解析异常
+     * @param document document object
+     * @throws FileNotFoundException file not found exception
+     * @throws DocumentException     document parsing exception
      */
     private static Map<ST_ID, CT_Font> getFontMapping(ResourceLocator locator, String dataDir, Document document)
             throws FileNotFoundException, DocumentException {

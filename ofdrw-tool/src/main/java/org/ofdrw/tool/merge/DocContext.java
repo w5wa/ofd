@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * OFD文档上下文，用于在合并时提供文档相关信息
+ * OFDdocument context，用于在合并时提供文档相关信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-11-09 20:47:34
  */
 public class DocContext implements Closeable {
@@ -29,10 +29,10 @@ public class DocContext implements Closeable {
     /**
      * 新旧映射表
      * <p>
-     * | 对象在原文档中的ID | (新文档ID, 资源对象) |
+     * | 对象在原文档中的ID | (新文档ID, resource object) |
      * <p>
      * Key: 旧ID
-     * Value: 资源对象（ID替换为新文档中的ID）
+     * Value: resource object（ID替换为新文档中的ID）
      */
     final Map<String, OFDElement> resOldNewMap;
 
@@ -47,18 +47,18 @@ public class DocContext implements Closeable {
     }
 
     /**
-     * 获取默认情况的页面信息
+     * 获取默认情况的page information
      *
      * @param numOfDoc 文档序号，一般为0
      * @return 页面尺寸信息
-     * @throws DocumentException     文档解析异常
+     * @throws DocumentException     document parsing exception
      * @throws FileNotFoundException 文件缺失
      */
     public CT_PageArea getDefaultArea(int numOfDoc) throws DocumentException, FileNotFoundException {
         if (defaultArea != null) {
             return defaultArea;
         }
-        // 取0文档对象
+        // 取0document object
         final Document document = reader.getDoc(numOfDoc);
         defaultArea = document.getCommonData().getPageArea();
         if (defaultArea == null) {

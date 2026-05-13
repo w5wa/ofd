@@ -105,7 +105,7 @@ public class AttachmentTest {
     /**
      * 向文件已经存在附件的文档中加入附件文件
      *
-     * （附件文件路径使用的是相对路径）
+     * （附件file path使用的是相对路径）
      */
     @Test
     void addAttachment4ExistOFD() throws IOException {

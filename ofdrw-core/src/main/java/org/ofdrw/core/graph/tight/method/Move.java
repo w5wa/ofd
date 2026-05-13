@@ -8,7 +8,7 @@ import org.ofdrw.core.basicType.ST_Pos;
  * <p>
  * 用于表示到新的绘制点指令
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 12:44:18
  */
 public class Move extends Command {
@@ -31,7 +31,7 @@ public class Move extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 设置 移动后新的当前绘制点
      *
      * @param pint1 移动后新的当前绘制点
@@ -43,7 +43,7 @@ public class Move extends Command {
     }
 
     /**
-     * 【必选 属性】
+     * [required attribute]
      * 获取 移动后新的当前绘制点
      *
      * @return 移动后新的当前绘制点

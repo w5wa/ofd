@@ -7,9 +7,9 @@ import org.dom4j.Element;
  * <p>
  * 默认值为 Default
  * <p>
- * 7.5 表 9 视图首选项
+ * 7.5 Table 9 View Preferences
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-07 09:18:57
  */
 public class ZoomMode extends ZoomScale {
@@ -32,11 +32,11 @@ public class ZoomMode extends ZoomScale {
          */
         Default,
         /**
-         * 合适高度
+         * 合适height
          */
         FitHeight,
         /**
-         * 合适宽度
+         * 合适width
          */
         FitWidth,
         /**
@@ -69,7 +69,7 @@ public class ZoomMode extends ZoomScale {
     }
 
     /**
-     * 获取工厂方式枚举的实例
+     * 获取工厂方式枚举的instance
      *
      * @param type 自动缩放模式类型
      * @return 自动缩放模式

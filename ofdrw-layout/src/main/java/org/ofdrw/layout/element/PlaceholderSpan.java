@@ -7,7 +7,7 @@ import java.util.LinkedList;
 /**
  * 占位符
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-03-28 11:45:59
  */
 public class PlaceholderSpan extends Span {
@@ -29,13 +29,13 @@ public class PlaceholderSpan extends Span {
     /**
      * 创建占位符
      *
-     * @param holdWidth 占位符宽度
-     * @param height    占位符高度
+     * @param holdWidth 占位符width
+     * @param height    占位符height
      */
     public PlaceholderSpan(double holdWidth, double height) {
         this.holdWidth = holdWidth;
         this.setFontSize(height);
-        // 占位符不可在分割
+        // placeholder cannot be split
         setIntegrity(true);
     }
 
@@ -45,11 +45,11 @@ public class PlaceholderSpan extends Span {
      * 该方式创建的占位符字间距为0
      *
      * @param holdNum  占位符数目
-     * @param fontSize 每个占位符字体大小
+     * @param fontSize 每个占位符font大小
      */
     public PlaceholderSpan(int holdNum, double fontSize) {
         this.setFontSize(fontSize);
-        // 占位符不可在分割
+        // placeholder cannot be split
         setIntegrity(true);
         setHoldChars(holdNum);
     }
@@ -61,10 +61,10 @@ public class PlaceholderSpan extends Span {
      * @param sp      用于复制的原始span
      */
     public PlaceholderSpan(int holdNum, Span sp) {
-        // 占位符不可在分割
+        // placeholder cannot be split
         setIntegrity(true);
         this.setFontSize(sp.getFontSize());
-        // 设置字间距
+        // set character spacing
         this.setLetterSpacing(sp.getLetterSpacing());
         this.setHoldChars(holdNum);
     }
@@ -77,7 +77,7 @@ public class PlaceholderSpan extends Span {
      */
     public PlaceholderSpan setHoldChars(int holdNum) {
         this.holdNum = holdNum;
-        // 占位符宽度为 占位符宽度
+        // 占位符width为 占位符width
         this.holdWidth = holdNum * (this.getFontSize() + this.getLetterSpacing());
         return this;
     }
@@ -94,22 +94,22 @@ public class PlaceholderSpan extends Span {
     }
 
     /**
-     * 占位符宽度
+     * 占位符width
      * <p>
-     * 仅在使用占位宽度创建对象时有效 {@link #PlaceholderSpan(double, double)}
+     * 仅在使用占位width创建对象时有效 {@link #PlaceholderSpan(double, double)}
      *
-     * @return 占位符宽度
+     * @return 占位符width
      */
     public double getHoldWidth() {
         return holdWidth;
     }
 
     /**
-     * 设置占位符宽度
+     * 设置占位符width
      * <p>
-     * 如果设置该了宽度，那么HoldNum将会失效
+     * 如果设置该了width，那么HoldNum将会失效
      *
-     * @param holdWidth 占位符宽度，单位mm
+     * @param holdWidth 占位符width，单位mm
      * @return this
      */
     public PlaceholderSpan setHoldWidth(double holdWidth) {
@@ -119,7 +119,7 @@ public class PlaceholderSpan extends Span {
 
     /**
      * 占位符大小，如果holdWidth存在那么返还指定宽高的矩形
-     * 否则根据字体进行计算
+     * 否则根据font进行计算
      *
      * @return 占位符大小
      */

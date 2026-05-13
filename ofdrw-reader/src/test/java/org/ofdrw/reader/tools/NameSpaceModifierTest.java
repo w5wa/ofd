@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-10-15 20:04:22
  */
 class NameSpaceModifierTest {
@@ -19,7 +19,7 @@ class NameSpaceModifierTest {
         SAXReader reader = new SAXReader();
         Document document = reader.read(src);
 
-        // 修改已经存在的命名空间为指定命名空间
+        // 修改已经存在的namespace为指定namespace
         document.accept(new NameSpaceModifier());
         System.out.println(document.asXML());
     }

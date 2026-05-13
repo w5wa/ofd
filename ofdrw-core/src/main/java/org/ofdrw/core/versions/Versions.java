@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 一个OFD文档可能有多个版本
+ * 一个OFD document可能有多个版本
  * <p>
  * 版本序列
  * <p>
@@ -31,7 +31,7 @@ public class Versions extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 增加 版本描述入口
      *
      * @param version 版本描述入口
@@ -43,7 +43,7 @@ public class Versions extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 版本描述入口列表
      *
      * @return 版本描述入口列表

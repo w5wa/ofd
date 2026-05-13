@@ -11,7 +11,7 @@ import org.ofdrw.core.pageDescription.CT_GraphicUnit;
  * <p>
  * 10 图像 图 57 表 43
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-22 06:32:35
  */
 public class CT_Image extends CT_GraphicUnit<CT_Image> {
@@ -28,35 +28,35 @@ public class CT_Image extends CT_GraphicUnit<CT_Image> {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 引用资源文件的定义多媒体的标识
+     * [required attribute]
+     * 设置 引用resource file的定义多媒体的标识
      *
-     * @param resourceId 引用资源文件的定义多媒体的标识
+     * @param resourceId 引用resource file的定义多媒体的标识
      * @return this
      */
     public CT_Image setResourceID(ST_RefID resourceId) {
         if (resourceId == null) {
-            throw new IllegalArgumentException("资源文件的标识（ResourceID）不能为空");
+            throw new IllegalArgumentException("resource file的标识（ResourceID）不能为空");
         }
         this.addAttribute("ResourceID", resourceId.toString());
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 设置 引用资源文件的定义多媒体的标识
+     * [required attribute]
+     * 设置 引用resource file的定义多媒体的标识
      *
-     * @return 引用资源文件的定义多媒体的标识
+     * @return 引用resource file的定义多媒体的标识
      */
     public ST_RefID getResourceID() {
         return ST_RefID.getInstance(this.attributeValue("ResourceID"));
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 可替换图像
      * <p>
-     * 引用资源文件中定义的多媒体的标识，由于某些情况
+     * 引用resource file中定义的多媒体的标识，由于某些情况
      * 如高分辨率输出进行图像替换
      *
      * @param substitution 可替换图像标识
@@ -72,10 +72,10 @@ public class CT_Image extends CT_GraphicUnit<CT_Image> {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 可替换图像引用
      * <p>
-     * 引用资源文件中定义的多媒体的标识，由于某些情况
+     * 引用resource file中定义的多媒体的标识，由于某些情况
      * 如高分辨率输出进行图像替换
      *
      * @return 可替换图像标识引用
@@ -85,11 +85,11 @@ public class CT_Image extends CT_GraphicUnit<CT_Image> {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 图像蒙版
      * <p>
-     * 引用资源文件中定义的多媒体的标识，用作蒙板的图像应是
-     * 与 ResourceID 指向的图像相同大小的二值图
+     * 引用resource file中定义的多媒体的标识，用作蒙板的图像应是
+     * 与 ResourceID points to的图像相同大小的二值图
      *
      * @param imageMask 图像蒙版资源引用
      * @return this
@@ -104,11 +104,11 @@ public class CT_Image extends CT_GraphicUnit<CT_Image> {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 图像蒙版资源引用
      * <p>
-     * 引用资源文件中定义的多媒体的标识，用作蒙板的图像应是
-     * 与 ResourceID 指向的图像相同大小的二值图
+     * 引用resource file中定义的多媒体的标识，用作蒙板的图像应是
+     * 与 ResourceID points to的图像相同大小的二值图
      *
      * @return 图像蒙版资源引用
      */
@@ -118,7 +118,7 @@ public class CT_Image extends CT_GraphicUnit<CT_Image> {
 
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 图像边框
      *
      * @param border 图像边框
@@ -133,10 +133,10 @@ public class CT_Image extends CT_GraphicUnit<CT_Image> {
     }
 
     /**
-     * 构造图片对象
+     * 构造image对象
      *
-     * @param id 对象ID
-     * @return 对象
+     * @param id object ID
+     * @return object
      */
     public ImageObject toObj(ST_ID id) {
         this.setOFDName("ImageObject");
@@ -145,7 +145,7 @@ public class CT_Image extends CT_GraphicUnit<CT_Image> {
     }
 
     /**
-     * 【可选】
+     * [optional]
      * 设置 图像边框
      *
      * @return 图像边框

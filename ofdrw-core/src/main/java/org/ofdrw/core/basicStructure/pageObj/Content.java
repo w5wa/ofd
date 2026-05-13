@@ -11,11 +11,11 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * 页面内容描述，该节点不存在是，表示空白页面
+ * page content描述，该节点不存在是，表示空白页面
  * <p>
- * 7.7 页面对象 表 12
+ * 7.7 page object 表 12
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-10 09:55:20
  */
 public class Content extends OFDElement {
@@ -28,55 +28,55 @@ public class Content extends OFDElement {
     }
 
     /**
-     * 【必选】
-     * 增加 层节点
+     * [required]
+     * 增加 layer node
      * <p>
-     * 一页可以包含一个或多个层
+     * a page can contain one or more layers
      * <p>
-     * 注意：每个加入的层节点必须设置 ID属性。
+     * Note: each added layer node must have the ID attribute set.
      *
-     * @param layer 层节点
+     * @param layer layer node
      * @return this
-     * @throws IllegalArgumentException 加入的图层对象（CT_Layer）没有设置ID属性
+     * @throws IllegalArgumentException 加入的layer对象（CT_Layer）没有设置ID属性
      */
     public Content addLayer(CT_Layer layer) {
         ST_ID id = layer.getObjID();
         if (id == null) {
-            throw new IllegalArgumentException("加入的图层对象（CT_Layer）没有设置ID属性");
+            throw new IllegalArgumentException("加入的layer对象（CT_Layer）没有设置ID属性");
         }
         this.add(layer);
         return this;
     }
 
     /**
-     * 【必选】
-     * 获取 层节点列表
+     * [required]
+     * 获取 layer node列表
      * <p>
-     * 一页可以包含一个或多个层
+     * a page can contain one or more layers
      * <p>
-     * 注意：每个加入的层节点必须设置 ID属性。
+     * Note: each added layer node must have the ID attribute set.
      *
-     * @return 层节点
+     * @return layer node
      */
     public List<CT_Layer> getLayers() {
         return this.getOFDElements("Layer", CT_Layer::new);
     }
 
     /**
-     * 【必选】
-     * 获取 排序后的层节点列表
+     * [required]
+     * 获取 排序后的layer node列表
      * <p>
-     * 一页可以包含一个或多个层
+     * a page can contain one or more layers
      * <p>
-     * 注意：每个加入的层节点必须设置 ID属性，排序如下：
+     * 注意：每个加入的layer node必须设置 ID属性，排序如下：
      * 背景模板
-     * 背景层
+     * background layer
      * 正文模板
-     * 正文层
+     * body layer
      * 前景模板
-     * 前景层
+     * foreground layer
      *
-     * @return 层节点
+     * @return layer node
      */
     public List<CT_Layer> getOrderedLayers() {
         List<CT_Layer> listLayers = this.getOFDElements("Layer", CT_Layer::new);

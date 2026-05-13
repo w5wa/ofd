@@ -15,25 +15,25 @@ import java.io.IOException;
  */
 public class ArtWord extends CanvasBase {
     /**
-     * 字体
+     * font
      */
     private Font font;
 
     /**
-     * 字体大小
+     * font size
      * 默认值3毫米
      */
     private Double fontSize = 3d;
 
     /**
-     * 字间距
+     * character spacing
      * <p>
      * 默认为 0
      */
     private Double letterSpacing = 0d;
 
     /**
-     * 是否加粗
+     * whether bold
      * <p>
      * 默认不加粗 false
      * <p>
@@ -49,7 +49,7 @@ public class ArtWord extends CanvasBase {
     private Weight weight = null;
 
     /**
-     * 是否斜体
+     * whether italic
      * <p>
      * 默认非斜体 false
      */
@@ -66,16 +66,16 @@ public class ArtWord extends CanvasBase {
      */
     private double underlineOffset = 1.2d;
     /**
-     * 下划线宽度，0表示保持默认，默认为字体大小的0.05倍
+     * 下划线width，0表示保持默认，默认为font大小的0.05倍
      */
     private double underlineWidth = 0d;
     /**
-     * 文本内容
+     * text content
      */
     private String text;
 
     /**
-     * 字体颜色
+     * font color
      */
     private int[] color = new int[]{0, 0, 0};
 
@@ -91,13 +91,13 @@ public class ArtWord extends CanvasBase {
     private org.ofdrw.layout.element.TextAlign textLayoutAlign;
 
     /**
-     * 水平缩放比例
+     * 水平scale ratio
      * 小于1-水平挤压，1-正常，大于1-水平拉伸，这是一个比例值，比如0.5表示字宽变为原来的50%
      */
     private double horizontalScaling = 1D;
 
     /**
-     * 垂直缩放比例
+     * 垂直scale ratio
      * 小于1-垂直挤压，1-正常，大于1-垂直拉伸，这是一个比例值，比如0.5表示字宽变为原来的50%
      */
     private double verticalScaling = 1D;
@@ -130,9 +130,9 @@ public class ArtWord extends CanvasBase {
     }
 
     /**
-     * 设置字体颜色
+     * set font color
      *
-     * @param rgb 颜色值
+     * @param rgb color value
      * @return this
      */
     public ArtWord setColor(int[] rgb) {
@@ -141,10 +141,10 @@ public class ArtWord extends CanvasBase {
     }
 
     /**
-     * 设置字体颜色
+     * set font color
      *
-     * @param r 红
-     * @param g 绿
+     * @param r red
+     * @param g green
      * @param b 懒
      * @return this
      */
@@ -154,7 +154,7 @@ public class ArtWord extends CanvasBase {
     }
 
     /**
-     * 设置字体颜色
+     * set font color
      *
      * @param color 16进制颜色，如#FFFFFF
      * @return this
@@ -206,11 +206,11 @@ public class ArtWord extends CanvasBase {
     }
 
     /**
-     * 设置是否加粗
+     * set whether bold
      * <p>
      * 若需要更加细致的控制，可以使用 {@link #setWeight(Weight)}
      *
-     * @param bold 是否加粗
+     * @param bold whether bold
      * @return this
      */
     public ArtWord setBold(boolean bold) {
@@ -219,18 +219,18 @@ public class ArtWord extends CanvasBase {
     }
 
     /**
-     * 获取字体粗细
+     * 获取font粗细
      *
-     * @return 字体粗细，可能为null。
+     * @return font粗细，可能为null。
      */
     public Weight getWeight() {
         return weight;
     }
 
     /**
-     * 设置字体粗细
+     * set font weight
      *
-     * @param weight 字体粗细
+     * @param weight font粗细
      * @return this
      */
     public ArtWord setWeight(Weight weight) {
@@ -254,7 +254,7 @@ public class ArtWord extends CanvasBase {
     /**
      * 设置 下划线
      *
-     * @param underline 是否启用下划线
+     * @param underline whether to enable underline
      * @return this
      */
     public ArtWord setUnderline(boolean underline) {
@@ -265,9 +265,9 @@ public class ArtWord extends CanvasBase {
     /**
      * 设置下划线
      *
-     * @param underline 是否启用下划线
+     * @param underline whether to enable underline
      * @param offset    下划线与文字的偏移量，可以为负值，默认值为1.2，单位毫米。
-     * @param width     下划线线宽，默认为0，为0时默认为字体大小的0.05倍。
+     * @param width     下划线线宽，默认为0，为0时默认为font大小的0.05倍。
      * @return this
      */
     public ArtWord setUnderline(boolean underline, double offset, double width) {
@@ -352,9 +352,9 @@ public class ArtWord extends CanvasBase {
     }
 
     /**
-     * 获取下划线宽度
+     * 获取下划线width
      *
-     * @return 下划线宽度, 0表示保持默认，默认为字体大小的0.05倍，单位毫米
+     * @return 下划线width, 0表示保持默认，默认为font大小的0.05倍，单位毫米
      */
     public double getUnderlineWidth() {
         return underlineWidth;
@@ -387,11 +387,11 @@ public class ArtWord extends CanvasBase {
 
     @Override
     public void draw(DrawContext ctx) throws IOException {
-        // 添加外部字体
+        // add external font
 //        if (font != null && !StringUtils.isBlank(font.getName()) && font.getFontFile() != null) {
 //            ctx.addFont(font.getName(), font.getFontFile());
 //        }
-        // 字体
+        // font
         FontSetting fontSetting = new FontSetting(fontSize, font);
         fontSetting.setLetterSpacing(letterSpacing);
         if (bold) {
@@ -404,7 +404,7 @@ public class ArtWord extends CanvasBase {
         fontSetting.setTextAlign(textAlign);
         ctx.setFont(fontSetting);
 
-        // 字体颜色
+        // font color
         ctx.setFillColor(color);
         /**
          *  a 水平缩放绘图 小于1-水平挤压，1-正常，大于1-水平拉伸，这是一个比例值，比如0.5表示字宽变为原来的50%
@@ -415,7 +415,7 @@ public class ArtWord extends CanvasBase {
          *  f 垂直移动绘图 垂直偏移量，单位：毫米
          */
         ctx.setTransform(horizontalScaling, verticalInclination, horizontalInclination, verticalScaling, offsetX, offsetY);
-        // 计算文本宽度
+        // 计算文本width
         double textWidth = ctx.measureText(text).width;
         // 根据对齐方式计算绘制文本的起始位置
         double x = 0;

@@ -17,16 +17,16 @@ import java.security.PublicKey;
 import java.security.cert.Certificate;
 
 /**
- * OFD用户证书加密器
+ * OFDuser certificate加密器
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-7-29 18:36:07
  */
 public class UserCertEncryptor implements UserFEKEncryptor {
     /**
-     * 用户证书
+     * user certificate
      * <p>
-     * 证书中的公钥用于加密 文件加密密钥
+     * certificate中的public key用于加密 文件加密key
      */
     private final Certificate certificate;
 
@@ -44,18 +44,18 @@ public class UserCertEncryptor implements UserFEKEncryptor {
 
 
     /**
-     * OFD用户数字证书加密器
+     * OFD用户numbercertificate加密器
      *
      * @param username    用户名称
      * @param userType    用户角色类型 {@link UserInfo#UserTypeOwner}  {@link UserInfo#UserTypeUser}
-     * @param certificate 用户数字证书
+     * @param certificate 用户numbercertificate
      */
     public UserCertEncryptor(@NotNull String username, String userType, @NotNull Certificate certificate) {
         if (username == null || username.isEmpty()) {
             throw new IllegalArgumentException("用户名称(username)为空");
         }
         if (certificate == null) {
-            throw new IllegalArgumentException("用户数字证书(certificate)为空");
+            throw new IllegalArgumentException("用户numbercertificate(certificate)为空");
         }
         this.username = username;
         this.userType = userType;
@@ -63,12 +63,12 @@ public class UserCertEncryptor implements UserFEKEncryptor {
     }
 
     /**
-     * OFD用户数字证书加密器
+     * OFD用户numbercertificate加密器
      * <p>
      * 用户类型：User(用户)  {@link UserInfo#UserTypeUser}
      *
      * @param username    用户名称
-     * @param certificate 用户数字证书
+     * @param certificate 用户numbercertificate
      */
     public UserCertEncryptor(@NotNull String username, @NotNull Certificate certificate) {
         this(username, null, certificate);
@@ -76,11 +76,11 @@ public class UserCertEncryptor implements UserFEKEncryptor {
 
 
     /**
-     * 加密 文件加密密钥 并封装为
+     * encrypt file encryption key and encapsulate as
      *
-     * @param fek 文件加密密钥（File Encrypt Key ）
-     * @param iv  加密向量IV
-     * @return 用户信息（包含加密的文件加密密钥）
+     * @param fek file encryption key (File Encrypt Key)
+     * @param iv  encryption initialization vector IV
+     * @return user information (including encrypted file encryption key)
      * @throws CryptoException 加密过程运行异常
      */
     @Override
@@ -102,9 +102,9 @@ public class UserCertEncryptor implements UserFEKEncryptor {
     }
 
     /**
-     * 用户加密时使用的证书，仅在使用证书加密的加密器中需要实现
+     * certificate used for user encryption; only required in certificate-based encryptors
      *
-     * @return 证书文件字节内容（DER编码），在使用口令加密时可返还null
+     * @return certificate file byte content (DER encoded); may return null for password-based encryption
      */
     @Override
     public byte[] userCert() throws GeneralSecurityException {
@@ -112,9 +112,9 @@ public class UserCertEncryptor implements UserFEKEncryptor {
     }
 
     /**
-     * 加密保护方案标识，见附录 A.1 {@link ProtectionCaseID}
+     * encryption protection scheme identifier, see Appendix A.1 {@link ProtectionCaseID}
      *
-     * @return 加密保护方案标识
+     * @return encryption protection scheme identifier
      */
     @Override
     public @NotNull String encryptCaseId() {

@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * 文字字符块
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-28 05:51:05
  */
 public class TxtGlyph {
@@ -22,7 +22,7 @@ public class TxtGlyph {
      */
     private final char txt;
     /**
-     * 文字字体信息
+     * 文字font信息
      */
     private final TextFontInfo textFontInfo;
 
@@ -32,9 +32,9 @@ public class TxtGlyph {
     }
 
     /**
-     * 返回字体宽度
+     * 返回fontwidth
      *
-     * @return 字符宽度(字符宽度 + 字间距)
+     * @return 字符width(字符width + 字间距)
      */
     public double getW() {
         Font font = textFontInfo.getFont();
@@ -44,7 +44,7 @@ public class TxtGlyph {
             return w;
         }
         if (this.bounds == null) {
-            // 分析字体大小
+            // 分析font大小
             this.bounds = EnvFont.strBounds(font.getName(),
                     font.getFamilyName(),
                     String.valueOf(txt),
@@ -54,9 +54,9 @@ public class TxtGlyph {
     }
 
     /**
-     * 返回字体高度
+     * 返回fontheight
      *
-     * @return 字符高度
+     * @return 字符height
      */
     public double getH() {
         Font font = textFontInfo.getFont();
@@ -64,7 +64,7 @@ public class TxtGlyph {
             return textFontInfo.getFontSize();
         }
         if (this.bounds == null) {
-            // 分析字体大小
+            // 分析font大小
             this.bounds = EnvFont.strBounds(font.getName(),
                     font.getFamilyName(),
                     String.valueOf(txt),

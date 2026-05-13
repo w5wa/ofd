@@ -9,7 +9,7 @@ package org.ofdrw.core.pageDescription.drawParam;
  *
  * 默认值为 Butt
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-11 07:34:59
  */
 public enum LineCapType {
@@ -18,12 +18,12 @@ public enum LineCapType {
     Square;
 
     /**
-     * 根据类型字符串获取类型枚举
+     * 根据type string获取类型枚举
      * <p>
      * 默认值：Miter
      *
-     * @param type 类型字符串
-     * @return 枚举实例
+     * @param type type string
+     * @return 枚举instance
      * @throws IllegalArgumentException 未知的线端点样式
      */
     public static LineCapType getInstance(String type) {

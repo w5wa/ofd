@@ -13,31 +13,31 @@ import java.io.InputStream;
 import java.security.*;
 
 /**
- * 国密SM2withSM3数字签名实现容器
- * @deprecated OFD的数字签名应符合 《GB/T 35275》  {@link GBT35275DSContainer}
+ * 国密SM2withSM3number签名实现容器
+ * @deprecated OFD的number签名应符合 《GB/T 35275》  {@link GBT35275DSContainer}
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-20 12:26:33
  */
 @Deprecated
 public class DigitalSignContainer implements ExtendSignatureContainer {
 
     /**
-     * 签名私钥
+     * signing private key
      */
     private final PrivateKey prvKey;
 
     public DigitalSignContainer(PrivateKey prvKey) {
         if (prvKey == null) {
-            throw new IllegalArgumentException("签名使用私钥（prvKey）不能为空");
+            throw new IllegalArgumentException("签名使用private key（prvKey）不能为空");
         }
         this.prvKey = prvKey;
     }
 
     /**
-     * SM3摘要算法功能
+     * SM3 digest algorithm function
      *
-     * @return SM3摘要算法功能
+     * @return SM3 digest algorithm function
      */
     @Override
     public MessageDigest getDigestFnc() {
@@ -47,7 +47,7 @@ public class DigitalSignContainer implements ExtendSignatureContainer {
     /**
      * SM2WithSM3
      *
-     * @return 签名方法OID
+     * @return signature algorithm OID
      */
     @Override
     public ASN1ObjectIdentifier getSignAlgOID() {
@@ -55,13 +55,13 @@ public class DigitalSignContainer implements ExtendSignatureContainer {
     }
 
     /**
-     * 对待签名数据签名
+     * sign the data to be signed
      *
-     * @param inData       待签名数据流
-     * @param propertyInfo 忽略
-     * @return 签名结果值
-     * @throws IOException       IO流读取异常
-     * @throws SecurityException 签名计算异常
+     * @param inData       data stream to be signed
+     * @param propertyInfo ignored
+     * @return signature result value
+     * @throws IOException       IO stream read exception
+     * @throws SecurityException signature computation exception
      */
     @Override
     public byte[] sign(InputStream inData, String propertyInfo) throws GeneralSecurityException, IOException {
@@ -74,10 +74,10 @@ public class DigitalSignContainer implements ExtendSignatureContainer {
     }
 
     /**
-     * 电子签名不提供印章
+     * electronic signature does not provide seal
      *
      * @return null
-     * @throws IOException 获取印章IO异常
+     * @throws IOException IO exception while retrieving seal
      */
     @Override
     public byte[] getSeal() throws IOException {
@@ -85,9 +85,9 @@ public class DigitalSignContainer implements ExtendSignatureContainer {
     }
 
     /**
-     * 获取签名节点类型
+     * get signature node type
      *
-     * @return 签名节点类型
+     * @return signature node type
      */
     @Override
     public SigType getSignType() {

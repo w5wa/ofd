@@ -19,7 +19,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-10-11 20:31:05
  */
 class TBS_SignTest {

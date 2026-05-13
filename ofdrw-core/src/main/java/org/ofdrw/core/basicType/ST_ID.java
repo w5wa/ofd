@@ -3,14 +3,14 @@ package org.ofdrw.core.basicType;
 import java.util.Objects;
 
 /**
- * 标识，无符号整数，应在文档内唯一。0标识无效标识符
+ * 标识，无符号整数，应在文档内唯一。0 indicates invalid identifier
  * <p>
- * 示例：
+ * Example:
  * <code>1000</code>
  * <p>
- * ————《GB/T 33190-2016》 表 2 基本数据类型
+ * — GB/T 33190-2016, Table 2: Basic Data Types
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-09-28 10:50:03
  */
 public class ST_ID extends STBase {
@@ -32,10 +32,10 @@ public class ST_ID extends STBase {
     }
 
     /**
-     * 获取 ST_ID 实例如果参数非法则返还null
+     * 获取 ST_ID instance如果参数非法则返还null
      *
-     * @param idStr ID字符串
-     * @return 实例 或 null
+     * @param idStr ID string
+     * @return instance or null
      */
     public static ST_ID getInstance(String idStr) {
         if (idStr == null || idStr.trim().length() == 0) {

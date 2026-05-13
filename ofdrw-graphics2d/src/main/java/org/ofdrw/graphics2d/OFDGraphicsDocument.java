@@ -31,52 +31,52 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 图形OFD文档对象
+ * 图形OFDdocument object
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2023-1-18 09:45:18
  */
 public class OFDGraphicsDocument implements Closeable {
     /**
-     * 打包后OFD文档存放路径
+     * storage path for the packaged OFD document
      */
     private Path outPath;
 
     /**
-     * 打包后OFD文档流
+     * 打包后OFD document流
      */
     private OutputStream outputStream;
 
     /**
-     * 文档是否已经关闭
-     * true 表示已经关闭，false 表示未关闭
+     * whether the document is closed
+     * true = closed, false = not closed
      */
     private boolean closed = false;
 
     /**
-     * OFD 打包
+     * OFD packaging
      */
     public final OFDDir ofdDir;
 
     /**
-     * 当前文档中所有对象使用标识的最大值。
-     * 初始值为 0。MaxUnitID主要用于文档编辑，
-     * 在向文档增加一个新对象时，需要分配一个
-     * 新的标识符，新标识符取值宜为 MaxUnitID + 1，
-     * 同时需要修改此 MaxUnitID值。
+     * maximum identifier value for all objects in the current document.
+     * initial value: 0. MaxUnitID is mainly used for document editing;
+     * when adding a new object to the document, a new
+     * identifier must be allocated; the new identifier should be MaxUnitID + 1,
+     * and this MaxUnitID value must be updated accordingly.
      */
     public final AtomicInteger MaxUnitID;
 
 
     /**
-     * 文档属性信息，该对象会在初始化是被创建并且添加到文档中
-     * 此处只是保留引用，为了方便操作。
+     * document properties; this object is created during initialization and added to the document
+     * a reference is kept here for convenience.
      */
     public CT_CommonData cdata;
 
 
     /**
-     * OFD文档对象
+     * OFD document object
      */
     public final Document document;
 
@@ -88,54 +88,54 @@ public class OFDGraphicsDocument implements Closeable {
     public Attachments attachments;
 
     /**
-     * 正在操作的文档目录
+     * document directory currently being operated
      */
     public final DocDir docDir;
 
     /**
-     * 资源管理器
+     * resource manager
      */
     public final ResManager resMgr;
 
     /**
-     * 在指定路径位置上创建一个OFD文件
+     * create an OFD file at the specified path
      *
-     * @param outPath OFD输出路径
+     * @param outPath OFD output path
      */
     public OFDGraphicsDocument(Path outPath) {
         this();
         if (outPath == null) {
-            throw new IllegalArgumentException("OFD文件存储路径(outPath)为空");
+            throw new IllegalArgumentException("OFD file storage path(outPath)为空");
         }
         if (Files.isDirectory(outPath)) {
-            throw new IllegalArgumentException("OFD文件存储路径(outPath)不能是目录");
+            throw new IllegalArgumentException("OFD file storage path(outPath)不能是目录");
         }
         if (!Files.exists(outPath.toAbsolutePath().getParent())) {
-            throw new IllegalArgumentException("OFD文件存储路径(outPath)上级目录 [" + outPath.getParent().toAbsolutePath() + "] 不存在");
+            throw new IllegalArgumentException("OFD file storage path(outPath)上级目录 [" + outPath.getParent().toAbsolutePath() + "] 不存在");
         }
         this.outPath = outPath;
     }
 
     /**
-     * 在指定路径位置上创建一个OFD文件流
+     * 在指定路径位置上创建一个OFD file流
      *
      * @param outputStream OFD输出流，应由调用者负责关闭。
      */
     public OFDGraphicsDocument(OutputStream outputStream) {
         this();
         if (outputStream == null) {
-            throw new IllegalArgumentException("OFD文件流(outputStream)为空");
+            throw new IllegalArgumentException("OFD file流(outputStream)为空");
         }
         this.outputStream = outputStream;
     }
 
     /**
-     * 文档初始化构造器
+     * document initialization constructor
      */
     private OFDGraphicsDocument() {
 
 
-        // 初始化文档对象
+        // initialize document object
         CT_DocInfo docInfo = new CT_DocInfo()
                 .setDocID(UUID.randomUUID())
                 .setCreationDate(LocalDate.now())
@@ -147,23 +147,23 @@ public class OFDGraphicsDocument implements Closeable {
         OFD ofd = new OFD().addDocBody(docBody);
 
 
-        // 创建一个低层次的文档对象
+        // create a low-level document object
         document = new Document();
         cdata = new CT_CommonData();
         // 默认页面大小为A4
         CT_PageArea defaultPageSize = new CT_PageArea()
                 .setPhysicalBox(0, 0, 210d, 297d)
                 .setApplicationBox(0, 0, 210d, 297d);
-        // 默认使用RGB颜色空间所以此处不设置颜色空间
-        // 设置页面属性
+        // use RGB color space by default, so color space is not set here
+        // set page properties
         cdata.setPageArea(defaultPageSize);
         document.setCommonData(cdata)
-                // 空的页面引用集合，该集合将会在解析虚拟页面时得到填充
+                // empty page reference collection; populated when parsing virtual pages
                 .setPages(new Pages());
 
         ofdDir = OFDDir.newOFD()
                 .setOfd(ofd);
-        // 创建一个新的文档
+        // create a new document
         DocDir docDir = ofdDir.newDoc();
         this.docDir = docDir;
         docDir.setDocument(document);
@@ -175,8 +175,8 @@ public class OFDGraphicsDocument implements Closeable {
     /**
      * 创建页面，单位毫米
      *
-     * @param width  页面宽度，单位：毫米
-     * @param height 页面高度，单位：毫米
+     * @param width  页面width，单位：毫米
+     * @param height 页面height，单位：毫米
      * @return 2D图形绘制对象
      */
     public OFDPageGraphics2D newPage(double width, double height) {
@@ -194,17 +194,17 @@ public class OFDGraphicsDocument implements Closeable {
      */
     public OFDPageGraphics2D newPage(CT_PageArea pageSize) {
         final Pages pages = document.getPages();
-        // 如果存在Pages那么获取，不存在那么创建
+        // get Pages if exists, or create if not
         final PagesDir pagesDir = docDir.obtainPages();
 
-        // 创建页面容器
+        // 创建page container
         PageDir pageDir = pagesDir.newPageDir();
         String pageLoc = String.format("Pages/Page_%d/Content.xml", pageDir.getIndex());
         ST_ID pageID = new ST_ID(MaxUnitID.incrementAndGet());
         final Page page = new Page(pageID, ST_Loc.getInstance(pageLoc));
         pages.addPage(page);
 
-        // 创建页面对象
+        // 创建page object
         org.ofdrw.core.basicStructure.pageObj.Page pageObj = new org.ofdrw.core.basicStructure.pageObj.Page();
         if (pageSize != null) {
             pageObj.setArea(pageSize);
@@ -217,11 +217,11 @@ public class OFDGraphicsDocument implements Closeable {
     }
 
     /**
-     * 添加图片资源
+     * 添加image资源
      *
-     * @param img 图片渲染对象
-     * @return 资源ID
-     * @throws RuntimeException 图片转写IO异常
+     * @param img image渲染对象
+     * @return resource ID
+     * @throws RuntimeException image转写IO exception
      */
     public ST_ID addResImg(Image img) {
         if (img == null) {
@@ -243,11 +243,11 @@ public class OFDGraphicsDocument implements Closeable {
             }
             ImageIO.write(bi, "png", imgFile);
         } catch (IOException e) {
-            throw new RuntimeException("graphics2d 图片写入IO异常", e);
+            throw new RuntimeException("graphics2d image写入IO exception", e);
         }
 
         // 将文件加入资源容器中
-        // 创建图片对象，为了保持透明图片的兼容性采用PNG格式
+        // 创建image对象，为了保持透明image的兼容性采用PNG格式
         CT_MultiMedia multiMedia = new CT_MultiMedia()
                 .setType(MediaType.Image)
                 .setFormat("PNG")
@@ -257,19 +257,19 @@ public class OFDGraphicsDocument implements Closeable {
     }
 
     /**
-     * 添加绘制参数至资源文件中
+     * 添加drawing parameters至resource file中
      *
-     * @param dp 绘制参数
-     * @return 资源对象ID
+     * @param dp drawing parameters
+     * @return 资源object ID
      */
     public ST_ID addDrawParam(CT_DrawParam dp) {
         return resMgr.addRawWithCache(dp);
     }
 
     /**
-     * 生成新的文档内对象ID
+     * 生成新的文档内object ID
      *
-     * @return 文档内对象ID
+     * @return 文档内object ID
      */
     public ST_ID newID() {
         return new ST_ID(MaxUnitID.incrementAndGet());
@@ -277,13 +277,13 @@ public class OFDGraphicsDocument implements Closeable {
 
 
     /**
-     * 向文档中添加附件文件
+     * add attachment file to the document
      * <p>
-     * 如果名称相同原有附件将会被替换
+     * 如果names are the same原有附件将会被替换
      *
-     * @param file 附件文件路径
-     * @return 加入后的文件附件对象ID
-     * @throws IOException 文件操作异常
+     * @param file 附件file path
+     * @return 加入后的文件附件object ID
+     * @throws IOException file operation exception
      */
     public ST_ID addAttachment(Path file) throws IOException {
         if (file == null || Files.notExists(file)) {
@@ -299,7 +299,7 @@ public class OFDGraphicsDocument implements Closeable {
 
         String fileName = file.getFileName().toString();
 
-        // 计算附件所占用的空间，单位KB。
+        // calculate space occupied by attachments, in KB.
         double size = (double) Files.size(file) / 1024d;
 
         CT_Attachment ctAttachment = new CT_Attachment()
@@ -309,7 +309,7 @@ public class OFDGraphicsDocument implements Closeable {
         ST_ID id = new ST_ID(MaxUnitID.incrementAndGet());
         ctAttachment.setObjID(id);
 
-        // 添加附件到资源
+        // add attachment到资源
         file = docDir.addResourceWithPath(file);
         // 构造附件文件存放路径
         ST_Loc loc = docDir.getRes().getAbsLoc().cat(file.getFileName().toString());
@@ -320,14 +320,14 @@ public class OFDGraphicsDocument implements Closeable {
     }
 
     /**
-     * 向文档中添加附件文件
+     * add attachment file to the document
      * <p>
      * 如果已经存在同名文件则替换
      *
-     * @param attObj 文件名
+     * @param attObj filename
      * @param input  附件流
-     * @return 加入后的文件附件对象ID
-     * @throws IOException 文件操作异常
+     * @return 加入后的文件附件object ID
+     * @throws IOException file operation exception
      */
     public ST_ID addAttachment(CT_Attachment attObj, InputStream input) throws IOException {
         if (attObj == null || input == null) {
@@ -346,10 +346,10 @@ public class OFDGraphicsDocument implements Closeable {
             document.setAttachments(ST_Loc.getInstance(DocDir.Attachments));
         }
 
-        // 添加附件到资源
+        // add attachment到资源
         Path target = docDir.obtainRes().getContainerPath().resolve(filename);
         Files.copy(input, target, StandardCopyOption.REPLACE_EXISTING);
-        // 计算附件所占用的空间，单位KB。
+        // calculate space occupied by attachments, in KB.
         double size = (double) Files.size(target) / 1024d;
 
         // 构造附件文件存放路径
@@ -366,7 +366,7 @@ public class OFDGraphicsDocument implements Closeable {
 
     @Override
     public void close() throws IOException {
-        // 文档已经 close 或者 MaxUnitID == 0 说明没有添加任何对象，不需要生成OFD文档
+        // 文档已经 close 或者 MaxUnitID == 0 说明没有添加任何对象，不需要生成OFD document
         if (this.closed || MaxUnitID.get() == 0) {
             return;
         } else {
@@ -374,19 +374,19 @@ public class OFDGraphicsDocument implements Closeable {
         }
 
         try {
-            // 设置最大对象ID
+            // set maximum object ID
             cdata.setMaxUnitID(MaxUnitID.get());
-            // final. 执行打包程序
+            // final: execute packaging
             if (outPath != null) {
                 ofdDir.jar(outPath.toAbsolutePath());
             } else if (outputStream != null) {
                 ofdDir.jar(outputStream);
             } else {
-                throw new IllegalArgumentException("OFD文档输出地址错误或没有设置输出流");
+                throw new IllegalArgumentException("OFD document输出地址错误或没有设置输出流");
             }
         } finally {
             if (ofdDir != null) {
-                // 清除在生成OFD过程中的工作区产生的文件
+                // clean up working directory files generated during OFD creation
                 ofdDir.clean();
             }
         }

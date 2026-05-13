@@ -5,13 +5,13 @@ package org.ofdrw.core.action.actionType.actionGoto;
  * <p>
  * 表 54 目标区域属性
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-05 08:39:59
  */
 public enum DestType {
     /**
      * 目标区域由左上角位置（Left，Top）
-     * 以及页面缩放比例（Zoom）确定
+     * 以及页面scale ratio（Zoom）确定
      */
     XYZ,
     /**
@@ -19,11 +19,11 @@ public enum DestType {
      */
     Fit,
     /**
-     * 适合窗口宽度，目标区域由Top确定
+     * 适合窗口width，目标区域由Top确定
      */
     FitH,
     /**
-     * 适合窗口高度，目标区域由Left确定
+     * 适合窗口height，目标区域由Left确定
      */
     FitV,
     /**
@@ -33,10 +33,10 @@ public enum DestType {
     FitR;
 
     /**
-     * 获取目标区域实例
+     * 获取目标区域instance
      *
-     * @param type 类型字符串
-     * @return 实例
+     * @param type type string
+     * @return instance
      */
     public static DestType getInstance(String type) {
         type = type == null ? "" : type.trim();

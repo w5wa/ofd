@@ -1,9 +1,9 @@
 package org.ofdrw.layout.element;
 
 /**
- * 在段中的浮动方向
+ * 在segment中的浮动方向
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-02-03 01:01:35
  */
 public enum AFloat {
@@ -16,7 +16,7 @@ public enum AFloat {
      */
     right,
     /**
-     * 居中浮动
+     * center浮动
      */
     center;
 }

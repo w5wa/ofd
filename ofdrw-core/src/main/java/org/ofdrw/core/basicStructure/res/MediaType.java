@@ -3,9 +3,9 @@ package org.ofdrw.core.basicStructure.res;
 /**
  * 多媒体格式。
  * <p>
- * 7.9 资源 图 21 表 19
+ * 7.9 Resources - Figure 21 Table 19
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-13 07:58:38
  */
 public enum MediaType {

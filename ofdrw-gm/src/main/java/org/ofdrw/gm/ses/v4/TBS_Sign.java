@@ -6,30 +6,30 @@ import org.ofdrw.gm.ses.v1.ExtensionDatas;
 import java.util.Enumeration;
 
 /**
- * 签章信息
+ * seal/signature信息
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 21:29:45
  */
 public class TBS_Sign extends ASN1Object {
 
     /**
-     * 电子印章版本号，与电子印章版本号保持一致
+     * 电子seal/stamp版本号，与电子seal/stamp版本号keep consistent
      */
     private ASN1Integer version;
 
     /**
-     * 电子印章
+     * electronic seal
      */
     private SESeal eseal;
 
     /**
-     * 签章时间
+     * seal/signature时间
      */
     private ASN1GeneralizedTime timeInfo;
 
     /**
-     * 原文杂凑值
+     * 原文hash value
      */
     private ASN1BitString dataHash;
 

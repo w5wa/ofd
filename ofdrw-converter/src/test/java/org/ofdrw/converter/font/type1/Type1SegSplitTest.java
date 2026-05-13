@@ -12,9 +12,9 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * 解析Type1 CFF字体测试
+ * 解析Type1 CFFfont测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-10-24 17:07:36
  */
 class Type1SegSplitTest {

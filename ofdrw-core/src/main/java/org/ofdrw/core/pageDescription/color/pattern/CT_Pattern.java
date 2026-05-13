@@ -13,7 +13,7 @@ import org.ofdrw.core.pageDescription.color.color.ColorClusterType;
  * <p>
  * 8.3.3 底纹 图 26  表 28
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-10-12 08:14:58
  */
 public class CT_Pattern extends OFDElement implements ColorClusterType {
@@ -27,71 +27,71 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选 属性】
-     * 设置 底纹单元宽度
+     * [required attribute]
+     * 设置 底纹单元width
      *
-     * @param width 底纹单元宽度
+     * @param width 底纹单元width
      * @return this
      */
     public CT_Pattern setWidth(Double width) {
         if (width == null) {
-            throw new IllegalArgumentException("底纹单元宽度不能为空");
+            throw new IllegalArgumentException("底纹单元width不能为空");
         }
         this.addAttribute("Width", STBase.fmt(width));
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 底纹单元宽度
+     * [required attribute]
+     * 获取 底纹单元width
      *
-     * @return 底纹单元宽度
+     * @return 底纹单元width
      */
     public Double getWidth() {
         String str = this.attributeValue("Width");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("底纹格式非法，底纹单元宽度不能为空");
+            throw new IllegalArgumentException("底纹格式非法，底纹单元width不能为空");
         }
         return Double.parseDouble(str);
     }
 
     /**
-     * 【必选 属性】
-     * 获取 底纹单元高度
+     * [required attribute]
+     * 获取 底纹单元height
      *
-     * @param height 底纹单元高度
+     * @param height 底纹单元height
      * @return this
      */
     public CT_Pattern setHeight(Double height) {
         if (height == null) {
-            throw new IllegalArgumentException("底纹单元高度不能为空");
+            throw new IllegalArgumentException("底纹单元height不能为空");
         }
         this.addAttribute("Height", STBase.fmt(height));
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 底纹单元高度
+     * [required attribute]
+     * 获取 底纹单元height
      *
-     * @return 底纹单元高度
+     * @return 底纹单元height
      */
     public Double getHeight() {
         String str = this.attributeValue("Height");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("底纹格式非法，底纹单元高度不能为空");
+            throw new IllegalArgumentException("底纹格式非法，底纹单元height不能为空");
         }
         return Double.parseDouble(str);
     }
 
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 X 方向底纹单元间距
      * <p>
-     * 默认值为底纹单元的宽度。
+     * 默认值为底纹单元的width。
      * <p>
-     * 若设定值小于底纹单元的宽度时，应按默认值处理
+     * 若设定值小于底纹单元的width时，应按默认值处理
      *
      * @param xStep X 方向底纹单元间距
      * @return this
@@ -110,12 +110,12 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 X 方向底纹单元间距
      * <p>
-     * 默认值为底纹单元的宽度。
+     * 默认值为底纹单元的width。
      * <p>
-     * 若设定值小于底纹单元的宽度时，应按默认值处理
+     * 若设定值小于底纹单元的width时，应按默认值处理
      *
      * @return X 方向底纹单元间距
      */
@@ -130,12 +130,12 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 Y 方向底纹单元间距
      * <p>
-     * 默认值为底纹单元的高度。
+     * 默认值为底纹单元的height。
      * <p>
-     * 若设定值小于底纹单元的高度时，应按默认值处理
+     * 若设定值小于底纹单元的height时，应按默认值处理
      *
      * @param yStep Y 方向底纹单元间距
      * @return this
@@ -154,12 +154,12 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 Y 方向底纹单元间距
      * <p>
-     * 默认值为底纹单元的高度。
+     * 默认值为底纹单元的height。
      * <p>
-     * 若设定值小于底纹单元的高度时，应按默认值处理
+     * 若设定值小于底纹单元的height时，应按默认值处理
      *
      * @return Y 方向底纹单元间距
      */
@@ -174,10 +174,10 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 底纹单元的翻转方式
      * <p>
-     * 默认值为 Normal
+     * default value: Normal
      * <p>
      * 参考{@link ReflectMethod}
      *
@@ -194,10 +194,10 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 底纹单元的翻转方式
      * <p>
-     * 默认值为 Normal
+     * default value: Normal
      * <p>
      * 参考{@link ReflectMethod}
      *
@@ -208,7 +208,7 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 底纹单元起始位置
      * <p>
      * 默认值为 Object：相对于对象坐标原点
@@ -226,7 +226,7 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 底纹单元起始位置
      * <p>
      * 默认值为 Object：相对于对象坐标原点
@@ -238,14 +238,14 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
-     * 设置 底纹单元的变换矩阵
+     * [optional attribute]
+     * 设置 底纹单元的transformation matrix
      * <p>
      * 用于某些需要对底纹单元进行平移旋转变换的场合，
      * 默认为单位矩阵；底纹呈现时先做 XStep、YStep 排列，
      * 然后一起做 CTM 处理
      *
-     * @param ctm 底纹单元的变换矩阵
+     * @param ctm 底纹单元的transformation matrix
      * @return this
      */
     public CT_Pattern setCTM(ST_Array ctm) {
@@ -259,14 +259,14 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【可选 属性】
-     * 获取 底纹单元的变换矩阵
+     * [optional attribute]
+     * 获取 底纹单元的transformation matrix
      * <p>
      * 用于某些需要对底纹单元进行平移旋转变换的场合，
      * 默认为单位矩阵；底纹呈现时先做 XStep、YStep 排列，
      * 然后一起做 CTM 处理
      *
-     * @return 底纹单元的变换矩阵
+     * @return 底纹单元的transformation matrix
      */
     public ST_Array getCTM() {
         return ST_Array.getInstance(this.attributeValue("CTM"));
@@ -274,10 +274,10 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 底纹单元
      * <p>
-     * 用底纹填充目标区域时，所使用的单元对象
+     * the unit object used when filling the target area with a pattern
      *
      * @param cellContent 底纹单元
      * @return this
@@ -288,10 +288,10 @@ public class CT_Pattern extends OFDElement implements ColorClusterType {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 底纹单元
      * <p>
-     * 用底纹填充目标区域时，所使用的单元对象
+     * the unit object used when filling the target area with a pattern
      *
      * @return 底纹单元
      */

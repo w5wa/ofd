@@ -7,18 +7,18 @@ import java.util.List;
 /**
  * 页面项目
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-11-08 20:52:49
  */
 public class PageEntry {
 
     /**
-     * 关联文档上下文
+     * 关联document context
      */
     public DocContext docCtx;
 
     /**
-     * 页面索引号（页码从1开始）
+     * page index号（page number从1开始）
      */
     public Integer pageIndex;
 
@@ -43,9 +43,9 @@ public class PageEntry {
     public List<PageEntry> tbMixPages =null;
 
     /**
-     * 创建迁移页面对象
+     * 创建迁移page object
      *
-     * @param pageIndex 页面索引号（页码从1开始）
+     * @param pageIndex page index号（page number从1开始）
      * @param docCtx    上下文
      */
     public PageEntry(Integer pageIndex, DocContext docCtx) {
@@ -55,9 +55,9 @@ public class PageEntry {
 
 
     /**
-     * 创建迁移页面对象
+     * 创建迁移page object
      *
-     * @param pageIndex 页面索引号（页码从1开始）
+     * @param pageIndex page index号（page number从1开始）
      * @param docCtx    上下文
      * @param tbMixPages 需要混合到指定页面的其他文档页面。
      */

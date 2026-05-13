@@ -15,42 +15,42 @@ import java.util.List;
  * <p>
  * 默认图章放在边的正中央
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-18 10:07:08
  */
 public class RidingStampPos implements StampAppearance {
     /**
-     * 默认骑缝章以右侧边作为骑缝的位置
+     * 默认骑缝章以右side边作为骑缝的位置
      */
     private Side side;
 
     /**
-     * 图章整章宽度
+     * 图章整章width
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double width;
 
     /**
-     * 图章整章高度
+     * 图章整章height
      * <p>
-     * 单位毫米mm
+     * unit: mm
      */
     private double height;
 
     /**
      * 图章在边上距离原地最近的边的偏移坐标
      * <p>
-     * 单位毫米mm
+     * unit: mm
      * <p>
-     * 默认居中，为null
+     * 默认center，为null
      */
     private Double offset = null;
 
     /**
      * 图章在边上的margin
      * <p>
-     * 单位毫米mm
+     * unit: mm
      * <p>
      * 默认为0
      */
@@ -59,7 +59,7 @@ public class RidingStampPos implements StampAppearance {
     /**
      * 图章指定切割等份数量
      * <p>
-     * 如果页面数量大于切割数量，印章将会重复。
+     * 如果页面数量大于切割数量，seal/stamp将会重复。
      * <p>
      * 单位份
      * <p>
@@ -68,10 +68,10 @@ public class RidingStampPos implements StampAppearance {
     private int clipNumber = 0;
 
     /**
-     * 右侧边居中骑缝章
+     * 右side边center骑缝章
      *
-     * @param width  章宽度，单位毫米mm
-     * @param height 章高度，单位毫米mm
+     * @param width  seal width, unit: mm
+     * @param height seal height, unit: mm
      */
     public RidingStampPos(double width, double height) {
         this.width = width;
@@ -80,11 +80,11 @@ public class RidingStampPos implements StampAppearance {
     }
 
     /**
-     * 居中骑缝章
+     * center骑缝章
      *
-     * @param side   指定图章所处的边
-     * @param width  章宽度，单位毫米mm
-     * @param height 章高度，单位毫米mm
+     * @param side   specified edge where the seal is placed
+     * @param width  seal width, unit: mm
+     * @param height seal height, unit: mm
      */
     public RidingStampPos(Side side, double width, double height) {
         this.side = side;
@@ -93,12 +93,12 @@ public class RidingStampPos implements StampAppearance {
     }
 
     /**
-     * 指定图章在边上的相对位置
+     * specify the relative position of the seal on the edge
      *
-     * @param side   指定图章所处的边
-     * @param offset 相对于原点最近的边的顶点位置，null则默认居中
-     * @param width  章宽度，单位毫米mm
-     * @param height 章高度，单位毫米mm
+     * @param side   specified edge where the seal is placed
+     * @param offset 相对于原点最近的边的顶点位置，null则默认center
+     * @param width  seal width, unit: mm
+     * @param height seal height, unit: mm
      */
     public RidingStampPos(Side side, Double offset, double width, double height) {
         this.side = side;
@@ -108,12 +108,12 @@ public class RidingStampPos implements StampAppearance {
     }
 
     /**
-     * 指定图章在边上的相对位置
+     * specify the relative position of the seal on the edge
      *
-     * @param side   指定图章所处的边
-     * @param offset 相对于原点最近的边的顶点位置，null则默认居中
-     * @param width  章宽度，单位毫米mm
-     * @param height 章高度，单位毫米mm
+     * @param side   specified edge where the seal is placed
+     * @param offset 相对于原点最近的边的顶点位置，null则默认center
+     * @param width  seal width, unit: mm
+     * @param height seal height, unit: mm
      * @param margin 页边距，单位毫米mm
      */
     public RidingStampPos(Side side, Double offset, double width, double height, double margin) {
@@ -125,13 +125,13 @@ public class RidingStampPos implements StampAppearance {
     }
 
     /**
-     * 指定图章在边上的相对位置
+     * specify the relative position of the seal on the edge
      *
-     * @param side       指定图章所处的边
-     * @param offset     相对于原点最近的边的顶点位置，null则默认居中
+     * @param side       specified edge where the seal is placed
+     * @param offset     相对于原点最近的边的顶点位置，null则默认center
      * @param clipNumber 指定切割份数
-     * @param width      章宽度，单位毫米mm
-     * @param height     章高度，单位毫米mm
+     * @param width      章width，单位毫米mm
+     * @param height     章height，单位毫米mm
      * @param margin     页边距，单位毫米mm
      */
     public RidingStampPos(Side side, Double offset, Integer clipNumber, double width, double height, double margin) {
@@ -201,13 +201,13 @@ public class RidingStampPos implements StampAppearance {
     @Override
     public List<StampAnnot> getAppearance(OFDReader ctx, SignIDProvider idProvider) {
 
-        // 总页码数
+        // 总page number数
         int numPage = ctx.getNumberOfPages();
         List<StampAnnot> res = new ArrayList<>(numPage);
         boolean isClipNumber = this.clipNumber > 0 && this.clipNumber < numPage;
         int leftClipNumber = 0;
         if (side == Side.Right || side == Side.Left) {
-            // 按页码平分印章图片
+            // 按page number平分seal/stampimage
             double itemWith = this.width / numPage;
             if (isClipNumber) {
                 itemWith = this.width / clipNumber;
@@ -244,7 +244,7 @@ public class RidingStampPos implements StampAppearance {
 
                 double y;
                 if (this.offset == null) {
-                    // 居中
+                    // center
                     y = pageSize.getHeight() / 2 - this.height / 2;
                 } else {
                     y = this.offset;
@@ -278,7 +278,7 @@ public class RidingStampPos implements StampAppearance {
 
                 double x;
                 if (this.offset == null) {
-                    // 居中
+                    // center
                     x = pageSize.getWidth() / 2 - this.width / 2;
                 } else {
                     x = this.offset;

@@ -19,9 +19,9 @@ import java.security.PrivateKey;
 import java.security.cert.Certificate;
 
 /**
- * 没有提供电子印章签章测试
+ * 没有提供电子seal/stampseal/signature测试
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-05-18 19:48:29
  */
 public class NoSealSignTest {

@@ -10,7 +10,7 @@ import org.ofdrw.core.OFDElement;
  * <p>
  * 17 扩展信息 图 83 表 6
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2019-11-20 06:09:35
  */
 public class Property extends OFDElement {
@@ -38,36 +38,36 @@ public class Property extends OFDElement {
 
 
     /**
-     * 【必选 属性】
-     * 设置 扩展属性名称
+     * [required attribute]
+     * 设置 扩展attribute name称
      *
-     * @param name 扩展属性名称
+     * @param name 扩展attribute name称
      * @return this
      */
     public Property setExtensionName(String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new IllegalArgumentException("扩展属性名称（Name）不能为空");
+            throw new IllegalArgumentException("扩展attribute name称（Name）不能为空");
         }
         this.addAttribute("Name", name);
         return this;
     }
 
     /**
-     * 【必选 属性】
-     * 获取 扩展属性名称
+     * [required attribute]
+     * 获取 扩展attribute name称
      *
-     * @return 扩展属性名称
+     * @return 扩展attribute name称
      */
     public String getExtensionName() {
         String str = this.attributeValue("Name");
         if (str == null || str.trim().length() == 0) {
-            throw new IllegalArgumentException("扩展属性名称（Name）不能为空");
+            throw new IllegalArgumentException("扩展attribute name称（Name）不能为空");
         }
         return str;
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 设置 扩展属性值类型
      *
      * @param type 扩展属性值类型
@@ -83,7 +83,7 @@ public class Property extends OFDElement {
     }
 
     /**
-     * 【可选 属性】
+     * [optional attribute]
      * 获取 扩展属性值类型
      *
      * @return 扩展属性值类型
@@ -94,7 +94,7 @@ public class Property extends OFDElement {
 
 
     /**
-     * 【必选】
+     * [required]
      * 设置 属性值
      *
      * @param value 属性值
@@ -110,7 +110,7 @@ public class Property extends OFDElement {
     }
 
     /**
-     * 【必选】
+     * [required]
      * 获取 属性值
      *
      * @return 属性值

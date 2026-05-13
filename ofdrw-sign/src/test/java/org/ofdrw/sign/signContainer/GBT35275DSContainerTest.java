@@ -24,7 +24,7 @@ import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 
 /**
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2021-08-09 16:08:42
  */
 class GBT35275DSContainerTest {

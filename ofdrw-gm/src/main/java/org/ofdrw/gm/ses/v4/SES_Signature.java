@@ -8,20 +8,20 @@ import java.security.cert.CertificateEncodingException;
 import java.util.Enumeration;
 
 /**
- * 电子签章数据
+ * 电子seal/signature数据
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-04-19 22:04:04
  */
 public class SES_Signature extends ASN1Object {
 
     /**
-     * 签章信息
+     * seal/signature信息
      */
     private TBS_Sign toSign;
 
     /**
-     * 签章者证书
+     * seal/signature者certificate
      */
     private ASN1OctetString cert;
 
@@ -31,12 +31,12 @@ public class SES_Signature extends ASN1Object {
     private ASN1ObjectIdentifier signatureAlgID;
 
     /**
-     * 签名值
+     * signature value
      */
     private ASN1BitString signature;
 
     /**
-     * 对签名值的时间戳【可选】
+     * 对signature value的时间戳【可选】
      */
     private ASN1BitString timeStamp;
 
@@ -79,7 +79,7 @@ public class SES_Signature extends ASN1Object {
                 ASN1Primitive obj = aIn.readObject();
                 return new SES_Signature(ASN1Sequence.getInstance(obj));
             } catch (IOException e) {
-                throw new IllegalArgumentException("电子签章数据v4 无法解析",e );
+                throw new IllegalArgumentException("电子seal/signature数据v4 无法解析",e );
             }
         } else if (o != null) {
             return new SES_Signature(ASN1Sequence.getInstance(o));

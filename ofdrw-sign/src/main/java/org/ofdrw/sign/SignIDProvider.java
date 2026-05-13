@@ -3,11 +3,11 @@ package org.ofdrw.sign;
 import java.util.regex.Pattern;
 
 /**
- * 签名ID提供者
+ * signature ID提供者
  * <p>
- * 开发者可以根据实际配置签名ID的格式
+ * 开发者可以根据实际配置signature ID的格式
  *
- * @author 权观宇
+ * @author Quan Guanyu
  * @since 2020-08-24 20:12:35
  */
 public interface SignIDProvider {
@@ -21,35 +21,35 @@ public interface SignIDProvider {
     Pattern IDPattern = Pattern.compile("s(\\d+)");
 
     /**
-     * 设置当前最大签名ID值
+     * set current maximum signature ID value
      * <p>
-     * 实现者需要自己解析该字符串，并设置内置计数器
+     * implementor must parse this string and set the built-in counter
      *
-     * @param maxSignId 当前最大签名ID格式字符串
+     * @param maxSignId current maximum signature ID format string
      */
     void setCurrentMaxSignId(String maxSignId);
 
     /**
-     * 增长并获取签名ID
+     * increment and get signature ID
      *
-     * @return 签名ID，形如：'s001'
+     * @return signature ID，形如：'s001'
      */
     String incrementAndGet();
 
 
     /**
-     * 获取当前签名ID，不增长
+     * 获取当前signature ID，不增长
      *
-     * @return 签名ID
+     * @return signature ID
      */
     String get();
 
 
     /**
-     * 解析出电子签名的ID数字
+     * parse the ID number of the electronic signature
      *
-     * @param id ID字符串
-     * @return ID数字
+     * @param id ID string
+     * @return ID number
      */
     int parse(String id);
 }
