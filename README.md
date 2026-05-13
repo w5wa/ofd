@@ -1,48 +1,48 @@
-# OFD Reader & Writer 
+# OFD Reader & Writer
 
-![-](https://img.shields.io/badge/java-%3E%3D1.8-blue) ![Maven Central](https://img.shields.io/maven-central/v/org.ofdrw/ofdrw) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](./LICENSE) 
+![-](https://img.shields.io/badge/java-%3E%3D1.8-blue) ![Maven Central](https://img.shields.io/maven-central/v/org.ofdrw/ofdrw) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](./LICENSE)
 
+Before using OFDRW, please make sure you have read the [***OFD Reader & Writer Disclaimer***](免责声明.md).
 
-在使用OFDRW前，请务必悉知 [***《OFD Reader & Writer免责声明》***](免责声明.md)！
+> If cloning the repository or previewing the documentation is difficult, please visit [https://gitee.com/ofdrw/ofdrw](https://gitee.com/ofdrw/ofdrw).
 
-> 若clone和文档预览存在困难，请移步 [https://gitee.com/ofdrw/ofdrw](https://gitee.com/ofdrw/ofdrw)
-
-**Talk is cheap,Show me the code. ——Linus Torvalds**
+**Talk is cheap, Show me the code. ——Linus Torvalds**
 
 <p align="center">
   <img width="275" height="275" src="./img/icon2.png">
 </p>
 
-OFD Reader & Writer 开源的OFD处理库，支持文档生成、数字签名、文档保护、文档合并、转换、导出等功能。
+OFD Reader & Writer is an open-source OFD processing library that supports document generation, digital signatures, document protection, document merging, conversion, export, and more.
 
-本项目采用[Apache 2.0许可](./LICENSE)，请尊重开源项目作者，在软件中附带OFDRW开源软件许可，**在遵守开源协议前提下可免费商业化使用**。
+This project is released under the [Apache 2.0 License](./LICENSE). Please respect the authors of open-source software and include the OFDRW open-source license in your software. **Commercial use is allowed free of charge as long as you comply with the open-source license.**
 
-根据[《GB/T 33190-2016 电子文件存储与交换格式版式文档》](./GBT_33190-2016_电子文件存储与交换格式版式文档.pdf)标准实现版式文档OFD库（含有书签）。
+This library implements the fixed-layout OFD document standard defined in [GB/T 33190-2016 Electronic File Storage and Exchange Format - Fixed-layout Document](./GBT_33190-2016_电子文件存储与交换格式版式文档.pdf) (including bookmarks).
 
-项目采用Maven模块管理，各模块如下：
+The project uses Maven module management. The modules are listed below:
 
-- [**ofdrw-core**](./ofdrw-core) OFD核心API，参考[《GB/T 33190-2016 电子文件存储与交换格式版式文档》](./GBT_33190-2016_电子文件存储与交换格式版式文档.pdf)实现的基础数据结构。
-- [**ofdrw-font**](./ofdrw-font) 生成OFD字体相关。
-- [**ofdrw-layout**](./ofdrw-layout) OFD布局引擎库，用于文档构建和渲染。
-- [**ofdrw-pkg**](./ofdrw-pkg) OFD文件的容器，用于文档的打包。
-- [**ofdrw-reader**](./ofdrw-reader) OFD文档解析器，用于OFD的反序列化以及签名签章。
-- [**ofdrw-sign**](./ofdrw-sign) OFD文档数字签章。
-- [**ofdrw-gm**](./ofdrw-gm) 用于支持签章模块需要的国密电子签章数据结构。
-- [**ofrw-crypto**](./ofdrw-crypto) 用于实现《GM/T 0099-2020 开放版式文档密码应用技术规范》对OFD的密码相关功能。
-- [**ofdrw-gv**](./ofdrw-gv) OFDRW 所有模块所共用的全局变量。
-- [**ofdrw-converter**](./ofdrw-converter) OFD文档转换。
-- [**ofdrw-tool**](./ofdrw-tool) OFD文档工具，文档合并、裁剪、重组、混合。***New***
-- [**ofdrw-graphics2d**](./ofdrw-graphics2d) 实现了AWT Graphics2D接口，生成OFD文档内容。
-- [**ofdrw-full**](./ofdrw-full) 上述所有模块整合包，用于简化依赖引入。
+- [**ofdrw-core**](./ofdrw-core) Core OFD APIs and basic data structures implemented according to [GB/T 33190-2016 Electronic File Storage and Exchange Format - Fixed-layout Document](./GBT_33190-2016_电子文件存储与交换格式版式文档.pdf).
+- [**ofdrw-font**](./ofdrw-font) Font-related support for generating OFD documents.
+- [**ofdrw-layout**](./ofdrw-layout) OFD layout engine for document construction and rendering.
+- [**ofdrw-pkg**](./ofdrw-pkg) OFD file container module used for document packaging.
+- [**ofdrw-reader**](./ofdrw-reader) OFD document parser for deserialization and signature/seal processing.
+- [**ofdrw-sign**](./ofdrw-sign) Digital signature support for OFD documents.
+- [**ofdrw-gm**](./ofdrw-gm) National cryptography seal data structures required by the signature module.
+- [**ofrw-crypto**](./ofdrw-crypto) OFD cryptography features based on *GM/T 0099-2020 Technical Specification for Cryptographic Application of Open Fixed-layout Documents*.
+- [**ofdrw-gv**](./ofdrw-gv) Global variables shared by all OFDRW modules.
+- [**ofdrw-converter**](./ofdrw-converter) OFD document conversion.
+- [**ofdrw-tool**](./ofdrw-tool) OFD document tools for merging, clipping, regrouping, and mixing documents. ***New***
+- [**ofdrw-graphics2d**](./ofdrw-graphics2d) Implementation of the AWT Graphics2D interface for generating OFD content.
+- [**ofdrw-full**](./ofdrw-full) Aggregated package containing all modules above to simplify dependency management.
 
-注：
+Notes:
 
-- 您可以根据需求裁剪模块优化程序体积。
-- 您可以仅引用`ofdrw-core`中定义的数据结来构建属于您自己的OFD库，就像[ofdrw-graphics2d](./ofdrw-graphics2d)那样。
+- You can trim the modules you use to optimize application size.
+- You can also build your own OFD library by depending only on the data structures defined in `ofdrw-core`, just like [ofdrw-graphics2d](./ofdrw-graphics2d).
 
 ## QuickStart
 
-Maven项目引入依赖
+Add the dependency to your Maven project:
+
 ```xml
 <dependency>
   <groupId>org.ofdrw</groupId>
@@ -51,142 +51,136 @@ Maven项目引入依赖
 </dependency>
 ```
 
-**OFDRW 将持续保证API的向下兼容，您可以放心的升级OFDRW库至最新版本。**
+**OFDRW will continue to maintain backward-compatible APIs, so you can upgrade to the latest version with confidence.**
 
-> - 若您没有采用Maven管理项目，请参阅项目中`pom.xml`文件中的依赖，手动解决三方依赖包问题。
-> - 若出现NoClassFound等错误，请检查相关包是否存在冲突。
+> - If your project is not managed with Maven, please refer to the `pom.xml` files in this repository and manually resolve third-party dependencies.
+> - If errors such as `NoClassFound` occur, please check for dependency conflicts.
 
-
-如何生成一份OFD文档，如何把大象放入冰箱？
-
+How do you generate an OFD document? Just like putting an elephant into a refrigerator:
 
 ```java
 public class HelloWorld {
     public static void main(String[] args) throws IOException {
         Path path = Paths.get("HelloWorld.ofd");
         try (OFDDoc ofdDoc = new OFDDoc(path)) {
-            Paragraph p = new Paragraph("你好呀，OFD Reader&Writer！");
+            Paragraph p = new Paragraph("Hello, OFD Reader & Writer!");
             ofdDoc.add(p);
         }
-        System.out.println("生成文档位置: " + path.toAbsolutePath());
+        System.out.println("Generated document: " + path.toAbsolutePath());
     }
 }
 ```
 
-效果如下：
+Result:
 
-![示例](./ofdrw-layout/doc/layout/示例.png)
+![Example](./ofdrw-layout/doc/layout/示例.png)
 
-- [文档生成API示例](./ofdrw-layout/src/test/java/org/ofdrw/layout/OFDDocTest.java)
-- [文档布局示例](./ofdrw-layout/src/test/java/org/ofdrw/layout/LayoutTest.java)
-- [Canvas示例](./ofdrw-layout/src/test/java/org/ofdrw/layout/element/canvas/DrawContextTest.java)
-- [文字抽取示例](./ofdrw-reader/src/test/java/org/ofdrw/reader/ContentExtractorTest.java)
-- [段落布局示例](./ofdrw-layout/src/test/java/org/ofdrw/layout/ParagraphLayoutDemo.java)
-- [文档编辑示例](./ofdrw-layout/src/test/java/org/ofdrw/layout/DocEditDemos.java)
-- [数字签名清理示例](./ofdrw-sign/src/test/java/org/ofdrw/sign/SignCleanerTest.java)
+- [Document generation API example](./ofdrw-layout/src/test/java/org/ofdrw/layout/OFDDocTest.java)
+- [Document layout example](./ofdrw-layout/src/test/java/org/ofdrw/layout/LayoutTest.java)
+- [Canvas example](./ofdrw-layout/src/test/java/org/ofdrw/layout/element/canvas/DrawContextTest.java)
+- [Text extraction example](./ofdrw-reader/src/test/java/org/ofdrw/reader/ContentExtractorTest.java)
+- [Paragraph layout example](./ofdrw-layout/src/test/java/org/ofdrw/layout/ParagraphLayoutDemo.java)
+- [Document editing example](./ofdrw-layout/src/test/java/org/ofdrw/layout/DocEditDemos.java)
+- [Digital signature cleanup example](./ofdrw-sign/src/test/java/org/ofdrw/sign/SignCleanerTest.java)
 
-相关文档目录：
+Related documentation:
 
-- [OFD R&W 布局设计](./ofdrw-layout/doc/layout/README.md)
-- [OFD R&W 扩展 自定义元素](./ofdrw-layout/doc/customelement/README.md)
-- [OFD R&W 基于Canvas文档内容生成](./ofdrw-layout/doc/canvas/README.md)
-- [OFD R&W 签名签章快速入门](./ofdrw-sign/doc/quickstart/README.md)
-- [OFD R&W 加密 完整性保护协议](./ofdrw-crypto/README.md)
-- [OFD R&W 转换OFD/OFD导出 ](./ofdrw-converter/README.md)
-- [OFD R&W 字形数据解析](./ofdrw-converter/src/main/java/org/ofdrw/converter/font/README.md)
-- [OFD R&W 文档合并](./ofdrw-tool/README.md)
-- [OFD R&W 区域占位区块（类表单效果）](./ofdrw-layout/doc/areaholderblock/README.md)
-- [OFD R&W 单元格元素 使用指南](./ofdrw-layout/doc/cell/README.md)
-- [OFD R&W 内容生成 事件处理](./ofdrw-layout/doc/onpage/README.md)
-- [OFD R&W 附件操作](./ofdrw-layout/doc/attachment/README.md)
-- [OFD R&W 添加水印](./ofdrw-layout/doc/watermark/README.md)
+- [OFD R&W Layout Design](./ofdrw-layout/doc/layout/README.md)
+- [OFD R&W Extension: Custom Elements](./ofdrw-layout/doc/customelement/README.md)
+- [OFD R&W Document Content Generation Based on Canvas](./ofdrw-layout/doc/canvas/README.md)
+- [OFD R&W Signature and Seal Quick Start](./ofdrw-sign/doc/quickstart/README.md)
+- [OFD R&W Encryption and Integrity Protection Protocol](./ofdrw-crypto/README.md)
+- [OFD R&W OFD Conversion and Export](./ofdrw-converter/README.md)
+- [OFD R&W Glyph Data Parsing](./ofdrw-converter/src/main/java/org/ofdrw/converter/font/README.md)
+- [OFD R&W Document Merging](./ofdrw-tool/README.md)
+- [OFD R&W Area Placeholder Blocks (Form-like Effect)](./ofdrw-layout/doc/areaholderblock/README.md)
+- [OFD R&W Cell Element Guide](./ofdrw-layout/doc/cell/README.md)
+- [OFD R&W Content Generation Event Handling](./ofdrw-layout/doc/onpage/README.md)
+- [OFD R&W Attachment Operations](./ofdrw-layout/doc/attachment/README.md)
+- [OFD R&W Add Watermarks](./ofdrw-layout/doc/watermark/README.md)
 
-### 相关解决方案
+### Related Solutions
 
 #### HTML5
 
-HTML5前端预览解决方案： 
+HTML5 front-end preview solutions:
 
 - [DLTech21/ofd.js . https://github.com/DLTech21/ofd.js](https://github.com/DLTech21/ofd.js)
 - [xxss0903/LiteOfd . https://github.com/xxss0903/liteofd](https://github.com/xxss0903/liteofd)
 
-#### 开源阅读器
+#### Open-source Readers
 
+**XilouReader**: [chingliu/XilouReader . https://gitee.com/chingliu/XilouReader](https://gitee.com/chingliu/XilouReader)
 
-**XilouReader**：[chingliu/XilouReader . https://gitee.com/chingliu/XilouReader](https://gitee.com/chingliu/XilouReader)
+- Fixed-layout OFD/PDF dual-engine reader based on pdfium.
 
-- 基于pdfium的ofd/pdf双引擎版式阅读器。
+**OfdiumEx**: [roy19831015/OfdiumEx . https://github.com/roy19831015/OfdiumEx](https://github.com/roy19831015/OfdiumEx)
 
+- OFD rendering based on the cairo library.
+- Windows desktop reader.
 
-**OfdiumEx**：[roy19831015/OfdiumEx . https://github.com/roy19831015/OfdiumEx](https://github.com/roy19831015/OfdiumEx)
+#### Conversion
 
-- 基于cairo库渲染OFD。
-- Windows客户端阅读器
+***HTML conversion***
 
-#### 转换
+**ofd2html**: [NullYing/ofd2html-python . https://github.com/NullYing/ofd2html-python](https://github.com/NullYing/ofd2html-python)
 
-***HTML转换****
+- OFD to HTML conversion implemented in Python.
 
-**ofd2html**：[NullYing/ofd2html-python . https://github.com/NullYing/ofd2html-python](https://github.com/NullYing/ofd2html-python)
+***Image conversion***
 
-- Python实现的OFD转换HTML
+Recommended open-source OFD image conversion solution: [QAQtutu/ofdbox . https://github.com/QAQtutu/ofdbox](https://github.com/QAQtutu/ofdbox)
 
+- Supports OFD parsing.
+- Uses `java.awt` to parse OFD and render images.
 
-***图片转换***
+> It has now been merged into the `ofdrw-converter` module.
 
-推荐开源OFD图片转换解决方案： [QAQtutu/ofdbox . https://github.com/QAQtutu/ofdbox](https://github.com/QAQtutu/ofdbox)
+#### Readers
 
-- 支持OFD解析。
-- 基于java.awt解析OFD实现图片绘制。
+For desktop readers, you can also try:
 
-> 目前已经被合并到`ofdrw-converter` 模块
+- [Shuke Wangwei . Shuke OFD Reader . www.ofd.cn](https://www.ofd.cn/)
+- [Foxit . Foxit OFD . www.foxitsoftware.cn/ofd/](https://www.foxitsoftware.cn/ofd/)
 
-#### 阅读器
+## Build from Source
 
-阅读器方面，您也可以尝试：
+> Building requires ***JDK 1.8*** or above.
 
-- [数科网维公司 . 数科OFD阅读器 . www.ofd.cn](https://www.ofd.cn/)
-- [Foxit . 福昕OFD . www.foxitsoftware.cn/ofd/](https://www.foxitsoftware.cn/ofd/)
-
-## 源码安装
-
-> 支持 ***JDK 1.8*** 及以上版本构建。
-
-在项目根目录下运行：
+Run the following in the project root directory:
 
 ```bash
 mvn install
 ```
 
-就可以完成项目的构建打包，安装到本地Maven仓库中。
+This will build and package the project, then install it into your local Maven repository.
 
-## 社区交流
+## Community
 
+> - If you run into OFD-related technical issues, feel free to join the community and discuss them.
+> - If you have constructive suggestions or solutions for the project, feel free to submit an **Issue** or **Pull Request**.
 
-> - 若您遇到与OFD相关的技术问题，欢迎进群交流!
-> - 若您对项目有建设性意见或方案欢迎提交**Issue**与**Pull Request**。
+## Contributing
 
-## 参与贡献
+Please follow these code conventions as much as possible when contributing:
 
-参与贡献代码尽量遵守下面代码规约：
+1. **In principle, do not delete `public` methods, classes, or interfaces**: to preserve backward compatibility, mark previously exposed methods, interfaces, and classes as `@Deprecated` during upgrades, and point to the new implementation with `@deprecated {@link SomethingNew}`.
+2. **Please add comments for every `public` method, class, and interface**: to make development easier for others, comments should generally be multi-line and include parameters, the purpose of the method or class, the meaning of parameters and return values, thrown exceptions, and related descriptions.
 
-1. **原则上禁止`public`方法、类、接口进行删除**：为了保留向下兼容性，如果是更新升级请标注过去已经暴露方法、接口、类为过时标记`@Deprecated`，并注释置新的实现位置`@deprecated {@link SomethingNew}`。
-2. **请为每个`public`方法、类、接口添加注释**：为了保留开发者的便利性，注释一般为多行注释，注释内容需要包含参数以及方法或类的作用、参数意义、返还值以及意义、异常抛出、以及参数意义。
+[>> First Contributions on GitHub (multi-language)](https://github.com/firstcontributions/first-contributions)
 
-[>> GitHub 第一次参与开源(多语言)](https://github.com/firstcontributions/first-contributions)
+> - [Contribution Guide](CONTRIBUTING.md)
 
-> - [贡献指南](CONTRIBUTING.md)。
+## Project Status
 
-## 项目情况
+### Progress
 
-### 进展
+[>> Project Progress](releasenotes.md)
 
-[>> 项目进展](releasenotes.md)
+> After OFDRW 2.0.0, project progress is described in the repository through release notes.
 
-> 在OFDRW 2.0.0之后，项目进展以发布说明的方式在项目托管仓库中描述。
+### Project Popularity
 
-### 项目关注度
-
-> 项目获得 Star曲线
+> Star growth over time
 
 [![Stargazers over time](https://starchart.cc/ofdrw/ofdrw.svg)](https://starchart.cc/ofdrw/ofdrw)
