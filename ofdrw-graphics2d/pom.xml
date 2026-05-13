@@ -13,11 +13,6 @@
     <name>OFDRW Graphics2D</name>
     <description>OFD Reader and Writer AWT graphics 2D 实现，通过AWT API生成OFD。</description>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.ofdrw</groupId>

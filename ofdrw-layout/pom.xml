@@ -13,12 +13,6 @@
     <name>OFDRW Layout</name>
     <description>OFD 布局应用库</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.ofdrw</groupId>
@@ -30,7 +24,7 @@
         <dependency>
             <groupId>com.twelvemonkeys.imageio</groupId>
             <artifactId>imageio-tiff</artifactId>
-            <version>3.13.0</version>
+            <version>3.13.1</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
