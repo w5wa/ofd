@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">OFDRW Viewer</string>
+
+    <!-- Main screen -->
+    <string name="open_file_hint">Open an OFD Document</string>
+    <string name="open_file_subtitle">Tap the button below or use the + button to pick an OFD file from your device.</string>
+    <string name="btn_open_file">Open File</string>
+
+    <!-- Viewer -->
+    <string name="viewer_title">OFD Viewer</string>
+    <string name="nav_back">Back</string>
+    <string name="error_load_failed">Failed to load the OFD document. Please make sure the file is a valid OFD file.</string>
+    <string name="loading_document">Loading document…</string>
+
+    <!-- About -->
+    <string name="about_title">About OFDRW Viewer</string>
+    <string name="about_message">OFDRW Viewer v2.3.9\n\nAn OFD document viewer powered by the OFDRW open-source library and ofd.js.\n\nSupports English and Arabic (عربي).\n\nhttps://github.com/ofdrw/ofdrw</string>
+
+    <!-- Menu -->
+    <string name="action_about">About</string>
+</resources>
