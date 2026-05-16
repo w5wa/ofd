@@ -9,7 +9,9 @@ android {
 
     defaultConfig {
         applicationId = "org.ofdrw.android"
-        minSdk = 35                  // Android 15+ only
+        // minSdk is intentionally 35 (Android 15) per project requirements:
+        // "android 15 and above"
+        minSdk = 35
         targetSdk = 35
         versionCode = 1
         versionName = "2.3.9"

@@ -76,10 +76,19 @@ public class Main {
     /**
      * Scan {@code args} for a leading {@code --lang <code>} pair, apply the locale,
      * and return the remaining arguments without the flag.
+     * If {@code --lang} appears as the last argument without a value, a warning is printed
+     * and the default locale (English) is used.
      */
     private static String[] parseLang(String[] args) {
-        for (int i = 0; i < args.length - 1; i++) {
+        for (int i = 0; i < args.length; i++) {
             if ("--lang".equalsIgnoreCase(args[i])) {
+                if (i + 1 >= args.length) {
+                    System.err.println("Warning: --lang flag requires a value (en or ar). Using default language.");
+                    // Remove the dangling --lang flag
+                    String[] remaining = new String[args.length - 1];
+                    System.arraycopy(args, 0, remaining, 0, i);
+                    return remaining;
+                }
                 Messages.setLocale(args[i + 1]);
                 // Remove the --lang <value> pair
                 String[] remaining = new String[args.length - 2];
