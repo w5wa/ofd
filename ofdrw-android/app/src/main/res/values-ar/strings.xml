@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">عارض OFDRW</string>
+
+    <!-- Main screen -->
+    <string name="open_file_hint">افتح مستند OFD</string>
+    <string name="open_file_subtitle">اضغط على الزر أدناه أو استخدم زر + لاختيار ملف OFD من جهازك.</string>
+    <string name="btn_open_file">فتح ملف</string>
+
+    <!-- Viewer -->
+    <string name="viewer_title">عارض OFD</string>
+    <string name="nav_back">رجوع</string>
+    <string name="error_load_failed">فشل تحميل مستند OFD. يرجى التحقق من أن الملف بصيغة OFD صحيحة.</string>
+    <string name="loading_document">جارٍ تحميل المستند…</string>
+
+    <!-- About -->
+    <string name="about_title">حول عارض OFDRW</string>
+    <string name="about_message">عارض OFDRW الإصدار 2.3.9\n\nعارض مستندات OFD مدعوم بمكتبة OFDRW مفتوحة المصدر وofd.js.\n\nيدعم اللغة الإنجليزية والعربية.\n\nhttps://github.com/ofdrw/ofdrw</string>
+
+    <!-- Menu -->
+    <string name="action_about">حول التطبيق</string>
+</resources>

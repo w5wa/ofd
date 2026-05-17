@@ -18,17 +18,18 @@ import java.nio.file.Paths;
  * OFDRW Command-Line Interface
  * <p>
  * Provides command-line access to OFD document conversion and merging.
+ * Supports English ({@code --lang en}) and Arabic ({@code --lang ar}) output.
  *
  * <pre>Usage:
- *   ofdrw-cli &lt;command&gt; [options]
+ *   ofdrw-cli [--lang en|ar] &lt;command&gt; [options]
  *
  * Commands:
- *   to-pdf    &lt;input.ofd&gt; &lt;output.pdf&gt;   Convert OFD to PDF
+ *   to-pdf    &lt;input.ofd&gt; &lt;output.pdf&gt;        Convert OFD to PDF
  *   to-image  &lt;input.ofd&gt; &lt;output-dir&gt; [ppm]  Convert OFD pages to PNG images
- *   to-svg    &lt;input.ofd&gt; &lt;output-dir&gt;   Convert OFD pages to SVG
- *   to-html   &lt;input.ofd&gt; &lt;output.html&gt;  Convert OFD to HTML
+ *   to-svg    &lt;input.ofd&gt; &lt;output-dir&gt;        Convert OFD pages to SVG
+ *   to-html   &lt;input.ofd&gt; &lt;output.html&gt;       Convert OFD to HTML
  *   merge     &lt;out.ofd&gt; &lt;in1.ofd&gt; [in2.ofd ...]  Merge OFD files
- *   info      &lt;input.ofd&gt;               Print OFD document information
+ *   info      &lt;input.ofd&gt;                      Print OFD document information
  * </pre>
  *
  * @author OFDRW Team
@@ -37,6 +38,9 @@ import java.nio.file.Paths;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        // Strip optional --lang flag before dispatching
+        args = parseLang(args);
+
         if (args.length < 1) {
             printUsage();
             System.exit(1);
@@ -63,34 +67,61 @@ public class Main {
                 printInfo(args);
                 break;
             default:
-                System.err.println("Unknown command: " + command);
+                System.err.println(Messages.get("error.unknown.command", command));
                 printUsage();
                 System.exit(1);
         }
     }
 
+    /**
+     * Scan {@code args} for a leading {@code --lang <code>} pair, apply the locale,
+     * and return the remaining arguments without the flag.
+     * If {@code --lang} appears as the last argument without a value, a warning is printed
+     * and the default locale (English) is used.
+     */
+    private static String[] parseLang(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            if ("--lang".equalsIgnoreCase(args[i])) {
+                if (i + 1 >= args.length) {
+                    System.err.println("Warning: --lang flag requires a value (en or ar). Using default language.");
+                    // Remove the dangling --lang flag
+                    String[] remaining = new String[args.length - 1];
+                    System.arraycopy(args, 0, remaining, 0, i);
+                    return remaining;
+                }
+                Messages.setLocale(args[i + 1]);
+                // Remove the --lang <value> pair
+                String[] remaining = new String[args.length - 2];
+                System.arraycopy(args, 0, remaining, 0, i);
+                System.arraycopy(args, i + 2, remaining, i, args.length - i - 2);
+                return remaining;
+            }
+        }
+        return args;
+    }
+
     private static void toPdf(String[] args) throws IOException, GeneralConvertException {
         if (args.length < 3) {
-            System.err.println("Usage: to-pdf <input.ofd> <output.pdf>");
+            System.err.println(Messages.get("error.topdf.usage"));
             System.exit(1);
         }
         Path input = Paths.get(args[1]);
         Path output = Paths.get(args[2]);
-        System.out.println("Converting OFD to PDF: " + input + " -> " + output);
+        System.out.println(Messages.get("msg.converting.topdf", input, output));
         ConvertHelper.toPdf(input, output);
-        System.out.println("Done: " + output.toAbsolutePath());
+        System.out.println(Messages.get("msg.done", output.toAbsolutePath()));
     }
 
     private static void toImage(String[] args) throws IOException {
         if (args.length < 3) {
-            System.err.println("Usage: to-image <input.ofd> <output-dir> [ppm]");
+            System.err.println(Messages.get("error.toimage.usage"));
             System.exit(1);
         }
         Path input = Paths.get(args[1]);
         Path outputDir = Paths.get(args[2]);
         double ppm = args.length >= 4 ? Double.parseDouble(args[3]) : 7.0;
         Files.createDirectories(outputDir);
-        System.out.println("Converting OFD to images: " + input + " -> " + outputDir + " (ppm=" + ppm + ")");
+        System.out.println(Messages.get("msg.converting.toimage", input, outputDir, ppm));
         try (OFDReader reader = new OFDReader(input)) {
             ImageMaker maker = new ImageMaker(reader, ppm);
             int total = reader.getNumberOfPages();
@@ -98,22 +129,22 @@ public class Main {
                 BufferedImage image = maker.makePage(i);
                 Path out = outputDir.resolve(String.format("page-%04d.png", i + 1));
                 ImageIO.write(image, "png", out.toFile());
-                System.out.println("  Page " + (i + 1) + "/" + total + " -> " + out.getFileName());
+                System.out.println(Messages.get("msg.page.progress", i + 1, total, out.getFileName()));
             }
         }
-        System.out.println("Done: " + outputDir.toAbsolutePath());
+        System.out.println(Messages.get("msg.done", outputDir.toAbsolutePath()));
     }
 
     private static void toSvg(String[] args) throws IOException {
         if (args.length < 3) {
-            System.err.println("Usage: to-svg <input.ofd> <output-dir> [ppm]");
+            System.err.println(Messages.get("error.tosvg.usage"));
             System.exit(1);
         }
         Path input = Paths.get(args[1]);
         Path outputDir = Paths.get(args[2]);
         double ppm = args.length >= 4 ? Double.parseDouble(args[3]) : 7.0;
         Files.createDirectories(outputDir);
-        System.out.println("Converting OFD to SVG: " + input + " -> " + outputDir);
+        System.out.println(Messages.get("msg.converting.tosvg", input, outputDir));
         try (OFDReader reader = new OFDReader(input)) {
             SVGMaker maker = new SVGMaker(reader, ppm);
             int total = reader.getNumberOfPages();
@@ -121,74 +152,74 @@ public class Main {
                 String svgContent = maker.makePage(i);
                 Path out = outputDir.resolve(String.format("page-%04d.svg", i + 1));
                 Files.write(out, svgContent.getBytes(java.nio.charset.StandardCharsets.UTF_8));
-                System.out.println("  Page " + (i + 1) + "/" + total + " -> " + out.getFileName());
+                System.out.println(Messages.get("msg.page.progress", i + 1, total, out.getFileName()));
             }
         }
-        System.out.println("Done: " + outputDir.toAbsolutePath());
+        System.out.println(Messages.get("msg.done", outputDir.toAbsolutePath()));
     }
 
     private static void toHtml(String[] args) throws IOException {
         if (args.length < 3) {
-            System.err.println("Usage: to-html <input.ofd> <output.html> [screen-width]");
+            System.err.println(Messages.get("error.tohtml.usage"));
             System.exit(1);
         }
         Path input = Paths.get(args[1]);
         Path output = Paths.get(args[2]);
         int screenWidth = args.length >= 4 ? Integer.parseInt(args[3]) : 1920;
-        System.out.println("Converting OFD to HTML: " + input + " -> " + output);
+        System.out.println(Messages.get("msg.converting.tohtml", input, output));
         ConvertHelper.toHtml(input, output, screenWidth);
-        System.out.println("Done: " + output.toAbsolutePath());
+        System.out.println(Messages.get("msg.done", output.toAbsolutePath()));
     }
 
     private static void mergeOfd(String[] args) throws IOException {
         if (args.length < 4) {
-            System.err.println("Usage: merge <output.ofd> <input1.ofd> [input2.ofd ...]");
+            System.err.println(Messages.get("error.merge.usage"));
             System.exit(1);
         }
         Path output = Paths.get(args[1]);
-        System.out.println("Merging OFD files -> " + output);
+        System.out.println(Messages.get("msg.merging", output));
         try (OFDMerger merger = new OFDMerger(output)) {
             for (int i = 2; i < args.length; i++) {
                 Path in = Paths.get(args[i]);
-                System.out.println("  Adding: " + in);
+                System.out.println(Messages.get("msg.adding", in));
                 merger.add(in);
             }
         }
-        System.out.println("Done: " + output.toAbsolutePath());
+        System.out.println(Messages.get("msg.done", output.toAbsolutePath()));
     }
 
     private static void printInfo(String[] args) throws IOException {
         if (args.length < 2) {
-            System.err.println("Usage: info <input.ofd>");
+            System.err.println(Messages.get("error.info.usage"));
             System.exit(1);
         }
         Path input = Paths.get(args[1]);
         try (OFDReader reader = new OFDReader(input)) {
             int pageCount = reader.getNumberOfPages();
-            System.out.println("OFD File : " + input.toAbsolutePath());
-            System.out.println("Pages    : " + pageCount);
+            System.out.println(Messages.get("msg.info.file", input.toAbsolutePath()));
+            System.out.println(Messages.get("msg.info.pages", pageCount));
         }
     }
 
     private static void printUsage() {
-        System.out.println("OFDRW CLI v2.3.9 - OFD Document Tool");
+        System.out.println(Messages.get("usage.header"));
         System.out.println();
-        System.out.println("Usage:  java -jar ofdrw-cli-2.3.9.jar <command> [options]");
+        System.out.println(Messages.get("usage.usage"));
         System.out.println();
-        System.out.println("Commands:");
-        System.out.println("  to-pdf    <input.ofd> <output.pdf>              Convert OFD to PDF");
-        System.out.println("  to-image  <input.ofd> <output-dir> [ppm]        Convert OFD pages to PNG images (default ppm=7)");
-        System.out.println("  to-svg    <input.ofd> <output-dir> [ppm]        Convert OFD pages to SVG");
-        System.out.println("  to-html   <input.ofd> <output.html> [width]     Convert OFD to HTML (default width=1920)");
-        System.out.println("  merge     <out.ofd> <in1.ofd> [in2.ofd ...]     Merge OFD files");
-        System.out.println("  info      <input.ofd>                           Print document information");
+        System.out.println(Messages.get("usage.commands"));
+        System.out.println(Messages.get("usage.cmd.topdf"));
+        System.out.println(Messages.get("usage.cmd.toimage"));
+        System.out.println(Messages.get("usage.cmd.tosvg"));
+        System.out.println(Messages.get("usage.cmd.tohtml"));
+        System.out.println(Messages.get("usage.cmd.merge"));
+        System.out.println(Messages.get("usage.cmd.info"));
         System.out.println();
-        System.out.println("Examples:");
-        System.out.println("  java -jar ofdrw-cli-2.3.9.jar to-pdf   input.ofd output.pdf");
-        System.out.println("  java -jar ofdrw-cli-2.3.9.jar to-image input.ofd ./images 10.0");
-        System.out.println("  java -jar ofdrw-cli-2.3.9.jar to-svg   input.ofd ./svg");
-        System.out.println("  java -jar ofdrw-cli-2.3.9.jar to-html  input.ofd output.html 1280");
-        System.out.println("  java -jar ofdrw-cli-2.3.9.jar merge    merged.ofd file1.ofd file2.ofd");
-        System.out.println("  java -jar ofdrw-cli-2.3.9.jar info     input.ofd");
+        System.out.println(Messages.get("usage.examples"));
+        System.out.println(Messages.get("usage.ex1"));
+        System.out.println(Messages.get("usage.ex2"));
+        System.out.println(Messages.get("usage.ex3"));
+        System.out.println(Messages.get("usage.ex4"));
+        System.out.println(Messages.get("usage.ex5"));
+        System.out.println(Messages.get("usage.ex6"));
     }
 }

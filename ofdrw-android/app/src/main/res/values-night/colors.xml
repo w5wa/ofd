@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark-theme colour overrides -->
+<resources>
+    <color name="md_theme_primary">#88D8A4</color>
+    <color name="md_theme_on_primary">#003920</color>
+    <color name="md_theme_primary_container">#005230</color>
+    <color name="md_theme_on_primary_container">#A3F5C0</color>
+    <color name="md_theme_secondary">#B3CCBA</color>
+    <color name="md_theme_on_secondary">#1F352A</color>
+    <color name="md_theme_background">#191C1A</color>
+    <color name="md_theme_on_background">#E1E3DF</color>
+    <color name="md_theme_surface">#191C1A</color>
+    <color name="md_theme_on_surface">#E1E3DF</color>
+    <color name="md_theme_on_surface_variant">#BFC9C2</color>
+</resources>

@@ -32,6 +32,17 @@ java -jar ofdrw-cli/target/ofdrw-cli-2.3.9.jar <command> [options]
 ofdrw-cli\ofdrw.bat <command> [options]
 ```
 
+## Language / Locale
+
+The CLI defaults to **English**. Pass `--lang ar` anywhere before the command to switch to **Arabic**:
+
+```bash
+java -jar ofdrw-cli-2.3.9.jar --lang ar info input.ofd
+java -jar ofdrw-cli-2.3.9.jar --lang en to-pdf input.ofd output.pdf
+```
+
+> The `--lang` flag is stripped before command parsing, so it can appear in any position before the command name.
+
 ## Commands
 
 | Command    | Description                                      |
